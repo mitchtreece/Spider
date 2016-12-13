@@ -1,0 +1,16 @@
+PODS:
+  - Spider (0.1.0)
+
+DEPENDENCIES:
+  - Spider (from `../`)
+
+EXTERNAL SOURCES:
+  Spider:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Spider: f92308eea9da2c392fc12c67c4b5f723f71df578
+
+PODFILE CHECKSUM: 67a861e2d855c9dd641c179259ef362e60e8c65d
+
+COCOAPODS: 1.2.0.beta.1

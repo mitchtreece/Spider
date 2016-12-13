@@ -1,0 +1,6 @@
+framework module Spider {
+  umbrella header "Spider-umbrella.h"
+
+  export *
+  module * { export * }
+}
