@@ -1,5 +1,35 @@
 PODS:
-  - Spider (0.1.0)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.2.0)
+  - PromiseKit (4.1.0):
+    - PromiseKit/Foundation (= 4.1.0)
+    - PromiseKit/QuartzCore (= 4.1.0)
+    - PromiseKit/UIKit (= 4.1.0)
+  - PromiseKit/CorePromise (4.1.0)
+  - PromiseKit/Foundation (4.1.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.1.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.1.0):
+    - PromiseKit/CorePromise
+  - Spider (1.0.0):
+    - AFNetworking (~> 3.0)
+    - Alamofire (~> 4.0)
+    - PromiseKit (~> 4.0)
 
 DEPENDENCIES:
   - Spider (from `../`)
@@ -9,8 +39,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Spider: f92308eea9da2c392fc12c67c4b5f723f71df578
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  PromiseKit: c98453ff78544c0ad5bb0ea980782e6875f47978
+  Spider: 18e65714da70e51931efd918d30950169f88c031
 
-PODFILE CHECKSUM: 67a861e2d855c9dd641c179259ef362e60e8c65d
+PODFILE CHECKSUM: cf5f5cb7feaa9441ae3a4bba033777dd31d34139
 
 COCOAPODS: 1.2.0.beta.1
