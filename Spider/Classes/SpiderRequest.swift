@@ -65,15 +65,20 @@ public class SpiderRequest {
         case delete = "DELETE"
     }
     
+    public enum AuthType {
+        case none
+        case token(SpiderToken?)
+    }
+    
     public var method: Method
     public var baseUrl: String?
     public var path: String
     public var parameters: Any?
-    public var auth: Spider.AuthType
+    public var auth: AuthType
     
     public var header = SpiderRequestHeader()
     
-    public init(method: Method = .get, baseUrl: String? = nil, path: String, parameters: Any?, auth: Spider.AuthType = .none) {
+    public init(method: Method = .get, baseUrl: String? = nil, path: String, parameters: Any?, auth: AuthType = .none) {
         
         self.method = method
         self.baseUrl = baseUrl

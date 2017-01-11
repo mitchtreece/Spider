@@ -10,27 +10,22 @@ import Foundation
 import Alamofire
 import AFNetworking
 
-public typealias WebToken = String
+// public typealias SpiderToken = (headerField: String, value: String)
 public typealias RequestCompletion = (URLResponse?, Any?, Error?) -> ()
 
 public class Spider {
     
-    public enum AuthType {
-        case none
-        case token
-    }
-    
     public static var web = Spider()
     
     public var baseUrl: URL?
-    
-    // public private(set) var accessToken: WebToken = ""
-    
+    public var accessToken: SpiderToken?
+        
     @discardableResult
-    public static func with(baseUrl: URL) -> Spider {
+    public static func web(withBaseUrl baseUrl: URL, accessToken: SpiderToken? = nil) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
+        web.accessToken = accessToken
         return web
         
     }
@@ -39,21 +34,26 @@ public class Spider {
         //
     }
     
-    public convenience init(baseUrl: URL?) {
+    public convenience init(baseUrl: URL?, accessToken: SpiderToken? = nil) {
         
         self.init()
         self.baseUrl = baseUrl
+        self.accessToken = accessToken
         
     }
     
-    internal func authorize(request: NSMutableURLRequest, authType: AuthType = .token) {
+    internal func authorize(request: NSMutableURLRequest, authType: SpiderRequest.AuthType) {
         
         switch authType {
         case .none: break
-        case .token: break
+        case .token(let token):
             
-            // request.setValue(accessToken, forHTTPHeaderField: "x-access-token")
-            // request.setValue("application/json", forHTTPHeaderField: "Accept")
+            if let token = token {
+                request.setValue(token.value, forHTTPHeaderField: token.headerField)
+            }
+            else if let token = accessToken {
+                request.setValue(token.value, forHTTPHeaderField: token.headerField)
+            }
             
         }
         
@@ -153,21 +153,21 @@ public class Spider {
         
     }
     
-    public func post(path: String, parameters: Any?, authType: AuthType = .none, completion: @escaping RequestCompletion) {
+    public func post(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
         
         let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: authType)
         execute(request, withCompletion: completion)
         
     }
     
-    public func get(path: String, parameters: Any?, authType: AuthType = .none, completion: @escaping RequestCompletion) {
+    public func get(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
         
         let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: authType)
         execute(request, withCompletion: completion)
         
     }
     
-    public func delete(path: String, parameters: Any?, authType: AuthType = .none, completion: @escaping RequestCompletion) {
+    public func delete(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
         
         let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: authType)
         execute(request, withCompletion: completion)

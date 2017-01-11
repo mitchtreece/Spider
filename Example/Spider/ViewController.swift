@@ -15,21 +15,27 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let url = URL(string: "http://lorempixel.com")
-        let spider = Spider(baseUrl: url!)
+        let url = URL(string: "http://google.com")
+        let token = SpiderToken(headerField: "x-access-token", value: "123456789")
+        
+        // Shared
+        
+        Spider.web(withBaseUrl: url!, accessToken: token).get(path: "/test", parameters: nil) { (res, obj, err) in
+            
+        }
         
         // Simple
         
-        spider.get(path: "/400/400", parameters: nil) { (res, obj, err) in
-            print(obj ?? "No data")
+        let spider = Spider(baseUrl: url!, accessToken: token)
+        spider.get(path: "/test", parameters: nil) { (res, obj, err) in
+            
         }
         
         // Advanced
         
-        let request = SpiderRequest(path: "/400/400", parameters: nil)
+        let request = SpiderRequest(path: "/test", parameters: nil)
         request.header.accept = [.image_jpeg]
-        request.header.set(value: "123456789", forHeaderField: "x-access-token")
-        
+        request.auth = .token(SpiderToken(headerField: "x-access-token", value: "123456789"))
         spider.execute(request) { (res, obj, err) in
             print(obj ?? "No data")
         }
@@ -37,8 +43,9 @@ class ViewController: UIViewController {
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
 }
