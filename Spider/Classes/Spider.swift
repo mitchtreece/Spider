@@ -10,68 +10,67 @@ import Foundation
 import Alamofire
 import AFNetworking
 
-// public typealias SpiderToken = (headerField: String, value: String)
-public typealias RequestCompletion = (URLResponse?, Any?, Error?) -> ()
+public typealias SpiderResponse = (res: URLResponse?, data: Any?, err: Error?)
+public typealias SpiderRequestCompletion = (SpiderResponse) -> ()
 
 public class Spider {
+    
+    public enum Authorization {
+        case none
+        case token(SpiderToken?)
+    }
     
     public static var web = Spider()
     
     public var baseUrl: URL?
-    public var accessToken: SpiderToken?
-        
+    public var authorization: Authorization?
+    
     @discardableResult
-    public static func web(withBaseUrl baseUrl: URL, accessToken: SpiderToken? = nil) -> Spider {
+    public static func web(withBaseUrl baseUrl: URL, auth: Authorization? = nil) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
-        web.accessToken = accessToken
+        web.authorization = auth
         return web
         
     }
     
-    private init() {
+    public init() {
         //
     }
     
-    public convenience init(baseUrl: URL?, accessToken: SpiderToken? = nil) {
+    public convenience init(baseUrl: URL?, auth: Authorization? = nil) {
         
         self.init()
         self.baseUrl = baseUrl
-        self.accessToken = accessToken
+        self.authorization = auth
         
     }
     
-    internal func authorize(request: NSMutableURLRequest, authType: SpiderRequest.AuthType) {
+    internal func authorize(request: NSMutableURLRequest, with auth: Authorization) {
         
-        switch authType {
+        switch auth {
         case .none: break
         case .token(let token):
             
             if let token = token {
                 request.setValue(token.value, forHTTPHeaderField: token.headerField)
             }
-            else if let token = accessToken {
-                request.setValue(token.value, forHTTPHeaderField: token.headerField)
+            else if let _auth = self.authorization {
+                if case let Authorization.token(_token) = _auth, _token != nil {
+                    request.setValue(_token!.value, forHTTPHeaderField: _token!.headerField)
+                }
             }
             
         }
         
     }
     
-    private func session(withBaseUrl url: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
+    internal func session(withBaseUrl url: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
         
         let session = AFHTTPSessionManager(baseURL: url)
-        
-        // Request Serializer
-        
         session.requestSerializer = AFJSONRequestSerializer()
-        
-        // Response Serializer
-        
-        let resSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
-        session.responseSerializer = resSerializer
-        
+        session.responseSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
         return session
         
     }
@@ -93,17 +92,15 @@ public class Spider {
     
     // MARK: Request Helpers
     
-    private func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
+    internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
-        guard let baseUrl = self.baseUrl(from: request) else { return nil }
-        
-        let url = "\(baseUrl)\(request.path)"
-        let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: url, parameters: request.parameters, error: nil)
+        var urlString = self.baseUrl(from: request) ?? request.path
+        let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
         
         // Accept
         
         var accept: String?
-        request.header.acceptStringify().forEach { (type) in
+        request.header.acceptStringify()?.forEach { (type) in
             accept = (accept == nil) ? type : "\(accept!), \(type)"
         }
         req.setValue(accept, forHTTPHeaderField: "Accept")
@@ -118,7 +115,7 @@ public class Spider {
         
     }
     
-    private func baseUrl(from request: SpiderRequest) -> String? {
+    internal func baseUrl(from request: SpiderRequest) -> String? {
         
         if let requestUrl = request.baseUrl {
             return requestUrl
@@ -133,44 +130,59 @@ public class Spider {
     
     // MARK: Request Execution
     
-    public func execute(_ request: SpiderRequest, withCompletion completion: @escaping RequestCompletion) {
+    public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
-        guard let baseUrlString = self.baseUrl(from: request), let baseUrl = URL(string: baseUrlString) else {
-            print("no base url")
-            return
+        var baseUrl: URL?
+        if let baseUrlString = self.baseUrl(from: request), let url = URL(string: baseUrlString) {
+            baseUrl = url
         }
         
         let accept = request.header.acceptStringify()
         let session = self.session(withBaseUrl: baseUrl, acceptableContentTypes: accept)
         
         guard let req = self.request(from: request, session: session) else {
-            print("Error fetching request")
+            let response = SpiderResponse(nil, nil, SpiderError.badRequest)
+            completion(response)
             return
         }
         
-        authorize(request: req, authType: request.auth)
+        authorize(request: req, with: request.auth)
         session.dataTask(with: req as URLRequest, completionHandler: completion).resume()
         
     }
     
-    public func post(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
+    public func get(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: authType)
-        execute(request, withCompletion: completion)
-        
-    }
-    
-    public func get(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
-        
-        let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: authType)
-        execute(request, withCompletion: completion)
+        let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request, withCompletion: completion)
         
     }
     
-    public func delete(path: String, parameters: Any?, authType: SpiderRequest.AuthType = .none, completion: @escaping RequestCompletion) {
+    public func post(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: authType)
-        execute(request, withCompletion: completion)
+        let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request, withCompletion: completion)
+        
+    }
+    
+    public func put(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+        
+        let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request, withCompletion: completion)
+        
+    }
+    
+    public func patch(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+        
+        let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request, withCompletion: completion)
+        
+    }
+    
+    public func delete(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+        
+        let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request, withCompletion: completion)
         
     }
     

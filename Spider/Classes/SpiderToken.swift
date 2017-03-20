@@ -2,7 +2,7 @@
 //  SpiderToken.swift
 //  Pods
 //
-//  Created by Mitch Treece on 1/10/17.
+//  Created by Mitch Treece on 3/12/17.
 //
 //
 
@@ -14,10 +14,8 @@ public class SpiderToken {
     public var value: String
     
     public init(headerField: String, value: String) {
-        
         self.headerField = headerField
         self.value = value
-        
     }
     
 }

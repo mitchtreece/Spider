@@ -24,11 +24,12 @@
 		2097A9477F63A62CF798DC8FF58F4C2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB995116FBA1C817902D411F6417590 /* Foundation.framework */; };
 		2108AA29B8C5B3C31934D5AFCF354B8F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDD4F59D400D3E96B34975B2F1BF62 /* State.swift */; };
 		23EFB184AD12FB1014FFC765CE0D710A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF2A57C7FEF948CCD728AFCF140D122 /* Security.framework */; };
+		26975E311E8081B200D7AFCF /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E301E8081B200D7AFCF /* Data+Spider.swift */; };
+		26F06FAE1E76738D0098342F /* SpiderToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F06FAC1E76730F0098342F /* SpiderToken.swift */; };
 		29476636EA86BEFC4CB833D3BB7A52D7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7FDFA9BC5F155DA959DF57E079A3D /* AFURLRequestSerialization.m */; };
 		2B0705CC26A4CBEE32A5A60284AED35B /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 59F123F00F144A263E1758BC67F1EF64 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5B1A979EF5630E04EDBA72A29F4D8B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10860ACB40C3EBBF1CAE92BD2B0CBDF2 /* Alamofire.framework */; };
 		30793E301E025F6C006DAEB1 /* SpiderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */; };
-		30D830FF1E25B5D2004171D0 /* SpiderToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D830FD1E25B47C004171D0 /* SpiderToken.swift */; };
 		32076D3DD644045CF79DFFEBB6BFF3F2 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AB007DF65E0746D0CB476C517CAFF9AF /* UIButton+AFNetworking.m */; };
 		34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2FBE3F4D10607F5CBAA880EEC744EF /* UIProgressView+AFNetworking.m */; };
 		35CBB7B255FD8D412AFCECBC4311A847 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = DF78ABAD8A35F045608706FAE1B3BA4C /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -214,6 +215,8 @@
 		1FC62AA094E795906121EA8415F3F1D6 /* UIView+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AnyPromise.m"; path = "Extensions/UIKit/Sources/UIView+AnyPromise.m"; sourceTree = "<group>"; };
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		263BE6379BD01A9ED7F191015BC774E4 /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
+		26975E301E8081B200D7AFCF /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
+		26F06FAC1E76730F0098342F /* SpiderToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderToken.swift; sourceTree = "<group>"; };
 		27D70EB26A880E59BDE2DF48FE48710B /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
 		2A1221A1EB469BF2EAC358E6A59FB825 /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		2A448D0ECC075BBAEA5628CE51B8778A /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
@@ -222,7 +225,6 @@
 		2DE6A42B1B37F07E26BFBC72F6D98A5A /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		2E56AD998696D5CECDD592A34013AB68 /* CALayer+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+AnyPromise.h"; path = "Extensions/QuartzCore/Sources/CALayer+AnyPromise.h"; sourceTree = "<group>"; };
 		30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderRequest.swift; sourceTree = "<group>"; };
-		30D830FD1E25B47C004171D0 /* SpiderToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderToken.swift; sourceTree = "<group>"; };
 		31E88C46F6386AC825D166E306875195 /* Promise+AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+AnyPromise.swift"; path = "Sources/Promise+AnyPromise.swift"; sourceTree = "<group>"; };
 		3222AB9522ACC8A7214EF581B4EDF84B /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		33F70C44BC8C393F8485CFB9E0CAE52A /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
@@ -567,10 +569,11 @@
 			isa = PBXGroup;
 			children = (
 				50AC605B329037B1D7C5ED20C762ECE9 /* Spider.swift */,
-				30D830FD1E25B47C004171D0 /* SpiderToken.swift */,
 				30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */,
+				26F06FAC1E76730F0098342F /* SpiderToken.swift */,
 				41D914BD05E2E66B6DBFB33A33AF2E32 /* Spider+Promise.swift */,
 				D37DD2247CD7D000EA4DB4C7335C8188 /* SpiderError.swift */,
+				26975E301E8081B200D7AFCF /* Data+Spider.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1135,10 +1138,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				580E7F7201F601FF699BDE17F99D21AB /* Spider+Promise.swift in Sources */,
+				26975E311E8081B200D7AFCF /* Data+Spider.swift in Sources */,
 				FF48597583F3A47542E6F0CB0FD66F6A /* Spider-dummy.m in Sources */,
 				30793E301E025F6C006DAEB1 /* SpiderRequest.swift in Sources */,
 				63A964F064951A1515C6AF024E0E62A4 /* Spider.swift in Sources */,
-				30D830FF1E25B5D2004171D0 /* SpiderToken.swift in Sources */,
+				26F06FAE1E76738D0098342F /* SpiderToken.swift in Sources */,
 				E737CA0C6F1BB97C46C4830A1F5EC364 /* SpiderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

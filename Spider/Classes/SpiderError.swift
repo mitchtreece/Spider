@@ -10,8 +10,8 @@ import Foundation
 
 public enum SpiderError: Error {
     
-    case invalidBaseUrl
-    case invalidUrlRequest
-    case invalidData
+    case badRequest
+    case badResponse
+    case other(description: String)
     
 }
