@@ -1,5 +1,4 @@
-# Spider
-Creepy web framework for Swift
+![Spider](Resources/logo.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
