@@ -36,6 +36,18 @@ extension Spider {
         
     }
     
+    public func get(path: String, parameters: Any?, auth: Authorization = .none) -> Promise<SpiderResponse> {
+        
+        let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
+        let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request) { (res, obj, err) in
+            let response = SpiderResponse(res, obj, err)
+            fulfill(response)
+        }
+        return promise
+        
+    }
+    
     public func post(path: String, parameters: Any?, auth: Authorization = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
@@ -48,10 +60,22 @@ extension Spider {
         
     }
     
-    public func get(path: String, parameters: Any?, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func put(path: String, parameters: Any?, auth: Authorization = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
-        let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        perform(request) { (res, obj, err) in
+            let response = SpiderResponse(res, obj, err)
+            fulfill(response)
+        }
+        return promise
+        
+    }
+    
+    public func patch(path: String, parameters: Any?, auth: Authorization = .none) -> Promise<SpiderResponse> {
+        
+        let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
+        let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request) { (res, obj, err) in
             let response = SpiderResponse(res, obj, err)
             fulfill(response)

@@ -1,29 +1,262 @@
 # Spider
+Creepy web framework for Swift
 
-[![CI Status](http://img.shields.io/travis/Mitch Treece/Spider.svg?style=flat)](https://travis-ci.org/Mitch Treece/Spider)
 [![Version](https://img.shields.io/cocoapods/v/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
-[![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
+![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
+[![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+## Overview
+Spider is an easy-to-use web framework built on-top the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. Spider's easy syntax & modern response handling makes requesting/retrieving data incredibly simple.
 
 ## Installation
+### CocoaPods
+Spider is integrated with CocoaPods!
 
-Spider is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+1. Add the following to your `Podfile`:
+```
+use_frameworks!
+pod 'Spider'
+```
+2. In your project directory, run `pod install`
+3. Import the `Spider` module wherever you need it
+4. Profit
 
-```ruby
-pod "Spider"
+### Manually
+You can also manually add the source files to your project.
+
+1. Clone this git repo
+2. Add all the Swift files in the `Spider/` subdirectory to your project
+3. Profit
+
+## The Basics
+
+Spider can be used in many different ways. Many times, a shared (one-off) approach is all that's needed.
+
+```Swift
+Spider.web.get(path: "https://path/to/endpoint", parameters: nil) { (response) in
+    print("We got a response!")
+}
 ```
 
-## Author
+This simply makes a `GET` request with a given path & parameters, and returns a `SpiderResponse` object.
 
-Mitch Treece, mitchtreece@me.com
+### SpiderResponse
 
-## License
+The `SpiderResponse` object is really just a fancy typealias over an even fancier tuple. It's defined as:
 
-Spider is available under the MIT license. See the LICENSE file for more info.
+```Swift
+public typealias SpiderResponse = (res: URLResponse?, data: Any?, err: Error?)
+```
+
+It contains 3 optional objects. The `URLResponse` object (_res_), response data (_data_), and an error object (_err_). Easy to use & understand, plus it helps keep our code readable! Hooray!
+
+### Base URLs
+
+Because we typically make more than one request to a given API, using _base URLs_ just makes sense. This is also useful when we need to switch between versions of API's (i.e. dev, pre-prod, prod, etc...).
+
+```Swift
+let baseUrl = URL(string: "https://base.url/v1")!
+let spider = Spider.web(withBaseUrl: baseUrl)
+
+spider.get(path: "/users", parameters; nil) { (response) in
+    print("We got a response!")
+}
+
+spider.get(path: "/locations", parameters: nil) { (response) in
+    print("We got another response!")
+}
+```
+
+Notice how we can now make requests to specific endpoints with the same shared base url. The above requests would hit the endpoints:
+
+```
+https://base.url/v1/users
+https://base.url/v1/locations
+```
+
+If a base url is not specified, Spider will assume the `path` of your request is a fully qualified url (as seen in the first example).
+
+### Instances
+
+So far, we have been working with the shared (global) instance of Spider. This is usually all you need. Just in case you need more control, Spider also supports a more typical instantiation flow.
+
+```Swift
+let tarantula = Spider()
+tarantula.get(path: "https://path/to/endpoint", parameters: nil) { (response) in
+    print("Tarantula got a response!")
+}
+```
+
+Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Spooky! Naturally, Spider instances created like this also support base urls:
+
+```Swift
+let baseUrl = URL(string: "https://base.url/v1")!
+let blackWidow = Spider(baseUrl: baseUrl)
+blackWidow.get(path: "/users", parameters: nil) { (response) in
+    print("Black Widow got a response!")
+}
+```
+
+### Advanced Requests
+
+Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually like this:
+
+```Swift
+let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
+request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
+request.header.set(value: "12345", forHeaderField: "user_id")
+
+Spider.web.perform(request) { (response) in
+    print("We got a response!")
+}
+```
+
+### Authorization
+
+Spider supports auth tokens on a per-request & instance-based basis. Typically we would want to provide our Spider instance a token that all requests would be sent with:
+
+```Swift
+let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+let baseUrl = URL(string: "https://base.url/v1")!
+let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: .token(accessToken))
+
+bigHairySpider.get(path: "/topSecretData", parameters: nil) { (response) in
+    print("Big hairy spider got a response!")
+}
+```
+
+However, tokens can be provided per-request if it better fits your situation:
+
+```Swift
+let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+let baseUrl = URL(string: "https://base.url/v1")!
+let aSpider = Spider.web(withBaseUrl: baseUrl)
+
+aSpider.get(path: "/topSecretData", parameters: nil, auth: .token(accessToken)) { (response) in
+    print("Spider got a response!")
+}
+```
+
+Advanced requests can also provide tokens:
+
+```Swift
+let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+
+let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
+request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
+request.header.set(value: "12345", forHeaderField: "user_id")
+request.auth = .token(accessToken)
+
+Spider.web.perform(request) { (response) in
+    print("We got a response!")
+}
+```
+
+### Working with Responses
+
+As mentioned above, `SpiderResponse` objects are clean & easy to work with. A typical data response might look something like this:
+
+```Swift
+Spider.web.get(path: "https://some/data/endpoint", parameters: nil) { (response) in
+
+    guard let data = response.data as? Data, response.err == nil else {
+
+        var message = "There was an error fetching the data"
+        if let error = response.err {
+            message = error
+        }
+
+        print(error)
+        return
+
+    }
+
+    print("Successfully fetched the data: \(data)")
+
+}
+```
+
+A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of data easy to work with.
+
+```Swift
+Spider.web.get(path: "https://some/json/endpoint", parameters: nil) { (response) in
+
+    guard let data = response.data as? Data, let json = data.json() as? [String: Any], response.err == nil else {
+
+        var message = "There was an error fetching the json data"
+        if let error = response.err {
+            message = error
+        }
+
+        print(error)
+        return
+
+    }
+
+    print("Successfully fetched the json data: \(json)")
+
+}
+```
+
+Notice how we call `json()` on our response data. This helper function will attempt to serialize our data into a JSON object for us to work with. The function is defined as an extension on `Data`:
+
+```Swift
+public func json() -> Any?
+```
+
+If the data cannot be serialized, this function will return `nil`; causing our above `guard` statement to fail.
+
+If the JSON response is formatted as an array (i.e. a list of users), don't forget to cast it as such!
+
+```Swift
+Spider.web.get(path: "https://list/of/users", parameters: nil) { (response) in
+
+    guard let data = response.data as? Data, let users = data.json() as? [[String: Any]], response.err == nil else {
+
+        var message = "There was an error fetching the json data"
+        if let error = response.err {
+            message = error
+        }
+
+        print(error)
+        return
+
+    }
+
+    for userDictionary in users {
+        print("Fetched user: \(userDictionary["name"] as! String)")
+    }
+
+}
+```
+
+### Promises
+
+Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
+
+```Swift
+Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil).then { (response) -> Promise<SpiderResponse> in
+
+    guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
+        throw SpiderError.badResponse
+    }
+
+    return Spider.web.get(path: photos[0]["url"] as! String, parameters: nil)
+
+}.then { (response) -> Void in
+
+    guard let data = response.data as? Data, let image = UIImage(data: data) else {
+        throw SpiderError.badResponse
+    }
+
+    print(image)
+
+}.catch { (error) in
+
+    print(error);
+
+}
+```
+
+This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.

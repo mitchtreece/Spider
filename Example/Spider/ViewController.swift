@@ -53,7 +53,7 @@ class ViewController: UIViewController {
 //        spider3.perform(request) { (res, obj, err) in
 //            print("Advanced Request")
 //        }
-//        
+//
 //        // Shared Token Authorization (Per request)
 //        
 //        Spider.web.get(path: "/300/300", parameters: nil, auth: .token(accessToken)) { (res, obj, err) in
