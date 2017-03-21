@@ -58,7 +58,7 @@ Because we typically make more than one request to a given API, using _base URLs
 let baseUrl = URL(string: "https://base.url/v1")!
 let spider = Spider.web(withBaseUrl: baseUrl)
 
-spider.get(path: "/users", parameters; nil) { (response) in
+spider.get(path: "/users", parameters: nil) { (response) in
     print("We got a response!")
 }
 
@@ -253,7 +253,7 @@ Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: 
 
 }.catch { (error) in
 
-    print(error);
+    print(error)
 
 }
 ```
