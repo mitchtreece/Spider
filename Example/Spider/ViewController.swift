@@ -13,11 +13,21 @@ import PromiseKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    private var fetching: Bool = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+    }
+    
+    @IBAction func fetchPhotosWithCallbacks() {
+        
+        guard fetching == false else { return }
+        
+        self.fetching = true
+        self.imageView.image = nil
+
         Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil) { (response) in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
@@ -38,9 +48,44 @@ class ViewController: UIViewController {
                 
                 print("Fetched first image!")
                 self.imageView.image = image
+                self.fetching = false
                 
             }
             
+        }
+        
+    }
+    
+    @IBAction func fetchPhotosWithPromises() {
+        
+        guard fetching == false else { return }
+        
+        self.fetching = true
+        self.imageView.image = nil
+        
+        Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil).then { (response) -> Promise<SpiderResponse> in
+            
+            guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
+                throw SpiderError.badResponse
+            }
+            
+            print("Fetched \(photos.count) photos")
+            return Spider.web.get(path: photos[0]["url"] as! String, parameters: nil)
+            
+        }.then { (response) -> Void in
+                
+            guard let data = response.data as? Data, let image = UIImage(data: data), response.err == nil else {
+                throw SpiderError.badResponse
+            }
+            
+            print("Fetched first image!")
+            self.imageView.image = image
+            self.fetching = false
+                
+        }.catch { (error) in
+                
+            print(error)
+                
         }
         
     }

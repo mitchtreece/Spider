@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Mitch Treece on 12/13/16.
-//
+//  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
 import PromiseKit
@@ -14,23 +14,9 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         
-        var baseUrl: URL?
-        if let baseUrlString = self.baseUrl(from: request), let url = URL(string: baseUrlString) {
-            baseUrl = url
-        }
-        
-        let accept = request.header.acceptStringify()
-        let session = self.session(withBaseUrl: baseUrl, acceptableContentTypes: accept)
-        
-        guard let req = self.request(from: request, session: session) else {
-            return Promise(error: SpiderError.badRequest)
-        }
-        
-        authorize(request: req, with: request.auth)
-        session.dataTask(with: req as URLRequest) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+        perform(request) { (response) in
             fulfill(response)
-        }.resume()
+        }
         
         return promise
         
@@ -40,10 +26,11 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
-        perform(request) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+
+        perform(request).then { (response) -> Void in
             fulfill(response)
         }
+        
         return promise
         
     }
@@ -52,10 +39,11 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
-        perform(request) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+        
+        perform(request).then { (response) -> Void in
             fulfill(response)
         }
+        
         return promise
         
     }
@@ -64,10 +52,11 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
-        perform(request) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+        
+        perform(request).then { (response) -> Void in
             fulfill(response)
         }
+        
         return promise
         
     }
@@ -76,10 +65,11 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
-        perform(request) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+        
+        perform(request).then { (response) -> Void in
             fulfill(response)
         }
+        
         return promise
         
     }
@@ -88,10 +78,11 @@ extension Spider {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
-        perform(request) { (res, obj, err) in
-            let response = SpiderResponse(res, obj, err)
+        
+        perform(request).then { (response) -> Void in
             fulfill(response)
         }
+        
         return promise
         
     }

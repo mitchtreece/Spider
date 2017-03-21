@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Mitch Treece on 3/12/17.
-//
+//  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
 import Foundation

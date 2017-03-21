@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,12 +29,44 @@
                                     <constraint firstAttribute="width" secondItem="p1d-5P-fmw" secondAttribute="height" multiplier="1:1" id="3cy-qM-PpW"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COo-WR-por">
+                                <rect key="frame" x="0.0" y="623" width="187.5" height="44"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EPV-FX-io2"/>
+                                </constraints>
+                                <state key="normal" title="Fetch with Callbacks">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fetchPhotosWithCallbacks" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jge-iQ-Gpe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hc-2K-mQh">
+                                <rect key="frame" x="187" y="623" width="187.5" height="44"/>
+                                <color key="backgroundColor" red="0.87037501729030131" green="0.86918834144127122" blue="0.88991661269430056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pRi-tO-uew"/>
+                                </constraints>
+                                <state key="normal" title="Fetch with Promises">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fetchPhotosWithPromises" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nxk-WF-sjp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="p1d-5P-fmw" secondAttribute="trailing" constant="16" id="4m2-s5-Dnu"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2Hc-2K-mQh" secondAttribute="bottom" id="GW3-tZ-ZOt"/>
+                            <constraint firstItem="COo-WR-por" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.5" id="LP6-i5-aSS"/>
                             <constraint firstItem="p1d-5P-fmw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="OzV-EO-CXw"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="COo-WR-por" secondAttribute="bottom" id="PyW-pd-r7Q"/>
+                            <constraint firstItem="2Hc-2K-mQh" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.5" id="SLf-mt-f9g"/>
                             <constraint firstItem="p1d-5P-fmw" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="bKo-AQ-Z0t"/>
+                            <constraint firstAttribute="trailing" secondItem="2Hc-2K-mQh" secondAttribute="trailing" id="pi4-UZ-a0Y"/>
+                            <constraint firstItem="COo-WR-por" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="xGo-Yz-KPf"/>
                         </constraints>
                     </view>
                     <connections>

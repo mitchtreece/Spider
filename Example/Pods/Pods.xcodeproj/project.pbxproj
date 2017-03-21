@@ -24,12 +24,15 @@
 		2097A9477F63A62CF798DC8FF58F4C2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB995116FBA1C817902D411F6417590 /* Foundation.framework */; };
 		2108AA29B8C5B3C31934D5AFCF354B8F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDD4F59D400D3E96B34975B2F1BF62 /* State.swift */; };
 		23EFB184AD12FB1014FFC765CE0D710A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF2A57C7FEF948CCD728AFCF140D122 /* Security.framework */; };
-		26975E311E8081B200D7AFCF /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E301E8081B200D7AFCF /* Data+Spider.swift */; };
-		26F06FAE1E76738D0098342F /* SpiderToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F06FAC1E76730F0098342F /* SpiderToken.swift */; };
+		26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E491E81D8E000D7AFCF /* Spider.swift */; };
+		26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4A1E81D8E000D7AFCF /* SpiderError.swift */; };
+		26975E4F1E81D8E000D7AFCF /* SpiderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */; };
+		26975E501E81D8E000D7AFCF /* SpiderToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */; };
+		26975E521E81D8EA00D7AFCF /* Spider+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */; };
+		26975E541E81D8F700D7AFCF /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E531E81D8F700D7AFCF /* Data+Spider.swift */; };
 		29476636EA86BEFC4CB833D3BB7A52D7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7FDFA9BC5F155DA959DF57E079A3D /* AFURLRequestSerialization.m */; };
 		2B0705CC26A4CBEE32A5A60284AED35B /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 59F123F00F144A263E1758BC67F1EF64 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5B1A979EF5630E04EDBA72A29F4D8B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10860ACB40C3EBBF1CAE92BD2B0CBDF2 /* Alamofire.framework */; };
-		30793E301E025F6C006DAEB1 /* SpiderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */; };
 		32076D3DD644045CF79DFFEBB6BFF3F2 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AB007DF65E0746D0CB476C517CAFF9AF /* UIButton+AFNetworking.m */; };
 		34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2FBE3F4D10607F5CBAA880EEC744EF /* UIProgressView+AFNetworking.m */; };
 		35CBB7B255FD8D412AFCECBC4311A847 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = DF78ABAD8A35F045608706FAE1B3BA4C /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,13 +50,11 @@
 		55553BDA17B16FBBC9FEB85D85CDECE2 /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE1C135CDA18477D3BE7E2F9B16A95E /* UIView+Promise.swift */; };
 		56DFBCA692891B0976F5AE28577D13FC /* PMKFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = C787A63EC9EA4BBEE0CC03C44C8CC738 /* PMKFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		578317C44CB108B38E80811125F52B5D /* NSNotificationCenter+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 413D973134681E02E6CD0A7E939B7B82 /* NSNotificationCenter+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		580E7F7201F601FF699BDE17F99D21AB /* Spider+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D914BD05E2E66B6DBFB33A33AF2E32 /* Spider+Promise.swift */; };
 		58270B1FF44BF972E1DAB3AA12DB9D16 /* NSURLSession+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D7A8169A5F50028A193818D91C5610 /* NSURLSession+AnyPromise.m */; };
 		59A75705D668F5E27723165A21123CEE /* AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D70EB26A880E59BDE2DF48FE48710B /* AnyPromise.m */; };
 		5A1D34D104D42B1EE399E23BCD7935A0 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD5CEFF8FD462FB511FAE633FC3E55A /* AFURLResponseSerialization.m */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3524894A0CEF7C8A061B97B8934737B1 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DB82A26815C539313E06E57733FBD8 /* ServerTrustPolicy.swift */; };
-		63A964F064951A1515C6AF024E0E62A4 /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AC605B329037B1D7C5ED20C762ECE9 /* Spider.swift */; };
 		649E78B5EA450FABDF5201E31F265FAB /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE76D594ACDC750E3FD15EC8E09E46 /* AFNetworkActivityIndicatorManager.m */; };
 		6573AF9ABA59AC8D1F52B07088197F71 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = CF70849345A431EACB52545008D1B633 /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65EF25A0162DC9FD18F8F9DCFAAAD14A /* Pods-Spider_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC17BDB34C8ACC7B71AD8CD0179DF8B /* Pods-Spider_Example-dummy.m */; };
@@ -120,7 +121,6 @@
 		D62FB8ADA2B4F2396D927A34DF65EFF1 /* Pods-Spider_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63F9BA368358A2B790F0EDB9CACC6D3E /* Pods-Spider_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD887A93A200A87A51B3D00BD1B80D20 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B47C5CC50839E10993849FAA988B8727 /* AFNetworkReachabilityManager.m */; };
 		E23B9A6F533461CB33C0FA6FB59E3AB2 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = CB161A21B9870BE9CF2BB3ED29B089E4 /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E737CA0C6F1BB97C46C4830A1F5EC364 /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DD2247CD7D000EA4DB4C7335C8188 /* SpiderError.swift */; };
 		E80CB44E47F5158370F7F84F0A8C83E5 /* DispatchQueue+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B09888365066E4468C0051DDFB8283 /* DispatchQueue+Promise.swift */; };
 		EAF16633DB3C992CF975BE4A2932D41C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C693ABA5E7F6A49679F2DFDF9EE806AD /* AFHTTPSessionManager.m */; };
 		EDB1DAFE1D246813EEA3DACDE674DCCD /* UIView+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B619C833533005FB1522525E0B68C14 /* UIView+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -215,8 +215,12 @@
 		1FC62AA094E795906121EA8415F3F1D6 /* UIView+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AnyPromise.m"; path = "Extensions/UIKit/Sources/UIView+AnyPromise.m"; sourceTree = "<group>"; };
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		263BE6379BD01A9ED7F191015BC774E4 /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
-		26975E301E8081B200D7AFCF /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
-		26F06FAC1E76730F0098342F /* SpiderToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderToken.swift; sourceTree = "<group>"; };
+		26975E491E81D8E000D7AFCF /* Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spider.swift; sourceTree = "<group>"; };
+		26975E4A1E81D8E000D7AFCF /* SpiderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
+		26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderRequest.swift; sourceTree = "<group>"; };
+		26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderToken.swift; sourceTree = "<group>"; };
+		26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spider+Promise.swift"; sourceTree = "<group>"; };
+		26975E531E81D8F700D7AFCF /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
 		27D70EB26A880E59BDE2DF48FE48710B /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
 		2A1221A1EB469BF2EAC358E6A59FB825 /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		2A448D0ECC075BBAEA5628CE51B8778A /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
@@ -224,7 +228,6 @@
 		2D14267595EB5CD4BCCB146453F618CA /* PromiseKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PromiseKit.xcconfig; sourceTree = "<group>"; };
 		2DE6A42B1B37F07E26BFBC72F6D98A5A /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		2E56AD998696D5CECDD592A34013AB68 /* CALayer+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+AnyPromise.h"; path = "Extensions/QuartzCore/Sources/CALayer+AnyPromise.h"; sourceTree = "<group>"; };
-		30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderRequest.swift; sourceTree = "<group>"; };
 		31E88C46F6386AC825D166E306875195 /* Promise+AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+AnyPromise.swift"; path = "Sources/Promise+AnyPromise.swift"; sourceTree = "<group>"; };
 		3222AB9522ACC8A7214EF581B4EDF84B /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		33F70C44BC8C393F8485CFB9E0CAE52A /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
@@ -235,7 +238,6 @@
 		3DEF8CF4D3D51AEA2E53D8C4D7A94C3C /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		3E23375354111AA479FDB071D62C543A /* join.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = join.m; path = Sources/join.m; sourceTree = "<group>"; };
 		413D973134681E02E6CD0A7E939B7B82 /* NSNotificationCenter+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.h"; sourceTree = "<group>"; };
-		41D914BD05E2E66B6DBFB33A33AF2E32 /* Spider+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Spider+Promise.swift"; sourceTree = "<group>"; };
 		49A10015DFB84264C9016AF209EE524E /* Zalgo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zalgo.swift; path = Sources/Zalgo.swift; sourceTree = "<group>"; };
 		4A1C956F44123F2EA11F6A387409C4E5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		4BD6FB32FB67508CC0E8ED8B08032EAC /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
@@ -246,7 +248,6 @@
 		4F57C90BCCF2C5BFE8A9949E3AFA6D1F /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		50357BF86C11C25DC47589367BCE013F /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		508F983B96D9A2B27CFAA3DF711F9F46 /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFAutoPurgingImageCache.h; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.h"; sourceTree = "<group>"; };
-		50AC605B329037B1D7C5ED20C762ECE9 /* Spider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Spider.swift; sourceTree = "<group>"; };
 		587B056E6B33BF7C482E9B8466A99A35 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+AFNetworking.h"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		59F123F00F144A263E1758BC67F1EF64 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		5BC7FDFA9BC5F155DA959DF57E079A3D /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
@@ -323,7 +324,6 @@
 		CB161A21B9870BE9CF2BB3ED29B089E4 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		CBF4B43DD78199CB2F9A2037E64C998B /* NSNotificationCenter+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.m"; sourceTree = "<group>"; };
 		CF70849345A431EACB52545008D1B633 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
-		D37DD2247CD7D000EA4DB4C7335C8188 /* SpiderError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
 		D49CC89217B2CD89CBDE2F7C7A847EA1 /* NSURLSession+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSession+AnyPromise.h"; path = "Extensions/Foundation/Sources/NSURLSession+AnyPromise.h"; sourceTree = "<group>"; };
 		D4ACA00E1468C01C57C1FF617FD8E94E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8B09888365066E4468C0051DDFB8283 /* DispatchQueue+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Promise.swift"; path = "Sources/DispatchQueue+Promise.swift"; sourceTree = "<group>"; };
@@ -479,6 +479,33 @@
 			name = UIKit;
 			sourceTree = "<group>";
 		};
+		26975E461E81D88600D7AFCF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				26975E491E81D8E000D7AFCF /* Spider.swift */,
+				26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */,
+				26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */,
+				26975E4A1E81D8E000D7AFCF /* SpiderError.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		26975E471E81D89600D7AFCF /* Promises */ = {
+			isa = PBXGroup;
+			children = (
+				26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */,
+			);
+			path = Promises;
+			sourceTree = "<group>";
+		};
+		26975E481E81D8AB00D7AFCF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26975E531E81D8F700D7AFCF /* Data+Spider.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2CAD8E45B002F2879EE54FFB174DF94E /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,12 +595,9 @@
 		65C6D86FA0477369435FF7E64D377BF9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				50AC605B329037B1D7C5ED20C762ECE9 /* Spider.swift */,
-				30793E2F1E025F6C006DAEB1 /* SpiderRequest.swift */,
-				26F06FAC1E76730F0098342F /* SpiderToken.swift */,
-				41D914BD05E2E66B6DBFB33A33AF2E32 /* Spider+Promise.swift */,
-				D37DD2247CD7D000EA4DB4C7335C8188 /* SpiderError.swift */,
-				26975E301E8081B200D7AFCF /* Data+Spider.swift */,
+				26975E461E81D88600D7AFCF /* Core */,
+				26975E471E81D89600D7AFCF /* Promises */,
+				26975E481E81D8AB00D7AFCF /* Extensions */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1010,6 +1034,9 @@
 					CF671F7E57B92905F1CC91D036D6B4A7 = {
 						LastSwiftMigration = 0820;
 					};
+					D74B0B8E1C32949510E30FC548F5E7CC = {
+						LastSwiftMigration = 0820;
+					};
 				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -1137,13 +1164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580E7F7201F601FF699BDE17F99D21AB /* Spider+Promise.swift in Sources */,
-				26975E311E8081B200D7AFCF /* Data+Spider.swift in Sources */,
+				26975E521E81D8EA00D7AFCF /* Spider+Promise.swift in Sources */,
+				26975E541E81D8F700D7AFCF /* Data+Spider.swift in Sources */,
+				26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */,
+				26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */,
+				26975E4F1E81D8E000D7AFCF /* SpiderRequest.swift in Sources */,
+				26975E501E81D8E000D7AFCF /* SpiderToken.swift in Sources */,
 				FF48597583F3A47542E6F0CB0FD66F6A /* Spider-dummy.m in Sources */,
-				30793E301E025F6C006DAEB1 /* SpiderRequest.swift in Sources */,
-				63A964F064951A1515C6AF024E0E62A4 /* Spider.swift in Sources */,
-				26F06FAE1E76738D0098342F /* SpiderToken.swift in Sources */,
-				E737CA0C6F1BB97C46C4830A1F5EC364 /* SpiderError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1299,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2B981AC96DD906230D41E525BCC485E /* Spider.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1484,6 +1512,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2B981AC96DD906230D41E525BCC485E /* Spider.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
