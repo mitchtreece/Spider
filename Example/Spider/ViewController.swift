@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         self.fetching = true
         self.imageView.image = nil
-
+        
         Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos") { (response) in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {

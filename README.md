@@ -277,5 +277,5 @@ This is just a basic example of how promises can help organize your code. For mo
 - Request param serialization options (body, url string (?help=1&yolo=true), json)
 - Reachability
 - Upload/download with progress
-- Make everything (paths, baseUrls, etc..) Strings instead of URLs. It's easier to work with.
+- Switch from AFNetworking to AlamoFire OR native NS* APIs
 - Test coverage

@@ -22,11 +22,11 @@ public class Spider {
     
     public static var web = Spider()
     
-    public var baseUrl: URL?
+    public var baseUrl: String?
     public var authorization: Authorization?
     
     @discardableResult
-    public static func web(withBaseUrl baseUrl: URL, auth: Authorization? = nil) -> Spider {
+    public static func web(withBaseUrl baseUrl: String, auth: Authorization? = nil) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
@@ -39,7 +39,7 @@ public class Spider {
         //
     }
     
-    public convenience init(baseUrl: URL?, auth: Authorization? = nil) {
+    public convenience init(baseUrl: String?, auth: Authorization? = nil) {
         
         self.init()
         self.baseUrl = baseUrl
@@ -66,9 +66,9 @@ public class Spider {
         
     }
     
-    internal func session(withBaseUrl url: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
+    internal func session(withBaseUrl baseUrl: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
         
-        let session = AFHTTPSessionManager(baseURL: url)
+        let session = AFHTTPSessionManager(baseURL: baseUrl)
         session.requestSerializer = AFJSONRequestSerializer()
         session.responseSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
         return session
@@ -94,7 +94,7 @@ public class Spider {
     
     internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
-        var urlString = baseUrl(from: request) ?? request.path
+        var urlString = baseUrlString(from: request) ?? request.path
         let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
         
         // Accept
@@ -115,13 +115,13 @@ public class Spider {
         
     }
     
-    internal func baseUrl(from request: SpiderRequest) -> String? {
+    internal func baseUrlString(from request: SpiderRequest) -> String? {
         
         if let requestUrl = request.baseUrl {
             return requestUrl
         }
         else if let sharedUrl = baseUrl {
-            return String(describing: sharedUrl)
+            return sharedUrl
         }
         
         return nil
@@ -133,7 +133,7 @@ public class Spider {
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
         var baseUrl: URL?
-        if let baseUrlString = self.baseUrl(from: request), let url = URL(string: baseUrlString) {
+        if let baseUrlString = baseUrlString(from: request), let url = URL(string: baseUrlString) {
             baseUrl = url
         }
         
