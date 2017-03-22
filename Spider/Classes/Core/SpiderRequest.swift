@@ -24,7 +24,9 @@ public class SpiderRequestHeader {
     public var accept: [AcceptType]?
     public private(set) var other = [String: String]()
     
-    public init() {}
+    public init() {
+        //
+    }
     
     // MARK: Public
     

@@ -46,50 +46,7 @@ public class Spider {
         
     }
     
-    internal func authorize(request: NSMutableURLRequest, with auth: AuthType) {
-        
-        switch auth {
-        case .none: break
-        case .token(let token):
-            
-            if let token = token {
-                request.setValue(token.value, forHTTPHeaderField: token.headerField)
-            }
-            else if let _auth = self.authorization {
-                if case let AuthType.token(_token) = _auth, _token != nil {
-                    request.setValue(_token!.value, forHTTPHeaderField: _token!.headerField)
-                }
-            }
-            
-        }
-        
-    }
-    
-    internal func session(withBaseUrl baseUrl: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
-        
-        let session = AFHTTPSessionManager(baseURL: baseUrl)
-        session.requestSerializer = AFJSONRequestSerializer()
-        session.responseSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
-        return session
-        
-    }
-    
-    private func responseSerializer(acceptableContentTypes: [String]?) -> AFHTTPResponseSerializer {
-        
-        let serializer = AFHTTPResponseSerializer()
-        
-        if let acceptTypes = acceptableContentTypes {
-            serializer.acceptableContentTypes = Set(acceptTypes)
-        }
-        else {
-            serializer.acceptableContentTypes = nil
-        }
-        
-        return serializer
-        
-    }
-    
-    // MARK: Request Helpers
+    // MARK: Request Building
     
     internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
@@ -124,6 +81,51 @@ public class Spider {
         }
         
         return nil
+        
+    }
+    
+    internal func session(withBaseUrl baseUrl: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
+        
+        let session = AFHTTPSessionManager(baseURL: baseUrl)
+        session.requestSerializer = AFJSONRequestSerializer()
+        session.responseSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
+        return session
+        
+    }
+    
+    internal func responseSerializer(acceptableContentTypes: [String]?) -> AFHTTPResponseSerializer {
+        
+        let serializer = AFHTTPResponseSerializer()
+        
+        if let acceptTypes = acceptableContentTypes {
+            serializer.acceptableContentTypes = Set(acceptTypes)
+        }
+        else {
+            serializer.acceptableContentTypes = nil
+        }
+        
+        return serializer
+        
+    }
+    
+    // MARK: Authorization
+    
+    internal func authorize(request: NSMutableURLRequest, with auth: AuthType) {
+        
+        switch auth {
+        case .none: break
+        case .token(let token):
+            
+            if let token = token {
+                request.setValue(token.value, forHTTPHeaderField: token.headerField)
+            }
+            else if let _auth = self.authorization {
+                if case let AuthType.token(_token) = _auth, _token != nil {
+                    request.setValue(_token!.value, forHTTPHeaderField: _token!.headerField)
+                }
+            }
+            
+        }
         
     }
     
