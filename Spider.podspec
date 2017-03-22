@@ -3,9 +3,11 @@ Pod::Spec.new do |s|
 
   s.name             = 'Spider'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of Spider.'
+  s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC
-    TODO: Add long description of the pod here.
+    Spider is an easy-to-use web framework built on-top the wonderful
+    AFNetworking library. Spider's easy syntax & modern response handling
+    makes requesting/retrieving data incredibly simple.
     DESC
   s.homepage         = 'https://github.com/mitchtreece/Spider'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -16,8 +18,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "9.0"
   s.source_files = 'Spider/Classes/**/*'
 
-  s.dependency 'Alamofire',     '~> 4.0'
   s.dependency 'AFNetworking',  '~> 3.0'
-  # s.dependency 'PromiseKit',    '~> 4.0'
+  s.dependency 'PromiseKit',    '~> 4.0'
 
 end

@@ -259,3 +259,9 @@ Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: 
 ```
 
 This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
+
+## To-do
+- Request param serialization options (body, url string (?help=1&yolo=true), json)
+- Reachability
+- Upload/download with progress
+- Test coverage
