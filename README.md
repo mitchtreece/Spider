@@ -278,5 +278,6 @@ This is just a basic example of how promises can help organize your code. For mo
 - Reachability
 - Upload/download with progress
 - Switch from AFNetworking to AlamoFire OR native NS* APIs
+- Simple object mapping
 - Objective-C compatibility?
 - Test coverage
