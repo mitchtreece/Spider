@@ -33,7 +33,7 @@ You can also manually add the source files to your project.
 Spider can be used in many different ways. Many times, a shared (one-off) approach is all that's needed.
 
 ```Swift
-Spider.web.get(path: "https://path/to/endpoint", parameters: nil) { (response) in
+Spider.web.get(path: "https://path/to/endpoint") { (response) in
     print("We got a response!")
 }
 ```
