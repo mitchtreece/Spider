@@ -274,10 +274,13 @@ Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (resp
 This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
 
 ## To-do
-- Request param serialization options (json (default), url query (http://hello.world?help=1&yolo=true))
-- Reachability
-- Upload/download with progress
-- Switch from AFNetworking to AlamoFire OR native NS* APIs
 - Simple object mapping
+- Request param serialization options (json (default), url query (http://hello.world?help=1&yolo=true))
+- Data transfer (with progress reporting)
+- Switch from AFNetworking to AlamoFire OR native NS* APIs
 - Objective-C compatibility?
 - Test coverage
+
+## Contributing
+
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
