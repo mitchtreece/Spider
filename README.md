@@ -58,11 +58,11 @@ Because we typically make more than one request to a given API, using _base URLs
 let baseUrl = URL(string: "https://base.url/v1")!
 let spider = Spider.web(withBaseUrl: baseUrl)
 
-spider.get(path: "/users", parameters: nil) { (response) in
+spider.get(path: "/users") { (response) in
     print("We got a response!")
 }
 
-spider.get(path: "/locations", parameters: nil) { (response) in
+spider.get(path: "/locations") { (response) in
     print("We got another response!")
 }
 ```
@@ -76,13 +76,26 @@ https://base.url/v1/locations
 
 If a base url is not specified, Spider will assume the `path` of your request is a fully qualified url (as seen in the first example).
 
-### Instances
+### Request Parameters
+
+All variations of `SpiderRequest` instantiation have a means for you to pass in request parameters. For example:
+
+```Swift
+let params = ["user_id": "123456789"]
+Spider.web.get(path: "https://path/to/endpoint", parameters: params) { (response) in
+    print("We got a response!")
+}
+```
+
+This will take your parameters and pass them along in the request's body.
+
+### Spider Instances
 
 So far, we have been working with the shared (global) instance of Spider. This is usually all you need. Just in case you need more control, Spider also supports a more typical instantiation flow.
 
 ```Swift
 let tarantula = Spider()
-tarantula.get(path: "https://path/to/endpoint", parameters: nil) { (response) in
+tarantula.get(path: "https://path/to/endpoint") { (response) in
     print("Tarantula got a response!")
 }
 ```
@@ -92,7 +105,7 @@ Instead of using the shared Spider instance, we created our own instance named _
 ```Swift
 let baseUrl = URL(string: "https://base.url/v1")!
 let blackWidow = Spider(baseUrl: baseUrl)
-blackWidow.get(path: "/users", parameters: nil) { (response) in
+blackWidow.get(path: "/users") { (response) in
     print("Black Widow got a response!")
 }
 ```
@@ -120,7 +133,7 @@ let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789"
 let baseUrl = URL(string: "https://base.url/v1")!
 let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: .token(accessToken))
 
-bigHairySpider.get(path: "/topSecretData", parameters: nil) { (response) in
+bigHairySpider.get(path: "/topSecretData") { (response) in
     print("Big hairy spider got a response!")
 }
 ```
@@ -132,7 +145,7 @@ let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789"
 let baseUrl = URL(string: "https://base.url/v1")!
 let aSpider = Spider.web(withBaseUrl: baseUrl)
 
-aSpider.get(path: "/topSecretData", parameters: nil, auth: .token(accessToken)) { (response) in
+aSpider.get(path: "/topSecretData", auth: .token(accessToken)) { (response) in
     print("Spider got a response!")
 }
 ```
@@ -142,7 +155,7 @@ Advanced requests can also provide tokens:
 ```Swift
 let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
 
-let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
+let request = SpiderRequest(method: .get, path: "https://path/to/endpoint")
 request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
 request.header.set(value: "12345", forHeaderField: "user_id")
 request.auth = .token(accessToken)
@@ -157,7 +170,7 @@ Spider.web.perform(request) { (response) in
 As mentioned above, `SpiderResponse` objects are clean & easy to work with. A typical data response might look something like this:
 
 ```Swift
-Spider.web.get(path: "https://some/data/endpoint", parameters: nil) { (response) in
+Spider.web.get(path: "https://some/data/endpoint") { (response) in
 
     guard let data = response.data as? Data, response.err == nil else {
 
@@ -179,7 +192,7 @@ Spider.web.get(path: "https://some/data/endpoint", parameters: nil) { (response)
 A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of data easy to work with.
 
 ```Swift
-Spider.web.get(path: "https://some/json/endpoint", parameters: nil) { (response) in
+Spider.web.get(path: "https://some/json/endpoint") { (response) in
 
     guard let data = response.data as? Data, let json = data.json() as? [String: Any], response.err == nil else {
 
@@ -209,7 +222,7 @@ If the data cannot be serialized, this function will return `nil`; causing our a
 If the JSON response is formatted as an array (i.e. a list of users), don't forget to cast it as such!
 
 ```Swift
-Spider.web.get(path: "https://list/of/users", parameters: nil) { (response) in
+Spider.web.get(path: "https://list/of/users") { (response) in
 
     guard let data = response.data as? Data, let users = data.json() as? [[String: Any]], response.err == nil else {
 
@@ -235,13 +248,13 @@ Spider.web.get(path: "https://list/of/users", parameters: nil) { (response) in
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
 ```Swift
-Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil).then { (response) -> Promise<SpiderResponse> in
+Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
 
     guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
         throw SpiderError.badResponse
     }
 
-    return Spider.web.get(path: photos[0]["url"] as! String, parameters: nil)
+    return Spider.web.get(path: photos[0]["url"] as! String)
 
 }.then { (response) -> Void in
 
@@ -264,4 +277,5 @@ This is just a basic example of how promises can help organize your code. For mo
 - Request param serialization options (body, url string (?help=1&yolo=true), json)
 - Reachability
 - Upload/download with progress
+- Make everything (paths, baseUrls, etc..) Strings instead of URLs. It's easier to work with.
 - Test coverage

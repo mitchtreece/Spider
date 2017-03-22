@@ -94,7 +94,7 @@ public class Spider {
     
     internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
-        var urlString = self.baseUrl(from: request) ?? request.path
+        var urlString = baseUrl(from: request) ?? request.path
         let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
         
         // Accept
@@ -151,35 +151,35 @@ public class Spider {
         
     }
     
-    public func get(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+    public func get(path: String, parameters: Any? = nil, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func post(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+    public func post(path: String, parameters: Any? = nil, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func put(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+    public func put(path: String, parameters: Any? = nil, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func patch(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+    public func patch(path: String, parameters: Any? = nil, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func delete(path: String, parameters: Any?, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
+    public func delete(path: String, parameters: Any? = nil, auth: Authorization = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)

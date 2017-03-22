@@ -79,7 +79,7 @@ public class SpiderRequest {
     
     public var header = SpiderRequestHeader()
     
-    public init(method: Method, baseUrl: String? = nil, path: String, parameters: Any?, auth: Spider.Authorization = .none) {
+    public init(method: Method, baseUrl: String? = nil, path: String, parameters: Any? = nil, auth: Spider.Authorization = .none) {
         
         self.method = method
         self.baseUrl = baseUrl

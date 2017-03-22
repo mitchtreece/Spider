@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         self.fetching = true
         self.imageView.image = nil
 
-        Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil) { (response) in
+        Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos") { (response) in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
                 print("Error fetching photos")
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
             
             let photoUrl = photos[0]["url"] as! String
             
-            Spider.web.get(path: photoUrl, parameters: nil) { (anotherResponse) in
+            Spider.web.get(path: photoUrl) { (anotherResponse) in
                 
                 guard let data = anotherResponse.data as? Data, let image = UIImage(data: data), anotherResponse.err == nil else {
                     print("Error fetching image")
@@ -62,15 +62,15 @@ class ViewController: UIViewController {
         
         self.fetching = true
         self.imageView.image = nil
-        
-        Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos", parameters: nil).then { (response) -> Promise<SpiderResponse> in
+
+        Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
                 throw SpiderError.badResponse
             }
             
             print("Fetched \(photos.count) photos")
-            return Spider.web.get(path: photos[0]["url"] as! String, parameters: nil)
+            return Spider.web.get(path: photos[0]["url"] as! String)
             
         }.then { (response) -> Void in
                 
