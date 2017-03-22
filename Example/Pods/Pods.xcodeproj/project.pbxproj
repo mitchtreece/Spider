@@ -27,9 +27,11 @@
 		26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E491E81D8E000D7AFCF /* Spider.swift */; };
 		26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4A1E81D8E000D7AFCF /* SpiderError.swift */; };
 		26975E4F1E81D8E000D7AFCF /* SpiderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */; };
-		26975E501E81D8E000D7AFCF /* SpiderToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */; };
+		26975E501E81D8E000D7AFCF /* SpiderToken .swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4C1E81D8E000D7AFCF /* SpiderToken .swift */; };
 		26975E521E81D8EA00D7AFCF /* Spider+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */; };
 		26975E541E81D8F700D7AFCF /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E531E81D8F700D7AFCF /* Data+Spider.swift */; };
+		26975E6F1E832D6300D7AFCF /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E6E1E832D6300D7AFCF /* RequestSerializer.swift */; };
+		26975E711E832E4700D7AFCF /* ResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E701E832E4700D7AFCF /* ResponseSerializer.swift */; };
 		29476636EA86BEFC4CB833D3BB7A52D7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7FDFA9BC5F155DA959DF57E079A3D /* AFURLRequestSerialization.m */; };
 		2B0705CC26A4CBEE32A5A60284AED35B /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 59F123F00F144A263E1758BC67F1EF64 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D5B1A979EF5630E04EDBA72A29F4D8B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10860ACB40C3EBBF1CAE92BD2B0CBDF2 /* Alamofire.framework */; };
@@ -218,9 +220,11 @@
 		26975E491E81D8E000D7AFCF /* Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spider.swift; sourceTree = "<group>"; };
 		26975E4A1E81D8E000D7AFCF /* SpiderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
 		26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderRequest.swift; sourceTree = "<group>"; };
-		26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderToken.swift; sourceTree = "<group>"; };
+		26975E4C1E81D8E000D7AFCF /* SpiderToken .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpiderToken .swift"; sourceTree = "<group>"; };
 		26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spider+Promise.swift"; sourceTree = "<group>"; };
 		26975E531E81D8F700D7AFCF /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
+		26975E6E1E832D6300D7AFCF /* RequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializer.swift; sourceTree = "<group>"; };
+		26975E701E832E4700D7AFCF /* ResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializer.swift; sourceTree = "<group>"; };
 		27D70EB26A880E59BDE2DF48FE48710B /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
 		2A1221A1EB469BF2EAC358E6A59FB825 /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		2A448D0ECC075BBAEA5628CE51B8778A /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
@@ -484,8 +488,9 @@
 			children = (
 				26975E491E81D8E000D7AFCF /* Spider.swift */,
 				26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */,
-				26975E4C1E81D8E000D7AFCF /* SpiderToken.swift */,
+				26975E4C1E81D8E000D7AFCF /* SpiderToken .swift */,
 				26975E4A1E81D8E000D7AFCF /* SpiderError.swift */,
+				26975E6D1E832D3800D7AFCF /* Serializers */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -504,6 +509,15 @@
 				26975E531E81D8F700D7AFCF /* Data+Spider.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		26975E6D1E832D3800D7AFCF /* Serializers */ = {
+			isa = PBXGroup;
+			children = (
+				26975E6E1E832D6300D7AFCF /* RequestSerializer.swift */,
+				26975E701E832E4700D7AFCF /* ResponseSerializer.swift */,
+			);
+			path = Serializers;
 			sourceTree = "<group>";
 		};
 		2CAD8E45B002F2879EE54FFB174DF94E /* Targets Support Files */ = {
@@ -1101,6 +1115,7 @@
 			files = (
 				A3591DEDA776B48C026E7F9144981E58 /* AFAutoPurgingImageCache.m in Sources */,
 				EAF16633DB3C992CF975BE4A2932D41C /* AFHTTPSessionManager.m in Sources */,
+				26975E711E832E4700D7AFCF /* ResponseSerializer.swift in Sources */,
 				A398D63C8DED664D99A864D79881A13C /* AFImageDownloader.m in Sources */,
 				649E78B5EA450FABDF5201E31F265FAB /* AFNetworkActivityIndicatorManager.m in Sources */,
 				CF287829627F26B2EB4382B897D06A0E /* AFNetworking-dummy.m in Sources */,
@@ -1114,6 +1129,7 @@
 				F2D899C7AA0D7FC20160091BB9D31CF3 /* UIImageView+AFNetworking.m in Sources */,
 				34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */,
 				B16A078FC7FBC172A266A336AEF7F673 /* UIRefreshControl+AFNetworking.m in Sources */,
+				26975E6F1E832D6300D7AFCF /* RequestSerializer.swift in Sources */,
 				7CE16B1BF75DF396768A0A3CFD968DB1 /* UIWebView+AFNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1169,7 +1185,7 @@
 				26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */,
 				26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */,
 				26975E4F1E81D8E000D7AFCF /* SpiderRequest.swift in Sources */,
-				26975E501E81D8E000D7AFCF /* SpiderToken.swift in Sources */,
+				26975E501E81D8E000D7AFCF /* SpiderToken .swift in Sources */,
 				FF48597583F3A47542E6F0CB0FD66F6A /* Spider-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

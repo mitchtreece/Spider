@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 
 ## Overview
-Spider is an easy-to-use web framework built on-top the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. Spider's easy syntax & modern response handling makes requesting/retrieving data incredibly simple.
+Spider is an easy-to-use web framework built on-top the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. Spider's easy syntax & modern response handling makes requesting data incredibly simple.
 
 ## Installation
 ### CocoaPods
@@ -278,4 +278,5 @@ This is just a basic example of how promises can help organize your code. For mo
 - Reachability
 - Upload/download with progress
 - Switch from AFNetworking to AlamoFire OR native NS* APIs
+- Objective-C compatibility?
 - Test coverage

@@ -10,12 +10,12 @@ import Foundation
 
 public class SpiderToken {
     
-    public var headerField: String
     public var value: String
+    public var headerField: String
     
-    public init(headerField: String, value: String) {
-        self.headerField = headerField
+    public init(value: String, headerField: String) {
         self.value = value
+        self.headerField = headerField
     }
     
 }

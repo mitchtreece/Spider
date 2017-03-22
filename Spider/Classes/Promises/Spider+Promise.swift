@@ -22,7 +22,7 @@ extension Spider {
         
     }
     
-    public func get(path: String, parameters: Any? = nil, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func get(path: String, parameters: Any? = nil, auth: AuthType = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
@@ -35,7 +35,7 @@ extension Spider {
         
     }
     
-    public func post(path: String, parameters: Any? = nil, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func post(path: String, parameters: Any? = nil, auth: AuthType = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
@@ -48,7 +48,7 @@ extension Spider {
         
     }
     
-    public func put(path: String, parameters: Any? = nil, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func put(path: String, parameters: Any? = nil, auth: AuthType = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
@@ -61,7 +61,7 @@ extension Spider {
         
     }
     
-    public func patch(path: String, parameters: Any? = nil, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func patch(path: String, parameters: Any? = nil, auth: AuthType = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
@@ -74,7 +74,7 @@ extension Spider {
         
     }
     
-    public func delete(path: String, parameters: Any? = nil, auth: Authorization = .none) -> Promise<SpiderResponse> {
+    public func delete(path: String, parameters: Any? = nil, auth: AuthType = .none) -> Promise<SpiderResponse> {
         
         let (promise, fulfill, reject) = Promise<SpiderResponse>.pending()
         let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
