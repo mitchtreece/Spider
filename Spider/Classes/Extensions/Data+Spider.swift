@@ -12,7 +12,7 @@ public extension Data {
     
     public func json() -> Any? {
         
-        guard let json = try? JSONSerialization.jsonObject(with: self) as? Any else {
+        guard let json = try? JSONSerialization.jsonObject(with: self) else {
             return nil
         }
         

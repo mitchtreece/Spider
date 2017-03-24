@@ -106,7 +106,7 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
             }
         }
         
-        return "SpiderRequest {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(parameters)\n}"
+        return "SpiderRequest {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl ?? "none")\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(parameters ?? "none")\n}"
         
     }
     

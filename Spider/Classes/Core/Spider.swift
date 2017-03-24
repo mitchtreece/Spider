@@ -50,7 +50,7 @@ public class Spider {
     
     internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
-        var urlString = baseUrlString(from: request) ?? request.path
+        let urlString = baseUrlString(from: request) ?? request.path
         let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
         
         // Accept
