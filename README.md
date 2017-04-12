@@ -201,7 +201,7 @@ Spider.web.get(path: "https://some/json/endpoint") { (response) in
             message = error
         }
 
-        print(error)
+        print(message)
         return
 
     }
@@ -231,7 +231,7 @@ Spider.web.get(path: "https://list/of/users") { (response) in
             message = error
         }
 
-        print(error)
+        print(message)
         return
 
     }
