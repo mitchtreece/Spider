@@ -19,7 +19,7 @@ public class Spider {
         case token(SpiderToken?)
     }
     
-    public static var web = Spider()
+    public static let web = Spider()
     
     public var baseUrl: String?
     public var authorization: AuthType?
@@ -115,6 +115,9 @@ public class Spider {
         switch auth {
         case .none: break
         case .token(let token):
+            
+            // Try to fetch token from request. If none exists,
+            // attempt to grab one from our shared instance.
             
             if let token = token {
                 request.setValue(token.value, forHTTPHeaderField: token.headerField)
