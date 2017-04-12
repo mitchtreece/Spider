@@ -179,7 +179,7 @@ Spider.web.get(path: "https://some/data/endpoint") { (response) in
             message = error
         }
 
-        print(error)
+        print(message)
         return
 
     }
