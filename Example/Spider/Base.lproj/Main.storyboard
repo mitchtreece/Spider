@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hK5-Vr-Qu6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="rwI-Fb-XtW">
+            <objects>
+                <navigationController id="hK5-Vr-Qu6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jA4-u5-HiG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="LiU-TT-gCv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="028-HH-Kdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-588" y="137"/>
+        </scene>
+        <!--Spider-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Spider_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,12 +38,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-5P-fmw">
-                                <rect key="frame" x="16" y="162" width="343" height="343"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p1d-5P-fmw">
+                                <rect key="frame" x="16" y="152" width="343" height="343"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="p1d-5P-fmw" secondAttribute="height" multiplier="1:1" id="3cy-qM-PpW"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COo-WR-por">
                                 <rect key="frame" x="0.0" y="623" width="187.5" height="44"/>
@@ -43,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hc-2K-mQh">
-                                <rect key="frame" x="187" y="623" width="187.5" height="44"/>
+                                <rect key="frame" x="187.5" y="623" width="187.5" height="44"/>
                                 <color key="backgroundColor" red="0.87037501729030131" green="0.86918834144127122" blue="0.88991661269430056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="pRi-tO-uew"/>
@@ -55,6 +76,15 @@
                                     <action selector="fetchPhotosWithPromises" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nxk-WF-sjp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-Xn-KmW">
+                                <rect key="frame" x="16" y="503" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="vVl-bS-0dr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -64,13 +94,18 @@
                             <constraint firstItem="p1d-5P-fmw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="OzV-EO-CXw"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="COo-WR-por" secondAttribute="bottom" id="PyW-pd-r7Q"/>
                             <constraint firstItem="2Hc-2K-mQh" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.5" id="SLf-mt-f9g"/>
-                            <constraint firstItem="p1d-5P-fmw" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="bKo-AQ-Z0t"/>
+                            <constraint firstAttribute="trailing" secondItem="kBn-Xn-KmW" secondAttribute="trailing" constant="16" id="Vzd-4m-PyD"/>
+                            <constraint firstItem="p1d-5P-fmw" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" constant="-10" id="bKo-AQ-Z0t"/>
+                            <constraint firstItem="kBn-Xn-KmW" firstAttribute="top" secondItem="p1d-5P-fmw" secondAttribute="bottom" constant="8" id="czM-UV-IRC"/>
+                            <constraint firstItem="kBn-Xn-KmW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="phV-CD-sSg"/>
                             <constraint firstAttribute="trailing" secondItem="2Hc-2K-mQh" secondAttribute="trailing" id="pi4-UZ-a0Y"/>
                             <constraint firstItem="COo-WR-por" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="xGo-Yz-KPf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Spider" id="gbj-SP-LJ4"/>
                     <connections>
                         <outlet property="imageView" destination="p1d-5P-fmw" id="n3A-63-cc5"/>
+                        <outlet property="statusLabel" destination="kBn-Xn-KmW" id="qmK-38-cpQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -13,11 +13,13 @@ import PromiseKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var statusLabel: UILabel!
     private var fetching: Bool = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        statusLabel.text = nil
         
     }
     
@@ -27,6 +29,7 @@ class ViewController: UIViewController {
         
         self.fetching = true
         self.imageView.image = nil
+        self.statusLabel.text = nil
         
         Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos") { (response) in
             
@@ -35,7 +38,7 @@ class ViewController: UIViewController {
                 return
             }
             
-            print("Fetched \(photos.count) photos")
+            self.statusLabel.text = "Fetched \(photos.count) photos!"
             
             let photoUrl = photos[0]["url"] as! String
             
@@ -46,7 +49,7 @@ class ViewController: UIViewController {
                     return
                 }
                 
-                print("Fetched first image!")
+                print("Fetched first photo image!")
                 self.imageView.image = image
                 self.fetching = false
                 
@@ -62,6 +65,7 @@ class ViewController: UIViewController {
         
         self.fetching = true
         self.imageView.image = nil
+        self.statusLabel.text = nil
 
         Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
             
@@ -69,7 +73,7 @@ class ViewController: UIViewController {
                 throw SpiderError.badResponse
             }
             
-            print("Fetched \(photos.count) photos")
+            self.statusLabel.text = "Fetched \(photos.count) photos!"
             return Spider.web.get(path: photos[0]["url"] as! String)
             
         }.then { (response) -> Void in
@@ -78,7 +82,7 @@ class ViewController: UIViewController {
                 throw SpiderError.badResponse
             }
             
-            print("Fetched first image!")
+            print("Fetched first photo image!")
             self.imageView.image = image
             self.fetching = false
                 
