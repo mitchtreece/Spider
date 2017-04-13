@@ -16,8 +16,8 @@ public class Spider {
     
     public enum AuthType {
         case none
-        case basic(SpiderBasicAuth?)
-        case token(SpiderToken?)
+        case basic(BasicAuth?)
+        case token(TokenAuth?)
     }
     
     public static let web = Spider()
@@ -60,7 +60,7 @@ public class Spider {
         request.header.acceptStringify()?.forEach { (type) in
             accept = (accept == nil) ? type : "\(accept!), \(type)"
         }
-        req.setValue(accept, forHTTPHeaderField: "Accept")
+        req.setValue(accept, forHTTPHeaderField: SpiderConstants.RequestAcceptType.headerField)
         
         // Other
         
@@ -118,11 +118,11 @@ public class Spider {
         case .basic(let ba):
             
             if let ba = ba {
-                request.setValue(ba.value, forHTTPHeaderField: SpiderBasicAuth.defaultHeaderField)
+                request.setValue(ba.value, forHTTPHeaderField: ba.headerField())
             }
             else if let _auth = self.authorization {
                 if case let AuthType.basic(_ba) = _auth, _ba != nil {
-                    request.setValue(_ba!.value, forHTTPHeaderField: SpiderBasicAuth.defaultHeaderField)
+                    request.setValue(_ba!.value, forHTTPHeaderField: _ba!.headerField())
                 }
             }
             
@@ -132,11 +132,11 @@ public class Spider {
             // attempt to grab one from our shared instance.
             
             if let token = token {
-                request.setValue(token.value, forHTTPHeaderField: token.headerField)
+                request.setValue(token.value, forHTTPHeaderField: token.headerField())
             }
             else if let _auth = self.authorization {
                 if case let AuthType.token(_token) = _auth, _token != nil {
-                    request.setValue(_token!.value, forHTTPHeaderField: _token!.headerField)
+                    request.setValue(_token!.value, forHTTPHeaderField: _token!.headerField())
                 }
             }
             

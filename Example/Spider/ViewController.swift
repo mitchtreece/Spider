@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         statusLabel.text = nil
         
-        let auth = Spider.AuthType.basic(SpiderBasicAuth(username: "mitch", password: "pa55w0rd"))
-        Spider.web.get("https://google.com/test", parameters: nil, auth: auth) { (response) in
+        let auth = TokenAuth(value: "0123456789", headerField: "x-access-token")
+        Spider.web.get("https://google.com/test", parameters: nil, auth: .token(auth)) { (response) in
             print("Yolo")
         }
         
