@@ -33,7 +33,7 @@ You can also manually add the source files to your project.
 Spider can be used in many different ways. Many times, a shared (one-off) approach is all that's needed.
 
 ```Swift
-Spider.web.get(path: "https://path/to/endpoint") { (response) in
+Spider.web.get("https://path/to/endpoint") { (response) in
     print("We got a response!")
 }
 ```
@@ -58,11 +58,11 @@ Because we typically make more than one request to a given API, using _base URLs
 let baseUrl = URL(string: "https://base.url/v1")!
 let spider = Spider.web(withBaseUrl: baseUrl)
 
-spider.get(path: "/users") { (response) in
+spider.get("/users") { (response) in
     print("We got a response!")
 }
 
-spider.get(path: "/locations") { (response) in
+spider.get("/locations") { (response) in
     print("We got another response!")
 }
 ```
@@ -82,7 +82,7 @@ All variations of `SpiderRequest` instantiation have a means for you to pass in 
 
 ```Swift
 let params = ["user_id": "123456789"]
-Spider.web.get(path: "https://path/to/endpoint", parameters: params) { (response) in
+Spider.web.get("https://path/to/endpoint", parameters: params) { (response) in
     print("We got a response!")
 }
 ```
@@ -95,7 +95,7 @@ So far, we have been working with the shared (global) instance of Spider. This i
 
 ```Swift
 let tarantula = Spider()
-tarantula.get(path: "https://path/to/endpoint") { (response) in
+tarantula.get("https://path/to/endpoint") { (response) in
     print("Tarantula got a response!")
 }
 ```
@@ -105,7 +105,7 @@ Instead of using the shared Spider instance, we created our own instance named _
 ```Swift
 let baseUrl = URL(string: "https://base.url/v1")!
 let blackWidow = Spider(baseUrl: baseUrl)
-blackWidow.get(path: "/users") { (response) in
+blackWidow.get("/users") { (response) in
     print("Black Widow got a response!")
 }
 ```
@@ -126,42 +126,55 @@ Spider.web.perform(request) { (response) in
 
 ### Authorization
 
-Spider supports auth tokens on a per-request & instance-based basis. Typically we would want to provide our Spider instance a token that all requests would be sent with:
+Currently, Spider supports the following authorization types:
+- Basic (user:pass base64 encoded)
+- Token
+
+Authorization can be added on a per-request or instance-based basis. Typically we would want to provide our Spider instance authorization that all requests would be sent with:
 
 ```Swift
-let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+let auth = TokenAuth(value: "0123456789")
 let baseUrl = URL(string: "https://base.url/v1")!
-let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: .token(accessToken))
-
-bigHairySpider.get(path: "/topSecretData") { (response) in
+let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: .token(auth))
+bigHairySpider.get("/topSecretData") { (response) in
     print("Big hairy spider got a response!")
 }
 ```
 
-However, tokens can be provided per-request if it better fits your situation:
+However, authorization can also be provided on a per-request basis if it better fits your situation:
 
 ```Swift
-let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+let auth = TokenAuth(value: "0123456789")
 let baseUrl = URL(string: "https://base.url/v1")!
 let aSpider = Spider.web(withBaseUrl: baseUrl)
-
-aSpider.get(path: "/topSecretData", auth: .token(accessToken)) { (response) in
+aSpider.get("/topSecretData", auth: .token(auth)) { (response) in
     print("Spider got a response!")
 }
 ```
 
-Advanced requests can also provide tokens:
+Advanced requests can also provide authorization:
 
 ```Swift
-let accessToken = SpiderToken(headerField: "x-access-token", value: "0123456789")
+let auth = TokenAuth(value: "0123456789")
 
 let request = SpiderRequest(method: .get, path: "https://path/to/endpoint")
 request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
 request.header.set(value: "12345", forHeaderField: "user_id")
-request.auth = .token(accessToken)
+request.auth = .token(auth)
 
 Spider.web.perform(request) { (response) in
     print("We got a response!")
+}
+```
+
+By default, auth is added to the _"Authorization"_ header field of your request. This can be changed by passing in a custom field when creating the auth:
+
+```Swift
+let auth = BasicAuth(username: "root", password: "pa55w0rd", headerField: "Credentials")
+let baseUrl = URL(string: "https://base.url/v1")!
+let charlotte = Spider.web(withBaseUrl: baseUrl, auth: .basic(auth))
+charlotte.get("/topSecretData") { (response) in
+    print("Charlotte got a response!")
 }
 ```
 
