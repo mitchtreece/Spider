@@ -97,9 +97,18 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         
-        var authString = "none"
+        var authString = ""
         
-        if case let .token(token) = auth {
+        if case .none = auth {
+            authString = "none"
+        }
+        else if case let .basic(ba) = auth {
+            authString = "basic"
+            if let _ba = ba {
+                authString += " {\n\t\traw: \(_ba.username):\(_ba.password)\n\t\tencoded: \(_ba.rawValue)\n\t}"
+            }
+        }
+        else if case let .token(token) = auth {
             authString = "token"
             if let _token = token {
                 authString += " {\n\t\theaderField: \(_token.headerField)\n\t\tvalue: \(_token.value)\n\t}"

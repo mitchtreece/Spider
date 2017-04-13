@@ -16,6 +16,7 @@ public class Spider {
     
     public enum AuthType {
         case none
+        case basic(SpiderBasicAuth?)
         case token(SpiderToken?)
     }
     
@@ -114,6 +115,17 @@ public class Spider {
         
         switch auth {
         case .none: break
+        case .basic(let ba):
+            
+            if let ba = ba {
+                request.setValue(ba.value, forHTTPHeaderField: SpiderBasicAuth.defaultHeaderField)
+            }
+            else if let _auth = self.authorization {
+                if case let AuthType.basic(_ba) = _auth, _ba != nil {
+                    request.setValue(_ba!.value, forHTTPHeaderField: SpiderBasicAuth.defaultHeaderField)
+                }
+            }
+            
         case .token(let token):
             
             // Try to fetch token from request. If none exists,
@@ -155,35 +167,35 @@ public class Spider {
         
     }
     
-    public func get(path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
+    public func get(_ path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func post(path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
+    public func post(_ path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func put(path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
+    public func put(_ path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func patch(path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
+    public func patch(_ path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
-    public func delete(path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
+    public func delete(_ path: String, parameters: Any? = nil, auth: AuthType = .none, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
