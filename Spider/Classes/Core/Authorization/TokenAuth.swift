@@ -13,11 +13,17 @@ public class TokenAuth: SpiderAuth {
     public var _value: String
     public var field: String?
     
-    public func headerField() -> String {
+    public var type: String? = "Bearer"
+    
+    public var headerField: String {
         return field ?? SpiderConstants.Auth.defaultHeaderField
     }
     
     public var value: String {
+        return (type != nil) ? "\(type!) \(_value)" : _value
+    }
+    
+    public var rawValue: String {
         return _value
     }
     

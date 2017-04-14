@@ -14,13 +14,15 @@ public class BasicAuth: SpiderAuth {
     public var password: String
     public var field: String?
     
-    public func headerField() -> String {
+    public var type: String? = "Basic"
+    
+    public var headerField: String {
         return field ?? SpiderConstants.Auth.defaultHeaderField
     }
     
     public var value: String {
         let auth = Data("\(username):\(password)".utf8).base64EncodedString()
-        return "Basic \(auth)"
+        return (type != nil) ? "\(type!) \(auth)" : "\(auth)"
     }
     
     public var rawValue: String {

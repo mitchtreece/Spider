@@ -10,7 +10,8 @@ import Foundation
 
 public protocol SpiderAuth {
     
-    func headerField() -> String
+    var type: String? { get }
+    var headerField: String { get }
     var value: String { get }
     var rawValue: String { get }
     

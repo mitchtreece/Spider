@@ -22,7 +22,7 @@ public class SpiderRequestHeader {
     }
     
     public var accept: [AcceptType]?
-    public private(set) var other = [String: String]()
+    internal var other = [String: String]()
     
     public init() {
         //
@@ -30,7 +30,7 @@ public class SpiderRequestHeader {
     
     // MARK: Public
     
-    public func set(value: String, forHeaderField field: String) {
+    public func set(value: String, forField field: String) {
     
         other[field] = value
         
@@ -105,13 +105,13 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         else if case let .basic(ba) = auth {
             authString = "basic"
             if let _ba = ba {
-                authString += " {\n\t\tfield: \(_ba.headerField())\n\t\traw: \(_ba.username):\(_ba.password)\n\t\tencoded: \(_ba.rawValue)\n\t}"
+                authString += " {\n\t\tfield: \(_ba.headerField)\n\t\tvalue: \"\(_ba.value)\"\n\t}"
             }
         }
         else if case let .token(token) = auth {
             authString = "token"
             if let _token = token {
-                authString += " {\n\t\tfield: \(_token.headerField())\n\t\tvalue: \(_token.value)\n\t}"
+                authString += " {\n\t\tfield: \(_token.headerField)\n\t\tvalue: \"\(_token.value)\"\n\t}"
             }
         }
         
