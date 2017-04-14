@@ -178,6 +178,28 @@ charlotte.get("/topSecretData") { (response) in
 }
 ```
 
+The authorization _type_ can also be customized if needed. For example, `BasicAuth` generates the following for the credentials **root:pa55w0rd**:
+
+```
+Basic cm9vdDpwYTU1dzByZA==
+```
+
+In this case the **"Basic"** prefix before the encoded credentials is the authorization _type_. This can be customized as follows:
+
+```Swift
+let auth = BasicAuth(username: "root", password: "pa55w0rd")
+auth.type = "BasicAuth"
+
+let baseUrl = URL(string: "https://base.url/v1")!
+let spider = Spider.web(withBaseUrl: baseUrl, auth: .basic(auth))
+
+spider.get("/topSecretData") { (response) in
+    print("Got a response!")
+}
+```
+
+Likewise, the `TokenAuth` _"Bearer"_ type can be modified in the same way.
+
 ### Working with Responses
 
 As mentioned above, `SpiderResponse` objects are clean & easy to work with. A typical data response might look something like this:
