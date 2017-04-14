@@ -77,11 +77,11 @@ public class SpiderRequest {
     public var baseUrl: String?
     public var path: String
     public var parameters: Any?
-    public var auth: Spider.AuthType
+    public var auth: SpiderAuth?
     
     public var header = SpiderRequestHeader()
     
-    public init(method: Method, baseUrl: String? = nil, path: String, parameters: Any? = nil, auth: Spider.AuthType = .none) {
+    public init(method: Method, baseUrl: String? = nil, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
         
         self.method = method
         self.baseUrl = baseUrl
@@ -97,22 +97,18 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         
-        var authString = ""
+        var authString = "none"
         
-        if case .none = auth {
-            authString = "none"
-        }
-        else if case let .basic(ba) = auth {
-            authString = "basic"
-            if let _ba = ba {
-                authString += " {\n\t\tfield: \(_ba.headerField)\n\t\tvalue: \"\(_ba.value)\"\n\t}"
+        if let auth = auth {
+            
+            switch auth {
+            case is BasicAuth: authString = "basic"
+            case is TokenAuth: authString = "token"
+            default: break
             }
-        }
-        else if case let .token(token) = auth {
-            authString = "token"
-            if let _token = token {
-                authString += " {\n\t\tfield: \(_token.headerField)\n\t\tvalue: \"\(_token.value)\"\n\t}"
-            }
+            
+            authString += " {\n\t\tfield: \(auth.headerField)\n\t\tvalue: \"\(auth.value)\"\n\t}"
+            
         }
         
         let base = baseUrl ?? "none"

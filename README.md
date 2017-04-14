@@ -133,9 +133,9 @@ Currently, Spider supports the following authorization types:
 Authorization can be added on a per-request or instance-based basis. Typically we would want to provide our Spider instance authorization that all requests would be sent with:
 
 ```Swift
-let auth = TokenAuth(value: "0123456789")
+let token = TokenAuth(value: "0123456789")
 let baseUrl = URL(string: "https://base.url/v1")!
-let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: .token(auth))
+let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: token)
 bigHairySpider.get("/topSecretData") { (response) in
     print("Big hairy spider got a response!")
 }
@@ -144,10 +144,10 @@ bigHairySpider.get("/topSecretData") { (response) in
 However, authorization can also be provided on a per-request basis if it better fits your situation:
 
 ```Swift
-let auth = TokenAuth(value: "0123456789")
+let token = TokenAuth(value: "0123456789")
 let baseUrl = URL(string: "https://base.url/v1")!
 let aSpider = Spider.web(withBaseUrl: baseUrl)
-aSpider.get("/topSecretData", auth: .token(auth)) { (response) in
+aSpider.get("/topSecretData", auth: token) { (response) in
     print("Spider got a response!")
 }
 ```
@@ -155,12 +155,12 @@ aSpider.get("/topSecretData", auth: .token(auth)) { (response) in
 Advanced requests can also provide authorization:
 
 ```Swift
-let auth = TokenAuth(value: "0123456789")
+let token = TokenAuth(value: "0123456789")
 
 let request = SpiderRequest(method: .get, path: "https://path/to/endpoint")
 request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
 request.header.set(value: "12345", forHeaderField: "user_id")
-request.auth = .token(auth)
+request.auth = token
 
 Spider.web.perform(request) { (response) in
     print("We got a response!")
@@ -170,9 +170,9 @@ Spider.web.perform(request) { (response) in
 By default, auth is added to the _"Authorization"_ header field of your request. This can be changed by passing in a custom field when creating the auth:
 
 ```Swift
-let auth = BasicAuth(username: "root", password: "pa55w0rd", headerField: "Credentials")
+let basic = BasicAuth(username: "root", password: "pa55w0rd", headerField: "Credentials")
 let baseUrl = URL(string: "https://base.url/v1")!
-let charlotte = Spider.web(withBaseUrl: baseUrl, auth: .basic(auth))
+let charlotte = Spider.web(withBaseUrl: baseUrl, auth: basic)
 charlotte.get("/topSecretData") { (response) in
     print("Charlotte got a response!")
 }
@@ -187,11 +187,11 @@ Basic cm9vdDpwYTU1dzByZA==
 In this case the **"Basic"** prefix before the encoded credentials is the authorization _type_. This can be customized as follows:
 
 ```Swift
-let auth = BasicAuth(username: "root", password: "pa55w0rd")
-auth.type = "BasicAuth"
+let basic = BasicAuth(username: "root", password: "pa55w0rd")
+basic.type = "Login"
 
 let baseUrl = URL(string: "https://base.url/v1")!
-let spider = Spider.web(withBaseUrl: baseUrl, auth: .basic(auth))
+let spider = Spider.web(withBaseUrl: baseUrl, auth: basic)
 
 spider.get("/topSecretData") { (response) in
     print("Got a response!")
