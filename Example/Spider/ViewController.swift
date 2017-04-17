@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         statusLabel.text = nil
         
         let auth = BasicAuth(username: "root", password: "pa55w0rd")
-        let req = SpiderRequest(method: .get, baseUrl: nil, path: "https://google.com/test", parameters: nil, auth: auth)
+        let req = SpiderRequest(method: .get, path: "https://google.com/test", parameters: nil, auth: auth)
         Spider.web.perform(req) { (response) in
             print("done")
         }

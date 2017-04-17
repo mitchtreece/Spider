@@ -45,10 +45,10 @@ This simply makes a `GET` request with a given path & parameters, and returns a 
 The `SpiderResponse` object is really just a fancy typealias over an even fancier tuple. It's defined as:
 
 ```Swift
-public typealias SpiderResponse = (res: URLResponse?, data: Any?, err: Error?)
+public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
 ```
 
-It contains 3 optional objects. The `URLResponse` object (_res_), response data (_data_), and an error object (_err_). Easy to use & understand, plus it helps keep our code readable! Hooray!
+It contains 4 objects. The `SpiderRequest` request (_req_), `URLResponse` object (_res_), response data (_data_), and an error object (_err_). Easy to use & understand, plus it helps keep our code readable! Hooray!
 
 ### Base URLs
 
@@ -191,7 +191,6 @@ let basic = BasicAuth(username: "root", password: "pa55w0rd")
 basic.type = "Login"
 
 let baseUrl = URL(string: "https://base.url/v1")!
-let spider = Spider.web(withBaseUrl: baseUrl, auth: basic)
 
 spider.get("/topSecretData") { (response) in
     print("Got a response!")

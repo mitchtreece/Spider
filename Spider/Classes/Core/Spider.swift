@@ -9,8 +9,8 @@
 import Foundation
 import AFNetworking
 
-public typealias SpiderResponse = (res: URLResponse?, data: Any?, err: Error?)
-public typealias SpiderRequestCompletion = (SpiderResponse) -> ()
+public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
+public typealias SpiderRequestCompletion = (SpiderResponse)->()
 
 public class Spider {
     
@@ -29,10 +29,6 @@ public class Spider {
         
     }
     
-    public init() {
-        //
-    }
-    
     public convenience init(baseUrl: String?, auth: SpiderAuth? = nil) {
         
         self.init()
@@ -43,12 +39,30 @@ public class Spider {
     
     // MARK: Request Building
     
+    internal func url(for request: SpiderRequest) -> String {
+        
+        if let base = baseUrl {
+            return "\(base)\(request.path)"
+        }
+        
+        return request.path
+        
+    }
+    
     internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
         
-        let urlString = baseUrlString(from: request) ?? request.path
+        // Set request's base url if needed
+        
+        if let baseUrl = self.baseUrl {
+            request.baseUrl = baseUrl
+        }
+        
+        // Create NSURLRequest
+        
+        let urlString = url(for: request)
         let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
         
-        // Accept
+        // Header
         
         var accept: String?
         request.header.acceptStringify()?.forEach { (type) in
@@ -56,26 +70,11 @@ public class Spider {
         }
         req.setValue(accept, forHTTPHeaderField: SpiderConstants.RequestAcceptType.headerField)
         
-        // Other
-        
         for (key, value) in request.header.other {
             req.setValue(value, forHTTPHeaderField: key)
         }
         
         return req
-        
-    }
-    
-    internal func baseUrlString(from request: SpiderRequest) -> String? {
-        
-        if let requestUrl = request.baseUrl {
-            return requestUrl
-        }
-        else if let sharedUrl = baseUrl {
-            return sharedUrl
-        }
-        
-        return nil
         
     }
     
@@ -121,7 +120,7 @@ public class Spider {
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
         var baseUrl: URL?
-        if let baseUrlString = baseUrlString(from: request), let url = URL(string: baseUrlString) {
+        if let baseUrlString = self.baseUrl, let url = URL(string: baseUrlString) {
             baseUrl = url
         }
         
@@ -129,47 +128,50 @@ public class Spider {
         let session = self.session(withBaseUrl: baseUrl, acceptableContentTypes: accept)
         
         guard let req = self.request(from: request, session: session) else {
-            let response = SpiderResponse(nil, nil, SpiderError.badRequest)
+            let response = SpiderResponse(request, nil, nil, SpiderError.badRequest)
             completion(response)
             return
         }
         
         authorize(request: req, with: request.auth)
-        session.dataTask(with: req as URLRequest, completionHandler: completion).resume()
+        
+        session.dataTask(with: req as URLRequest) { (res, data, err) in
+            completion((request, res, data, err))
+        }.resume()
         
     }
     
     public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .get, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .get, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
     public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .post, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .post, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
     public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .put, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .put, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
     public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .patch, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .patch, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }
     
     public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
-        let request = SpiderRequest(method: .delete, baseUrl: nil, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         
     }

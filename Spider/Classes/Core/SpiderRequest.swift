@@ -24,10 +24,6 @@ public class SpiderRequestHeader {
     public var accept: [AcceptType]?
     internal var other = [String: String]()
     
-    public init() {
-        //
-    }
-    
     // MARK: Public
     
     public func set(value: String, forField field: String) {
@@ -73,18 +69,18 @@ public class SpiderRequest {
         case delete = "DELETE"
     }
     
+    internal(set) var baseUrl: String?
+    
     public var method: Method
-    public var baseUrl: String?
     public var path: String
     public var parameters: Any?
     public var auth: SpiderAuth?
     
     public var header = SpiderRequestHeader()
     
-    public init(method: Method, baseUrl: String? = nil, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
+    public init(method: Method, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
         
         self.method = method
-        self.baseUrl = baseUrl
         self.path = path
         self.parameters = parameters
         self.auth = auth
@@ -111,10 +107,9 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
             
         }
         
-        let base = baseUrl ?? "none"
+        let baseUrl = self.baseUrl ?? "none"
         let params = debugParameterString() ?? "none"
-        
-        return "<SpiderRequest> {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(base)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(params)\n}"
+        return "<SpiderRequest> {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(params)\n}"
         
     }
     
