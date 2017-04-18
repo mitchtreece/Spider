@@ -48,7 +48,9 @@ class ViewController: UIViewController {
                 return
             }
             
-            self.statusLabel.text = "Fetched \(photos.count) photos!"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "Fetched \(photos.count) photos!"
+            }
             
             let photoUrl = photos[0]["url"] as! String
             
@@ -60,8 +62,11 @@ class ViewController: UIViewController {
                 }
                 
                 print("Fetched first photo image!")
-                self.imageView.image = image
                 self.fetching = false
+
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
                 
             }
             

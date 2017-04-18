@@ -20,6 +20,8 @@ public class Spider {
     public var responseSerializer: ResponseSerializer = JSONResponseSerializer()
     public var authorization: SpiderAuth?
     
+    private var session = URLSession.shared
+    
     @discardableResult
     public static func web(withBaseUrl baseUrl: String, auth: SpiderAuth? = nil) -> Spider {
         
@@ -85,6 +87,9 @@ public class Spider {
         var req = URLRequest(url: url)
         req.httpMethod = request.method.rawValue
         req.httpBody = requestSerializer(for: request).serialization(of: request.parameters)
+        req.timeoutInterval = request.timeout ?? 60
+        req.cachePolicy = request.cachePolicy ?? .useProtocolCachePolicy
+        req.allowsCellularAccess = request.allowsCellularAccess ?? true
         
         // Header
         
@@ -115,8 +120,6 @@ public class Spider {
     
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
-        let session = URLSession(configuration: URLSessionConfiguration.default)
-
         guard let req = urlRequest(from: request) else {
             let response = SpiderResponse(request, nil, nil, SpiderError.badRequest)
             completion(response)

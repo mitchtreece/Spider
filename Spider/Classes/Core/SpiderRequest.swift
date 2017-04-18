@@ -79,6 +79,12 @@ public class SpiderRequest {
     public var parameters: Any?
     public var auth: SpiderAuth?
     
+    // URLRequest
+    
+    public var timeout: TimeInterval?
+    public var cachePolicy: NSURLRequest.CachePolicy?
+    public var allowsCellularAccess: Bool?
+    
     public init(method: Method, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
         
         self.method = method
