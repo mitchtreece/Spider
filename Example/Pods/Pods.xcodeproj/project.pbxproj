@@ -25,10 +25,11 @@
 		2108AA29B8C5B3C31934D5AFCF354B8F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CDD4F59D400D3E96B34975B2F1BF62 /* State.swift */; };
 		23EFB184AD12FB1014FFC765CE0D710A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF2A57C7FEF948CCD728AFCF140D122 /* Security.framework */; };
 		266324ED1E9FEB4400B28398 /* SpiderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266324EC1E9FEB4400B28398 /* SpiderConstants.swift */; };
+		268B6BF91EA4904B0027A628 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B6BF81EA4904B0027A628 /* JSONParser.swift */; };
 		26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E491E81D8E000D7AFCF /* Spider.swift */; };
 		26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4A1E81D8E000D7AFCF /* SpiderError.swift */; };
 		26975E4F1E81D8E000D7AFCF /* SpiderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */; };
-		26975E521E81D8EA00D7AFCF /* Spider+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */; };
+		26975E521E81D8EA00D7AFCF /* Spider+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E511E81D8EA00D7AFCF /* Spider+Promises.swift */; };
 		26975E541E81D8F700D7AFCF /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E531E81D8F700D7AFCF /* Data+Spider.swift */; };
 		26975E6F1E832D6300D7AFCF /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E6E1E832D6300D7AFCF /* RequestSerializer.swift */; };
 		26975E711E832E4700D7AFCF /* ResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26975E701E832E4700D7AFCF /* ResponseSerializer.swift */; };
@@ -221,10 +222,11 @@
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		263BE6379BD01A9ED7F191015BC774E4 /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
 		266324EC1E9FEB4400B28398 /* SpiderConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderConstants.swift; sourceTree = "<group>"; };
+		268B6BF81EA4904B0027A628 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		26975E491E81D8E000D7AFCF /* Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spider.swift; sourceTree = "<group>"; };
 		26975E4A1E81D8E000D7AFCF /* SpiderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
 		26975E4B1E81D8E000D7AFCF /* SpiderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderRequest.swift; sourceTree = "<group>"; };
-		26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spider+Promise.swift"; sourceTree = "<group>"; };
+		26975E511E81D8EA00D7AFCF /* Spider+Promises.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spider+Promises.swift"; sourceTree = "<group>"; };
 		26975E531E81D8F700D7AFCF /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
 		26975E6E1E832D6300D7AFCF /* RequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializer.swift; sourceTree = "<group>"; };
 		26975E701E832E4700D7AFCF /* ResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializer.swift; sourceTree = "<group>"; };
@@ -489,6 +491,14 @@
 			name = UIKit;
 			sourceTree = "<group>";
 		};
+		268B6BF71EA48FDB0027A628 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				268B6BF81EA4904B0027A628 /* JSONParser.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		26975E461E81D88600D7AFCF /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,7 +515,7 @@
 		26975E471E81D89600D7AFCF /* Promises */ = {
 			isa = PBXGroup;
 			children = (
-				26975E511E81D8EA00D7AFCF /* Spider+Promise.swift */,
+				26975E511E81D8EA00D7AFCF /* Spider+Promises.swift */,
 			);
 			path = Promises;
 			sourceTree = "<group>";
@@ -627,8 +637,9 @@
 			isa = PBXGroup;
 			children = (
 				26975E461E81D88600D7AFCF /* Core */,
-				26975E471E81D89600D7AFCF /* Promises */,
+				268B6BF71EA48FDB0027A628 /* Helpers */,
 				26975E481E81D8AB00D7AFCF /* Extensions */,
+				26975E471E81D89600D7AFCF /* Promises */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1197,9 +1208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26975E521E81D8EA00D7AFCF /* Spider+Promise.swift in Sources */,
+				26975E521E81D8EA00D7AFCF /* Spider+Promises.swift in Sources */,
 				26975E541E81D8F700D7AFCF /* Data+Spider.swift in Sources */,
 				266324ED1E9FEB4400B28398 /* SpiderConstants.swift in Sources */,
+				268B6BF91EA4904B0027A628 /* JSONParser.swift in Sources */,
 				269E967E1E9FDEEF0088B9C1 /* SpiderAuth.swift in Sources */,
 				26975E4E1E81D8E000D7AFCF /* SpiderError.swift in Sources */,
 				26975E4D1E81D8E000D7AFCF /* Spider.swift in Sources */,

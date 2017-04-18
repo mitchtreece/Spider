@@ -138,7 +138,7 @@ public class Spider {
         session.dataTask(with: req as URLRequest) { (res, data, err) in
             completion((request, res, data, err))
         }.resume()
-        
+                
     }
     
     public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
