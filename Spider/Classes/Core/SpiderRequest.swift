@@ -70,13 +70,14 @@ public class SpiderRequest {
     }
     
     internal(set) var baseUrl: String?
+    public var requestSerializer: RequestSerializer?
+    public var responseSerializer: ResponseSerializer?
     
+    public var header = SpiderRequestHeader()
     public var method: Method
     public var path: String
     public var parameters: Any?
     public var auth: SpiderAuth?
-    
-    public var header = SpiderRequestHeader()
     
     public init(method: Method, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
         

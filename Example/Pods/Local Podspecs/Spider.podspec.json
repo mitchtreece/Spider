@@ -1,8 +1,8 @@
 {
   "name": "Spider",
   "version": "1.0.0",
-  "summary": "A short description of Spider.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "Creepy web framework for Swift.",
+  "description": "Spider is an easy-to-use web framework built on-top the wonderful\nAFNetworking library. Spider's easy syntax & modern response handling\nmakes requesting/retrieving data incredibly simple.",
   "homepage": "https://github.com/mitchtreece/Spider",
   "license": {
     "type": "MIT",
@@ -21,12 +21,6 @@
   },
   "source_files": "Spider/Classes/**/*",
   "dependencies": {
-    "Alamofire": [
-      "~> 4.0"
-    ],
-    "AFNetworking": [
-      "~> 3.0"
-    ],
     "PromiseKit": [
       "~> 4.0"
     ]

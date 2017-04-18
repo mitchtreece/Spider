@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AFNetworking
 
 public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
 public typealias SpiderRequestCompletion = (SpiderResponse)->()
@@ -17,6 +16,8 @@ public class Spider {
     public static let web = Spider()
     
     public var baseUrl: String?
+    public var requestSerializer: RequestSerializer = JSONRequestSerializer()
+    public var responseSerializer: ResponseSerializer = JSONResponseSerializer()
     public var authorization: SpiderAuth?
     
     @discardableResult
@@ -49,7 +50,27 @@ public class Spider {
         
     }
     
-    internal func request(from request: SpiderRequest, session: AFHTTPSessionManager) -> NSMutableURLRequest? {
+    internal func requestSerializer(for request: SpiderRequest) -> RequestSerializer {
+        
+        if let serializer = request.requestSerializer {
+            return serializer
+        }
+        
+        return self.requestSerializer
+        
+    }
+    
+    internal func responseSerializer(for request: SpiderRequest) -> ResponseSerializer {
+        
+        if let serializer = request.responseSerializer {
+            return serializer
+        }
+        
+        return self.responseSerializer
+        
+    }
+    
+    internal func urlRequest(from request: SpiderRequest) -> URLRequest? {
         
         // Set request's base url if needed
         
@@ -57,10 +78,13 @@ public class Spider {
             request.baseUrl = baseUrl
         }
         
-        // Create NSURLRequest
+        // Create request
         
-        let urlString = url(for: request)
-        let req = session.requestSerializer.request(withMethod: request.method.rawValue, urlString: urlString, parameters: request.parameters, error: nil)
+        guard let url = URL(string: url(for: request)) else { return nil }
+        
+        var req = URLRequest(url: url)
+        req.httpMethod = request.method.rawValue
+        req.httpBody = requestSerializer(for: request).serialization(of: request.parameters)
         
         // Header
         
@@ -74,44 +98,16 @@ public class Spider {
             req.setValue(value, forHTTPHeaderField: key)
         }
         
-        return req
+        // Authorization
         
-    }
-    
-    internal func session(withBaseUrl baseUrl: URL?, acceptableContentTypes: [String]? = nil) -> AFHTTPSessionManager {
-        
-        let session = AFHTTPSessionManager(baseURL: baseUrl)
-        session.requestSerializer = AFJSONRequestSerializer()
-        session.responseSerializer = responseSerializer(acceptableContentTypes: acceptableContentTypes)
-        return session
-        
-    }
-    
-    internal func responseSerializer(acceptableContentTypes: [String]?) -> AFHTTPResponseSerializer {
-        
-        let serializer = AFHTTPResponseSerializer()
-        
-        if let acceptTypes = acceptableContentTypes {
-            serializer.acceptableContentTypes = Set(acceptTypes)
-        }
-        else {
-            serializer.acceptableContentTypes = nil
-        }
-        
-        return serializer
-        
-    }
-    
-    // MARK: Authorization
-    
-    internal func authorize(request: NSMutableURLRequest, with auth: SpiderAuth?) {
-        
-        if let auth = auth {
-            request.setValue(auth.value, forHTTPHeaderField: auth.headerField)
+        if let auth = request.auth {
+            req.setValue(auth.value, forHTTPHeaderField: auth.headerField)
         }
         else if let sharedAuth = self.authorization {
-            request.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.headerField)
+            req.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.headerField)
         }
+        
+        return req
         
     }
     
@@ -119,24 +115,18 @@ public class Spider {
     
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
-        var baseUrl: URL?
-        if let baseUrlString = self.baseUrl, let url = URL(string: baseUrlString) {
-            baseUrl = url
-        }
-        
-        let accept = request.header.acceptStringify()
-        let session = self.session(withBaseUrl: baseUrl, acceptableContentTypes: accept)
-        
-        guard let req = self.request(from: request, session: session) else {
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+
+        guard let req = urlRequest(from: request) else {
             let response = SpiderResponse(request, nil, nil, SpiderError.badRequest)
             completion(response)
             return
         }
         
-        authorize(request: req, with: request.auth)
-        
-        session.dataTask(with: req as URLRequest) { (res, data, err) in
-            completion((request, res, data, err))
+        session.dataTask(with: req as URLRequest) { (data, res, err) in
+            let _data = self.responseSerializer(for: request).serialization(of: data) ?? (data as Any)
+            let response: SpiderResponse = (request, res, _data, err)
+            completion(response)
         }.resume()
                 
     }
