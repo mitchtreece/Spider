@@ -19,6 +19,7 @@ public class Spider {
     public var requestSerializer: RequestSerializer = JSONRequestSerializer()
     public var responseSerializer: ResponseSerializer = JSONResponseSerializer()
     public var authorization: SpiderAuth?
+    public var isDebugModeEnabled: Bool = false
     
     private var session = URLSession.shared
     
@@ -37,6 +38,10 @@ public class Spider {
         self.init()
         self.baseUrl = baseUrl
         self.authorization = auth
+        
+    }
+    
+    public init() {
         
     }
     
@@ -97,7 +102,7 @@ public class Spider {
         request.header.acceptStringify()?.forEach { (type) in
             accept = (accept == nil) ? type : "\(accept!), \(type)"
         }
-        req.setValue(accept, forHTTPHeaderField: SpiderConstants.RequestAcceptType.headerField)
+        req.setValue(accept, forHTTPHeaderField: SpiderConstants.Request.headerAcceptField)
         
         for (key, value) in request.header.other {
             req.setValue(value, forHTTPHeaderField: key)
@@ -125,6 +130,8 @@ public class Spider {
             completion(response)
             return
         }
+        
+        debugPrint("Sending --> \(request)")
         
         session.dataTask(with: req as URLRequest) { (data, res, err) in
             let _data = self.responseSerializer(for: request).serialization(of: data) ?? (data as Any)
@@ -166,6 +173,15 @@ public class Spider {
         
         let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        
+    }
+    
+    // MARK: Debug
+    
+    private func debugPrint(_ msg: String) {
+        
+        guard isDebugModeEnabled == true else { return }
+        print(msg)
         
     }
     

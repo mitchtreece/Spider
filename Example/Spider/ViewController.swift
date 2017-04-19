@@ -14,12 +14,17 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
-    private var fetching: Bool = false
     
+    private var spider: Spider!
+    private var fetching: Bool = false
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         statusLabel.text = nil
+        
+        spider = Spider()
+        spider.isDebugModeEnabled = true
         
         let auth = BasicAuth(username: "root", password: "pa55w0rd")
         let req = SpiderRequest(method: .get, path: "https://google.com/test", parameters: [
@@ -27,8 +32,8 @@ class ViewController: UIViewController {
             "message": "Hello, world!"
         ], auth: auth)
         
-        Spider.web.perform(req) { (response) in
-            print("done")
+        spider.perform(req) { (response) in
+            print("Got a response: \(response.res!)")
         }
         
     }
@@ -41,7 +46,7 @@ class ViewController: UIViewController {
         self.imageView.image = nil
         self.statusLabel.text = nil
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/photos") { (response) in
+        spider.get("https://jsonplaceholder.typicode.com/photos") { (response) in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
                 print("Error fetching photos")
@@ -54,7 +59,7 @@ class ViewController: UIViewController {
             
             let photoUrl = photos[0]["url"] as! String
             
-            Spider.web.get(photoUrl) { (anotherResponse) in
+            self.spider.get(photoUrl) { (anotherResponse) in
                 
                 guard let data = anotherResponse.data as? Data, let image = UIImage(data: data), anotherResponse.err == nil else {
                     print("Error fetching image")
@@ -82,14 +87,14 @@ class ViewController: UIViewController {
         self.imageView.image = nil
         self.statusLabel.text = nil
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
+        spider.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
             
             guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
                 throw SpiderError.badResponse
             }
             
             self.statusLabel.text = "Fetched \(photos.count) photos!"
-            return Spider.web.get(photos[0]["url"] as! String)
+            return self.spider.get(photos[0]["url"] as! String)
             
         }.then { (response) -> Void in
                 

@@ -42,13 +42,13 @@ public class SpiderRequestHeader {
         
         for type in accept {
             switch type {
-            case .application_json: strings.append(SpiderConstants.RequestAcceptType.application_json)
-            case .application_javascript: strings.append(SpiderConstants.RequestAcceptType.application_javascript)
-            case .text_json: strings.append(SpiderConstants.RequestAcceptType.text_json)
-            case .text_javascript: strings.append(SpiderConstants.RequestAcceptType.text_javascript)
-            case .text_html: strings.append(SpiderConstants.RequestAcceptType.text_html)
-            case .text_plain: strings.append(SpiderConstants.RequestAcceptType.text_plain)
-            case .image_jpeg: strings.append(SpiderConstants.RequestAcceptType.image_jpeg)
+            case .application_json: strings.append("application/json")
+            case .application_javascript: strings.append("application/javascript")
+            case .text_json: strings.append("text/json")
+            case .text_javascript: strings.append("text/javascript")
+            case .text_html: strings.append("text/html")
+            case .text_plain: strings.append("text/plain")
+            case .image_jpeg: strings.append("image/jpeg")
             case .custom(let _type): strings.append(_type)
             }
         }
@@ -116,7 +116,7 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         
         let baseUrl = self.baseUrl ?? "none"
         let params = debugParameterString() ?? "none"
-        return "<SpiderRequest> {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(params)\n}"
+        return "<SpiderRequest>: {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(params)\n}"
         
     }
     
