@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 
 ## Overview
-Spider is an easy-to-use web framework built on-top the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. Spider's easy syntax & modern response handling makes requesting data incredibly simple.
+Spider is an easy-to-use web framework built for speed & readability. Spider's modern syntax & response handling makes working with web services an enjoyable experience.
 
 ## Installation
 ### CocoaPods
@@ -55,8 +55,7 @@ It contains 4 objects. The `SpiderRequest` request (_req_), `URLResponse` object
 Because we typically make more than one request to a given API, using _base URLs_ just makes sense. This is also useful when we need to switch between versions of API's (i.e. dev, pre-prod, prod, etc...).
 
 ```Swift
-let baseUrl = URL(string: "https://base.url/v1")!
-let spider = Spider.web(withBaseUrl: baseUrl)
+let spider = Spider.web(withBaseUrl: "https://base.url/v1")
 
 spider.get("/users") { (response) in
     print("We got a response!")
@@ -103,8 +102,7 @@ tarantula.get("https://path/to/endpoint") { (response) in
 Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Spooky! Naturally, Spider instances created like this also support base urls:
 
 ```Swift
-let baseUrl = URL(string: "https://base.url/v1")!
-let blackWidow = Spider(baseUrl: baseUrl)
+let blackWidow = Spider(baseUrl: "https://base.url/v1")
 blackWidow.get("/users") { (response) in
     print("Black Widow got a response!")
 }
@@ -112,7 +110,7 @@ blackWidow.get("/users") { (response) in
 
 ### Advanced Requests
 
-Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually like this:
+Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually:
 
 ```Swift
 let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
@@ -134,8 +132,7 @@ Authorization can be added on a per-request or instance-based basis. Typically w
 
 ```Swift
 let token = TokenAuth(value: "0123456789")
-let baseUrl = URL(string: "https://base.url/v1")!
-let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: token)
+let bigHairySpider = Spider.web(withBaseUrl: "https://base.url/v1", auth: token)
 bigHairySpider.get("/topSecretData") { (response) in
     print("Big hairy spider got a response!")
 }
@@ -145,8 +142,7 @@ However, authorization can also be provided on a per-request basis if it better 
 
 ```Swift
 let token = TokenAuth(value: "0123456789")
-let baseUrl = URL(string: "https://base.url/v1")!
-let aSpider = Spider.web(withBaseUrl: baseUrl)
+let aSpider = Spider.web(withBaseUrl: "https://base.url/v1")
 aSpider.get("/topSecretData", auth: token) { (response) in
     print("Spider got a response!")
 }
@@ -171,8 +167,7 @@ By default, auth is added to the _"Authorization"_ header field of your request.
 
 ```Swift
 let basic = BasicAuth(username: "root", password: "pa55w0rd", headerField: "Credentials")
-let baseUrl = URL(string: "https://base.url/v1")!
-let charlotte = Spider.web(withBaseUrl: baseUrl, auth: basic)
+let charlotte = Spider.web(withBaseUrl: "https://base.url/v1", auth: basic)
 charlotte.get("/topSecretData") { (response) in
     print("Charlotte got a response!")
 }
@@ -190,8 +185,7 @@ In this case the **"Basic"** prefix before the encoded credentials is the author
 let basic = BasicAuth(username: "root", password: "pa55w0rd")
 basic.type = "Login"
 
-let baseUrl = URL(string: "https://base.url/v1")!
-
+let spider = Spider.web(withBaseUrl: "https://base.url/v1", auth: basic)
 spider.get("/topSecretData") { (response) in
     print("Got a response!")
 }
@@ -312,6 +306,7 @@ This is just a basic example of how promises can help organize your code. For mo
 - Image downloader
 - UIKit extensions (UIImageView setWithUrl)
 - Upload/download tasks with progress
+- URLConvertible protocol
 - Objective-C compatibility
 - Test coverage
 

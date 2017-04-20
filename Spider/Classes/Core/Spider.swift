@@ -15,7 +15,7 @@ public class Spider {
     
     public static let web = Spider()
     
-    public var baseUrl: String?
+    public var baseUrl: URLConvertible?
     public var requestSerializer: RequestSerializer = JSONRequestSerializer()
     public var responseSerializer: ResponseSerializer = JSONResponseSerializer()
     public var authorization: SpiderAuth?
@@ -24,7 +24,7 @@ public class Spider {
     private var session = URLSession.shared
     
     @discardableResult
-    public static func web(withBaseUrl baseUrl: String, auth: SpiderAuth? = nil) -> Spider {
+    public static func web(withBaseUrl baseUrl: URLConvertible?, auth: SpiderAuth? = nil) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
@@ -33,7 +33,7 @@ public class Spider {
         
     }
     
-    public convenience init(baseUrl: String?, auth: SpiderAuth? = nil) {
+    public convenience init(baseUrl: URLConvertible?, auth: SpiderAuth? = nil) {
         
         self.init()
         self.baseUrl = baseUrl
@@ -47,10 +47,10 @@ public class Spider {
     
     // MARK: Request Building
     
-    internal func url(for request: SpiderRequest) -> String {
+    internal func url(for request: SpiderRequest) -> URLConvertible {
         
         if let base = baseUrl {
-            return "\(base)\(request.path)"
+            return "\(base.urlString)\(request.path)"
         }
         
         return request.path
@@ -87,7 +87,7 @@ public class Spider {
         
         // Create request
         
-        guard let url = URL(string: url(for: request)) else { return nil }
+        guard let url = url(for: request).url else { return nil }
         
         var req = URLRequest(url: url)
         req.httpMethod = request.method.rawValue

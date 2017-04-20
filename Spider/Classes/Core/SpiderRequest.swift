@@ -69,7 +69,7 @@ public class SpiderRequest {
         case delete = "DELETE"
     }
     
-    internal(set) var baseUrl: String?
+    internal(set) var baseUrl: URLConvertible?
     public var requestSerializer: RequestSerializer?
     public var responseSerializer: ResponseSerializer?
     
