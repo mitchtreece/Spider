@@ -16,10 +16,8 @@
 		1E446D1224AAA232EB5876486275A1FB /* SpiderAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F4245D07588E242AC3712725DBA75 /* SpiderAuth.swift */; };
 		20FD53A3A2AC8CA72E5AA72044FA4B80 /* NSNotificationCenter+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 638FC877C26AE2698B03F57C63A5C636 /* NSNotificationCenter+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2218FE9C2DEB4C08189BAE89E20A632E /* PromiseKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD911A7C16FAA09302EE0DF2F0B0DA9 /* PromiseKit-dummy.m */; };
-		268B6C011EA5AC260027A628 /* RequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B6C001EA5AC260027A628 /* RequestSerializer.swift */; };
-		268B6C031EA5AED90027A628 /* ResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B6C021EA5AED90027A628 /* ResponseSerializer.swift */; };
-		268B6C051EA5B37E0027A628 /* JSONResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B6C041EA5B37E0027A628 /* JSONResponseSerializer.swift */; };
 		26FE97681EA871A600AF5F21 /* URLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE97671EA871A600AF5F21 /* URLConvertible.swift */; };
+		26FE976A1EA8778A00AF5F21 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE97691EA8778A00AF5F21 /* Serializer.swift */; };
 		27C4E6E0DAE955D27D41E42D3DBF75E8 /* PMKQuartzCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 67E1D36DCB7BF8A7DEB230733B158119 /* PMKQuartzCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		294C23B26135E0443A424AF17AFEFA17 /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295287011E020E12EE07F6A8142F2623 /* SpiderError.swift */; };
 		37EB9F2F7098F23289374B7728218D9E /* UIView+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B3D19404B7C7A8014B95D5977B946 /* UIView+AnyPromise.m */; };
@@ -40,7 +38,7 @@
 		6C468DF89709331096010D45814C575C /* NSURLSession+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 9696FB863D0DE618F5B3684606228A4A /* NSURLSession+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		741E24DAD02353AD1ED4ED04C3D35FA4 /* TokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE13ED4223AEEFF8B0DF1EABACD248 /* TokenAuth.swift */; };
 		786C027190849DBC7B3362E1EE3FEE13 /* SpiderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66ED13B2B53D37D72E7A8855C064568 /* SpiderConstants.swift */; };
-		7898E68C6A58856EECD38B7A784D71D5 /* JSONRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONRequestSerializer.swift */; };
+		7898E68C6A58856EECD38B7A784D71D5 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONSerializer.swift */; };
 		7B51CF266DE9F79A4D2FC7BF82108B93 /* URLDataPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C2DDC09A2F5FF7FC82E8881A3996B /* URLDataPromise.swift */; };
 		7CBD679B54003113901D08D27B1BCEA0 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8F25817235857AE113B60CE73F1492 /* PromiseKit.framework */; };
 		80C812CEFD862A21DB55C84B56636165 /* Spider+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E9226B7CFB90908A81FE8E08C8294C /* Spider+Promises.swift */; };
@@ -122,10 +120,8 @@
 		1D6C539E5B4145B90676D3AAF6468033 /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		1E33654BE09E7109A0FEEE76E49BF8E0 /* NSTask+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTask+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSTask+AnyPromise.m"; sourceTree = "<group>"; };
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
-		268B6C001EA5AC260027A628 /* RequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSerializer.swift; sourceTree = "<group>"; };
-		268B6C021EA5AED90027A628 /* ResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerializer.swift; sourceTree = "<group>"; };
-		268B6C041EA5B37E0027A628 /* JSONResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONResponseSerializer.swift; sourceTree = "<group>"; };
 		26FE97671EA871A600AF5F21 /* URLConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLConvertible.swift; sourceTree = "<group>"; };
+		26FE97691EA8778A00AF5F21 /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		294026AB8B28C610FC57DF2A26EB7FC9 /* NSNotificationCenter+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSNotificationCenter+Promise.swift"; path = "Extensions/Foundation/Sources/NSNotificationCenter+Promise.swift"; sourceTree = "<group>"; };
 		295287011E020E12EE07F6A8142F2623 /* SpiderError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
 		337F0663F2253CE5F69CA018CA7C90D8 /* NSURLSession+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSURLSession+Promise.swift"; path = "Extensions/Foundation/Sources/NSURLSession+Promise.swift"; sourceTree = "<group>"; };
@@ -200,7 +196,7 @@
 		D9B468F428AC55896FEC0D8C3A1181AC /* NSURLSession+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSURLSession+AnyPromise.m"; sourceTree = "<group>"; };
 		DA38CE683C6CB6CD393CE89F02A4436E /* Pods-Spider_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spider_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DB6F691A801D32620ED501B0C3559FA9 /* PromiseKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PromiseKit.modulemap; sourceTree = "<group>"; };
-		DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONRequestSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONRequestSerializer.swift; sourceTree = "<group>"; };
+		DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
 		DDD911A7C16FAA09302EE0DF2F0B0DA9 /* PromiseKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PromiseKit-dummy.m"; sourceTree = "<group>"; };
 		DF52D452D72EF81C1A4A1B4DBDFC452A /* afterlife.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = afterlife.swift; path = Extensions/Foundation/Sources/afterlife.swift; sourceTree = "<group>"; };
 		DF7B6C0170FC7C8CDCCB1AC4F289D74A /* Pods-Spider_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spider_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -374,10 +370,8 @@
 		65F489277857D719E9055E6317A28297 /* Serializers */ = {
 			isa = PBXGroup;
 			children = (
-				268B6C001EA5AC260027A628 /* RequestSerializer.swift */,
-				268B6C021EA5AED90027A628 /* ResponseSerializer.swift */,
-				DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONRequestSerializer.swift */,
-				268B6C041EA5B37E0027A628 /* JSONResponseSerializer.swift */,
+				26FE97691EA8778A00AF5F21 /* Serializer.swift */,
+				DD76CB1F032CFD89C72B7C82EF6FB49B /* JSONSerializer.swift */,
 			);
 			path = Serializers;
 			sourceTree = "<group>";
@@ -533,9 +527,9 @@
 		F2B9C9C8A7C7A1319688B806151B0E5F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C66ED13B2B53D37D72E7A8855C064568 /* SpiderConstants.swift */,
 				E66E10CE353C8011C19E7F45919864F0 /* Spider.swift */,
 				B3F66875963B39EBA11E5F30C6A49FB4 /* SpiderRequest.swift */,
+				C66ED13B2B53D37D72E7A8855C064568 /* SpiderConstants.swift */,
 				295287011E020E12EE07F6A8142F2623 /* SpiderError.swift */,
 				EB3BB3B11A1C643B7948425C324DF780 /* Authorization */,
 				65F489277857D719E9055E6317A28297 /* Serializers */,
@@ -770,11 +764,8 @@
 				B5B5D26EBA68D1D60B8AEA5C822223D4 /* BasicAuth.swift in Sources */,
 				51D1A4D88F2C51E00A76641E1981BCA7 /* Data+Spider.swift in Sources */,
 				E53E926C58FB60BA0B2AC823E76EF6FC /* JSONParser.swift in Sources */,
-				268B6C011EA5AC260027A628 /* RequestSerializer.swift in Sources */,
-				7898E68C6A58856EECD38B7A784D71D5 /* JSONRequestSerializer.swift in Sources */,
+				7898E68C6A58856EECD38B7A784D71D5 /* JSONSerializer.swift in Sources */,
 				80C812CEFD862A21DB55C84B56636165 /* Spider+Promises.swift in Sources */,
-				268B6C051EA5B37E0027A628 /* JSONResponseSerializer.swift in Sources */,
-				268B6C031EA5AED90027A628 /* ResponseSerializer.swift in Sources */,
 				67E74AFE1427D12ADCBE7B10ED6B4801 /* Spider-dummy.m in Sources */,
 				4BBF76C585F51FA15076B55789558481 /* Spider.swift in Sources */,
 				1E446D1224AAA232EB5876486275A1FB /* SpiderAuth.swift in Sources */,
@@ -782,6 +773,7 @@
 				294C23B26135E0443A424AF17AFEFA17 /* SpiderError.swift in Sources */,
 				B3CB93356BBE195534948139619657D6 /* SpiderRequest.swift in Sources */,
 				741E24DAD02353AD1ED4ED04C3D35FA4 /* TokenAuth.swift in Sources */,
+				26FE976A1EA8778A00AF5F21 /* Serializer.swift in Sources */,
 				26FE97681EA871A600AF5F21 /* URLConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

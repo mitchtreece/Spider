@@ -70,8 +70,8 @@ public class SpiderRequest {
     }
     
     internal(set) var baseUrl: URLConvertible?
-    public var requestSerializer: RequestSerializer?
-    public var responseSerializer: ResponseSerializer?
+    public var requestSerializer: Serializer?
+    public var responseSerializer: Serializer?
     
     public var header = SpiderRequestHeader()
     public var method: Method

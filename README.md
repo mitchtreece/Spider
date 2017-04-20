@@ -198,7 +198,7 @@ Likewise, the `TokenAuth` _"Bearer"_ type can be modified in the same way.
 As mentioned above, `SpiderResponse` objects are clean & easy to work with. A typical data response might look something like this:
 
 ```Swift
-Spider.web.get(path: "https://some/data/endpoint") { (response) in
+Spider.web.get("https://some/data/endpoint") { (response) in
 
     guard let data = response.data as? Data, response.err == nil else {
 
@@ -220,7 +220,7 @@ Spider.web.get(path: "https://some/data/endpoint") { (response) in
 A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of data easy to work with.
 
 ```Swift
-Spider.web.get(path: "https://some/json/endpoint") { (response) in
+Spider.web.get("https://some/json/endpoint") { (response) in
 
     guard let data = response.data as? Data, let json = data.json() as? [String: Any], response.err == nil else {
 
@@ -250,7 +250,7 @@ If the data cannot be serialized, this function will return `nil`; causing our a
 If the JSON response is formatted as an array (i.e. a list of users), don't forget to cast it as such!
 
 ```Swift
-Spider.web.get(path: "https://list/of/users") { (response) in
+Spider.web.get("https://list/of/users") { (response) in
 
     guard let data = response.data as? Data, let users = data.json() as? [[String: Any]], response.err == nil else {
 
@@ -276,7 +276,7 @@ Spider.web.get(path: "https://list/of/users") { (response) in
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
 ```Swift
-Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
+Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
 
     guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
         throw SpiderError.badResponse
@@ -306,7 +306,6 @@ This is just a basic example of how promises can help organize your code. For mo
 - Image downloader
 - UIKit extensions (UIImageView setWithUrl)
 - Upload/download tasks with progress
-- URLConvertible protocol
 - Objective-C compatibility
 - Test coverage
 

@@ -16,8 +16,8 @@ public class Spider {
     public static let web = Spider()
     
     public var baseUrl: URLConvertible?
-    public var requestSerializer: RequestSerializer = JSONRequestSerializer()
-    public var responseSerializer: ResponseSerializer = JSONResponseSerializer()
+    public var requestSerializer: Serializer = JSONSerializer()
+    public var responseSerializer: Serializer = JSONSerializer()
     public var authorization: SpiderAuth?
     public var isDebugModeEnabled: Bool = false
     
@@ -57,7 +57,7 @@ public class Spider {
         
     }
     
-    internal func requestSerializer(for request: SpiderRequest) -> RequestSerializer {
+    internal func requestSerializer(for request: SpiderRequest) -> Serializer {
         
         if let serializer = request.requestSerializer {
             return serializer
@@ -67,7 +67,7 @@ public class Spider {
         
     }
     
-    internal func responseSerializer(for request: SpiderRequest) -> ResponseSerializer {
+    internal func responseSerializer(for request: SpiderRequest) -> Serializer {
         
         if let serializer = request.responseSerializer {
             return serializer
@@ -91,7 +91,7 @@ public class Spider {
         
         var req = URLRequest(url: url)
         req.httpMethod = request.method.rawValue
-        req.httpBody = requestSerializer(for: request).serialization(of: request.parameters)
+        req.httpBody = requestSerializer(for: request).data(from: request.parameters)
         req.timeoutInterval = request.timeout ?? 60
         req.cachePolicy = request.cachePolicy ?? .useProtocolCachePolicy
         req.allowsCellularAccess = request.allowsCellularAccess ?? true
@@ -134,7 +134,7 @@ public class Spider {
         debugPrint("Sending --> \(request)")
         
         session.dataTask(with: req as URLRequest) { (data, res, err) in
-            let _data = self.responseSerializer(for: request).serialization(of: data) ?? (data as Any)
+            let _data = self.responseSerializer(for: request).object(from: data) ?? (data as Any)
             let response: SpiderResponse = (request, res, _data, err)
             completion(response)
         }.resume()
