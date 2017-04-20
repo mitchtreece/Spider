@@ -3,7 +3,7 @@
 //  Pods
 //
 //  Created by Mitch Treece on 4/13/17.
-//
+//  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
 import Foundation
@@ -16,16 +16,9 @@ internal struct SpiderConstants {
         
     }
     
-    internal struct RequestAcceptType {
+    internal struct Request {
         
-        static let headerField = "Accept"
-        static let application_json = "application/json"
-        static let application_javascript = "application/javascript"
-        static let text_json = "text/json"
-        static let text_javascript = "text/javascript"
-        static let text_html = "text/html"
-        static let text_plain = "text/plain"
-        static let image_jpeg = "image/jpeg"
+        static let headerAcceptField = "Accept"
         
     }
     

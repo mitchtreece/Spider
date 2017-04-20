@@ -11,6 +11,7 @@ import Foundation
 public enum SpiderError: Error {
     
     case badRequest
+    case requestSerializationFailure
     case badResponse
     case other(description: String)
     

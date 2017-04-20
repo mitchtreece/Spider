@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 
 ## Overview
-Spider is an easy-to-use web framework built on-top the wonderful [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. Spider's easy syntax & modern response handling makes requesting data incredibly simple.
+Spider is an easy-to-use web framework built for speed & readability. Spider's modern syntax & response handling makes working with web services an enjoyable experience.
 
 ## Installation
 ### CocoaPods
@@ -55,8 +55,7 @@ It contains 4 objects. The `SpiderRequest` request (_req_), `URLResponse` object
 Because we typically make more than one request to a given API, using _base URLs_ just makes sense. This is also useful when we need to switch between versions of API's (i.e. dev, pre-prod, prod, etc...).
 
 ```Swift
-let baseUrl = URL(string: "https://base.url/v1")!
-let spider = Spider.web(withBaseUrl: baseUrl)
+let spider = Spider.web(withBaseUrl: "https://base.url/v1")
 
 spider.get("/users") { (response) in
     print("We got a response!")
@@ -103,8 +102,7 @@ tarantula.get("https://path/to/endpoint") { (response) in
 Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Spooky! Naturally, Spider instances created like this also support base urls:
 
 ```Swift
-let baseUrl = URL(string: "https://base.url/v1")!
-let blackWidow = Spider(baseUrl: baseUrl)
+let blackWidow = Spider(baseUrl: "https://base.url/v1")
 blackWidow.get("/users") { (response) in
     print("Black Widow got a response!")
 }
@@ -112,7 +110,7 @@ blackWidow.get("/users") { (response) in
 
 ### Advanced Requests
 
-Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually like this:
+Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually:
 
 ```Swift
 let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
@@ -134,8 +132,7 @@ Authorization can be added on a per-request or instance-based basis. Typically w
 
 ```Swift
 let token = TokenAuth(value: "0123456789")
-let baseUrl = URL(string: "https://base.url/v1")!
-let bigHairySpider = Spider.web(withBaseUrl: baseUrl, auth: token)
+let bigHairySpider = Spider.web(withBaseUrl: "https://base.url/v1", auth: token)
 bigHairySpider.get("/topSecretData") { (response) in
     print("Big hairy spider got a response!")
 }
@@ -145,8 +142,7 @@ However, authorization can also be provided on a per-request basis if it better 
 
 ```Swift
 let token = TokenAuth(value: "0123456789")
-let baseUrl = URL(string: "https://base.url/v1")!
-let aSpider = Spider.web(withBaseUrl: baseUrl)
+let aSpider = Spider.web(withBaseUrl: "https://base.url/v1")
 aSpider.get("/topSecretData", auth: token) { (response) in
     print("Spider got a response!")
 }
@@ -171,8 +167,7 @@ By default, auth is added to the _"Authorization"_ header field of your request.
 
 ```Swift
 let basic = BasicAuth(username: "root", password: "pa55w0rd", headerField: "Credentials")
-let baseUrl = URL(string: "https://base.url/v1")!
-let charlotte = Spider.web(withBaseUrl: baseUrl, auth: basic)
+let charlotte = Spider.web(withBaseUrl: "https://base.url/v1", auth: basic)
 charlotte.get("/topSecretData") { (response) in
     print("Charlotte got a response!")
 }
@@ -190,8 +185,7 @@ In this case the **"Basic"** prefix before the encoded credentials is the author
 let basic = BasicAuth(username: "root", password: "pa55w0rd")
 basic.type = "Login"
 
-let baseUrl = URL(string: "https://base.url/v1")!
-
+let spider = Spider.web(withBaseUrl: "https://base.url/v1", auth: basic)
 spider.get("/topSecretData") { (response) in
     print("Got a response!")
 }
@@ -204,7 +198,7 @@ Likewise, the `TokenAuth` _"Bearer"_ type can be modified in the same way.
 As mentioned above, `SpiderResponse` objects are clean & easy to work with. A typical data response might look something like this:
 
 ```Swift
-Spider.web.get(path: "https://some/data/endpoint") { (response) in
+Spider.web.get("https://some/data/endpoint") { (response) in
 
     guard let data = response.data as? Data, response.err == nil else {
 
@@ -226,7 +220,7 @@ Spider.web.get(path: "https://some/data/endpoint") { (response) in
 A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of data easy to work with.
 
 ```Swift
-Spider.web.get(path: "https://some/json/endpoint") { (response) in
+Spider.web.get("https://some/json/endpoint") { (response) in
 
     guard let data = response.data as? Data, let json = data.json() as? [String: Any], response.err == nil else {
 
@@ -256,7 +250,7 @@ If the data cannot be serialized, this function will return `nil`; causing our a
 If the JSON response is formatted as an array (i.e. a list of users), don't forget to cast it as such!
 
 ```Swift
-Spider.web.get(path: "https://list/of/users") { (response) in
+Spider.web.get("https://list/of/users") { (response) in
 
     guard let data = response.data as? Data, let users = data.json() as? [[String: Any]], response.err == nil else {
 
@@ -282,7 +276,7 @@ Spider.web.get(path: "https://list/of/users") { (response) in
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
 ```Swift
-Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
+Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
 
     guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
         throw SpiderError.badResponse
@@ -308,11 +302,11 @@ Spider.web.get(path: "https://jsonplaceholder.typicode.com/photos").then { (resp
 This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
 
 ## To-do
-- Simple object mapping
-- Request param serialization options (json (default), url query (http://hello.world?help=1&yolo=true))
-- Data transfer (with progress reporting)
-- Switch from AFNetworking to AlamoFire OR native NS* APIs
-- Objective-C compatibility?
+- Object mapping
+- Image downloader
+- UIKit extensions (UIImageView setWithUrl)
+- Upload/download tasks with progress
+- Objective-C compatibility
 - Test coverage
 
 ## Contributing

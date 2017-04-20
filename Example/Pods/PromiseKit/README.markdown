@@ -2,6 +2,10 @@
 
 ![badge-pod] ![badge-languages] ![badge-pms] ![badge-platforms] ![badge-mit]
 
+[简体中文](README.zh_CN.md)
+
+---
+
 Modern development is highly asynchronous: isn’t it about time we had tools that
 made programming asynchronously powerful, easy and delightful?
 
@@ -204,6 +208,12 @@ URLSession.GET("http://example.com").asDictionary().then { json in
 ```
 
 For [AFNetworking] we recommend [csotiriou/AFNetworking].
+
+
+# Need to convert your codebase to Promises?
+
+[Hire me](mailto:mxcl@me.com), I have years of experience with Promises in iOS codebases and 10 years of professional experience developing mobile apps.
+
 
 # Support
 

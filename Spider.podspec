@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "9.0"
   s.source_files = 'Spider/Classes/**/*'
 
-  s.dependency 'AFNetworking',  '~> 3.0'
   s.dependency 'PromiseKit',    '~> 4.0'
 
 end
