@@ -26,15 +26,7 @@ class ViewController: UIViewController {
         spider = Spider()
         spider.isDebugModeEnabled = true
         
-        let auth = BasicAuth(username: "root", password: "pa55w0rd")
-        let req = SpiderRequest(method: .get, path: "https://google.com/test", parameters: [
-            "userId": 23,
-            "message": "Hello, world!"
-        ], auth: auth)
-        
-        spider.perform(req) { (response) in
-            print("Got a response: \(response.res!)")
-        }
+        imageView.web.setImageWithUrl("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png")
         
     }
     
