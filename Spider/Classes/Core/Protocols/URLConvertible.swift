@@ -11,28 +11,43 @@ import Foundation
 public protocol URLConvertible {
     
     var url: URL? { get }
-    var urlString: String { get }
-    var queryParameters: [String: String] { get }
+    var urlString: String? { get }
+    var urlQueryParameters: [String: String]? { get }
     
 }
 
 public extension URLConvertible {
     
-    public var queryParameters: [String: String] {
+    public var urlQueryParameters: [String: String]? {
         
         var params = [String: String]()
         
         self.url?.query?.components(separatedBy: "&").forEach { (component) in
+            
             let pair = component.components(separatedBy: "=")
+            
             if pair.count == 2 {
                 let key = pair[0]
                 let value = pair[1].replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? pair[1]
                 params[key] = value
             }
+            
         }
         
-        return params
+        return (params.count > 0) ? params : nil
         
+    }
+    
+}
+
+extension URL: URLConvertible {
+    
+    public var url: URL? {
+        return self
+    }
+    
+    public var urlString: String? {
+        return self.absoluteString
     }
     
 }
@@ -54,20 +69,8 @@ extension String: URLConvertible {
         
     }
     
-    public var urlString: String {
+    public var urlString: String? {
         return self
-    }
-    
-}
-
-extension URL: URLConvertible {
-    
-    public var url: URL? {
-        return self
-    }
-    
-    public var urlString: String {
-        return self.absoluteString
     }
     
 }

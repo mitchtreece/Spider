@@ -17,6 +17,7 @@
 		20FD53A3A2AC8CA72E5AA72044FA4B80 /* NSNotificationCenter+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 638FC877C26AE2698B03F57C63A5C636 /* NSNotificationCenter+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2218FE9C2DEB4C08189BAE89E20A632E /* PromiseKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD911A7C16FAA09302EE0DF2F0B0DA9 /* PromiseKit-dummy.m */; };
 		266A04331EADC7E900A1387D /* ErrorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266A04321EADC7E900A1387D /* ErrorConvertible.swift */; };
+		266A04431EAEA68F00A1387D /* BoolConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266A04421EAEA68F00A1387D /* BoolConvertible.swift */; };
 		26FE97681EA871A600AF5F21 /* URLConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE97671EA871A600AF5F21 /* URLConvertible.swift */; };
 		26FE976A1EA8778A00AF5F21 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE97691EA8778A00AF5F21 /* Serializer.swift */; };
 		26FE97D91EADBCEF00AF5F21 /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE97D81EADBCEF00AF5F21 /* Data+Spider.swift */; };
@@ -125,6 +126,7 @@
 		1E33654BE09E7109A0FEEE76E49BF8E0 /* NSTask+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTask+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSTask+AnyPromise.m"; sourceTree = "<group>"; };
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		266A04321EADC7E900A1387D /* ErrorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorConvertible.swift; sourceTree = "<group>"; };
+		266A04421EAEA68F00A1387D /* BoolConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolConvertible.swift; sourceTree = "<group>"; };
 		26FE97671EA871A600AF5F21 /* URLConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLConvertible.swift; sourceTree = "<group>"; };
 		26FE97691EA8778A00AF5F21 /* Serializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		26FE97D81EADBCEF00AF5F21 /* Data+Spider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				26FE97671EA871A600AF5F21 /* URLConvertible.swift */,
+				266A04421EAEA68F00A1387D /* BoolConvertible.swift */,
 				266A04321EADC7E900A1387D /* ErrorConvertible.swift */,
 			);
 			path = Protocols;
@@ -790,6 +793,7 @@
 				266A04331EADC7E900A1387D /* ErrorConvertible.swift in Sources */,
 				67E74AFE1427D12ADCBE7B10ED6B4801 /* Spider-dummy.m in Sources */,
 				4BBF76C585F51FA15076B55789558481 /* Spider.swift in Sources */,
+				266A04431EAEA68F00A1387D /* BoolConvertible.swift in Sources */,
 				26FE97E41EADBF3400AF5F21 /* UISpider.swift in Sources */,
 				1E446D1224AAA232EB5876486275A1FB /* SpiderAuth.swift in Sources */,
 				786C027190849DBC7B3362E1EE3FEE13 /* SpiderConstants.swift in Sources */,

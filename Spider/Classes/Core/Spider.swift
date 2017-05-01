@@ -49,8 +49,8 @@ public class Spider {
     
     internal func url(for request: SpiderRequest) -> URLConvertible {
         
-        if let base = baseUrl {
-            return "\(base.urlString)\(request.path)"
+        if let base = baseUrl, let baseUrlString = base.urlString {
+            return "\(baseUrlString)\(request.path)"
         }
         
         return request.path

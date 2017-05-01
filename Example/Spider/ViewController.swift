@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         spider = Spider()
         spider.isDebugModeEnabled = true
         
-        imageView.web.setImageWithUrl("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png")
+        imageView.web.setImage("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png")
         
     }
     

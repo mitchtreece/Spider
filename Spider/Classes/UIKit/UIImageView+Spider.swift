@@ -39,18 +39,27 @@ public extension UIImageView {
 
 public extension UISpider where T: UIImageView {
     
-    public func setImageWithUrl(_ url: URLConvertible, placeholder: UIImage? = nil, completion: SpiderImageGrabberCompletion? = nil) {
+    // If completion is set, caller is reponsible for assigning image to UIImageView
+    
+    public func setImage(_ url: URLConvertible, placeholder: UIImage? = nil, completion: SpiderImageGrabberCompletion? = nil) {
+        
+        if let placeholder = placeholder {
+            (view as? UIImageView)?.image = placeholder
+        }
         
         SpiderImageGrabber.getImage(at: url) { [weak self] (image, err) in
             
             guard let _self = self else { return }
             guard let view = _self.view as? UIImageView else { return }
-
-            DispatchQueue.main.async {
-                view.image = image
-            }
             
-            completion?(image, err)
+            if let _completion = completion {
+                _completion(image, err)
+            }
+            else {
+                DispatchQueue.main.async {
+                    view.image = image
+                }
+            }
             
         }
         

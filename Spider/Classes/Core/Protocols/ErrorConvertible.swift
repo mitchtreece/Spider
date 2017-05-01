@@ -11,7 +11,25 @@ import Foundation
 public protocol ErrorConvertible {
     
     var error: Error? { get }
-    var errorString: String { get }
+    var errorString: String? { get }
+    
+}
+
+extension NSError: ErrorConvertible {
+    
+    public var error: Error? {
+        return self as Error
+    }
+    
+    public var errorString: String? {
+        
+        if let localizedDescription = self.userInfo[NSLocalizedDescriptionKey] as? String {
+            return localizedDescription
+        }
+        
+        return nil
+        
+    }
     
 }
 
@@ -19,33 +37,13 @@ extension String: ErrorConvertible {
     
     public var error: Error? {
         
-        // Find a way to dynamically get a better domain name
-        return NSError(domain: "com.mitchtreece.Spider", code: -1, userInfo: [NSLocalizedDescriptionKey: self]) as Error
+        let domain = Bundle.main.bundleIdentifier ?? "com.mitchtreece.Spider"
+        return NSError(domain: domain, code: -1, userInfo: [NSLocalizedDescriptionKey: self]).error
         
     }
     
-    public var errorString: String {
+    public var errorString: String? {
         return self
-    }
-    
-}
-
-extension NSError: ErrorConvertible {
-    
-    public var error: Error? {
-        
-        return self as Error
-        
-    }
-    
-    public var errorString: String {
-        
-        if let desc = self.userInfo[NSLocalizedDescriptionKey] as? String {
-            return desc
-        }
-        
-        return ""
-        
     }
     
 }
