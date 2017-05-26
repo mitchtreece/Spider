@@ -10,6 +10,8 @@ import Foundation
 
 public class JSONSerializer: Serializer {
     
+    public typealias ObjectType = Any
+    
     public func data(from object: Any?) -> Data? {
         
         guard let object = object else { return nil }
@@ -29,7 +31,7 @@ public class JSONSerializer: Serializer {
         
         guard let data = data else { return nil }
         guard JSONSerialization.isValidJSONObject(data) else { return nil }
-        
+
         do {
             let object = try JSONSerialization.jsonObject(with: data)
             return object

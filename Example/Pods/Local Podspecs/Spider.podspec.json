@@ -23,6 +23,9 @@
   "dependencies": {
     "PromiseKit": [
       "~> 4.0"
+    ],
+    "SDWebImage": [
+      "~> 4.0"
     ]
   }
 }

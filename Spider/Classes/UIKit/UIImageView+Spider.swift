@@ -9,6 +9,7 @@
 import UIKit
 
 private var SpiderAssociationKey: UInt8 = 0
+private var SpiderImageDownloadTokenAssociationKey: UInt8 = 0
 
 public extension UIImageView {
     
@@ -35,33 +36,56 @@ public extension UIImageView {
         
     }
     
+    internal var spdr_imageDownloadToken: SpiderImageDownloadToken? {
+        
+        get {
+            return objc_getAssociatedObject(self, &SpiderImageDownloadTokenAssociationKey) as? SpiderImageDownloadToken
+        }
+        set {
+            objc_setAssociatedObject(self, &SpiderImageDownloadTokenAssociationKey, spdr_imageDownloadToken, .OBJC_ASSOCIATION_RETAIN)
+        }
+        
+    }
+    
 }
 
 public extension UISpider where T: UIImageView {
     
     // If completion is set, caller is reponsible for assigning image to UIImageView
     
-    public func setImage(_ url: URLConvertible, placeholder: UIImage? = nil, completion: SpiderImageGrabberCompletion? = nil) {
+    public func setImage(_ url: URLConvertible,
+                         placeholder: UIImage? = nil,
+                         cacheImage: Bool = true,
+                         completion: SpiderImageDownloaderCompletion? = nil) {
+        
+        guard let imageView = view as? UIImageView else { return }
         
         if let placeholder = placeholder {
-            (view as? UIImageView)?.image = placeholder
+            imageView.image = placeholder
         }
         
-        SpiderImageGrabber.getImage(at: url) { [weak self] (image, err) in
-            
-            guard let _self = self else { return }
-            guard let view = _self.view as? UIImageView else { return }
+        let token = SpiderImageDownloader.getImage(url, cache: cacheImage) { (image, fromCache, error) in
             
             if let _completion = completion {
-                _completion(image, err)
+                _completion(image, fromCache, error)
             }
             else {
                 DispatchQueue.main.async {
-                    view.image = image
+                    imageView.image = image
                 }
             }
             
         }
+        
+        imageView.spdr_imageDownloadToken = token
+        
+    }
+    
+    public func cancelCurrentImageLoad() {
+        
+        guard let imageView = self.view as? UIImageView else { return }
+        guard let token = imageView.spdr_imageDownloadToken else { return }
+        SpiderImageDownloader.cancel(for: token)
         
     }
     

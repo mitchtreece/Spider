@@ -1,17 +1,21 @@
 PODS:
-  - PromiseKit (4.1.7):
-    - PromiseKit/Foundation (= 4.1.7)
-    - PromiseKit/QuartzCore (= 4.1.7)
-    - PromiseKit/UIKit (= 4.1.7)
-  - PromiseKit/CorePromise (4.1.7)
-  - PromiseKit/Foundation (4.1.7):
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.1.7):
+  - PromiseKit/QuartzCore (4.2.2):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.1.7):
+  - PromiseKit/UIKit (4.2.2):
     - PromiseKit/CorePromise
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - Spider (1.0.0):
     - PromiseKit (~> 4.0)
+    - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
   - Spider (from `../`)
@@ -21,8 +25,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
-  Spider: ebc6953132f94df8a93fe81a242cffac9b527295
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  Spider: d97b143681aab5407885dd36ed438117cff85870
 
 PODFILE CHECKSUM: cf5f5cb7feaa9441ae3a4bba033777dd31d34139
 
