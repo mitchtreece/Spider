@@ -173,7 +173,7 @@ charlotte.get("/topSecretData") { (response) in
 }
 ```
 
-The authorization _type_ can also be customized if needed. For example, `BasicAuth` generates the following for the credentials **root:pa55w0rd**:
+The authorization _type_ can also be customized if needed. For example, `BasicAuth` generates the following for the credentials **root:pa55w0rd**
 
 ```
 Basic cm9vdDpwYTU1dzByZA==
@@ -294,7 +294,7 @@ SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImag
 The above `getImage()` function returns a discardable token that can be used to cancel the image download if needed:
 
 ```Swift
-let token SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
+let token = SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
     ...
 }
 
