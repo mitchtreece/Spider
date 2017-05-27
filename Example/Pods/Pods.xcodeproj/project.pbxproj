@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		05F2ABC1A8E5E8FD9CFF17805C99F4B7 /* ImageSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BACA7508E5F322881A26B72EE04BC7 /* ImageSerializer.swift */; };
 		06F759F77393D983A830186418015676 /* NSObject+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9834A617441E6C476B6C9743E0710D0A /* NSObject+Promise.swift */; };
-		07BF9F603C2262754F2DB83E8296B0D8 /* Data+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B83382F3D7D90C487765FD57BE69B06 /* Data+Spider.swift */; };
 		08C414250828BECBB23E9240224C77E2 /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980D544C7E76E189EFB215A76EF0BDB /* Spider.swift */; };
 		090C434A881533FCB903FD166F14F313 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E105C81091B87024F7DFCF9CA416F4BC /* SDWebImageManager.m */; };
 		0F5161428E25F9B6D7C7C1302B06F661 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0871C122F16CAB9D5CF75F6D8BE1EAB1 /* SDImageCache.m */; };
@@ -26,6 +25,7 @@
 		21C7C0DEE4A5136063268C7A01BC4863 /* SDImageCacheConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 56A8706557311FC0248C41CA08EA392F /* SDImageCacheConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		266B4E9F1ED8CFDF000A39E5 /* SpiderImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4E9E1ED8CFDF000A39E5 /* SpiderImageDownloader.swift */; };
 		266B4EA11ED8D64B000A39E5 /* SpiderImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EA01ED8D64B000A39E5 /* SpiderImageCache.swift */; };
+		266B4EA31ED953DD000A39E5 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EA21ED953DD000A39E5 /* JSONConvertible.swift */; };
 		26992B7B3A426A669CBEA5066D7A5745 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B360AAF28A0261EB03D9B45E509CDE4 /* UIImageView+WebCache.m */; };
 		27A57C069A54F655CA21FBD0FFDBB418 /* Spider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699E68195E2AE70E8D8E4B2E01ED0BAA /* Spider-dummy.m */; };
 		27BBEFF922ED3D3B910E7899DAB95D83 /* CALayer+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A801585A8558C20CFA0BEC8086601BF /* CALayer+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -190,6 +190,7 @@
 		25355DD0288FB7D7CEF5B3070350B9D3 /* hang.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = hang.m; path = Sources/hang.m; sourceTree = "<group>"; };
 		266B4E9E1ED8CFDF000A39E5 /* SpiderImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderImageDownloader.swift; sourceTree = "<group>"; };
 		266B4EA01ED8D64B000A39E5 /* SpiderImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderImageCache.swift; sourceTree = "<group>"; };
+		266B4EA21ED953DD000A39E5 /* JSONConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		2983A3E596EEA8230CDC29B71F11284A /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
 		29956C28632E60A7FC9CF9376189A51C /* NSURLSession+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSURLSession+AnyPromise.m"; sourceTree = "<group>"; };
 		29C2CB7D7E598287654CF31716D4C974 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderOperation.m; path = SDWebImage/SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
@@ -216,7 +217,6 @@
 		585B006DC65A6D028A91530EE07397AE /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
 		591E17BA07460259EDCE91986473ECCA /* NSNotificationCenter+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+AnyPromise.m"; path = "Extensions/Foundation/Sources/NSNotificationCenter+AnyPromise.m"; sourceTree = "<group>"; };
 		5956EDBFA15B6CC2FB08AD105F26CE81 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "SDWebImage/UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		5B83382F3D7D90C487765FD57BE69B06 /* Data+Spider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Data+Spider.swift"; sourceTree = "<group>"; };
 		5D73D9CB0B3E885D47D9ED3C83670D95 /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		617AA94B72DA0F53D6B76274A83DAD18 /* SDWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDWebImage-dummy.m"; sourceTree = "<group>"; };
 		62306EFE15EEE6A4888058556603458B /* wrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = wrap.swift; path = Sources/wrap.swift; sourceTree = "<group>"; };
@@ -462,6 +462,7 @@
 			children = (
 				ED65D034EA07F4CF57FDC46654FE0CDE /* BoolConvertible.swift */,
 				C1689DEA47BA2FA38CC3C249DB9F5D5B /* URLConvertible.swift */,
+				266B4EA21ED953DD000A39E5 /* JSONConvertible.swift */,
 				DB7230D45C707618500D9DC232DC017F /* ErrorConvertible.swift */,
 			);
 			path = Protocols;
@@ -596,7 +597,6 @@
 				AF04C07177D48030800C3FBA561BF0D0 /* SpiderError.swift */,
 				D0B2E990E2767A3F244E7AF910938DA3 /* SpiderConstants.swift */,
 				DD20C889B56D57CAAFE61532D96AA185 /* Authorization */,
-				FCF74931E6B5B482BD616D94E1356FCC /* Extensions */,
 				63670CB86BC9611886B0C3B72BFCA65F /* Protocols */,
 				A6ADED74B9A876F5B05829B9F56411D2 /* Serializers */,
 			);
@@ -738,14 +738,6 @@
 				E3F8EE27BA214F6A29AF3CBFB777E850 /* UIKit */,
 			);
 			path = PromiseKit;
-			sourceTree = "<group>";
-		};
-		FCF74931E6B5B482BD616D94E1356FCC /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5B83382F3D7D90C487765FD57BE69B06 /* Data+Spider.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FCFE11B2DEF5BE73E0E6A6306B0FBBB6 /* Spider */ = {
@@ -969,7 +961,6 @@
 			files = (
 				BA1C842935954CA1D410A56E79C3639D /* BasicAuth.swift in Sources */,
 				9835635B0CD8496B8035A0D5595AB94D /* BoolConvertible.swift in Sources */,
-				07BF9F603C2262754F2DB83E8296B0D8 /* Data+Spider.swift in Sources */,
 				266B4EA11ED8D64B000A39E5 /* SpiderImageCache.swift in Sources */,
 				B0121610E4C05160F1CE2641E50BB663 /* ErrorConvertible.swift in Sources */,
 				05F2ABC1A8E5E8FD9CFF17805C99F4B7 /* ImageSerializer.swift in Sources */,
@@ -986,6 +977,7 @@
 				C85E0D8D77C103B6DCF399885CB772C3 /* TokenAuth.swift in Sources */,
 				FFFD73E94049137E8B4D8AAAFC8EB9D2 /* UIImageView+Spider.swift in Sources */,
 				6613A68FBF797B053E7EE6667D253876 /* UISpider.swift in Sources */,
+				266B4EA31ED953DD000A39E5 /* JSONConvertible.swift in Sources */,
 				FAB1AE2D5D75D9F5FCB59C3DA78E4715 /* URLConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

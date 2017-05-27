@@ -222,7 +222,7 @@ A lot of the time the data we're interested in is `JSON` formatted. Spider makes
 ```Swift
 Spider.web.get("https://some/json/endpoint") { (response) in
 
-    guard let data = response.data as? Data, let json = data.json() as? [String: Any], response.err == nil else {
+    guard let data = response.data as? Data, let json = data.json, response.err == nil else {
 
         var message = "There was an error fetching the json data"
         if let error = response.err {
@@ -239,20 +239,28 @@ Spider.web.get("https://some/json/endpoint") { (response) in
 }
 ```
 
-Notice how we call `json()` on our response data. This helper function will attempt to serialize our data into a JSON object for us to work with. The function is defined as an extension on `Data`:
+Notice how we access `json` on our response data. This nifty little property is available because by default, Data conforms to the JSONConvertible protocol. Objects conforming to this protocol provide these properties:
 
 ```Swift
-public func json() -> Any?
+var json: JSON? { get }
+var jsonArray: [JSON]? { get }
+var jsonData: Data? { get }
 ```
 
-If the data cannot be serialized, this function will return `nil`; causing our above `guard` statement to fail.
+`JSON` is a typealias defined as:
 
-If the JSON response is formatted as an array (i.e. a list of users), don't forget to cast it as such!
+```Swift
+typealias JSON = [String: Any]
+```
+
+By default `Dictionary`, `Array`, & `Data` all conform to `JSONConvertible`.
+
+If the JSON response is formatted as an array (i.e. a list of users), don't forget to access the `jsonArray` property on our data instead of `json`.
 
 ```Swift
 Spider.web.get("https://list/of/users") { (response) in
 
-    guard let data = response.data as? Data, let users = data.json() as? [[String: Any]], response.err == nil else {
+    guard let data = response.data as? Data, let users = data.jsonArray, response.err == nil else {
 
         var message = "There was an error fetching the json data"
         if let error = response.err {

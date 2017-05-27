@@ -26,20 +26,6 @@ class ViewController: UIViewController {
         spider = Spider()
         spider.isDebugModeEnabled = true
         
-        imageView.web.setImage("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png")
-        
-//        // Need a way to make serializers infer their types so we don't have to cast
-//        // Maybe make response.data -> reponse.result & generic ?
-//
-//        let s = Spider()
-//        s.responseSerializer = ImageSerializer()
-//        s.get("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png") { (response) in
-//            
-//            guard let image = response.data as? UIImage, response.err == nil else { return }
-//            print(image)
-//            
-//        }
-        
     }
     
     @IBAction func fetchPhotosWithCallbacks() {
@@ -52,7 +38,7 @@ class ViewController: UIViewController {
         
         spider.get("https://jsonplaceholder.typicode.com/photos") { (response) in
             
-            guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
+            guard let data = response.data as? Data, let photos = data.jsonArray, response.err == nil && photos.count > 0 else {
                 print("Error fetching photos")
                 return
             }
@@ -93,7 +79,7 @@ class ViewController: UIViewController {
         
         spider.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
             
-            guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
+            guard let data = response.data as? Data, let photos = data.jsonArray, response.err == nil && photos.count > 0 else {
                 throw SpiderError.badResponse
             }
             
