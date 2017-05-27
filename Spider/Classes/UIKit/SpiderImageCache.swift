@@ -53,7 +53,7 @@ public class SpiderImageCache {
     
     /**
      Fetches a cached `UIImage` for a given key.
-     - Parameter key: The image's cache key
+     - Parameter key: The cached image's key
      - Returns: The cached `UIImage`.
      */
     public func image(forKey key: String?) -> UIImage? {
@@ -65,6 +65,18 @@ public class SpiderImageCache {
         }
         
         return nil
+        
+    }
+    
+    /**
+     Removes a cached `UIImage` for a given key.
+     - Parameter key: The cached image's key
+     - Parameter completion: The image removal completion handler
+     */
+    public func removeImage(forKey key: String?, completion: (()->())?) {
+        
+        guard let key = key else { return }
+        _cache.removeImage(forKey: key, withCompletion: completion)
         
     }
     

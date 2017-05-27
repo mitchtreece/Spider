@@ -271,6 +271,82 @@ Spider.web.get("https://list/of/users") { (response) in
 }
 ```
 
+### Images
+
+Image downloading & caching is supported via `SpiderImageDownloader` & `SpiderImageCache`. Spider uses the excellent [SDWebImage](https://github.com/rs/SDWebImage) library to manage image downloading & caching behind-the-scenes.
+
+##### SpiderImageDownloader
+
+Downloading images with `SpiderImageDownloader` is easy!
+
+```Swift
+SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
+
+    guard let image = image, error == nil else {
+        // Handle error
+    }
+
+    // Do something with the image!
+
+}
+```
+
+The above `getImage()` function returns a discardable token that can be used to cancel the image download if needed:
+
+```Swift
+let token SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
+    ...
+}
+
+SpiderImageDownloader.cancel(for: token)
+```
+
+By default, `SpiderImageDownloader` does not cache downloaded images. If you want images to be cached, simply set the `cache` flag to `true` when calling the `getImage()` function.
+
+##### SpiderImageCache
+
+Caching, fetching, & removing images from the cache:
+
+```Swift
+let image: UIImage = ...
+let key = "my_image_key"
+
+// Add an image to the cache
+SpiderImageCache.shared.cache(image, forKey: key)
+
+// Fetch an image from the cache
+if let image = SpiderImageCache.shared.image(forKey: key) {
+    // Do something with the image!
+}
+
+// Remove an image from the cache
+SpiderImageCache.shared.removeImage(forKey: key)
+```
+
+You can also clean the cache:
+
+```Swift
+// Clean the disk cache
+SpiderImageCache.shared.clean(.disk)
+
+// Clean the memory cache
+SpiderImageCache.shared.clean(.memory)
+
+// Clean all caches
+SpiderImageCache.shared.cleanAll()
+```
+
+### UIKit Integration
+
+Spider also has some nifty UIKit integrations, like `UIImageView` image downloading!
+
+```Swift
+imageView.web.setImage("http://url.to/image.png")
+```
+
+Currently, Spider has integrations for the following UIKit components:
+- `UIImageView`
+
 ### Promises
 
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
@@ -303,9 +379,7 @@ This is just a basic example of how promises can help organize your code. For mo
 
 ## To-do
 - Object mapping
-- Image downloader
-- UIKit extensions (UIImageView setWithUrl)
-- Upload/download tasks with progress
+- Upload & download tasks with progress
 - Objective-C compatibility
 - Test coverage
 
