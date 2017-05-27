@@ -28,6 +28,18 @@ class ViewController: UIViewController {
         
         imageView.web.setImage("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png")
         
+//        // Need a way to make serializers infer their types so we don't have to cast
+//        // Maybe make response.data -> reponse.result & generic ?
+//
+//        let s = Spider()
+//        s.responseSerializer = ImageSerializer()
+//        s.get("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png") { (response) in
+//            
+//            guard let image = response.data as? UIImage, response.err == nil else { return }
+//            print(image)
+//            
+//        }
+        
     }
     
     @IBAction func fetchPhotosWithCallbacks() {

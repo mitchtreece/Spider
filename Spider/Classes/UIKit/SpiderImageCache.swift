@@ -9,16 +9,27 @@
 import Foundation
 import SDWebImage
 
+/**
+ `SpiderImageCache` helps cache images to memory & disk.
+ */
 public class SpiderImageCache {
     
+    /**
+     Representation of cache types.
+     */
     public enum CacheType {
         case disk
         case memory
     }
     
+    /**
+     The shared `SpiderImageCache` instance.
+     */
     public static let shared = SpiderImageCache()
+    
     private let _cache = SDImageCache.shared()
     
+    // TODO: Implement cache limits
     // var itemLimit: UInt
     // var memoryLimit: UInt
     // var ageLimit: UInt
@@ -27,6 +38,12 @@ public class SpiderImageCache {
         //
     }
     
+    /**
+     Caches a `UIImage` for a given key.
+     - Parameter image: The `UIImage` to cache
+     - Parameter key: The key to cache the image with
+     - Parameter completion: The image cache completion handler
+     */
     public func cache(_ image: UIImage?, forKey key: String?, completion: (()->())?) {
         
         guard let image = image, let key = key else { return }
@@ -34,6 +51,11 @@ public class SpiderImageCache {
         
     }
     
+    /**
+     Fetches a cached `UIImage` for a given key.
+     - Parameter key: The image's cache key
+     - Returns: The cached `UIImage`.
+     */
     public func image(forKey key: String?) -> UIImage? {
         
         guard let key = key else { return nil }
@@ -46,6 +68,10 @@ public class SpiderImageCache {
         
     }
     
+    /**
+     Cleans the cache for a given type.
+     - Parameter type: The cache type
+     */
     public func clean(_ type: CacheType) {
         
         switch type {
@@ -55,6 +81,9 @@ public class SpiderImageCache {
         
     }
     
+    /**
+     Cleans the memory & disk caches.
+     */
     public func cleanAll() {
         
         _cache.clearDisk()

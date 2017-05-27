@@ -8,10 +8,24 @@
 
 import Foundation
 
+/**
+ `URLConvertible` is a protocol describing the conversion to various `URL` representations.
+ */
 public protocol URLConvertible {
     
+    /**
+     A URL representation.
+     */
     var url: URL? { get }
+    
+    /**
+     A URL string representation.
+     */
     var urlString: String? { get }
+    
+    /**
+     The URL's query parameters.
+     */
     var urlQueryParameters: [String: String]? { get }
     
 }

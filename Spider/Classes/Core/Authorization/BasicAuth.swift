@@ -8,17 +8,22 @@
 
 import Foundation
 
+/**
+ `BasicAuth` is a base64 user/pass authorization type.
+ */
 public class BasicAuth: SpiderAuth {
-        
+    
+    /**
+     The username for authorization.
+     */
     public var username: String
+    
+    /**
+     The password for authorization.
+     */
     public var password: String
-    public var field: String?
-    
     public var type: String? = "Basic"
-    
-    public var headerField: String {
-        return field ?? SpiderConstants.Auth.defaultHeaderField
-    }
+    public var headerField: String
     
     public var value: String {
         let auth = Data("\(username):\(password)".utf8).base64EncodedString()
@@ -32,7 +37,7 @@ public class BasicAuth: SpiderAuth {
     public init(username: String, password: String, headerField: String? = nil) {
         self.username = username
         self.password = password
-        self.field = headerField
+        self.headerField = headerField ?? SpiderConstants.Auth.defaultHeaderField
     }
     
 }

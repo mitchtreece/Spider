@@ -8,8 +8,14 @@
 
 import Foundation
 
+/**
+ `SpiderRequestHeader` is a wrapper over common properties of HTTP request headers.
+ */
 public class SpiderRequestHeader {
     
+    /**
+     Representation of the various common HTTP header `Accept` types.
+     */
     public enum AcceptType {
         case application_json
         case application_javascript
@@ -21,11 +27,22 @@ public class SpiderRequestHeader {
         case custom(String)
     }
     
+    /**
+     Array of acceptable content types supported by this request.
+     
+     If none are provided, this request will accept _all_ content types.
+     */
     public var accept: [AcceptType]?
+    
     internal var other = [String: String]()
     
     // MARK: Public
     
+    /**
+     Sets the value of a given HTTP header field.
+     - Parameter value: The value to set
+     - Parameter field: The HTTP header field
+     */
     public func set(value: String, forField field: String) {
     
         other[field] = value
@@ -59,8 +76,14 @@ public class SpiderRequestHeader {
     
 }
 
+/**
+ `SpiderRequest` represents a configurable HTTP request.
+ */
 public class SpiderRequest {
     
+    /**
+     Representation of the various HTTP request methods.
+     */
     public enum Method: String {
         case get = "GET"
         case post = "POST"
@@ -69,22 +92,89 @@ public class SpiderRequest {
         case delete = "DELETE"
     }
     
+    /**
+     The base URL used when performing this request.
+     */
     internal(set) var baseUrl: URLConvertible?
+    
+    /**
+     The serializer used when performing this request.
+     
+     Setting this will _override_ Spider's global request serializer.
+     */
     public var requestSerializer: Serializer?
+    
+    /**
+     The serializer used on a request's response.
+     
+     Setting this will _override_ Spider's global response serializer.
+     */
     public var responseSerializer: Serializer?
     
+    /**
+     The request's HTTP header.
+     */
     public var header = SpiderRequestHeader()
+    
+    /**
+     The request's HTTP method.
+     */
     public var method: Method
+    
+    /**
+     The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     */
     public var path: String
+    
+    /**
+     An optional param object to be passed along with the request.
+     */
     public var parameters: Any?
+    
+    /**
+     An optional authorization type to use for this request.
+     
+     Setting this will _override_ Spider's global authorization type.
+     */
     public var auth: SpiderAuth?
     
-    // URLRequest
-    
+    /**
+     The request's timeout interval.
+     
+     Defaults to 60 seconds.
+     */
     public var timeout: TimeInterval?
+    
+    /**
+     The request's cache policy.
+     
+     Defaults to `CachePolicy.useProtocolCachePolicy`.
+     */
     public var cachePolicy: NSURLRequest.CachePolicy?
+    
+    /**
+     A boolean representing if the request can be performed using the cellular network.
+     
+     Defaults to `true`.
+     */
     public var allowsCellularAccess: Bool?
     
+    /**
+     Initializes a new `SpiderRequest` with a method, path, parameters, & authorization type.
+     - Parameter method: The HTTP method to use for this request
+     - Parameter path: The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
+        ```
+        "/users/12345"
+        "http://base.url/v1/users/12345"
+        ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request.
+        Setting this will _override_ Spider's global authorization type.
+     */
     public init(method: Method, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
         
         self.method = method

@@ -8,21 +8,64 @@
 
 import Foundation
 
+/**
+ A typealias encapsulating all relevant response data.
+ */
 public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
+
+/**
+ A typealias representing a request completion handler.
+ */
 public typealias SpiderRequestCompletion = (SpiderResponse)->()
 
+/**
+ `Spider` provides a simple & configurable way to execute web requests.
+ */
 public class Spider {
     
+    /**
+     The shared `Spider` instance.
+     */
     public static let web = Spider()
     
+    /**
+     The global base URL prepended to all request paths.
+     
+     If no base URL is provided, `Spider` will assume all request paths are fully-qualified URLs.
+     */
     public var baseUrl: URLConvertible?
+    
+    /**
+     The global serializer applied to all outgoing requests.
+     
+     Defaults to `JSONSerializer`
+     */
     public var requestSerializer: Serializer = JSONSerializer()
+    
+    /**
+     The global serializer applied to all incoming responses.
+     
+     Defaults to `JSONSerializer`
+     */
     public var responseSerializer: Serializer = JSONSerializer()
+    
+    /**
+     The global authorization applied to all outgoing requests.
+     */
     public var authorization: SpiderAuth?
+    
+    /**
+     Boolean indicating wether various debug options are enabled.
+     */
     public var isDebugModeEnabled: Bool = false
     
     private var session = URLSession.shared
     
+    /**
+     - Parameter baseUrl: An optional global base URL.
+     - Parameter auth: An optional global authorization type.
+     - Returns: The shared `Spider` instance with an optional base URL & authorization type.
+     */
     @discardableResult
     public static func web(withBaseUrl baseUrl: URLConvertible?, auth: SpiderAuth? = nil) -> Spider {
         
@@ -33,6 +76,11 @@ public class Spider {
         
     }
     
+    /**
+     Initializes a new `Spider` instance with an optional base URL & authorization type.
+     - Parameter baseUrl: An optional global base URL.
+     - Parameter auth: An optional global authorization type.
+     */
     public convenience init(baseUrl: URLConvertible?, auth: SpiderAuth? = nil) {
         
         self.init()
@@ -41,6 +89,9 @@ public class Spider {
         
     }
     
+    /**
+     Initializes a new `Spider` instance.
+     */
     public init() {
         
     }
@@ -123,6 +174,11 @@ public class Spider {
     
     // MARK: Request Execution
     
+    /**
+     Performs a `SpiderRequest` with a given completion handler.
+     - Parameter request: The `SpiderRequest` to perform.
+     - Parameter completion: The completion handler.
+     */
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
         guard let req = urlRequest(from: request) else {
@@ -141,6 +197,17 @@ public class Spider {
                 
     }
     
+    /**
+     Performs a GET request with various configuration options & a completoin handler.
+     - Parameter path: The endpoint path to append to the global base URL **or** a fully qualified URL (if no global base URL is specified).
+        ```
+        "/users/12345"
+        "http://base.url/v1/users/12345"
+        ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
+     - Parameter completion: The completion handler.
+     */
     public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .get, path: path, parameters: parameters, auth: auth)
@@ -148,6 +215,17 @@ public class Spider {
         
     }
     
+    /**
+     Performs a POST request with various configuration options & a completoin handler.
+     - Parameter path: The endpoint path to append to the global base URL **or** a fully qualified URL (if no global base URL is specified).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
+     - Parameter completion: The completion handler.
+     */
     public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .post, path: path, parameters: parameters, auth: auth)
@@ -155,6 +233,17 @@ public class Spider {
         
     }
     
+    /**
+     Performs a PUT request with various configuration options & a completoin handler.
+     - Parameter path: The endpoint path to append to the global base URL **or** a fully qualified URL (if no global base URL is specified).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
+     - Parameter completion: The completion handler.
+     */
     public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .put, path: path, parameters: parameters, auth: auth)
@@ -162,6 +251,17 @@ public class Spider {
         
     }
     
+    /**
+     Performs a PATCH request with various configuration options & a completoin handler.
+     - Parameter path: The endpoint path to append to the global base URL **or** a fully qualified URL (if no global base URL is specified).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
+     - Parameter completion: The completion handler.
+     */
     public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .patch, path: path, parameters: parameters, auth: auth)
@@ -169,6 +269,17 @@ public class Spider {
         
     }
     
+    /**
+     Performs a DELETE request with various configuration options & a completoin handler.
+     - Parameter path: The endpoint path to append to the global base URL **or** a fully qualified URL (if no global base URL is specified).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
+     - Parameter completion: The completion handler.
+     */
     public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
         
         let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)

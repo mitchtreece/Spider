@@ -8,9 +8,14 @@
 
 import UIKit
 
+/**
+ `ImageSerializer` serializes data/images to-and-from UIImage.
+ */
 public class ImageSerializer: Serializer {
     
-    public typealias ObjectType = UIImage
+    public required init() {
+        //
+    }
     
     public func data(from object: Any?) -> Data? {
         

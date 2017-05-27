@@ -8,9 +8,19 @@
 
 import Foundation
 
+/**
+ `ErrorConvertible` is a protocol describing the conversion to various `Error` representations.
+ */
 public protocol ErrorConvertible {
     
+    /**
+     An error representation.
+     */
     var error: Error? { get }
+    
+    /**
+     An error string representation.
+     */
     var errorString: String? { get }
     
 }

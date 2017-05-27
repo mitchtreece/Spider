@@ -461,8 +461,8 @@
 			isa = PBXGroup;
 			children = (
 				ED65D034EA07F4CF57FDC46654FE0CDE /* BoolConvertible.swift */,
-				DB7230D45C707618500D9DC232DC017F /* ErrorConvertible.swift */,
 				C1689DEA47BA2FA38CC3C249DB9F5D5B /* URLConvertible.swift */,
+				DB7230D45C707618500D9DC232DC017F /* ErrorConvertible.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";

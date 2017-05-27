@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ `UISpider` is a proxy between `Spider` and `UIKit`.
+ */
 public class UISpider<T> {
     
     internal weak var view: UIView!

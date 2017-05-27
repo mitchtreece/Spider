@@ -8,18 +8,28 @@
 
 import Foundation
 
+/**
+ Representation of common errors encountered while performing HTTP requests.
+ */
 public enum SpiderError: Error {
     
     // General
     
+    /// Error representing an invalid URL.
     case invalidUrl
+    
+    /// Error representing an invalid request.
     case badRequest
-    case requestSerializationFailure
+    
+    /// Error representing an invalid response.
     case badResponse
+    
+    /// Error representing a different, undefined problem.
     case other(description: String)
     
     // Images
     
+    /// Error representing invalid image data.
     case invalidImageData
     
 }
@@ -35,7 +45,6 @@ extension SpiderError: ErrorConvertible {
         switch self {
         case .invalidUrl: return "Invalid URL"
         case .badRequest: return "Bad request"
-        case .requestSerializationFailure: return "Failed to serialize request"
         case .badResponse: return "Bad response"
         case .other(let desc): return desc
             

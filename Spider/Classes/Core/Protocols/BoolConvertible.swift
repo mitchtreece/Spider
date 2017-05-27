@@ -8,10 +8,24 @@
 
 import Foundation
 
+/**
+ `BoolConvertible` is a protocol describing the conversion to various `Bool` representations.
+ */
 public protocol BoolConvertible {
     
+    /**
+     A boolean representation.
+     */
     var bool: Bool? { get }
+    
+    /**
+     A boolean integer representation (0 _or_ 1).
+     */
     var boolInt: Int? { get }
+    
+    /**
+     A boolean string representation ("true" _or_ "false").
+     */
     var boolString: String? { get }
     
 }
@@ -31,6 +45,22 @@ extension Bool: BoolConvertible {
     
     public var boolString: String? {
         return self ? Bool.trueString : Bool.falseString
+    }
+    
+}
+
+extension Int: BoolConvertible {
+    
+    public var bool: Bool? {
+        return (self <= 0) ? false : true
+    }
+    
+    public var boolInt: Int? {
+        return (self <= 0) ? 0 : 1
+    }
+    
+    public var boolString: String? {
+        return (self <= 0) ? "false" : "true"
     }
     
 }

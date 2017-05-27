@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
 
 ## Overview
-Spider is an easy-to-use web framework built for speed & readability. Spider's modern syntax & response handling makes working with web services an enjoyable experience.
+Spider is an easy-to-use web framework built for speed & readability. Spider's modern syntax & response handling makes working with web services fun again.
 
 ## Installation
 ### CocoaPods

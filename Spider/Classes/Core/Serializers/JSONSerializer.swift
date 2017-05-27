@@ -8,9 +8,14 @@
 
 import Foundation
 
+/**
+ `JSONSerializer` serializes data/objects to-and-from JSON.
+ */
 public class JSONSerializer: Serializer {
     
-    public typealias ObjectType = Any
+    public required init() {
+        //
+    }
     
     public func data(from object: Any?) -> Data? {
         

@@ -8,16 +8,14 @@
 
 import Foundation
 
+/**
+ `TokenAuth` is a bearer token authorization type.
+ */
 public class TokenAuth: SpiderAuth {
     
-    public var _value: String
-    public var field: String?
-    
+    private var _value: String
     public var type: String? = "Bearer"
-    
-    public var headerField: String {
-        return field ?? SpiderConstants.Auth.defaultHeaderField
-    }
+    public var headerField: String
     
     public var value: String {
         return (type != nil) ? "\(type!) \(_value)" : _value
@@ -29,7 +27,7 @@ public class TokenAuth: SpiderAuth {
     
     public init(value: String, headerField: String? = nil) {
         self._value = value
-        self.field = headerField
+        self.headerField = headerField ?? SpiderConstants.Auth.defaultHeaderField
     }
     
 }
