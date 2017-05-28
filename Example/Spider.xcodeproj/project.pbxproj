@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
+		266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */; };
+		266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */; };
+		266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */; };
+		266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */; };
+		266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */; };
+		266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */; };
+		266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */; };
+		266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBE1EDA7CED000A39E5 /* User.swift */; };
+		266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EC01EDA7D09000A39E5 /* Photo.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -29,12 +38,21 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
+		266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
+		266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
+		266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitViewController.swift; sourceTree = "<group>"; };
+		266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromisesViewController.swift; sourceTree = "<group>"; };
+		266B4EBE1EDA7CED000A39E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		266B4EC01EDA7D09000A39E5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider_Example/Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Spider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -69,6 +87,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266B4EAD1EDA7938000A39E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		266B4EBD1EDA7CD7000A39E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				266B4EBE1EDA7CED000A39E5 /* User.swift */,
+				266B4EC01EDA7D09000A39E5 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +131,16 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				266B4EAB1EDA792C000A39E5 /* RootViewController.swift */,
+				266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */,
+				266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */,
+				266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */,
+				266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */,
+				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
+				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
+				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
+				266B4EBD1EDA7CD7000A39E5 /* Model */,
+				266B4EAD1EDA7938000A39E5 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Spider";
@@ -363,8 +406,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */,
+				266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */,
+				266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */,
+				266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
+				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
+				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
+				266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */,
+				266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */,
+				266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

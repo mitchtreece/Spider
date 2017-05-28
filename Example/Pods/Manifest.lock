@@ -13,11 +13,13 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SnapKit (3.2.0)
   - Spider (1.0.0):
     - PromiseKit (~> 4.0)
     - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
+  - SnapKit
   - Spider (from `../`)
 
 EXTERNAL SOURCES:
@@ -27,8 +29,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Spider: d97b143681aab5407885dd36ed438117cff85870
 
-PODFILE CHECKSUM: cf5f5cb7feaa9441ae3a4bba033777dd31d34139
+PODFILE CHECKSUM: a39d15c6cf24812a9f08d4b6578e0fa4b4208a15
 
 COCOAPODS: 1.2.0
