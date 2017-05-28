@@ -197,7 +197,8 @@ public class Spider {
             
             request.state = .finished
             
-            let _data = self.responseSerializer(for: request).object(from: data) ?? (data as Any)
+            let responseSerializer = self.responseSerializer(for: request)
+            let _data = responseSerializer.object(from: data) ?? (data as Any)
             let response: SpiderResponse = (request, res, _data, err)
             completion(response)
             

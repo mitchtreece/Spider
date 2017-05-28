@@ -28,7 +28,7 @@ import Foundation
 public protocol Serializer {
     
     init()
-    
+        
     /**
      Serializes an object into `Data`.
      - Parameter object: The object to serialize
