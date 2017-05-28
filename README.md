@@ -355,6 +355,78 @@ imageView.web.setImage("http://url.to/image.png")
 Currently, Spider has integrations for the following UIKit components:
 - `UIImageView`
 
+### Weavable
+
+Spider has basic object mapping features via it's `Weavable` protocol. Objects wishing to conform to `Weavable` must implement the following failable initializer:
+
+```Swift
+init?(json: JSON)
+```
+
+A simple `User` object might look something like this:
+
+```Swift
+class User: Weavable {
+
+    public var name: String?
+    public var age: Int?
+
+    required init?(json: JSON) {
+
+        self.name = json["name"] as? String
+        self.age = json["age"] as? Int
+
+    }
+
+}
+```
+
+```Swift
+Spider.web.get("https://get/user/123") { (response) in
+
+    guard let data = response.data as? Data, let userDict = data.json, response.err == nil else {
+
+        var message = "There was an error fetching the json object"
+        if let error = response.err {
+            message = error
+        }
+
+        print(message)
+        return
+
+    }
+
+    if let user = Weaver<User>(userDict).map() {
+        print("Fetched user: \(user.name)")
+    }
+
+}
+```
+
+Array mapping:
+
+```Swift
+Spider.web.get("https://list/of/users") { (response) in
+
+    guard let data = response.data as? Data, let userArray = data.jsonArray, response.err == nil else {
+
+        var message = "There was an error fetching the json array"
+        if let error = response.err {
+            message = error
+        }
+
+        print(message)
+        return
+
+    }
+
+    if let users = Weaver<User>(userArray).arrayMap() {
+        print("Fetched \(users.count) users")
+    }
+
+}
+```
+
 ### Promises
 
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
