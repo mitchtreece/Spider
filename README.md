@@ -458,7 +458,6 @@ Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) 
 This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
 
 ## To-do
-- Object mapping
 - Upload & download tasks with progress
 - Objective-C compatibility
 - Test coverage
