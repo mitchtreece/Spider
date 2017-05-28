@@ -13,6 +13,7 @@ class LoadingViewController: UIViewController {
     
     private var statusLabel: UILabel!
     private var spinner: UIActivityIndicatorView!
+    private(set) var isLoading = false
     
     override func viewDidLoad() {
         
@@ -39,6 +40,8 @@ class LoadingViewController: UIViewController {
     
     func startLoading() {
         
+        isLoading = true
+        
         DispatchQueue.main.async {
             self.view.bringSubview(toFront: self.spinner)
             self.spinner.startAnimating()
@@ -47,6 +50,8 @@ class LoadingViewController: UIViewController {
     }
     
     func stopLoading() {
+        
+        isLoading = false
         
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
