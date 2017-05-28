@@ -189,10 +189,18 @@ public class Spider {
         
         _debugLogRequest(request)
         
+        request.state = .working
+        
         session.dataTask(with: req as URLRequest) { (data, res, err) in
+            
+            // TODO: Serializers should be able to infer concrete types so we can pass them back instead of `Any`.
+            
+            request.state = .finished
+            
             let _data = self.responseSerializer(for: request).object(from: data) ?? (data as Any)
             let response: SpiderResponse = (request, res, _data, err)
             completion(response)
+            
         }.resume()
                 
     }
@@ -207,11 +215,14 @@ public class Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Parameter completion: The completion handler.
+     - Returns: The underlying `SpiderRequest` object.
      */
-    public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
+    @discardableResult
+    public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .get, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        return request
         
     }
     
@@ -225,11 +236,14 @@ public class Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Parameter completion: The completion handler.
+     - Returns: The underlying `SpiderRequest` object.
      */
-    public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
+    @discardableResult
+    public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .post, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        return request
         
     }
     
@@ -243,11 +257,14 @@ public class Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Parameter completion: The completion handler.
+     - Returns: The underlying `SpiderRequest` object.
      */
-    public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
+    @discardableResult
+    public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .put, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        return request
         
     }
     
@@ -261,11 +278,14 @@ public class Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Parameter completion: The completion handler.
+     - Returns: The underlying `SpiderRequest` object.
      */
-    public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
+    @discardableResult
+    public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .patch, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        return request
         
     }
     
@@ -279,11 +299,14 @@ public class Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Parameter completion: The completion handler.
+     - Returns: The underlying `SpiderRequest` object.
      */
-    public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) {
+    @discardableResult
+    public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
+        return request
         
     }
     

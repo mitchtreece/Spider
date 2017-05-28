@@ -82,6 +82,22 @@ public class SpiderRequestHeader {
 public class SpiderRequest {
     
     /**
+     Representation of the various states of an HTTP request.
+     */
+    public enum State {
+        
+        /// State representing a request that has not started yet.
+        case pending
+        
+        /// State representing a request that is currently executing.
+        case working
+        
+        /// State representing a request that has finished executing.
+        case finished
+        
+    }
+    
+    /**
      Representation of the various HTTP request methods.
      */
     public enum Method: String {
@@ -162,6 +178,11 @@ public class SpiderRequest {
      Defaults to `true`.
      */
     public var allowsCellularAccess: Bool?
+    
+    /**
+     The current state of the request.
+     */
+    public internal(set) var state: State = .pending
     
     /**
      Initializes a new `SpiderRequest` with a method, path, parameters, & authorization type.
