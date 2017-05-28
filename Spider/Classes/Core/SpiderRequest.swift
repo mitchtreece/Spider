@@ -200,57 +200,19 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
             default: break
             }
             
-            authString += " {\n\t\tfield: \(auth.headerField)\n\t\tvalue: \"\(auth.value)\"\n\t}"
+            authString += " {\n  field: \"\(auth.headerField)\"\n  value: \"\(auth.value)\"\n}"
             
         }
         
-        let baseUrl = self.baseUrl ?? "none"
-        let params = debugParameterString() ?? "none"
-        return "<SpiderRequest>: {\n\tmethod: \(method.rawValue)\n\tbaseUrl: \(baseUrl)\n\tpath: \(path)\n\tauth: \(authString)\n\tparams: \(params)\n}"
+        let baseUrl = self.baseUrl ?? "none"        
+        let params = (parameters as? [String: Any])?.jsonString() ?? "none"
+        
+        return "<SpiderRequest - method: \(method.rawValue), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)>"
         
     }
     
     public var debugDescription: String {
         return description
-    }
-    
-    private func debugParameterString() -> String? {
-    
-        var params: String = ""
-        
-        if let obj = parameters as? [String: Any] {
-            
-            params = "{"
-            
-            for (key, value) in obj {
-                let _value = (value is String) ? "\"\(value)\"" : value
-                params += "\n\t\t\"\(key)\": \(_value)"
-            }
-            
-            params += "\n\t}"
-            return params
-            
-        }
-        else if let obj = parameters as? [[String: Any]] {
-            
-            params = "["
-            
-            for dict in obj {
-                params += "\n\t\t\(dict)"
-            }
-            
-            params += "\n\t]"
-            return params
-            
-        }
-        else if let obj = parameters {
-            
-            return "\(obj)"
-            
-        }
-        
-        return nil
-        
     }
     
 }

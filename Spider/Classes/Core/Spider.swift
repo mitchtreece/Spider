@@ -187,7 +187,7 @@ public class Spider {
             return
         }
         
-        debugPrint("Sending --> \(request)")
+        _debugLogRequest(request)
         
         session.dataTask(with: req as URLRequest) { (data, res, err) in
             let _data = self.responseSerializer(for: request).object(from: data) ?? (data as Any)
@@ -289,10 +289,21 @@ public class Spider {
     
     // MARK: Debug
     
-    private func debugPrint(_ msg: String) {
+    private func _debugLogRequest(_ req: SpiderRequest) {
+        
+        var string = "[\(req.method.rawValue)] \(req.path)"
+        if let params = req.parameters as? JSON {
+            string += ", parameters: \(params.jsonString() ?? "some")"
+        }
+        
+        _debugPrint(string)
+        
+    }
+    
+    private func _debugPrint(_ msg: String) {
         
         guard isDebugModeEnabled == true else { return }
-        print(msg)
+        print("<Spider>: \(msg)")
         
     }
     
