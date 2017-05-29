@@ -24,7 +24,7 @@ class LoadingViewController: UIViewController {
         statusLabel.textAlignment = .center
         view.addSubview(statusLabel)
         statusLabel.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.edges.equalTo(view).inset(14)
         }
         
         spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)

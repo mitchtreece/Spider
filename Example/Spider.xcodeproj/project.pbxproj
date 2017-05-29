@@ -17,6 +17,7 @@
 		266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */; };
 		266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBE1EDA7CED000A39E5 /* User.swift */; };
 		266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EC01EDA7D09000A39E5 /* Photo.swift */; };
+		267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267439B61EDBFA6700C5BD6E /* JSONViewController.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromisesViewController.swift; sourceTree = "<group>"; };
 		266B4EBE1EDA7CED000A39E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		266B4EC01EDA7D09000A39E5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		267439B61EDBFA6700C5BD6E /* JSONViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONViewController.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider_Example/Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Spider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 				266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */,
 				266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */,
 				266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */,
+				267439B61EDBFA6700C5BD6E /* JSONViewController.swift */,
 				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
@@ -414,6 +417,7 @@
 				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
 				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
 				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
+				267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */,
 				266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */,
 				266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */,
 				266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */,

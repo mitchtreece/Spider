@@ -36,7 +36,7 @@ class AuthViewController: LoadingViewController {
                 
             }
             
-            self.updateStatus("Fetched: \(data) with auth")
+            self.updateStatus("Fetched: \(data) of secret data")
             self.stopLoading()
             
         }

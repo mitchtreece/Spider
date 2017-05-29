@@ -15,6 +15,7 @@ class RootViewController: UITableViewController {
         case basic
         case advanced
         case auth
+        case json
         case mapping
         case uikit
         case promises
@@ -49,6 +50,7 @@ class RootViewController: UITableViewController {
         case .basic: navigationController?.pushViewController(BasicViewController(), animated: true)
         case .advanced: navigationController?.pushViewController(AdvancedViewController(), animated: true)
         case .auth: navigationController?.pushViewController(AuthViewController(), animated: true)
+        case .json: navigationController?.pushViewController(JSONViewController(), animated: true)
         case .mapping: navigationController?.pushViewController(MappingViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
         case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
