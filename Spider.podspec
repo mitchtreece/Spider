@@ -5,9 +5,9 @@ Pod::Spec.new do |s|
   s.version          = '1.0.0'
   s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC
-    Spider is an easy-to-use web framework built on-top the wonderful
-    AFNetworking library. Spider's easy syntax & modern response handling
-    makes requesting/retrieving data incredibly simple.
+    Spider is an easy-to-use web framework built for
+    speed & readability. Spider's modern syntax & response handling
+    makes working with web services fun again.
     DESC
   s.homepage         = 'https://github.com/mitchtreece/Spider'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "9.0"
   s.source_files = 'Spider/Classes/**/*'
 
-  s.dependency 'PromiseKit',    '~> 4.0'
   s.dependency 'SDWebImage',    '~> 4.0'
+  s.dependency 'PromiseKit',    '~> 4.0'
 
 end
