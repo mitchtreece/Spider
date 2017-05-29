@@ -1,5 +1,6 @@
 {
   "name": "Spider-Web",
+  "module_name": "Spider",
   "version": "1.0.0",
   "summary": "Creepy web framework for Swift.",
   "description": "Spider is an easy-to-use web framework built for\nspeed & readability. Spider's modern syntax & response handling\nmakes working with web services fun again.",

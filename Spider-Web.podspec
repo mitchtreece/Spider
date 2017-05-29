@@ -1,7 +1,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name             = 'Spider'
+  s.name             = 'Spider-Web'
+  s.module_name      = 'Spider'
   s.version          = '1.0.0'
   s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC

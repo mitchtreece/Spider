@@ -2,11 +2,11 @@ use_frameworks!
 
 target 'Spider_Example' do
 
-  pod 'Spider', :path => '../'
+  pod 'Spider-Web', :path => '../'
   pod 'SnapKit'
-  
+
   target 'Spider_Tests' do
     inherit! :search_paths
   end
-  
+
 end

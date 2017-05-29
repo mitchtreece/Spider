@@ -72,7 +72,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## Spider
+## Spider-Web
 
 Copyright (c) 2016 Mitch Treece <mitchtreece@me.com>
 
