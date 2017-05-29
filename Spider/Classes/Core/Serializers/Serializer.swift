@@ -26,8 +26,6 @@ import Foundation
  `Serializer` is a protocol describing the conversion to various data & object representations.
  */
 public protocol Serializer {
-    
-    init()
         
     /**
      Serializes an object into `Data`.
