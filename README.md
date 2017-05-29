@@ -1,9 +1,9 @@
 ![Spider](Resources/logo.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
+[![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Platform](https://img.shields.io/cocoapods/p/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
-[![License](https://img.shields.io/cocoapods/l/Spider.svg?style=flat)](http://cocoapods.org/pods/Spider)
+[![Platform](https://img.shields.io/cocoapods/p/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
+[![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
 
 ## Overview
 Spider is an easy-to-use web framework built for speed & readability. Spider's modern syntax & response handling makes working with web services fun again.
@@ -15,7 +15,7 @@ Spider is integrated with CocoaPods!
 1. Add the following to your `Podfile`:
 ```
 use_frameworks!
-pod 'Spider'
+pod 'Spider-Web'
 ```
 2. In your project directory, run `pod install`
 3. Import the `Spider` module wherever you need it
