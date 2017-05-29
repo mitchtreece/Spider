@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
+		266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */; };
+		266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */; };
+		266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */; };
+		266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */; };
+		266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */; };
+		266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */; };
+		266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */; };
+		266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBE1EDA7CED000A39E5 /* User.swift */; };
+		266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EC01EDA7D09000A39E5 /* Photo.swift */; };
+		267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267439B61EDBFA6700C5BD6E /* JSONViewController.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -29,12 +39,22 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewController.swift; sourceTree = "<group>"; };
+		266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
+		266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
+		266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitViewController.swift; sourceTree = "<group>"; };
+		266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromisesViewController.swift; sourceTree = "<group>"; };
+		266B4EBE1EDA7CED000A39E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		266B4EC01EDA7D09000A39E5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		267439B61EDBFA6700C5BD6E /* JSONViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONViewController.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider_Example/Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Spider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -69,6 +89,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266B4EAD1EDA7938000A39E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		266B4EBD1EDA7CD7000A39E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				266B4EBE1EDA7CED000A39E5 /* User.swift */,
+				266B4EC01EDA7D09000A39E5 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +133,17 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				266B4EAB1EDA792C000A39E5 /* RootViewController.swift */,
+				266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */,
+				266B4EB01EDA7BC0000A39E5 /* BasicViewController.swift */,
+				266B4EB21EDA7BE0000A39E5 /* AdvancedViewController.swift */,
+				266B4EB41EDA7C29000A39E5 /* AuthViewController.swift */,
+				267439B61EDBFA6700C5BD6E /* JSONViewController.swift */,
+				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
+				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
+				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
+				266B4EBD1EDA7CD7000A39E5 /* Model */,
+				266B4EAD1EDA7938000A39E5 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for Spider";
@@ -210,15 +256,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = KKSYLRXR4A;
 						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = KKSYLRXR4A;
 						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -361,8 +409,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */,
+				266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */,
+				266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */,
+				266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
+				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
+				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
+				267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */,
+				266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */,
+				266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */,
+				266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,8 +475,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -462,8 +522,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -482,6 +544,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -491,7 +554,9 @@
 			baseConfigurationReference = EFADAEBFEEABE3FFFFAFBE09 /* Pods-Spider_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -505,7 +570,9 @@
 			baseConfigurationReference = 59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -518,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60AA36AFB531FC376D20E084 /* Pods-Spider_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -527,6 +595,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -538,11 +607,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E7755ED5DA8D1A51C014D13 /* Pods-Spider_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

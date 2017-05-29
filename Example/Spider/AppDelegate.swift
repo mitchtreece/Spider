@@ -3,7 +3,7 @@
 //  Spider
 //
 //  Created by Mitch Treece on 12/13/2016.
-//  Copyright (c) 2016 Mitch Treece. All rights reserved.
+//  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
 import UIKit
@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

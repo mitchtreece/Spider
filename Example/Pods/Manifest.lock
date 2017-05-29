@@ -1,16 +1,37 @@
 PODS:
-  - Spider (0.1.0)
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.2):
+    - PromiseKit/CorePromise
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SnapKit (3.2.0)
+  - Spider (1.0.0):
+    - PromiseKit (~> 4.0)
+    - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
+  - SnapKit
   - Spider (from `../`)
 
 EXTERNAL SOURCES:
   Spider:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Spider: f92308eea9da2c392fc12c67c4b5f723f71df578
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  Spider: 7beb4dc20463c1a9bd34364f4ed68ec665a7fd5e
 
-PODFILE CHECKSUM: 67a861e2d855c9dd641c179259ef362e60e8c65d
+PODFILE CHECKSUM: a39d15c6cf24812a9f08d4b6578e0fa4b4208a15
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.0

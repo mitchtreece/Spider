@@ -1,0 +1,48 @@
+//
+//  AdvancedViewController.swift
+//  Spider
+//
+//  Created by Mitch Treece on 5/27/17.
+//  Copyright © 2017 CocoaPods. All rights reserved.
+//
+
+import UIKit
+import Spider
+
+class AdvancedViewController: LoadingViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        self.title = "Advanced Requests"
+        view.backgroundColor = UIColor.groupTableViewBackground
+        
+        self.startLoading()
+        
+        let request = SpiderRequest(method: .get, path: "https://jsonplaceholder.typicode.com/users")
+        request.header.accept = [.text_plain, .text_json, .image_jpeg, .custom("animal/cat")]
+        request.header.set(value: "bar", forField: "foo")
+        
+        Spider.web.perform(request) { (response) in
+            
+            guard let data = response.data as? Data, response.err == nil else {
+                
+                var message = "There was an error fetching the data"
+                if let error = response.err {
+                    message = error.localizedDescription
+                }
+                
+                print(message)
+                self.updateStatus(message)
+                return
+                
+            }
+            
+            self.updateStatus("Fetched: \(data)")
+            self.stopLoading()
+            
+        }
+        
+    }
+    
+}

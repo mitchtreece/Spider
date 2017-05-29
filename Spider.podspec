@@ -1,42 +1,24 @@
-#
-# Be sure to run `pod lib lint Spider.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 
 Pod::Spec.new do |s|
+
   s.name             = 'Spider'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of Spider.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  s.version          = '1.0.0'
+  s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/Spider'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+    Spider is an easy-to-use web framework built for
+    speed & readability. Spider's modern syntax & response handling
+    makes working with web services fun again.
+    DESC
+  s.homepage         = 'https://github.com/mitchtreece/Spider'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Mitch Treece' => 'mitchtreece@me.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/Spider.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/mitchtreece/Spider.git', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/MitchTreece'
 
-  s.ios.deployment_target = '8.0'
-
+  s.platform     = :ios, "9.0"
   s.source_files = 'Spider/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'Spider' => ['Spider/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'SDWebImage',    '~> 4.0'
+  s.dependency 'PromiseKit',    '~> 4.0'
+
 end
