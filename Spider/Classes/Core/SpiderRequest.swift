@@ -36,8 +36,6 @@ public class SpiderRequestHeader {
     
     internal var other = [String: String]()
     
-    // MARK: Public
-    
     /**
      Sets the value of a given HTTP header field.
      - Parameter value: The value to set
@@ -48,9 +46,7 @@ public class SpiderRequestHeader {
         other[field] = value
         
     }
-    
-    // MARK: Internal
-    
+        
     internal func acceptStringify() -> [String]? {
         
         guard let accept = accept else { return nil }

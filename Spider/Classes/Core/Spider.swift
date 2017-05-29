@@ -193,7 +193,7 @@ public class Spider {
         
         session.dataTask(with: req as URLRequest) { (data, res, err) in
             
-            // TODO: Serializers should be able to infer concrete types so we can pass them back instead of `Any`.
+            // TODO: Better serialization type handling
             
             request.state = .finished
             

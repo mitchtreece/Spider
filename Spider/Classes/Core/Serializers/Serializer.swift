@@ -9,17 +9,29 @@
 import Foundation
 
 /*
- Need a way to make serializers infer their types so we don't have to manually cast
- Maybe make response.data -> reponse.result & generic ?
+ TODO: Better serialization type handling
+ 
+ Right now Swift protocols are unable to have covariant generic types.
+ Because of this, the current serialization flow is unable to infer the object type
+ before passing it back to the request's response.
 
- let s = Spider()
- s.responseSerializer = ImageSerializer()
- s.get("https://codepo8.github.io/canvas-images-and-pixels/img/horse.png") { (response) in
+ Right now, response data has to be casted back to desired object type:
+ 
+ ```
+ let spider = Spider()
+ spider.responseSerializer = ImageSerializer()
+ spider.get("http://path/to/image.png") { (response) in
 
     guard let image = response.data as? UIImage, response.err == nil else { return }
     print(image)
 
  }
+ ```
+ 
+ It would be better if `response.data` was already of type `UIImage`.
+ We either need to re-think the entire serialization flow, or find a short-term workaround
+ until Swift supports true generic protocols.
+ 
  */
 
 /**
