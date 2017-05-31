@@ -32,7 +32,7 @@ class JSONViewController: LoadingViewController {
         
         Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
             
-            guard let array = (response.data as? Data)?.jsonArray, response.err == nil else {
+            guard let array = response.jsonArray(), response.err == nil else {
                 
                 var message = "There was an error fetching the data"
                 if let error = response.err {
@@ -56,7 +56,7 @@ class JSONViewController: LoadingViewController {
         
         Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)") { (response) in
             
-            guard let userDict = (response.data as? Data)?.json, response.err == nil else {
+            guard let userDict = response.json(), response.err == nil else {
                 
                 var message = "There was an error fetching the data"
                 if let error = response.err {

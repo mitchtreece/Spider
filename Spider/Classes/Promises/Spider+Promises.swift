@@ -36,7 +36,7 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+    public func get(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: .get, path: path, parameters: parameters, auth: auth)
         return Promise<SpiderResponse> { (fulfill, reject) in
@@ -58,7 +58,7 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+    public func post(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: .post, path: path, parameters: parameters, auth: auth)
         return Promise<SpiderResponse> { (fulfill, reject) in
@@ -80,7 +80,7 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+    public func put(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: .put, path: path, parameters: parameters, auth: auth)
         return Promise<SpiderResponse> { (fulfill, reject) in
@@ -102,7 +102,7 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+    public func patch(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: .patch, path: path, parameters: parameters, auth: auth)
         return Promise<SpiderResponse> { (fulfill, reject) in
@@ -124,7 +124,7 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+    public func delete(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)
         return Promise<SpiderResponse> { (fulfill, reject) in
