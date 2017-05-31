@@ -110,20 +110,6 @@ public class SpiderRequest {
     internal(set) var baseUrl: URLConvertible?
     
     /**
-     The serializer used when performing this request.
-     
-     Setting this will _override_ Spider's global request serializer.
-     */
-    public var requestSerializer: Serializer?
-    
-    /**
-     The serializer used on a request's response.
-     
-     Setting this will _override_ Spider's global response serializer.
-     */
-    public var responseSerializer: Serializer?
-    
-    /**
      The request's HTTP header.
      */
     public var header = SpiderRequestHeader()
@@ -145,7 +131,7 @@ public class SpiderRequest {
     /**
      An optional param object to be passed along with the request.
      */
-    public var parameters: Any?
+    public var parameters: [String: Any]?
     
     /**
      An optional authorization type to use for this request.
@@ -192,7 +178,7 @@ public class SpiderRequest {
      - Parameter auth: An optional authorization type to use for this request.
         Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: Method, path: String, parameters: Any? = nil, auth: SpiderAuth? = nil) {
+    public init(method: Method, path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) {
         
         self.method = method
         self.path = path
@@ -222,7 +208,7 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         }
         
         let baseUrl = self.baseUrl ?? "none"        
-        let params = (parameters as? [String: Any])?.jsonString() ?? "none"
+        let params = parameters?.jsonString() ?? "none"
         
         return "<SpiderRequest - method: \(method.rawValue), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)>"
         

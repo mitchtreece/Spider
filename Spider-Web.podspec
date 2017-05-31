@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
   s.name             = 'Spider-Web'
   s.module_name      = 'Spider'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC
     Spider is an easy-to-use web framework built for
