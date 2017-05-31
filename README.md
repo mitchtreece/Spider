@@ -461,7 +461,7 @@ Spider has built-in support for [PromiseKit](http://promisekit.org). Promises he
 ```Swift
 Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
 
-    guard let data = response.data as? Data, let photos = data.json() as? [[String: Any]], response.err == nil && photos.count > 0 else {
+    guard let photos = response.jsonArray(), response.err == nil && photos.count > 0 else {
         throw SpiderError.badResponse
     }
 
@@ -469,7 +469,7 @@ Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) 
 
 }.then { (response) -> Void in
 
-    guard let data = response.data as? Data, let image = UIImage(data: data) else {
+    guard let image = response.image() else {
         throw SpiderError.badResponse
     }
 
@@ -488,7 +488,6 @@ This is just a basic example of how promises can help organize your code. For mo
 - Upload & download tasks with progress
 - Objective-C compatibility
 - Test coverage
-- Socket support
 
 ## Contributing
 
