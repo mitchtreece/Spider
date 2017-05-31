@@ -9,11 +9,6 @@
 import Foundation
 
 /**
- A typealias encapsulating all relevant response data.
- */
-public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
-
-/**
  A typealias representing a request completion handler.
  */
 public typealias SpiderRequestCompletion = (SpiderResponse)->()
@@ -34,20 +29,6 @@ public class Spider {
      If no base URL is provided, `Spider` will assume all request paths are fully-qualified URLs.
      */
     public var baseUrl: URLConvertible?
-    
-    /**
-     The global serializer applied to all outgoing requests.
-     
-     Defaults to `JSONSerializer`
-     */
-    public var requestSerializer: Serializer = JSONSerializer()
-    
-    /**
-     The global serializer applied to all incoming responses.
-     
-     Defaults to `JSONSerializer`
-     */
-    public var responseSerializer: Serializer = JSONSerializer()
     
     /**
      The global authorization applied to all outgoing requests.
@@ -108,26 +89,6 @@ public class Spider {
         
     }
     
-    internal func requestSerializer(for request: SpiderRequest) -> Serializer {
-        
-        if let serializer = request.requestSerializer {
-            return serializer
-        }
-        
-        return self.requestSerializer
-        
-    }
-    
-    internal func responseSerializer(for request: SpiderRequest) -> Serializer {
-        
-        if let serializer = request.responseSerializer {
-            return serializer
-        }
-        
-        return self.responseSerializer
-        
-    }
-    
     internal func urlRequest(from request: SpiderRequest) -> URLRequest? {
         
         // Set request's base url if needed
@@ -142,7 +103,7 @@ public class Spider {
         
         var req = URLRequest(url: url)
         req.httpMethod = request.method.rawValue
-        req.httpBody = requestSerializer(for: request).data(from: request.parameters)
+        req.httpBody = request.parameters?.jsonData
         req.timeoutInterval = request.timeout ?? 60
         req.cachePolicy = request.cachePolicy ?? .useProtocolCachePolicy
         req.allowsCellularAccess = request.allowsCellularAccess ?? true
@@ -182,7 +143,7 @@ public class Spider {
     public func perform(_ request: SpiderRequest, withCompletion completion: @escaping SpiderRequestCompletion) {
         
         guard let req = urlRequest(from: request) else {
-            let response = SpiderResponse(request, nil, nil, SpiderError.badRequest)
+            let response = SpiderResponse(req: request, res: nil, data: nil, err: SpiderError.badRequest)
             completion(response)
             return
         }
@@ -197,9 +158,9 @@ public class Spider {
             
             request.state = .finished
             
-            let responseSerializer = self.responseSerializer(for: request)
-            let _data = responseSerializer.object(from: data) ?? (data as Any)
-            let response: SpiderResponse = (request, res, _data, err)
+            // let responseSerializer = self.responseSerializer(for: request)
+            // let _data = responseSerializer.object(from: data) ?? (data as Any)
+            let response = SpiderResponse(req: request, res: res, data: data, err: err)
             completion(response)
             
         }.resume()
@@ -219,7 +180,7 @@ public class Spider {
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func get(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
+    public func get(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .get, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
@@ -240,7 +201,7 @@ public class Spider {
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func post(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
+    public func post(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .post, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
@@ -261,7 +222,7 @@ public class Spider {
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func put(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
+    public func put(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .put, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
@@ -282,7 +243,7 @@ public class Spider {
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func patch(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
+    public func patch(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .patch, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
@@ -303,7 +264,7 @@ public class Spider {
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func delete(_ path: String, parameters: Any? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
+    public func delete(_ path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil, completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
         let request = SpiderRequest(method: .delete, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
@@ -316,7 +277,7 @@ public class Spider {
     private func _debugLogRequest(_ req: SpiderRequest) {
         
         var string = "[\(req.method.rawValue)] \(req.path)"
-        if let params = req.parameters as? JSON {
+        if let params = req.parameters {
             string += ", parameters: \(params.jsonString() ?? "some")"
         }
         

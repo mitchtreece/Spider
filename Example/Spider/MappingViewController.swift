@@ -42,7 +42,7 @@ class MappingViewController: UIViewController {
         
         Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
             
-            guard let array = (response.data as? Data)?.jsonArray, response.err == nil else {
+            guard let array = response.data?.jsonArray, response.err == nil else {
                 
                 var message = "There was an error fetching the data"
                 if let error = response.err {
