@@ -9,7 +9,7 @@
 import UIKit
 
 /**
- `ImageConvertible` is a protocol describing the conversion to/from UIImage/Data.
+ `ImageConvertible` is a protocol describing the conversion to various image representations.
  */
 public protocol ImageConvertible {
     

@@ -40,6 +40,9 @@ public class Spider {
      */
     public var isDebugModeEnabled: Bool = false
     
+    /**
+     Underlying shared `URLSession` instance.
+     */
     private var session = URLSession.shared
     
     /**
@@ -154,12 +157,7 @@ public class Spider {
         
         session.dataTask(with: req as URLRequest) { (data, res, err) in
             
-            // TODO: Better serialization type handling
-            
             request.state = .finished
-            
-            // let responseSerializer = self.responseSerializer(for: request)
-            // let _data = responseSerializer.object(from: data) ?? (data as Any)
             let response = SpiderResponse(req: request, res: res, data: data, err: err)
             completion(response)
             

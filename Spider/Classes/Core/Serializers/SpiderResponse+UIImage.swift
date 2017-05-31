@@ -10,6 +10,10 @@ import UIKit
 
 public extension SpiderResponse {
     
+    /**
+     Serializes a response into a `UIImage`.
+     - Returns: A `UIImage` object.
+     */
     public func image() -> UIImage? {
         
         return self.data?.image

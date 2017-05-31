@@ -13,9 +13,24 @@ import Foundation
  */
 public class SpiderResponse {
     
+    /**
+     The initial request object.
+     */
     private(set) public var req: SpiderRequest
+    
+    /**
+     The `URLResponse` object.
+     */
     private(set) public var res: URLResponse?
+    
+    /**
+     The response data.
+     */
     private(set) public var data: Data?
+    
+    /**
+     The response's error object.
+     */
     private(set) public var err: Error?
     
     init(req: SpiderRequest, res: URLResponse?, data: Data?, err: Error?) {

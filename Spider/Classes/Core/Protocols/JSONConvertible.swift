@@ -10,10 +10,24 @@ import Foundation
 
 public typealias JSON = [String: Any]
 
+/**
+ `JSONConvertible` is a protocol describing the conversion to various `JSON` representations.
+ */
 public protocol JSONConvertible {
     
+    /**
+     A `JSON` representation.
+     */
     var json: JSON? { get }
+    
+    /**
+     A `JSON` array representation.
+     */
     var jsonArray: [JSON]? { get }
+    
+    /**
+     A `JSON` data representation.
+     */
     var jsonData: Data? { get }
     
 }
