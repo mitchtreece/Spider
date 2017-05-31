@@ -42,13 +42,7 @@ This simply makes a `GET` request with a given path & parameters, and returns a 
 
 ### SpiderResponse
 
-The `SpiderResponse` object is really just a fancy typealias over an even fancier tuple. It's defined as:
-
-```Swift
-public typealias SpiderResponse = (req: SpiderRequest, res: URLResponse?, data: Any?, err: Error?)
-```
-
-It contains 4 objects. The `SpiderRequest` request (_req_), `URLResponse` object (_res_), response data (_data_), and an error object (_err_). Easy to use & understand, plus it helps keep our code readable! Hooray!
+The `SpiderResponse` object is a fancy object that encapsulates relevant properties of an HTTP response. It contains 4 properties: the `SpiderRequest` request (_req_), `URLResponse` object (_res_), response data (_data_), and an error object (_err_). Easy to use & understand, plus it helps keep our code readable! Hooray!
 
 ### Base URLs
 
@@ -200,7 +194,7 @@ As mentioned above, `SpiderResponse` objects are clean & easy to work with. A ty
 ```Swift
 Spider.web.get("https://some/data/endpoint") { (response) in
 
-    guard let data = response.data as? Data, response.err == nil else {
+    guard let data = response.data, response.err == nil else {
 
         var message = "There was an error fetching the data"
         if let error = response.err {
@@ -222,9 +216,9 @@ A lot of the time the data we're interested in is `JSON` formatted. Spider makes
 ```Swift
 Spider.web.get("https://some/json/endpoint") { (response) in
 
-    guard let data = response.data as? Data, let json = data.json, response.err == nil else {
+    guard let json = response.json(), response.err == nil else {
 
-        var message = "There was an error fetching the json data"
+        var message = "There was an error fetching the json object"
         if let error = response.err {
             message = error
         }
@@ -234,35 +228,19 @@ Spider.web.get("https://some/json/endpoint") { (response) in
 
     }
 
-    print("Successfully fetched the json data: \(json)")
+    print("Successfully fetched the json object: \(json)")
 
 }
 ```
 
-Notice how we access `json` on our response data. This nifty little property is available because by default, Data conforms to the JSONConvertible protocol. Objects conforming to this protocol provide these properties:
-
-```Swift
-var json: JSON? { get }
-var jsonArray: [JSON]? { get }
-var jsonData: Data? { get }
-```
-
-`JSON` is a typealias defined as:
-
-```Swift
-typealias JSON = [String: Any]
-```
-
-By default `Dictionary`, `Array`, & `Data` all conform to `JSONConvertible`.
-
-If the JSON response is formatted as an array (i.e. a list of users), don't forget to access the `jsonArray` property on our data instead of `json`.
+Notice how we call `json()` on our response. This nifty little function attempts to serialize our response data into a `JSON` object. Likewise, `jsonArray()` will attempt to serialize our response data into an array of `JSON` objects.
 
 ```Swift
 Spider.web.get("https://list/of/users") { (response) in
 
-    guard let data = response.data as? Data, let users = data.jsonArray, response.err == nil else {
+    guard let users = response.jsonArray(), response.err == nil else {
 
-        var message = "There was an error fetching the json data"
+        var message = "There was an error fetching the json object"
         if let error = response.err {
             message = error
         }
@@ -272,12 +250,61 @@ Spider.web.get("https://list/of/users") { (response) in
 
     }
 
-    for userDictionary in users {
-        print("Fetched user: \(userDictionary["name"] as! String)")
+    for dict in users {
+        print("Fetched user: \(dict["name"] as! String)")
     }
 
 }
 ```
+
+### Serializers
+
+As seen above, response serialization is handled on the `SpiderResponse` object. The functions `json()` & `jsonArray()` are provided via an extension on `SpiderResponse`. Likewise, to implement custom response serialization, simply extend the `SpiderResponse` object as needed. For example, `UIImage` response serialization might look something like this:
+
+```Swift
+public extension SpiderResponse {
+
+    public func image() -> UIImage? {
+
+        guard let data = self.data else { return nil }
+
+        if let image = UIImage(data: data) {
+            return image
+        }
+
+        return nil
+
+    }
+
+}
+```
+
+With that implemented, working with an image serialized response would work as follows:
+
+```Swift
+Spider.web.get("https://path/to/image.png") { (response) in
+
+    guard let image = response.image(), response.err == nil else {
+
+        var message = "There was an error fetching the image"
+        if let error = response.err {
+            message = error
+        }
+
+        print(message)
+        return
+
+    }
+
+    print("Fetched image: \(image)")
+
+}
+```
+
+Spider has built-in support for the following object serialization types:
+
+- `JSON` & [`JSON`]
+- `UIImage`
 
 ### Images
 
