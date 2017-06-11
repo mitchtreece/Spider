@@ -14,24 +14,39 @@ PODS:
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SnapKit (3.2.0)
-  - Spider-Web (1.0.0):
+  - Spider-Web (1.1.0):
     - PromiseKit (~> 4.0)
     - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
-  - SnapKit
+  - PromiseKit (from `https://github.com/mxcl/PromiseKit.git`, branch `swift4-beta1`)
+  - SnapKit (from `https://github.com/mitchtreece/SnapKit.git`, branch `swift-4`)
   - Spider-Web (from `../`)
 
 EXTERNAL SOURCES:
+  PromiseKit:
+    :branch: swift4-beta1
+    :git: https://github.com/mxcl/PromiseKit.git
+  SnapKit:
+    :branch: swift-4
+    :git: https://github.com/mitchtreece/SnapKit.git
   Spider-Web:
     :path: ../
 
+CHECKOUT OPTIONS:
+  PromiseKit:
+    :commit: 1cd1092b31739af70c81a6708123a0a1ca7eb61a
+    :git: https://github.com/mxcl/PromiseKit.git
+  SnapKit:
+    :commit: 8fcd130d23b3acbbe1e7a96099e5343676dd2cfe
+    :git: https://github.com/mitchtreece/SnapKit.git
+
 SPEC CHECKSUMS:
-  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  PromiseKit: 151f0f73a000933188ef81c14be0e0401bc330a3
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Spider-Web: 2f77ad94d255fe700c70813a2564c0cc3ef38ab2
+  SnapKit: c71c530b73cedd2a8b998098687001baff265086
+  Spider-Web: b0ebbacaccc3fc556cb69e4b559ff0cbe4cb00ac
 
-PODFILE CHECKSUM: 4b38940076e7ff7cf42f10f044e24c0c8267d29c
+PODFILE CHECKSUM: 99245afa05bc9a34fb5bc2ef1c37dcf55720a20d
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

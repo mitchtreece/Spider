@@ -2,9 +2,14 @@ use_frameworks!
 
 target 'Spider_Example' do
 
+  # Temporary override for Swift 4 migration
+  pod 'PromiseKit', :git => 'https://github.com/mxcl/PromiseKit.git', :branch => 'swift4-beta1'
+  
+  # Using SnapKit fork until there's an official Swift 4 branch
+  pod 'SnapKit', :git => 'https://github.com/mitchtreece/SnapKit.git', :branch => 'swift-4'
+  
   pod 'Spider-Web', :path => '../'
-  pod 'SnapKit'
-
+  
   target 'Spider_Tests' do
     inherit! :search_paths
   end

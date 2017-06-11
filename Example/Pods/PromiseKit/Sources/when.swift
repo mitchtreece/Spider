@@ -5,7 +5,7 @@ private func _when<T>(_ promises: [Promise<T>]) -> Promise<Void> {
     let root = Promise<Void>.pending()
     var countdown = promises.count
     guard countdown > 0 else {
-        root.fulfill()
+        root.fulfill(Void())
         return root.promise
     }
 
@@ -34,7 +34,7 @@ private func _when<T>(_ promises: [Promise<T>]) -> Promise<Void> {
                     progress.completedUnitCount += 1
                     countdown -= 1
                     if countdown == 0 {
-                        root.fulfill()
+                        root.fulfill(Void())
                     }
                 }
             }
@@ -68,7 +68,7 @@ private func _when<T>(_ promises: [Promise<T>]) -> Promise<Void> {
  - SeeAlso: `when(resolved:)`
 */
 public func when<T>(fulfilled promises: [Promise<T>]) -> Promise<[T]> {
-    return _when(promises).then(on: zalgo) { promises.map{ $0.value! } }
+    return _when(promises).then(on: zalgo) { _ in promises.map{ $0.value! } }
 }
 
 /// Wait for all promises in a set to fulfill.
@@ -83,22 +83,22 @@ public func when(fulfilled promises: [Promise<Void>]) -> Promise<Void> {
 
 /// Wait for all promises in a set to fulfill.
 public func when<U, V>(fulfilled pu: Promise<U>, _ pv: Promise<V>) -> Promise<(U, V)> {
-    return _when([pu.asVoid(), pv.asVoid()]).then(on: zalgo) { (pu.value!, pv.value!) }
+    return _when([pu.asVoid(), pv.asVoid()]).then(on: zalgo) { _ in (pu.value!, pv.value!) }
 }
 
 /// Wait for all promises in a set to fulfill.
 public func when<U, V, W>(fulfilled pu: Promise<U>, _ pv: Promise<V>, _ pw: Promise<W>) -> Promise<(U, V, W)> {
-    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid()]).then(on: zalgo) { (pu.value!, pv.value!, pw.value!) }
+    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid()]).then(on: zalgo) { _ in (pu.value!, pv.value!, pw.value!) }
 }
 
 /// Wait for all promises in a set to fulfill.
 public func when<U, V, W, X>(fulfilled pu: Promise<U>, _ pv: Promise<V>, _ pw: Promise<W>, _ px: Promise<X>) -> Promise<(U, V, W, X)> {
-    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid(), px.asVoid()]).then(on: zalgo) { (pu.value!, pv.value!, pw.value!, px.value!) }
+    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid(), px.asVoid()]).then(on: zalgo) { _ in (pu.value!, pv.value!, pw.value!, px.value!) }
 }
 
 /// Wait for all promises in a set to fulfill.
 public func when<U, V, W, X, Y>(fulfilled pu: Promise<U>, _ pv: Promise<V>, _ pw: Promise<W>, _ px: Promise<X>, _ py: Promise<Y>) -> Promise<(U, V, W, X, Y)> {
-    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid(), px.asVoid(), py.asVoid()]).then(on: zalgo) { (pu.value!, pv.value!, pw.value!, px.value!, py.value!) }
+    return _when([pu.asVoid(), pv.asVoid(), pw.asVoid(), px.asVoid(), py.asVoid()]).then(on: zalgo) { _ in (pu.value!, pv.value!, pw.value!, px.value!, py.value!) }
 }
 
 /**
