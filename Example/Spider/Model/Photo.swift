@@ -10,7 +10,7 @@ import Foundation
 
 struct Photo: Codable {
     
-    var id: String
+    var id: Int
     var title: String
     var url: String
     var thumbnailUrl: String

@@ -32,7 +32,7 @@ public class Weaver<T: Codable> {
         
         guard let data = self.array?.jsonData else { return nil }
         return try? JSONDecoder().decode([T].self, from: data)
-        
+                
     }
     
 }
