@@ -8,13 +8,13 @@
 
 import Foundation
 
-class User: Codable {
+struct User: Codable {
     
-    var id: String?
-    var name: String?
-    var username: String?
-    var email: String?
-    var phone: String?
-    var website: String?
+    var id: String
+    var name: String
+    var username: String
+    var email: String
+    var phone: String
+    var website: String
     
 }

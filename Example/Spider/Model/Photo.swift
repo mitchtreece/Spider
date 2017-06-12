@@ -8,11 +8,11 @@
 
 import Foundation
 
-class Photo: Codable {
+struct Photo: Codable {
     
-    var id: String?
-    var title: String?
-    var url: String?
-    var thumbnailUrl: String?
+    var id: String
+    var title: String
+    var url: String
+    var thumbnailUrl: String
     
 }

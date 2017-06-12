@@ -1,7 +1,7 @@
 ![Spider](Resources/logo.png)
 
 [![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
-![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
+![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
 [![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
 
