@@ -211,7 +211,7 @@ Spider.web.get("https://some/data/endpoint") { (response) in
 }
 ```
 
-A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of data easy to work with.
+A lot of the time the data we're interested in is `JSON` formatted. Spider makes this kind of response easy to work with.
 
 ```Swift
 Spider.web.get("https://some/json/endpoint") { (response) in
@@ -262,9 +262,9 @@ Spider.web.get("https://list/of/users") { (response) in
 As seen above, response serialization is handled on the `SpiderResponse` object. The functions `json()` & `jsonArray()` are provided via an extension on `SpiderResponse`. Likewise, to implement custom response serialization, simply extend the `SpiderResponse` object as needed. For example, `UIImage` response serialization might look something like this:
 
 ```Swift
-public extension SpiderResponse {
+extension SpiderResponse {
 
-    public func image() -> UIImage? {
+    func image() -> UIImage? {
 
         guard let data = self.data else { return nil }
 
@@ -382,28 +382,15 @@ imageView.web.setImage("http://url.to/image.png")
 Currently, Spider has integrations for the following UIKit components:
 - `UIImageView`
 
-### Weavable
+### Weaver
 
-Spider has basic object mapping features via it's `Weavable` protocol. Objects wishing to conform to `Weavable` must implement the following failable initializer:
-
-```Swift
-init?(json: JSON)
-```
-
-A simple `User` object might look something like this:
+Spider has basic object mapping features via it's `Weaver` class. Objects wishing to integrate with Spider's mapping features simply need to conform to Swift 4's built-in `Codable` protocol:
 
 ```Swift
-class User: Weavable {
+struct User: Codable {
 
-    public var name: String?
-    public var age: Int?
-
-    required init?(json: JSON) {
-
-        self.name = json["name"] as? String
-        self.age = json["age"] as? Int
-
-    }
+    var name: String
+    var age: Int
 
 }
 ```
@@ -411,7 +398,7 @@ class User: Weavable {
 ```Swift
 Spider.web.get("https://get/user/123") { (response) in
 
-    guard let data = response.data as? Data, let userDict = data.json, response.err == nil else {
+    guard let userDict = response.json(), response.err == nil else {
 
         var message = "There was an error fetching the json object"
         if let error = response.err {
@@ -435,7 +422,7 @@ Array mapping:
 ```Swift
 Spider.web.get("https://list/of/users") { (response) in
 
-    guard let data = response.data as? Data, let userArray = data.jsonArray, response.err == nil else {
+    guard let userArray = response.jsonArray(), response.err == nil else {
 
         var message = "There was an error fetching the json array"
         if let error = response.err {
