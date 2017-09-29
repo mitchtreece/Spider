@@ -37,7 +37,7 @@ import Foundation
      - Note: A “void” `AnyPromise` has a value of `nil`.
     */
     convenience public init(_ bridge: Promise<Void>) {
-        self.init(force: bridge.then(on: zalgo) { _ in nil })
+        self.init(force: bridge.then(on: zalgo) { nil })
     }
 
     /**
@@ -206,9 +206,9 @@ import Foundation
         })
     }
 
-    @objc func __catchWithPolicy(_ policy: CatchPolicy, execute body: @escaping (Any?) -> Any?) -> AnyPromise {
+    @objc func __catchOn(_ q: DispatchQueue, withPolicy policy: CatchPolicy, execute body: @escaping (Any?) -> Any?) -> AnyPromise {
         return AnyPromise(sealant: { resolve in
-            state.catch(on: .default, policy: policy, else: resolve) { err in
+            state.catch(on: q, policy: policy, else: resolve) { err in
                 makeHandler(body, resolve)(err as NSError)
             }
         })

@@ -506,7 +506,7 @@ public func firstly<T>(on: DispatchQueue, execute body: () throws -> Promise<T>)
  */
 @available(*, deprecated: 4.0, renamed: "DispatchQueue.promise")
 public func dispatch_promise<T>(_ on: DispatchQueue, _ body: @escaping () throws -> T) -> Promise<T> {
-    return Promise(value: ()).then(on: on, execute: { _ in try body() })
+    return Promise(value: ()).then(on: on, execute: body)
 }
 
 
@@ -626,3 +626,12 @@ extension Promise where T: Collection {
         }
     }
 }
+
+
+#if swift(>=3.1)
+public extension Promise where T == Void {
+    convenience init() {
+        self.init(value: ())
+    }
+}
+#endif
