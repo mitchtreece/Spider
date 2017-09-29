@@ -8,37 +8,31 @@
 
 import Foundation
 
-public class Weaver<T: Weavable> {
+public class Weaver<T: Codable> {
     
-    private var json: JSON?
-    private var jsonArray: [JSON]?
+    private var object: JSON?
+    private var array: [JSON]?
     
     public init(_ json: JSON) {
-        self.json = json
+        self.object = json
     }
     
-    public init(_ jsonArray: [JSON]) {
-        self.jsonArray = jsonArray
+    public init(_ array: [JSON]) {
+        self.array = array
     }
     
     public func map() -> T? {
         
-        guard let json = self.json else { return nil }
-        return T.weave(json)
+        guard let data = self.object?.jsonData else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
         
     }
     
     public func arrayMap() -> [T]? {
         
-        guard let array = self.jsonArray else { return nil }
-        
-        var objects = [T?]()
-        for json in array {
-            objects.append(T.weave(json))
-        }
-        
-        return objects.flatMap({ return $0 })
-        
+        guard let data = self.array?.jsonData else { return nil }
+        return try? JSONDecoder().decode([T].self, from: data)
+                
     }
     
 }

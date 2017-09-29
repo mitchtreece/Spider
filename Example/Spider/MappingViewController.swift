@@ -84,7 +84,7 @@ extension MappingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") {
             let user = users[indexPath.row]
-            cell.textLabel?.text = "\(user.name ?? "Unknown")"
+            cell.textLabel?.text = "\(user.name)"
             return cell
         }
         
