@@ -1,37 +1,37 @@
 PODS:
-  - PromiseKit (4.2.2):
-    - PromiseKit/Foundation (= 4.2.2)
-    - PromiseKit/QuartzCore (= 4.2.2)
-    - PromiseKit/UIKit (= 4.2.2)
-  - PromiseKit/CorePromise (4.2.2)
-  - PromiseKit/Foundation (4.2.2):
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.2.2):
+  - PromiseKit/QuartzCore (4.4.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.2.2):
+  - PromiseKit/UIKit (4.4.0):
     - PromiseKit/CorePromise
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
-  - SnapKit (3.2.0)
-  - Spider-Web (1.0.0):
-    - PromiseKit (~> 4.0)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
+  - SnapKit (4.0.0)
+  - Spider-Web (1.1.0):
+    - PromiseKit (~> 4.4)
     - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
-  - SnapKit
+  - SnapKit (~> 4.0.0)
   - Spider-Web (from `../`)
 
 EXTERNAL SOURCES:
   Spider-Web:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Spider-Web: 2f77ad94d255fe700c70813a2564c0cc3ef38ab2
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Spider-Web: 7487537de614b1566d9f24a40b1bc875286a6c95
 
-PODFILE CHECKSUM: 4b38940076e7ff7cf42f10f044e24c0c8267d29c
+PODFILE CHECKSUM: ca09d59d0b36b8e715a5d310c6ecfa85a27e053d
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

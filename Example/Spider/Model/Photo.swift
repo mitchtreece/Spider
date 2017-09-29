@@ -7,22 +7,12 @@
 //
 
 import Foundation
-import Spider
 
-class Photo: Weavable {
+struct Photo: Codable {
     
-    var id: String?
-    var title: String?
-    var url: String?
-    var thumbnailUrl: String?
-    
-    required init?(json: JSON) {
-        
-        self.id = json["id"] as? String
-        self.title = json["title"] as? String
-        self.url = json["url"] as? String
-        self.thumbnailUrl = json["thumbnailUrl"] as? String
-        
-    }
+    var id: Int
+    var title: String
+    var url: String
+    var thumbnailUrl: String
     
 }

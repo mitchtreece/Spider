@@ -53,7 +53,7 @@ extension Dictionary: JSONConvertible {
         guard JSONSerialization.isValidJSONObject(self) else { return nil }
         
         do {
-            return try JSONSerialization.data(withJSONObject: self, options: [])
+            return try JSONSerialization.data(withJSONObject: self)
         }
         catch {
             return nil
@@ -84,7 +84,7 @@ extension Array: JSONConvertible {
         guard JSONSerialization.isValidJSONObject(self) else { return nil }
         
         do {
-            return try JSONSerialization.data(withJSONObject: self, options: [])
+            return try JSONSerialization.data(withJSONObject: self)
         }
         catch {
             return nil
