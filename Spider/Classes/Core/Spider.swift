@@ -16,7 +16,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
 /**
  `Spider` provides a simple & configurable way to execute web requests.
  */
-public class Spider {
+@objc public class Spider: NSObject {
     
     /**
      The shared `Spider` instance.
@@ -43,7 +43,7 @@ public class Spider {
     /**
      Underlying shared `URLSession` instance.
      */
-    private var session = URLSession.shared
+    private var session: URLSession!
     
     /**
      - Parameter baseUrl: An optional global base URL.
@@ -76,7 +76,10 @@ public class Spider {
     /**
      Initializes a new `Spider` instance.
      */
-    public init() {
+    override public init() {
+        
+        super.init()
+        session = URLSession.shared
         
     }
     
@@ -106,18 +109,23 @@ public class Spider {
         
         var req = URLRequest(url: url)
         req.httpMethod = request.method.rawValue
-        req.httpBody = request.parameters?.jsonData
+        req.httpBody = request.body.data
         req.timeoutInterval = request.timeout ?? 60
         req.cachePolicy = request.cachePolicy ?? .useProtocolCachePolicy
         req.allowsCellularAccess = request.allowsCellularAccess ?? true
         
         // Header
         
-        var accept: String?
-        request.header.acceptStringify()?.forEach { (type) in
-            accept = (accept == nil) ? type : "\(accept!), \(type)"
+        if let content = request.header.contentType?.value(for: request) {
+            req.setValue(content, forHTTPHeaderField: SpiderConstants.Request.headerContentField)
         }
-        req.setValue(accept, forHTTPHeaderField: SpiderConstants.Request.headerAcceptField)
+        
+        var acceptString: String?
+        request.header.accept?.forEach { (acceptType) in
+            acceptString = (acceptString == nil) ? acceptType.value() : "\(acceptString!), \(acceptType.value())"
+        }
+        
+        req.setValue(acceptString, forHTTPHeaderField: SpiderConstants.Request.headerAcceptField)
         
         for (key, value) in request.header.other {
             req.setValue(value, forHTTPHeaderField: key)
@@ -131,7 +139,7 @@ public class Spider {
         else if let sharedAuth = self.authorization {
             req.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.headerField)
         }
-        
+
         return req
         
     }
@@ -162,7 +170,7 @@ public class Spider {
             completion(response)
             
         }.resume()
-                
+        
     }
     
     /**

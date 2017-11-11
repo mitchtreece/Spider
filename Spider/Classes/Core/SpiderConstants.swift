@@ -18,6 +18,7 @@ internal struct SpiderConstants {
     
     internal struct Request {
         
+        static let headerContentField = "Content-Type"
         static let headerAcceptField = "Accept"
         
     }

@@ -9,73 +9,104 @@
 import Foundation
 
 /**
- `SpiderRequestHeader` is a wrapper over common properties of HTTP request headers.
- */
-public class SpiderRequestHeader {
-    
-    /**
-     Representation of the various common HTTP header `Accept` types.
-     */
-    public enum AcceptType {
-        case application_json
-        case application_javascript
-        case text_json
-        case text_javascript
-        case text_html
-        case text_plain
-        case image_jpeg
-        case custom(String)
-    }
-    
-    /**
-     Array of acceptable content types supported by this request.
-     
-     If none are provided, this request will accept _all_ content types.
-     */
-    public var accept: [AcceptType]?
-    
-    internal var other = [String: String]()
-    
-    /**
-     Sets the value of a given HTTP header field.
-     - Parameter value: The value to set
-     - Parameter field: The HTTP header field
-     */
-    public func set(value: String, forField field: String) {
-    
-        other[field] = value
-        
-    }
-        
-    internal func acceptStringify() -> [String]? {
-        
-        guard let accept = accept else { return nil }
-        
-        var strings = [String]()
-        
-        for type in accept {
-            switch type {
-            case .application_json: strings.append("application/json")
-            case .application_javascript: strings.append("application/javascript")
-            case .text_json: strings.append("text/json")
-            case .text_javascript: strings.append("text/javascript")
-            case .text_html: strings.append("text/html")
-            case .text_plain: strings.append("text/plain")
-            case .image_jpeg: strings.append("image/jpeg")
-            case .custom(let _type): strings.append(_type)
-            }
-        }
-        
-        return strings
-        
-    }
-    
-}
-
-/**
  `SpiderRequest` represents a configurable HTTP request.
  */
 public class SpiderRequest {
+    
+    /**
+     `Header` is a wrapper over common properties of HTTP request headers.
+     */
+    public class Header {
+        
+        internal weak var request: SpiderRequest?
+        
+        public enum ContentType {
+            
+            case application_json
+            case multipart
+            case custom(String)
+            
+            func value(for request: SpiderRequest) -> String {
+                
+                switch self {
+                case .application_json: return "application/json"
+                case .multipart:
+                    
+                    let boundary = (request as? SpiderMultipartRequest)?.boundary ?? UUID().uuidString
+                    return "multipart/form-data; boundary=\(boundary)"
+                    
+                case .custom(let type): return type
+                }
+                
+            }
+            
+        }
+        
+        public var contentType: ContentType?
+        
+        /**
+         Representation of the various common HTTP header `Accept` types.
+         */
+        public enum AcceptType {
+            
+            case application_json
+            case application_javascript
+            case text_json
+            case text_javascript
+            case text_html
+            case text_plain
+            case image_jpeg
+            case custom(String)
+            
+            func value() -> String {
+                
+                switch self {
+                case .application_json: return "application/json"
+                case .application_javascript: return "application/javascript"
+                case .text_json: return "text/json"
+                case .text_javascript: return "text/javascript"
+                case .text_html: return "text/html"
+                case .text_plain: return "text/plain"
+                case .image_jpeg: return "image/jpeg"
+                case .custom(let type): return type
+                }
+                
+            }
+            
+        }
+        
+        /**
+         Array of acceptable content types supported by this request.
+         
+         If none are provided, this request will accept _all_ content types.
+         */
+        public var accept: [AcceptType]?
+        
+        internal var other = [String: String]()
+        
+        /**
+         Sets the value of a given HTTP header field.
+         - Parameter value: The value to set
+         - Parameter field: The HTTP header field
+         */
+        public func set(value: String, forField field: String) {
+            other[field] = value
+        }
+        
+        internal init(request: SpiderRequest?) {
+            self.request = request
+        }
+        
+    }
+    
+    /**
+     `Body` is a wrapper over an HTTP request body.
+     */
+    public struct Body {
+        
+        public var data: Data?
+        
+    }
     
     /**
      Representation of the various states of an HTTP request.
@@ -110,14 +141,19 @@ public class SpiderRequest {
     internal(set) var baseUrl: URLConvertible?
     
     /**
-     The request's HTTP header.
-     */
-    public var header = SpiderRequestHeader()
-    
-    /**
      The request's HTTP method.
      */
-    public var method: Method
+    public var method: Method = .get
+    
+    /**
+     The request's HTTP header.
+     */
+    public internal(set) var header: Header!
+    
+    /**
+     The request's HTTP body.
+     */
+    public internal(set) var body: Body!
     
     /**
      The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
@@ -126,7 +162,7 @@ public class SpiderRequest {
      "http://base.url/v1/users/12345"
      ```
      */
-    public var path: String
+    public var path: String = ""
     
     /**
      An optional param object to be passed along with the request.
@@ -178,13 +214,20 @@ public class SpiderRequest {
      - Parameter auth: An optional authorization type to use for this request.
         Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: Method, path: String, parameters: [String: Any]? = nil, auth: SpiderAuth? = nil) {
+    public init(method: Method, path: String, parameters: JSON? = nil, auth: SpiderAuth? = nil) {
+        
+        header = Header(request: self)
+        body = Body(data: parameters?.jsonData)
         
         self.method = method
         self.path = path
         self.parameters = parameters
         self.auth = auth
         
+    }
+    
+    private init() {
+        //
     }
     
 }
