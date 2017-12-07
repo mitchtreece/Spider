@@ -33,11 +33,13 @@ public class SpiderResponse {
      */
     private(set) public var err: Error?
     
-    init(req: SpiderRequest, res: URLResponse?, data: Data?, err: Error?) {
+    internal init(req: SpiderRequest, res: URLResponse?, data: Data?, err: Error?) {
+        
         self.req = req
         self.res = res
         self.data = data
         self.err = err
+        
     }
     
 }

@@ -19,14 +19,12 @@ class MultipartViewController: LoadingViewController {
         
         self.startLoading()
         
+        let file = MultipartFile(data: Data(), key: "file", name: "file.png", type: .image_png)
         let request = SpiderMultipartRequest(method: .put,
-                                             path: "https://google/upload",
+                                             path: "https://google.com/upload",
                                              parameters: nil,
                                              auth: nil,
-                                             fileData: Data(),
-                                             fileKey: "file_key",
-                                             filename: "file.png",
-                                             mimeType: .image_png)
+                                             files: [file])
         
         Spider.web.perform(request) { (response) in
             

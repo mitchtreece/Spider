@@ -18,8 +18,9 @@ public class SpiderRequest {
      */
     public class Header {
         
-        internal weak var request: SpiderRequest?
-        
+        /**
+         Representation of the various common HTTP header `Content` types.
+         */
         public enum ContentType {
             
             case application_json
@@ -41,8 +42,6 @@ public class SpiderRequest {
             }
             
         }
-        
-        public var contentType: ContentType?
         
         /**
          Representation of the various common HTTP header `Accept` types.
@@ -76,6 +75,11 @@ public class SpiderRequest {
         }
         
         /**
+         The type of content provided by the request.
+         */
+        public var content: ContentType?
+        
+        /**
          Array of acceptable content types supported by this request.
          
          If none are provided, this request will accept _all_ content types.
@@ -83,7 +87,8 @@ public class SpiderRequest {
         public var accept: [AcceptType]?
         
         internal var other = [String: String]()
-        
+        internal weak var request: SpiderRequest?
+
         /**
          Sets the value of a given HTTP header field.
          - Parameter value: The value to set
@@ -128,11 +133,13 @@ public class SpiderRequest {
      Representation of the various HTTP request methods.
      */
     public enum Method: String {
+        
         case get = "GET"
         case post = "POST"
         case put = "PUT"
         case patch = "PATCH"
         case delete = "DELETE"
+        
     }
     
     /**
@@ -142,6 +149,8 @@ public class SpiderRequest {
     
     /**
      The request's HTTP method.
+     
+     Defaults to _GET_.
      */
     public var method: Method = .get
     
@@ -165,9 +174,9 @@ public class SpiderRequest {
     public var path: String = ""
     
     /**
-     An optional param object to be passed along with the request.
+     An optional parameter object to be passed along in the request body.
      */
-    public var parameters: [String: Any]?
+    public var parameters: JSON?
     
     /**
      An optional authorization type to use for this request.
@@ -179,7 +188,7 @@ public class SpiderRequest {
     /**
      The request's timeout interval.
      
-     Defaults to 60 seconds.
+     Defaults to _60_ seconds.
      */
     public var timeout: TimeInterval?
     
@@ -204,13 +213,13 @@ public class SpiderRequest {
     
     /**
      Initializes a new `SpiderRequest` with a method, path, parameters, & authorization type.
-     - Parameter method: The HTTP method to use for this request
+     - Parameter method: The HTTP method to use for the request
      - Parameter path: The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
         ```
         "/users/12345"
         "http://base.url/v1/users/12345"
         ```
-     - Parameter parameters: An optional param object to be passed along with the request.
+     - Parameter parameters: An optional parameter object to be passed along in the request body.
      - Parameter auth: An optional authorization type to use for this request.
         Setting this will _override_ Spider's global authorization type.
      */

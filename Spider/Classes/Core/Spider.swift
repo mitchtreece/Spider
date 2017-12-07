@@ -116,7 +116,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
         
         // Header
         
-        if let content = request.header.contentType?.value(for: request) {
+        if let content = request.header.content?.value(for: request) {
             req.setValue(content, forHTTPHeaderField: SpiderConstants.Request.headerContentField)
         }
         
@@ -294,7 +294,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
     private func _debugPrint(_ msg: String) {
         
         guard isDebugModeEnabled == true else { return }
-        print("<Spider>: \(msg)")
+        print("🌎 <Spider>: \(msg)")
         
     }
     
