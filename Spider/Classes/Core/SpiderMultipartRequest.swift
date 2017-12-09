@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ `MultipartFile` is a wrapper over common properties of HTTP multipart files.
+ */
 public struct MultipartFile {
     
     public var data: Data
@@ -25,6 +28,9 @@ public struct MultipartFile {
     
 }
 
+/**
+ `SpiderMultipartRequest` represents a configurable HTTP multipart request.
+ */
 public class SpiderMultipartRequest: SpiderRequest {
     
     /**
@@ -56,10 +62,27 @@ public class SpiderMultipartRequest: SpiderRequest {
         
     }
     
-    private(set) var files: [MultipartFile]
+    /**
+     A `UUID` string boundary used to separate multipart file data.
+     */
     public let boundary = UUID().uuidString
     
-    public init(method: Method, path: String, parameters: JSON?, auth: SpiderAuth? = nil, files: [MultipartFile]) {
+    private(set) var files: [MultipartFile]
+    
+    /**
+     Initializes a new `SpiderMultipartRequest` with a method, path, parameters, authorization type, & files.
+     - Parameter method: The HTTP method to use for the request
+     - Parameter path: The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
+     ```
+     "/users/12345"
+     "http://base.url/v1/users/12345"
+     ```
+     - Parameter parameters: An optional parameter object to be passed along in the request body.
+     - Parameter files: An array of files to be sent with the request.
+     - Parameter auth: An optional authorization type to use for this request.
+     Setting this will _override_ Spider's global authorization type.
+     */
+    public init(method: HTTPRequestMethodConvertible, path: String, parameters: JSON?, files: [MultipartFile], auth: SpiderAuth? = nil) {
         
         self.files = files
         

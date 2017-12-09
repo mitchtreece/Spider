@@ -108,9 +108,7 @@ public class SpiderRequest {
      `Body` is a wrapper over an HTTP request body.
      */
     public struct Body {
-        
         public var data: Data?
-        
     }
     
     /**
@@ -130,19 +128,6 @@ public class SpiderRequest {
     }
     
     /**
-     Representation of the various HTTP request methods.
-     */
-    public enum Method: String {
-        
-        case get = "GET"
-        case post = "POST"
-        case put = "PUT"
-        case patch = "PATCH"
-        case delete = "DELETE"
-        
-    }
-    
-    /**
      The base URL used when performing this request.
      */
     internal(set) var baseUrl: URLConvertible?
@@ -152,7 +137,7 @@ public class SpiderRequest {
      
      Defaults to _GET_.
      */
-    public var method: Method = .get
+    public var method: HTTPRequestMethodConvertible = "GET"
     
     /**
      The request's HTTP header.
@@ -223,7 +208,7 @@ public class SpiderRequest {
      - Parameter auth: An optional authorization type to use for this request.
         Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: Method, path: String, parameters: JSON? = nil, auth: SpiderAuth? = nil) {
+    public init(method: HTTPRequestMethodConvertible, path: String, parameters: JSON? = nil, auth: SpiderAuth? = nil) {
         
         header = Header(request: self)
         body = Body(data: parameters?.jsonData)
@@ -237,6 +222,72 @@ public class SpiderRequest {
     
     private init() {
         //
+    }
+    
+    public func printCURL() {
+        
+        var url = path
+        if let base = baseUrl?.urlString {
+            url = "\(base)\(path)"
+        }
+        
+        var curl: String = "curl \(url) \\\n"
+        curl += "-X \(method.httpRequestMethod) \\\n"
+        
+        // Header
+        
+        if let auth = auth {
+            curl += "-H \"\(auth.headerField): \(auth.value)\" \\\n"
+        }
+        
+        if let accept = header.accept {
+            
+            var acceptString = "-H \"\(SpiderConstants.Request.headerAcceptField): "
+            
+            for i in 0..<accept.count {
+                
+                let type = accept[i]
+                
+                if i != (accept.count - 1) {
+                    acceptString += "\(type.value()), "
+                }
+                else {
+                    acceptString += "\(type.value())\" \\\n"
+                }
+                
+            }
+            
+            curl += acceptString
+            
+        }
+        
+        if let content = header.content {
+            curl += "-H \"\(SpiderConstants.Request.headerContentField): \(content.value(for: self))\" \\\n"
+        }
+        
+        for (key, value) in header.other {
+            curl += "-H \"\(key): \(value)\" \\\n"
+        }
+        
+        // Parameters
+        
+        if let params = parameters {
+            for (key, value) in params {
+                curl += "-d \"\(key)=\(value)\" \\\n"
+            }
+        }
+        
+        // Trim last backslash & newline
+        
+        let final = String(curl.dropLast(2))
+        
+        // Print
+        
+        print("\n**************************************")
+        print("🌎 <SpiderRequest>: ****** cURL ******")
+        print("**************************************")
+        print("\n\(final)\n")
+        
     }
     
 }
@@ -262,7 +313,7 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         let baseUrl = self.baseUrl ?? "none"        
         let params = parameters?.jsonString() ?? "none"
         
-        return "<SpiderRequest - method: \(method.rawValue), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)>"
+        return "<SpiderRequest - method: \(method.httpRequestMethod), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)>"
         
     }
     
