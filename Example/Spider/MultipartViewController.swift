@@ -19,32 +19,31 @@ class MultipartViewController: LoadingViewController {
         
         self.startLoading()
         
-        let file = MultipartFile(data: Data(), key: "file", name: "file.png", type: .image_png)
-        let request = SpiderMultipartRequest(method: "PUT",
-                                             path: "https://google.com/upload",
+        let data = UIImagePNGRepresentation(#imageLiteral(resourceName: "logo"))!
+        let file = MultipartFile(data: data, key: "image", name: "image.png", type: .image_png)
+        let request = SpiderMultipartRequest(method: "POST",
+                                             path: "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart",
                                              parameters: nil,
                                              files: [file],
                                              auth: nil)
         
         Spider.web.perform(request) { (response) in
             
-            request.printCURL()
-            
-//            guard let data = response.data, response.err == nil else {
-//
-//                var message = "There was an error fetching the data"
-//                if let error = response.err {
-//                    message = error.localizedDescription
-//                }
-//
-//                print(message)
-//                self.updateStatus(message)
-//                return
-//
-//            }
-//
-//            self.updateStatus("Fetched: \(data)")
-//            self.stopLoading()
+            guard let data = response.data, response.err == nil else {
+
+                var message = "There was an error fetching the data"
+                if let error = response.err {
+                    message = error.localizedDescription
+                }
+
+                print(message)
+                self.updateStatus(message)
+                return
+
+            }
+
+            self.updateStatus("Response: \(data)")
+            self.stopLoading()
             
         }
         

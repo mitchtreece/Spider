@@ -269,23 +269,35 @@ public class SpiderRequest {
             curl += "-H \"\(key): \(value)\" \\\n"
         }
         
-        // Parameters
+        // Data
         
-        if let params = parameters {
-            for (key, value) in params {
-                curl += "-d \"\(key)=\(value)\" \\\n"
+        if let multipart = self as? SpiderMultipartRequest,
+            let data = multipart.multipartBody()?.data {
+            
+            if let string = String(data: data, encoding: .utf8) {
+                curl += "-d \"\(string)\" \\\n"
             }
+            else {
+                curl += "-d <data: \(data)> \\\n"
+            }
+            
+        }
+        else {
+            
+            // Parameters
+            
+            if let params = parameters {
+                for (key, value) in params {
+                    curl += "-d \"\(key)=\(value)\" \\\n"
+                }
+            }
+            
         }
         
         // Trim last backslash & newline
-        
-        let final = String(curl.dropLast(2))
-        
         // Print
         
-        print("\n**************************************")
-        print("🌎 <SpiderRequest>: ****** cURL ******")
-        print("**************************************")
+        let final = String(curl.dropLast(2))
         print("\n\(final)\n")
         
     }
@@ -312,8 +324,16 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         
         let baseUrl = self.baseUrl ?? "none"        
         let params = parameters?.jsonString() ?? "none"
+        let className = String(describing: type(of: self))
         
-        return "<SpiderRequest - method: \(method.httpRequestMethod), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)>"
+        var string = "<\(className) - method: \(method.httpRequestMethod), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)"
+        
+        if let files = (self as? SpiderMultipartRequest)?.files {
+            string += ", files: \(files.count)"
+        }
+        
+        string += ">"
+        return string
         
     }
     

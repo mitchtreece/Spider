@@ -96,7 +96,7 @@ public class SpiderMultipartRequest: SpiderRequest {
         
     }
     
-    private func multipartBody() -> SpiderRequest.Body? {
+    internal func multipartBody() -> SpiderRequest.Body? {
         
         guard let content = self.header.content, case .multipart = content else { return nil }
 

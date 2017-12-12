@@ -42,7 +42,7 @@ class AdvancedViewController: LoadingViewController {
             self.stopLoading()
             
         }
-        
+                
     }
     
 }

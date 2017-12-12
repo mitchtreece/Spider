@@ -138,6 +138,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
         }
         else if let sharedAuth = self.authorization {
             req.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.headerField)
+            request.auth = sharedAuth // Needed for inspection & cURL generation
         }
 
         return req

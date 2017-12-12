@@ -20,7 +20,7 @@ class BasicViewController: LoadingViewController {
         self.startLoading()
         
         Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
-            
+                        
             guard let data = response.data, response.err == nil else {
                 
                 var message = "There was an error fetching the data"
