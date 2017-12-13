@@ -24,14 +24,28 @@ public class Weaver<T: Codable> {
     public func map() -> T? {
         
         guard let data = self.object?.jsonData else { return nil }
-        return try? JSONDecoder().decode(T.self, from: data)
+        
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        }
+        catch (let error) {
+            print(error)
+            return nil
+        }
         
     }
     
     public func arrayMap() -> [T]? {
         
         guard let data = self.array?.jsonData else { return nil }
-        return try? JSONDecoder().decode([T].self, from: data)
+        
+        do {
+            return try JSONDecoder().decode([T].self, from: data)
+        }
+        catch (let error) {
+            print(error)
+            return nil
+        }
                 
     }
     

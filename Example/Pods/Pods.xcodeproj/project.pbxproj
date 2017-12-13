@@ -25,6 +25,9 @@
 		224C47C8865B3CEA75F7574E658C43B5 /* AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = C066320F98A967A618EB1FE4B714EE79 /* AnyPromise.m */; };
 		2348969535E42C60805A50FE0402318D /* UIView+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 313B7730F91BB4E5B93FFCDA7F5D84AB /* UIView+AnyPromise.m */; };
 		24508FAD32914AC8C79792592B41098D /* NSTask+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = A9A6E50A88089315CAC50FCE2C4F9EF7 /* NSTask+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2606B6D11FB6235C001EA060 /* SpiderMultipartRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2606B6D01FB6235C001EA060 /* SpiderMultipartRequest.swift */; };
+		26600ECF1FDB6640008198AE /* HTTPRequestMethodConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26600ECE1FDB6640008198AE /* HTTPRequestMethodConvertible.swift */; };
+		2668C81D1FB66BE400199E77 /* Data+Append.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668C81C1FB66BE400199E77 /* Data+Append.swift */; };
 		27CB934A7BF2D44391648170672D5FB4 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C9732724FE31C6091CCCB348ED74A /* ConstraintDescription.swift */; };
 		2FD9866B59FF3CF401A3F6D1A893E39A /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9382CFC3B55C4E4C0064F99189EE8 /* ConstraintLayoutSupport.swift */; };
 		311AB70E3BEC7DFAEE6CE16E420E0E58 /* PMKQuartzCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C1335A89AD17316950EB524DDF2F17A0 /* PMKQuartzCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -248,6 +251,9 @@
 		2344C9EC3F3CE14E90E6658E4279D6B5 /* SDWebImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SDWebImage.modulemap; sourceTree = "<group>"; };
 		2529519616C556200C073773C3EC95E8 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		257B7EEACA3B52E0881D56D41CCC7EA5 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
+		2606B6D01FB6235C001EA060 /* SpiderMultipartRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiderMultipartRequest.swift; sourceTree = "<group>"; };
+		26600ECE1FDB6640008198AE /* HTTPRequestMethodConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestMethodConvertible.swift; sourceTree = "<group>"; };
+		2668C81C1FB66BE400199E77 /* Data+Append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Append.swift"; sourceTree = "<group>"; };
 		29E543FD5C1B5891B0211FDB1BABACFF /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		2A9C9732724FE31C6091CCCB348ED74A /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		2D1DE082B6268F9619AB730D0D3CF272 /* UIViewController+AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+AnyPromise.h"; path = "Extensions/UIKit/Sources/UIViewController+AnyPromise.h"; sourceTree = "<group>"; };
@@ -477,6 +483,7 @@
 		0A7345FF00C3188B8B28145D0FD192C4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				26600ECE1FDB6640008198AE /* HTTPRequestMethodConvertible.swift */,
 				CD987158DFD39772FFA1E87BFC47946E /* BoolConvertible.swift */,
 				6D6EC1157254DE67C9F8FACCF9C78F72 /* ErrorConvertible.swift */,
 				4AD499BA294A40FC32E8E22E09D963E1 /* ImageConvertible.swift */,
@@ -581,6 +588,7 @@
 			children = (
 				1CFE96ACF15A5A558D4959DBD569DFC2 /* Collection+Spider.swift */,
 				13C45A18A71BAF23EE2459FB87A58421 /* Dictionary+Spider.swift */,
+				2668C81C1FB66BE400199E77 /* Data+Append.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -659,6 +667,7 @@
 				15A1E981A1C8FE2CAD7844AF3923D8BE /* SpiderConstants.swift */,
 				ED5A69D410C6B983327A9F9E025048DE /* SpiderError.swift */,
 				06559C7F9A1AD0EE461C21580C048045 /* SpiderRequest.swift */,
+				2606B6D01FB6235C001EA060 /* SpiderMultipartRequest.swift */,
 				E80A0A33C8D298156E834E64D2449982 /* SpiderResponse.swift */,
 				C65B0CCE3D2C2241DFD024D619341FA2 /* Authorization */,
 				45747932DED5A0A40AC69487B684067B /* Helpers */,
@@ -1240,7 +1249,9 @@
 				A0D368F7502F93C88B1659715B064389 /* BoolConvertible.swift in Sources */,
 				4A1D02941060AE6CBE2412451E48890C /* Collection+Spider.swift in Sources */,
 				7874594500CBB9F7BCE10F4895CF3CFB /* Dictionary+Spider.swift in Sources */,
+				26600ECF1FDB6640008198AE /* HTTPRequestMethodConvertible.swift in Sources */,
 				97A598E42D747D681181345075FF52CD /* ErrorConvertible.swift in Sources */,
+				2606B6D11FB6235C001EA060 /* SpiderMultipartRequest.swift in Sources */,
 				F2FF874DB38061AA2D22C307DF016915 /* ImageConvertible.swift in Sources */,
 				952A5DEA988F4622475BDE308891E4CF /* JSONConvertible.swift in Sources */,
 				45DF4AB9665E82529A0F6F59BBAD2003 /* Spider+Promises.swift in Sources */,
@@ -1256,6 +1267,7 @@
 				729AF0D4E6B0E2516D793A31821ACEB4 /* SpiderResponse+UIImage.swift in Sources */,
 				6C9C049A679FBAF5B973EF5B8703C2D4 /* SpiderResponse.swift in Sources */,
 				A7DA07CBF210978D21D5650625018C5C /* TokenAuth.swift in Sources */,
+				2668C81D1FB66BE400199E77 /* Data+Append.swift in Sources */,
 				379631517362BB98FFDC85D5272FA6C8 /* UIImageView+Spider.swift in Sources */,
 				F39B7D4A59E07425E51E07D8DA626BE6 /* UISpider.swift in Sources */,
 				649632BE323A202AE1C8E1D64CB99A7D /* URLConvertible.swift in Sources */,

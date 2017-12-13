@@ -19,7 +19,7 @@ class AdvancedViewController: LoadingViewController {
         
         self.startLoading()
         
-        let request = SpiderRequest(method: .get, path: "https://jsonplaceholder.typicode.com/users")
+        let request = SpiderRequest(method: "GET", path: "https://jsonplaceholder.typicode.com/users", parameters: ["user_id": "12345"])
         request.header.accept = [.text_plain, .text_json, .image_jpeg, .custom("animal/cat")]
         request.header.set(value: "bar", forField: "foo")
         
@@ -42,7 +42,7 @@ class AdvancedViewController: LoadingViewController {
             self.stopLoading()
             
         }
-        
+                
     }
     
 }

@@ -103,12 +103,12 @@ blackWidow.get("/users") { (response) in
 }
 ```
 
-### Advanced Requests
+### Advanced & Multipart Requests
 
-Spider also supports advanced request options. You can configure and perform a `SpiderRequest` manually:
+Spider also supports more fine-tuned request options. You can configure and perform a `SpiderRequest` manually:
 
 ```Swift
-let request = SpiderRequest(method: .get, path: "https://path/to/endpoint", parameters: nil)
+let request = SpiderRequest(method: "GET", path: "https://path/to/endpoint", parameters: nil)
 request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
 request.header.set(value: "12345", forHeaderField: "user_id")
 
@@ -116,6 +116,24 @@ Spider.web.perform(request) { (response) in
     print("We got a response!")
 }
 ```
+
+Multipart data requests can also be constructed & executed in a similar fashion:
+
+```Swift
+let data = UIImagePNGRepresentation(image)!
+let file = MultipartFile(data: data, key: "image", name: "image.png", type: .image_png)
+let request = SpiderMultipartRequest(method: "PUT",
+                                     path: "https://path/to/upload",
+                                     parameters: nil,
+                                     files: [file],
+                                     auth: nil)
+
+Spider.web.perform(request) { (response) in
+    print("We got a response!")
+}
+```
+
+`SpiderMultipartRequest` is a `SpiderRequest` subclass that is initialized with an array of `MultipartFile` objects. Everything else works the exact same as a normal (non-multipart) request.
 
 ### Authorization
 
@@ -148,7 +166,7 @@ Advanced requests can also provide authorization:
 ```Swift
 let token = TokenAuth(value: "0123456789")
 
-let request = SpiderRequest(method: .get, path: "https://path/to/endpoint")
+let request = SpiderRequest(method: "GET", path: "https://path/to/endpoint")
 request.header.accept = [.image_jpeg, .custom("custom_accept_type")]
 request.header.set(value: "12345", forHeaderField: "user_id")
 request.auth = token
@@ -260,7 +278,7 @@ Spider.web.get("https://list/of/users") { (response) in
 
 ### Serializers
 
-As seen above, response serialization is handled on the `SpiderResponse` object. The functions `json()` & `jsonArray()` are provided via an extension on `SpiderResponse`. Likewise, to implement custom response serialization, simply extend the `SpiderResponse` object as needed. For example, `UIImage` response serialization might look something like this:
+Response serialization is handled on the `SpiderResponse` object. The functions `json()` & `jsonArray()` are provided via an extension on `SpiderResponse`. Likewise, to implement custom response serialization, simply extend the `SpiderResponse` object as needed. For example, `UIImage` response serialization might look something like this:
 
 ```Swift
 extension SpiderResponse {
@@ -472,9 +490,36 @@ Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) 
 
 This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
 
+### Helpers
+
+Some useful additions are also included to help cut down on development & debugging time.
+
+#### Debug Mode
+
+Enabling Spider's `isDebugModeEnabled` flag will print all debug information (including all outgoing requests) to the console.
+
+#### cURL Generation
+
+`SpiderRequest` includes a `printCURL()` function that, as the name implies, prints the cURL command for a given request.
+
+```Swift
+let request = SpiderRequest(method: "GET", path: "https://path/to/endpoint", parameters: ["user_id": "1234"])
+request.header.set(value: "bar", forField: "foo")
+request.printCURL()
+
+==>
+
+curl https://path/to/endpoint \
+-X GET \
+-H "foo: bar" \
+-d "user_id=1234"
+```
+
+**NOTE**: If your request is dependent on a `Spider` instance's `baseUrl` _or_ `authorization` properties,
+cURL information **will not** be accurate until _after_ the request is performed.
+
 ## To-do
 - Better error handling for Weaver object mapping
-- Upload & download tasks with progress
 - Objective-C compatibility
 - Test coverage
 
