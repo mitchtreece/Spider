@@ -33,6 +33,13 @@ public class SpiderResponse {
      */
     private(set) public var err: Error?
     
+    /**
+     The response's HTTP status code.
+     */
+    var statusCode: Int? {
+        return (res as? HTTPURLResponse)?.statusCode
+    }
+    
     internal init(req: SpiderRequest, res: URLResponse?, data: Data?, err: Error?) {
         
         self.req = req
