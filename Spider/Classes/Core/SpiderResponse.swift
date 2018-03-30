@@ -36,7 +36,7 @@ public class SpiderResponse {
     /**
      The response's HTTP status code.
      */
-    var statusCode: Int? {
+    public var statusCode: Int? {
         return (res as? HTTPURLResponse)?.statusCode
     }
     
