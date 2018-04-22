@@ -20,7 +20,7 @@ class PromisesViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Promise<String> in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Guarantee<String> in
             
             guard let data = response.data, response.err == nil else {
                 
@@ -35,27 +35,17 @@ class PromisesViewController: LoadingViewController {
             
             return self.createStatusString(from: data)
             
-        }.then { (status) -> Void in
+        }.done { (status) in
             
             self.updateStatus(status)
-            
-        }.catch { (error) in
-            
-            print(error)
-            self.updateStatus(error.localizedDescription)
-            
-        }.always {
-            
             self.stopLoading()
             
-        }
+        }.cauterize()
         
     }
     
-    func createStatusString(from data: Data) -> Promise<String> {
-        
-        return Promise<String>(value: "Fetched \(data)")
-        
+    func createStatusString(from data: Data) -> Guarantee<String> {
+        return Guarantee<String>.value("Fetched \(data)")
     }
     
 }

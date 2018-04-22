@@ -13,13 +13,13 @@ extension Spider {
     /**
      Performs a `SpiderRequest`.
      - Parameter request: The `SpiderRequest` to perform.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
-    public func perform(_ request: SpiderRequest) -> Promise<SpiderResponse> {
-        
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            perform(request) { (response) in
-                fulfill(response)
+    public func perform(_ request: SpiderRequest) -> Guarantee<SpiderResponse> {
+
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request) { (response) in
+                seal(response)
             }
         }
         
@@ -34,16 +34,17 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func get(_ path: String,
                     parameters: JSON? = nil,
-                    auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                    auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: "GET", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -58,16 +59,17 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func post(_ path: String,
                      parameters: JSON? = nil,
-                     auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                     auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: "POST", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -82,16 +84,17 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func put(_ path: String,
                     parameters: JSON? = nil,
-                    auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                    auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: "PUT", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -106,16 +109,17 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func patch(_ path: String,
                       parameters: JSON? = nil,
-                      auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                      auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: "PATCH", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -130,16 +134,17 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func delete(_ path: String,
                        parameters: JSON? = nil,
-                       auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                       auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: "DELETE", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -155,17 +160,18 @@ extension Spider {
      ```
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func requestWithMethod(_ method: HTTPRequestMethodConvertible,
                                   path: String,
                                   parameters: JSON? = nil,
-                                  auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                                  auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderRequest(method: method.httpRequestMethod, path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         
@@ -182,18 +188,19 @@ extension Spider {
      - Parameter parameters: An optional param object to be passed along with the request.
      - Parameter files: An array of files to be sent with the request.
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
-     - Returns: A promise over `SpiderResponse`.
+     - Returns: A guarantee over `SpiderResponse`.
      */
     public func multipart(method: HTTPRequestMethodConvertible,
                           path: String,
                           parameters: JSON? = nil,
                           files: [MultipartFile],
-                          auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
+                          auth: SpiderAuth? = nil) -> Guarantee<SpiderResponse> {
         
         let request = SpiderMultipartRequest(method: method, path: path, parameters: parameters, files: files, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Guarantee<SpiderResponse> { (seal) in
+            self.perform(request).done { (response) in
+                seal(response)
             }
         }
         

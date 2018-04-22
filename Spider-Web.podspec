@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Spider/Classes/**/*'
 
   s.dependency 'SDWebImage', '~> 4.0'
-  s.dependency 'PromiseKit', '~> 4.4'
+  s.dependency 'PromiseKit/CorePromise', '~> 6.0'
 
 end
