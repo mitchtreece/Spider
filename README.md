@@ -322,6 +322,7 @@ Spider.web.get("https://path/to/image.png") { (response) in
 
 Spider has built-in support for the following object serialization types:
 
+- `String`
 - `JSON` & [`JSON`]
 - `UIImage`
 
