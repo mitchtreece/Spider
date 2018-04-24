@@ -16,11 +16,15 @@ extension Spider {
      - Returns: A promise over `SpiderResponse`.
      */
     public func perform(_ request: SpiderRequest) -> Promise<SpiderResponse> {
-        
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            perform(request) { (response) in
-                fulfill(response)
+
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request) { (response) in
+                guard response.err == nil else { return seal.reject(response.err!) }
+                guard let _ = response.data else { return seal.reject(SpiderError.badResponseData) }
+                seal.fulfill(response)
             }
+            
         }
         
     }
@@ -41,10 +45,15 @@ extension Spider {
                     auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: "GET", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -65,10 +74,15 @@ extension Spider {
                      auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: "POST", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -89,10 +103,15 @@ extension Spider {
                     auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: "PUT", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -113,10 +132,15 @@ extension Spider {
                       auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: "PATCH", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -137,10 +161,15 @@ extension Spider {
                        auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: "DELETE", path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -163,10 +192,15 @@ extension Spider {
                                   auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderRequest(method: method.httpRequestMethod, path: path, parameters: parameters, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }
@@ -191,10 +225,15 @@ extension Spider {
                           auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
         let request = SpiderMultipartRequest(method: method, path: path, parameters: parameters, files: files, auth: auth)
-        return Promise<SpiderResponse> { (fulfill, reject) in
-            _ = perform(request).then { (response) -> Void in
-                fulfill(response)
+        
+        return Promise<SpiderResponse> { (seal) in
+            
+            self.perform(request).done { (response) in
+                seal.fulfill(response)
+            }.catch { (error) in
+                seal.reject(error)
             }
+            
         }
         
     }

@@ -20,31 +20,22 @@ class PromisesViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Promise<String> in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Guarantee<String> in
             
-            guard let data = response.data, response.err == nil else {
-                
-                var message = "There was an error fetching the data"
-                if let error = response.err {
-                    message = error.localizedDescription
-                }
-                
-                throw message.error!
-                
-            }
+            // When using Spider with promises, a response without data is handled as an error
+            // We can safely assume that `response.data` is non-nil here.
             
-            return self.createStatusString(from: data)
+            return self.createStatusString(from: response.data!)
             
-        }.then { (status) -> Void in
+        }.done { (status) in
             
             self.updateStatus(status)
             
         }.catch { (error) in
             
-            print(error)
             self.updateStatus(error.localizedDescription)
             
-        }.always {
+        }.finally {
             
             self.stopLoading()
             
@@ -52,10 +43,8 @@ class PromisesViewController: LoadingViewController {
         
     }
     
-    func createStatusString(from data: Data) -> Promise<String> {
-        
-        return Promise<String>(value: "Fetched \(data)")
-        
+    func createStatusString(from data: Data) -> Guarantee<String> {
+        return Guarantee<String>.value("Fetched \(data)")
     }
     
 }

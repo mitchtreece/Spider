@@ -24,6 +24,9 @@ public enum SpiderError: Error {
     /// Error representing an invalid response.
     case badResponse
     
+    /// Error representing a response with invalid data.
+    case badResponseData
+    
     /// Error representing a different, undefined problem.
     case other(description: String)
     
@@ -46,6 +49,7 @@ extension SpiderError: ErrorConvertible {
         case .invalidUrl: return "Invalid URL"
         case .badRequest: return "Bad request"
         case .badResponse: return "Bad response"
+        case .badResponseData: return "Bad response data"
         case .other(let desc): return desc
             
         case .invalidImageData: return "Invalid image data"
