@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
   s.name             = 'Spider-Web'
   s.module_name      = 'Spider'
-  s.version          = '1.3.0'
+  s.version          = '1.4.0'
   s.summary          = 'Creepy web framework for Swift.'
   s.description      = <<-DESC
     Spider is an easy-to-use web framework built for
@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Spider/Classes/**/*'
 
   s.dependency 'SDWebImage', '~> 4.0'
-  s.dependency 'PromiseKit', '~> 4.4'
+  s.dependency 'PromiseKit/CorePromise', '~> 6.0'
 
 end
