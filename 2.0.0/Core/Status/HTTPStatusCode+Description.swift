@@ -63,51 +63,91 @@ public extension HTTPStatusCode /* Description */ {
             
         // MARK: 400's - Client error
             
-        case .badRequest: return "Bad Request"
-        case .unauthorized: return "Unauthorized"
-        case .paymentRequired: return "Payment Required"
-        case .forbidden: return "Forbidden"
-        case .notFound: return "Not Found"
-        case .methodNotAllowed: return "Method Not Allowed"
-        case .notAcceptable: return "Not Acceptable"
-        case .proxyAuthenticationRequired: return "Proxy Authentication Required"
-        case .requestTimeout: return "Request Timeout"
-        case .conflict: return "Conflict"
-        case .gone: return "Gone"
-        case .lengthRequired: return "Length Required"
-        case .preconditionFailed: return "Precondition Failed"
-        case .payloadTooLarge: return "Payload Too Large"
-        case .requestURITooLong: return "Request-URI Too Long"
-        case .unsupportedMediaType: return "Unsupported Media Type"
-        case .requestedRangeNotSatisfiable: return "Requested Range Not Satisfiable"
-        case .expectationFailed: return "Expectation Failed"
-        case .teapot: return "I'm a teapot"
-        case .misdirectedRequest: return "Misdirected Request"
-        case .unprocessableEntity: return "Unprocessable Entity"
-        case .locked: return "Locked"
-        case .failedDependency: return "Failed Dependency"
-        case .upgradeRequired: return "Upgrade Required"
-        case .preconditionRequired: return "Precondition Required"
-        case .tooManyRequests: return "Too Many Requests"
-        case .requestHeaderFieldsTooLarge: return "Request Header Fields Too Large"
-        case .connectionClosedWithoutResponse: return "Connection Closed Without Response"
-        case .unavailableForLegalReasons: return "Unavailable For Legal Reasons"
-        case .clientClosedRequest: return "Client Closed Request"
+        case .badRequest: return "The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing)."
+            
+        case .unauthorized: return "The request has not been applied because it lacks valid authentication credentials for the target resource."
+            
+        case .paymentRequired: return "Reserved for future use."
+            
+        case .forbidden: return "The server understood the request but refuses to authorize it."
+            
+        case .notFound: return "The origin server did not find a current representation for the target resource or is not willing to disclose that one exists."
+            
+        case .methodNotAllowed: return "The method received in the request-line is known by the origin server but not supported by the target resource."
+            
+        case .notAcceptable: return "The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request, and the server is unwilling to supply a default representation."
+            
+        case .proxyAuthenticationRequired: return "Similar to 401 Unauthorized, but it indicates that the client needs to authenticate itself in order to use a proxy."
+            
+        case .requestTimeout: return "The server did not receive a complete request message within the time that it was prepared to wait."
+            
+        case .conflict: return "The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request."
+            
+        case .gone: return "The target resource is no longer available at the origin server and that this condition is likely to be permanent."
+            
+        case .lengthRequired: return "The server refuses to accept the request without a defined Content-Length."
+            
+        case .preconditionFailed: return "One or more conditions given in the request header fields evaluated to false when tested on the server."
+            
+        case .payloadTooLarge: return "The server is refusing to process a request because the request payload is larger than the server is willing or able to process."
+            
+        case .requestURITooLong: return "The server is refusing to service the request because the request-target is longer than the server is willing to interpret."
+            
+        case .unsupportedMediaType: return "The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource."
+            
+        case .requestedRangeNotSatisfiable: return "None of the ranges in the request's Range header field overlap the current extent of the selected resource or that the set of ranges requested has been rejected due to invalid ranges or an excessive request of small or overlapping ranges."
+            
+        case .expectationFailed: return "The expectation given in the request's Expect header field could not be met by at least one of the inbound servers."
+            
+        case .teapot: return "Any attempt to brew coffee with a teapot should result in the error code \"418 I'm a teapot\". The resulting entity body MAY be short and stout."
+            
+        case .misdirectedRequest: return "The request was directed at a server that is not able to produce a response. This can be sent by a server that is not configured to produce responses for the combination of scheme and authority that are included in the request URI."
+            
+        case .unprocessableEntity: return "The server understands the content type of the request entity (hence a 415 Unsupported Media Type status code is inappropriate), and the syntax of the request entity is correct (thus a 400 Bad Request status code is inappropriate) but was unable to process the contained instructions."
+            
+        case .locked: return "The source or destination resource of a method is locked."
+            
+        case .failedDependency: return "The method could not be performed on the resource because the requested action depended on another action and that action failed."
+            
+        case .upgradeRequired: return "The server refuses to perform the request using the current protocol but might be willing to do so after the client upgrades to a different protocol."
+            
+        case .preconditionRequired: return "The origin server requires the request to be conditional."
+            
+        case .tooManyRequests: return "The user has sent too many requests in a given amount of time (\"rate limiting\")."
+            
+        case .requestHeaderFieldsTooLarge: return "The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields."
+            
+        case .connectionClosedWithoutResponse: return "A non-standard status code used to instruct nginx to close the connection without sending a response to the client, most commonly used to deny malicious or malformed requests."
+            
+        case .unavailableForLegalReasons: return "The server is denying access to the resource as a consequence of a legal demand."
+            
+        case .clientClosedRequest: return "A non-standard status code introduced by nginx for the case when a client closes the connection while nginx is processing the request."
             
         // MARK: 500's - Server error
             
-        case .internalServerError: return "Internal Server Error"
-        case .notImplemented: return "Not Implemented"
-        case .badGateway: return "Bad Gateway"
-        case .serviceUnavailable: return "Service Unavailable"
-        case .gatewayTimeout: return "Gateway Timeout"
-        case .httpVersionNotSupported: return "HTTP Version Not Supported"
-        case .variantAlsoNegotiates: return "Variant Also Negotiates"
-        case .insufficientStorage: return "Insufficient Storage"
-        case .loopDetected: return "Loop Detected"
-        case .notExtended: return "Not Extended"
-        case .networkAuthenticationRequired: return "Network Authentication Required"
-        case .networkConnectTimeoutError: return "Network Connect Timeout Error"
+        case .internalServerError: return "The server encountered an unexpected condition that prevented it from fulfilling the request."
+            
+        case .notImplemented: return "The server does not support the functionality required to fulfill the request."
+            
+        case .badGateway: return "The server, while acting as a gateway or proxy, received an invalid response from an inbound server it accessed while attempting to fulfill the request."
+            
+        case .serviceUnavailable: return "The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay."
+            
+        case .gatewayTimeout: return "The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request."
+            
+        case .httpVersionNotSupported: return "The server does not support, or refuses to support, the major version of HTTP that was used in the request message."
+            
+        case .variantAlsoNegotiates: return "The server has an internal configuration error: the chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process."
+            
+        case .insufficientStorage: return "The method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request."
+            
+        case .loopDetected: return "The server terminated an operation because it encountered an infinite loop while processing a request with \"Depth: infinity\". This status indicates that the entire operation failed."
+            
+        case .notExtended: return "The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request."
+            
+        case .networkAuthenticationRequired: return "The client needs to authenticate to gain network access."
+            
+        case .networkConnectTimeoutError: return "This status code is not specified in any RFCs, but is used by some HTTP proxies to signal a network connect timeout behind the proxy to a client in front of the proxy."
             
         }
         
