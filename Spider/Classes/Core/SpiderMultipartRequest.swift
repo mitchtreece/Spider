@@ -82,7 +82,7 @@ public class SpiderMultipartRequest: SpiderRequest {
      - Parameter auth: An optional authorization type to use for this request.
      Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: HTTPRequestMethodConvertible, path: String, parameters: JSON?, files: [MultipartFile], auth: SpiderAuth? = nil) {
+    public init(method: String, path: String, parameters: JSON?, files: [MultipartFile], auth: SpiderAuth? = nil) {
         
         self.files = files
         

@@ -137,7 +137,7 @@ public class SpiderRequest {
      
      Defaults to _GET_.
      */
-    public var method: HTTPRequestMethodConvertible = "GET"
+    public var method: String = "GET"
     
     /**
      The request's HTTP header.
@@ -208,7 +208,7 @@ public class SpiderRequest {
      - Parameter auth: An optional authorization type to use for this request.
         Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: HTTPRequestMethodConvertible, path: String, parameters: JSON? = nil, auth: SpiderAuth? = nil) {
+    public init(method: String, path: String, parameters: JSON? = nil, auth: SpiderAuth? = nil) {
         
         header = Header(request: self)
         body = Body(data: parameters?.jsonData)
@@ -232,7 +232,7 @@ public class SpiderRequest {
         }
         
         var curl: String = "curl \(url) \\\n"
-        curl += "-X \(method.httpRequestMethod) \\\n"
+        curl += "-X \(method) \\\n"
         
         // Header
         
@@ -326,7 +326,7 @@ extension SpiderRequest: CustomStringConvertible, CustomDebugStringConvertible {
         let params = parameters?.jsonString() ?? "none"
         let className = String(describing: type(of: self))
         
-        var string = "<\(className) - method: \(method.httpRequestMethod), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)"
+        var string = "<\(className) - method: \(method), baseUrl: \(baseUrl), path: \(path), auth: \(authString), params: \(params)"
         
         if let files = (self as? SpiderMultipartRequest)?.files {
             string += ", files: \(files.count)"

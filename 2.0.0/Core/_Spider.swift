@@ -45,7 +45,7 @@ import Foundation
     }
     
     @discardableResult
-    public func performRequest(withMethod method: HTTPRequestMethodConvertible,
+    public func performRequest(withMethod method: HTTPMethod,
                                path: String,
                                parameters: JSON? = nil,
                                auth: RequestAuth? = nil,
@@ -62,7 +62,7 @@ import Foundation
                     auth: RequestAuth? = nil,
                     completion: @escaping Request.Completion) -> Request {
         
-        return performRequest(withMethod: "GET",
+        return performRequest(withMethod: .get,
                               path: path,
                               parameters: queryParameters,
                               auth: auth,
@@ -75,7 +75,7 @@ import Foundation
                      auth: RequestAuth? = nil,
                      completion: @escaping Request.Completion) -> Request {
         
-        return performRequest(withMethod: "POST",
+        return performRequest(withMethod: .post,
                               path: path,
                               parameters: parameters,
                               auth: auth,
@@ -88,7 +88,7 @@ import Foundation
                     auth: RequestAuth? = nil,
                     completion: @escaping Request.Completion) -> Request {
         
-        return performRequest(withMethod: "PUT",
+        return performRequest(withMethod: .put,
                               path: path,
                               parameters: parameters,
                               auth: auth,
@@ -101,7 +101,7 @@ import Foundation
                       auth: RequestAuth? = nil,
                       completion: @escaping Request.Completion) -> Request {
         
-        return performRequest(withMethod: "PATCH",
+        return performRequest(withMethod: .patch,
                               path: path,
                               parameters: parameters,
                               auth: auth,
@@ -114,7 +114,7 @@ import Foundation
                        auth: RequestAuth? = nil,
                        completion: @escaping Request.Completion) -> Request {
         
-        return performRequest(withMethod: "DELETE",
+        return performRequest(withMethod: .delete,
                               path: path,
                               parameters: parameters,
                               auth: auth,
@@ -123,14 +123,14 @@ import Foundation
     }
     
     @discardableResult
-    public func multipart(method: HTTPRequestMethodConvertible = "POST",
+    public func multipart(method: HTTPMethod = .post, // TODO: Limit this to post || put
                           path: String,
                           parameters: JSON? = nil,
                           files: [MultipartFile],
                           auth: RequestAuth? = nil,
                           completion: @escaping Request.Completion) -> Request {
         // TODO
-        return Request(method: "GET", path: "", parameters: nil, auth: nil)
+        return Request(method: method, path: "", parameters: nil, auth: nil)
         
     }
     
@@ -138,7 +138,7 @@ import Foundation
     
     private func _debugLogRequest(_ request: Request) {
         
-        var string = "[\(request.method.httpRequestMethod)] \(request.path)"
+        var string = "[\(request.method.value)] \(request.path)"
         if let params = request.parameters {
             string += ", parameters: \(params.jsonString() ?? "some")"
         }

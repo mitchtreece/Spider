@@ -40,7 +40,7 @@ public class Request {
     /**
      The request's HTTP method; _defaults to GET_.
      */
-    public var method: HTTPRequestMethodConvertible = "GET"
+    public var method: HTTPMethod = .get
     
     /**
      The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
@@ -82,7 +82,7 @@ public class Request {
      */
     public internal(set) var state: State = .pending
     
-    public init(method: HTTPRequestMethodConvertible, path: String, parameters: JSON?, auth: RequestAuth?) {
+    public init(method: HTTPMethod, path: String, parameters: JSON?, auth: RequestAuth?) {
         
         self.method = method
         self.path = path

@@ -24,7 +24,7 @@ public struct HTTPError: _SpiderError {
     }
     
     public var errorDescription: String? {
-        return "[\(statusCode.value)] <\(response.request.path)>: \(description)"
+        return "[\(statusCode.rawValue)] <\(response.request.path)>: \(description)"
     }
     
 }

@@ -35,7 +35,7 @@ public struct ResponseRemoteError: _SpiderError {
     }
     
     public var errorDescription: String? {
-        return "[\(response.statusCode.value)] <\(response.request.path)>: \(description)"
+        return "[\(response.statusCode.rawValue)] <\(response.request.path)>: \(description)"
     }
     
 }

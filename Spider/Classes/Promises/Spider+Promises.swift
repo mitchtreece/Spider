@@ -186,12 +186,12 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func requestWithMethod(_ method: HTTPRequestMethodConvertible,
+    public func requestWithMethod(_ method: HTTPMethod,
                                   path: String,
                                   parameters: JSON? = nil,
                                   auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
-        let request = SpiderRequest(method: method.httpRequestMethod, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: method.value, path: path, parameters: parameters, auth: auth)
         
         return Promise<SpiderResponse> { (seal) in
             
@@ -218,13 +218,13 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `SpiderResponse`.
      */
-    public func multipart(method: HTTPRequestMethodConvertible,
+    public func multipart(method: HTTPMethod,
                           path: String,
                           parameters: JSON? = nil,
                           files: [MultipartFile],
                           auth: SpiderAuth? = nil) -> Promise<SpiderResponse> {
         
-        let request = SpiderMultipartRequest(method: method, path: path, parameters: parameters, files: files, auth: auth)
+        let request = SpiderMultipartRequest(method: method.value, path: path, parameters: parameters, files: files, auth: auth)
         
         return Promise<SpiderResponse> { (seal) in
             

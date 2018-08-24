@@ -108,7 +108,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
         guard let url = url(for: request).url else { return nil }
         
         var req = URLRequest(url: url)
-        req.httpMethod = request.method.httpRequestMethod
+        req.httpMethod = request.method
         req.httpBody = request.body.data
         req.timeoutInterval = request.timeout ?? 60
         req.cachePolicy = request.cachePolicy ?? .useProtocolCachePolicy
@@ -308,13 +308,13 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func requestWithMethod(_ method: HTTPRequestMethodConvertible,
+    public func requestWithMethod(_ method: HTTPMethod,
                                   path: String,
                                   parameters: JSON? = nil,
                                   auth: SpiderAuth? = nil,
                                   completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
-        let request = SpiderRequest(method: method, path: path, parameters: parameters, auth: auth)
+        let request = SpiderRequest(method: method.value, path: path, parameters: parameters, auth: auth)
         perform(request, withCompletion: completion)
         return request
         
@@ -335,14 +335,14 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
      - Returns: The underlying `SpiderRequest` object.
      */
     @discardableResult
-    public func multipart(method: HTTPRequestMethodConvertible,
+    public func multipart(method: HTTPMethod,
                           path: String,
                           parameters: JSON? = nil,
                           files: [MultipartFile],
                           auth: SpiderAuth? = nil,
                           completion: @escaping SpiderRequestCompletion) -> SpiderRequest {
         
-        let request = SpiderMultipartRequest(method: method, path: path, parameters: parameters, files: files, auth: auth)
+        let request = SpiderMultipartRequest(method: method.value, path: path, parameters: parameters, files: files, auth: auth)
         perform(request, withCompletion: completion)
         return request
         
@@ -352,7 +352,7 @@ public typealias SpiderRequestCompletion = (SpiderResponse)->()
     
     private func _debugLogRequest(_ req: SpiderRequest) {
         
-        var string = "[\(req.method.httpRequestMethod)] \(req.path)"
+        var string = "[\(req.method)] \(req.path)"
         if let params = req.parameters {
             string += ", parameters: \(params.jsonString() ?? "some")"
         }
