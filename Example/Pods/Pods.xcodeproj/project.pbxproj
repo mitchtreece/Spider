@@ -43,6 +43,10 @@
 		26364E24212E6CC500260C19 /* Response+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26364E23212E6CC500260C19 /* Response+String.swift */; };
 		26364E26212E6D0100260C19 /* Response+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26364E25212E6D0100260C19 /* Response+UIImage.swift */; };
 		26A3F485B85073E306B2122230F46EF6 /* Dictionary+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A80D61787E7C54A3E05C77D503819D /* Dictionary+Spider.swift */; };
+		26A9ED8C212F91830013BF24 /* Request+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9ED8B212F91830013BF24 /* Request+Error.swift */; };
+		26A9ED90212F9ED00013BF24 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9ED8F212F9ED00013BF24 /* HTTPStatusCode.swift */; };
+		26A9ED92212FA3DA0013BF24 /* HTTPStatusCode+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9ED91212FA3DA0013BF24 /* HTTPStatusCode+Name.swift */; };
+		26A9ED94212FA4750013BF24 /* HTTPStatusCode+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9ED93212FA4750013BF24 /* HTTPStatusCode+Description.swift */; };
 		276B3C2B8E54852D1D32893A34F9B763 /* HTTPRequestMethodConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF829E0A551982CD3519CFCCF669598D /* HTTPRequestMethodConvertible.swift */; };
 		27A8A84A7F07550A5518C10E475216A4 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527B01413C1933AA343D967F4A527D7 /* JSONConvertible.swift */; };
 		27CB934A7BF2D44391648170672D5FB4 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347A1232E7F0D913EF886653779AB2E /* ConstraintDescription.swift */; };
@@ -276,6 +280,10 @@
 		26364E21212E6C8C00260C19 /* Response+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+JSON.swift"; sourceTree = "<group>"; };
 		26364E23212E6CC500260C19 /* Response+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+String.swift"; sourceTree = "<group>"; };
 		26364E25212E6D0100260C19 /* Response+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+UIImage.swift"; sourceTree = "<group>"; };
+		26A9ED8B212F91830013BF24 /* Request+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Error.swift"; sourceTree = "<group>"; };
+		26A9ED8F212F9ED00013BF24 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		26A9ED91212FA3DA0013BF24 /* HTTPStatusCode+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCode+Name.swift"; sourceTree = "<group>"; };
+		26A9ED93212FA4750013BF24 /* HTTPStatusCode+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCode+Description.swift"; sourceTree = "<group>"; };
 		2807E98ACFEB1913ED15241E99518D9F /* SDImageCacheConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCacheConfig.m; path = SDWebImage/SDImageCacheConfig.m; sourceTree = "<group>"; };
 		2918AD0CF812CAFAFE06D0C3F4AF6237 /* hang.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = hang.m; path = Sources/hang.m; sourceTree = "<group>"; };
 		2BC0B39FF6E47728CE40C571B61A90A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -518,6 +526,7 @@
 				26364E13212E4A1900260C19 /* Request+Header.swift */,
 				26364E15212E4AAB00260C19 /* Request+Body.swift */,
 				26364E0C212E479800260C19 /* Response.swift */,
+				26A9ED95212FA4ED0013BF24 /* Status */,
 				26364E18212E662A00260C19 /* Authorization */,
 				26364E20212E6C7000260C19 /* Serializers */,
 				3022F038B4084605B1BBDDAA86F694FE /* Helpers */,
@@ -540,6 +549,7 @@
 		26364E1F212E6C4800260C19 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				26A9ED8B212F91830013BF24 /* Request+Error.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -552,6 +562,16 @@
 				26364E25212E6D0100260C19 /* Response+UIImage.swift */,
 			);
 			path = Serializers;
+			sourceTree = "<group>";
+		};
+		26A9ED95212FA4ED0013BF24 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				26A9ED8F212F9ED00013BF24 /* HTTPStatusCode.swift */,
+				26A9ED91212FA3DA0013BF24 /* HTTPStatusCode+Name.swift */,
+				26A9ED93212FA4750013BF24 /* HTTPStatusCode+Description.swift */,
+			);
+			path = Status;
 			sourceTree = "<group>";
 		};
 		298AC548AE3D18C62BBC456600E7A684 /* Core */ = {
@@ -1307,6 +1327,7 @@
 				26A3F485B85073E306B2122230F46EF6 /* Dictionary+Spider.swift in Sources */,
 				26364E16212E4AAB00260C19 /* Request+Body.swift in Sources */,
 				A946474C07E1E75889ABB46C1DDF1D79 /* ErrorConvertible.swift in Sources */,
+				26A9ED8C212F91830013BF24 /* Request+Error.swift in Sources */,
 				276B3C2B8E54852D1D32893A34F9B763 /* HTTPRequestMethodConvertible.swift in Sources */,
 				26364E0E212E47A000260C19 /* Request.swift in Sources */,
 				26364E1C212E67A300260C19 /* TokenRequestAuth.swift in Sources */,
@@ -1317,12 +1338,15 @@
 				27A8A84A7F07550A5518C10E475216A4 /* JSONConvertible.swift in Sources */,
 				26364E24212E6CC500260C19 /* Response+String.swift in Sources */,
 				7248687F3E1BF32FE7C8CD99E9A7E918 /* Spider+Promises.swift in Sources */,
+				26A9ED94212FA4750013BF24 /* HTTPStatusCode+Description.swift in Sources */,
 				7DA09BCF9B276809EFA20326C5B1072B /* Spider-Web-dummy.m in Sources */,
 				B3755B2A87563C3443464ED41F9B87E5 /* Spider.swift in Sources */,
 				3E351ABFC087267134A3714BFB7F0C46 /* SpiderAuth.swift in Sources */,
+				26A9ED90212F9ED00013BF24 /* HTTPStatusCode.swift in Sources */,
 				26364E12212E47BF00260C19 /* _Spider.swift in Sources */,
 				9CA3555BD9A09614BE5B0994DDEFFC48 /* SpiderConstants.swift in Sources */,
 				CC31356F49CE2EBF25CB1FCA123DE3DC /* SpiderError.swift in Sources */,
+				26A9ED92212FA3DA0013BF24 /* HTTPStatusCode+Name.swift in Sources */,
 				BC77BCDEE4DBA9787628B3329395030E /* SpiderImageCache.swift in Sources */,
 				296FEA1DB4337F8B1EA814C7B09E49CB /* SpiderImageDownloader.swift in Sources */,
 				26364E1A212E666000260C19 /* RequestAuth.swift in Sources */,

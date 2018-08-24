@@ -130,6 +130,8 @@ import Foundation
                           auth: RequestAuth? = nil,
                           completion: @escaping Request.Completion) -> Request {
         // TODO
+        return Request(method: "GET", path: "", parameters: nil, auth: nil)
+        
     }
     
     // MARK: Debug
