@@ -9,43 +9,15 @@ import Foundation
 
 public extension Request {
     
-    public enum Error: LocalizedError {
+    public enum Error: _SpiderError {
         
-        case badRequest(Request)
-        case badResponse(Response)
-        case serialization(Response)
+        case bad(Request)
         case other(description: String, request: Request?, response: Response?)
-        
-        static func from(response: Response) -> Error? {
-            return nil
-        }
         
         public var errorDescription: String? {
             
             switch self {
-            case .badRequest(let request): return "<\(request.path)>: Bad request"
-            case .badResponse(let response):
-                
-                var prefix = ""
-                
-                if let code = response.code {
-                    prefix = "[\(code.value)]"
-                }
-                
-                prefix += (prefix.count > 0) ? " <\(response.request.path)>" : "<\(response.request.path)>"
-                return "\(prefix): Bad response"
-                
-            case .serialization(let response):
-                
-                var prefix = ""
-                
-                if let code = response.code {
-                    prefix = "[\(code.value)]"
-                }
-                
-                prefix += (prefix.count > 0) ? " <\(response.request.path)>" : "<\(response.request.path)>"
-                return "\(prefix): Serialization error"
-                
+            case .bad(let request): return "<\(request.path)>: Bad request"
             case .other(let description, let request, let response):
                 
                 var prefix = ""

@@ -12,7 +12,7 @@ public class Response {
     private(set) public var request: Request
     private(set) public var urlResponse: URLResponse?
     private(set) public var data: Data?
-    private(set) public var error: Error?
+    private(set) public var error: _SpiderError?
     
     public var code: HTTPStatusCode? {
         
@@ -21,7 +21,7 @@ public class Response {
         
     }
         
-    internal init(request: Request, urlResponse: URLResponse?, data: Data?, error: Error?) {
+    internal init(request: Request, urlResponse: URLResponse?, data: Data?, error: _SpiderError?) {
         
         self.request = request
         self.urlResponse = urlResponse
