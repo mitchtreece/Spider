@@ -10,34 +10,21 @@ import Foundation
 public struct HTTPError: _SpiderError {
     
     public var description: String
-    public var response: Response?
+    public var response: Response
     
-    public var request: Request? {
-        return response?.request
+    public var statusCode: HTTPStatusCode {
+        return response.statusCode
     }
     
-    public var statusCode: HTTPStatusCode? {
-        return response?.code
+    internal init(description: String, response: Response) {
+        
+        self.description = description
+        self.response = response
+        
     }
     
     public var errorDescription: String? {
-        
-        var prefix = ""
-        
-        if let code = statusCode {
-            prefix += "[\(code.value)] "
-        }
-        
-        if let path = request?.path ?? response?.request.path {
-            prefix += "<\(path)>"
-        }
-        
-        if prefix.count != 0 {
-            return "\(prefix): \(description)"
-        }
-        
-        return description
-        
+        return "[\(statusCode.value)] <\(response.request.path)>: \(description)"
     }
     
 }

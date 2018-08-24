@@ -11,6 +11,10 @@ import Foundation
 
 public enum HTTPStatusCode: Int {
     
+    // MARK: None
+    
+    case none = 0
+    
     // MARK: 100's - Informational
     
     case `continue` = 100

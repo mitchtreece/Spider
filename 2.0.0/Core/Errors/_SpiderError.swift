@@ -11,13 +11,15 @@ public protocol _SpiderError: LocalizedError {}
 
 public extension _SpiderError {
     
-    static func from(response: Response) -> _SpiderError? {
+    public static func from(response: Response, remoteErrorProvider: ResponseRemoteErrorProvider? = nil) -> _SpiderError? {
         
         if let error = response.error {
             return HTTPError(description: error.localizedDescription, response: response)
         }
         
-        // TODO: JSON (API) Error?
+        if let provider = remoteErrorProvider, let error = provider.error(from: response) {
+            return error
+        }
         
         return nil
         

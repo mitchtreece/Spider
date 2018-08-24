@@ -1,5 +1,5 @@
 //
-//  HTTPStatusCode+Description.swift
+//  HTTPStatusCode+Explanation.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 8/23/18.
@@ -7,11 +7,15 @@
 
 import Foundation
 
-public extension HTTPStatusCode /* Description */ {
+public extension HTTPStatusCode /* Explanation */ {
     
-    public var description: String {
+    public var explanation: String {
         
         switch self {
+        
+        // MARK: None
+            
+        case .none: return "None"
             
         // MARK: 100's - Informational
             

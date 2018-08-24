@@ -17,27 +17,8 @@ public extension Response {
         public var errorDescription: String? {
             
             switch self {
-            case .bad(let response):
-                
-                var prefix = ""
-                
-                if let code = response.code {
-                    prefix = "[\(code.value)]"
-                }
-                
-                prefix += (prefix.count > 0) ? " <\(response.request.path)>" : "<\(response.request.path)>"
-                return "\(prefix): Bad response"
-                
-            case .serialization(let response):
-                
-                var prefix = ""
-                
-                if let code = response.code {
-                    prefix = "[\(code.value)]"
-                }
-                
-                prefix += (prefix.count > 0) ? " <\(response.request.path)>" : "<\(response.request.path)>"
-                return "\(prefix): Serialization error"
+            case .bad(let response): return "[\(response.statusCode.value)] <\(response.request.path)>: Bad response"
+            case .serialization(let response): return "[\(response.statusCode.value)] <\(response.request.path)>: Serialization error"
             }
             
         }

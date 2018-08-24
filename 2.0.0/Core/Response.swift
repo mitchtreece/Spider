@@ -14,10 +14,10 @@ public class Response {
     private(set) public var data: Data?
     private(set) public var error: _SpiderError?
     
-    public var code: HTTPStatusCode? {
+    public var statusCode: HTTPStatusCode {
         
-        guard let _code = (urlResponse as? HTTPURLResponse)?.statusCode else { return nil }
-        return HTTPStatusCode(rawValue: _code)
+        guard let _statusCode = (urlResponse as? HTTPURLResponse)?.statusCode else { return .none }
+        return HTTPStatusCode(rawValue: _statusCode) ?? .none
         
     }
         
