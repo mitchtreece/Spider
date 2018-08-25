@@ -9,7 +9,7 @@ import Foundation
 
 public extension Response {
     
-    public enum Error: _SpiderError {
+    public enum Error: SpiderError {
 
         case bad(Response)
         case serialization(Response)

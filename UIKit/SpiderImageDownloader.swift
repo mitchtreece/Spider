@@ -29,7 +29,7 @@ public class SpiderImageDownloader {
                                 completion: @escaping SpiderImageDownloaderCompletion) -> SpiderImageDownloadToken? {
         
         guard let url = url.url else {
-            completion(nil, false, SpiderError.invalidUrl)
+            completion(nil, false, URLError.invalid)
             return nil
         }
         
@@ -41,7 +41,7 @@ public class SpiderImageDownloader {
         let token = SDWebImageDownloader.shared().downloadImage(with: url, options: [], progress: nil) { (image, data, error, finished) in
             
             guard let image = image else {
-                completion(nil, false, SpiderError.invalidImageData)
+                completion(nil, false, DataError.invalidImageData)
                 return
             }
             

@@ -11,7 +11,7 @@ public extension Request {
     
     public struct Body {
         
-        public enum Format {
+        public enum ContentType {
             
             case application_json
             case application_javascript
@@ -33,7 +33,11 @@ public extension Request {
                 case .text_html: return "text/html"
                 case .text_plain: return "text/plain"
                 case .image_jpeg: return "image/jpeg"
-                case .multipart: return "" // TODO: This
+                case .multipart:
+                    
+                    let boundary = (request as? MultipartRequest)?.boundary ?? UUID().uuidString
+                    return "multipart/form-data; boundary=\(boundary)"
+                    
                 case .other(let type): return type
                 }
                 
@@ -43,8 +47,8 @@ public extension Request {
         
         public var data: Data?
         
-        internal init() {
-            //
+        internal init(data: Data?) {
+            self.data = data
         }
         
     }

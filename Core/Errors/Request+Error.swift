@@ -9,7 +9,7 @@ import Foundation
 
 public extension Request {
     
-    public enum Error: _SpiderError {
+    public enum Error: SpiderError {
         
         case bad(Request)
         

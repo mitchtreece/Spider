@@ -35,7 +35,7 @@ public class Request {
     /**
      The request's HTTP body.
      */
-    public internal(set) var body = Body()
+    public internal(set) var body = Body(data: nil)
     
     /**
      The request's HTTP method; _defaults to GET_.

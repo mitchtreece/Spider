@@ -12,7 +12,7 @@ public class Response {
     private(set) public var request: Request
     private(set) public var urlResponse: URLResponse?
     private(set) public var data: Data?
-    private(set) public var error: _SpiderError?
+    private(set) public var error: SpiderError?
     
     public var statusCode: HTTPStatusCode {
         
@@ -20,8 +20,12 @@ public class Response {
         return HTTPStatusCode(rawValue: _statusCode) ?? .none
         
     }
+    
+    public var path: String {
+        return request.path
+    }
         
-    internal init(request: Request, urlResponse: URLResponse?, data: Data?, error: _SpiderError?) {
+    internal init(request: Request, urlResponse: URLResponse?, data: Data?, error: SpiderError?) {
         
         self.request = request
         self.urlResponse = urlResponse

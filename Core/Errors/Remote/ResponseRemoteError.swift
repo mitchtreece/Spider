@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ResponseRemoteError: _SpiderError {
+public struct ResponseRemoteError: SpiderError {
     
     public var description: String
     public var response: Response

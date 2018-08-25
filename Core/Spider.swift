@@ -1,5 +1,5 @@
 //
-//  _Spider.swift
+//  Spider.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 8/22/18.
@@ -7,19 +7,21 @@
 
 import Foundation
 
-@objc public class _Spider: NSObject {
+@objc public class Spider: NSObject {
     
     public var baseUrl: URLConvertible?
     public var auth: RequestAuth?
     public var isDebugMode: Bool = false
+    
+    private var builder: RequestBuilder!
     private var session = URLSession.shared
     
-    public static let web = _Spider()
+    public static let web = Spider()
     
     @discardableResult
-    public static func web(baseUrl: URLConvertible?, auth: RequestAuth?) -> _Spider {
+    public static func web(baseUrl: URLConvertible?, auth: RequestAuth?) -> Spider {
         
-        let web = _Spider.web
+        let web = Spider.web
         web.baseUrl = baseUrl
         web.auth = auth
         return web
@@ -35,13 +37,46 @@ import Foundation
     }
     
     public override init() {
+        
         super.init()
+        builder = RequestBuilder(spider: self)
+        
     }
     
     // MARK: Request execution
     
     public func perform(_ request: Request, completion: @escaping Request.Completion) {
-        // TODO
+        
+        guard let urlRequest = builder.urlRequest(for: request) else {
+            let response = Response(request: request, urlResponse: nil, data: nil, error: Request.Error.bad(request))
+            return completion(response)
+        }
+        
+        _debugLogRequest(request)
+        
+        request.state = .working
+        
+        session.dataTask(with: urlRequest) { (data, res, err) in
+            
+            var httpError: HTTPError?
+            
+            if let err = err {
+                
+                var code: HTTPStatusCode = .none
+                if let _code = (res as? HTTPURLResponse)?.statusCode {
+                    code = HTTPStatusCode(rawValue: _code) ?? .none
+                }
+                
+                httpError = HTTPError(description: err.localizedDescription, statusCode: code, path: request.path)
+                
+            }
+            
+            let response = Response(request: request, urlResponse: res, data: data, error: httpError)
+            request.state = .finished(response)
+            completion(response)
+            
+        }.resume()
+        
     }
     
     @discardableResult

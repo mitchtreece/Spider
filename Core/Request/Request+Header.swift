@@ -14,13 +14,13 @@ public extension Request {
         /**
          The type of content provided by the request.
          */
-        public var contentType: Request.Body.Format?
+        public var contentType: Request.Body.ContentType?
         
         /**
          Array of acceptable content types supported by this request.
          If none are provided, the request will accept _all_ content types.
          */
-        public var acceptTypes: [Request.Body.Format]?
+        public var acceptTypes: [Request.Body.ContentType]?
         
         internal var otherFields = [String: String]()
         
