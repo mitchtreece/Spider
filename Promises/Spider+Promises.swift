@@ -15,14 +15,16 @@ extension Spider {
      - Parameter request: The `Request` to perform.
      - Returns: A promise over `Response`.
      */
-    public func perform(_ request: Request) -> Promise<Response> {
+    public func perform<T: Serializable>(_ request: Request<T>) -> Promise<T> {
 
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request) { (response) in
-                guard response.error == nil else { return seal.reject(response.error!) }
-                guard let _ = response.data else { return seal.reject(Response.Error.bad(response)) }
-                seal.fulfill(response)
+            self.perform(request) { (value, error) in
+                
+                guard error == nil else { return seal.reject(error!) }
+                guard let value = value else { return seal.reject(SpiderError.badData) }
+                seal.fulfill(value)
+                
             }
             
         }
@@ -40,16 +42,16 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func get(_ path: String,
-                    parameters: JSON? = nil,
-                    auth: RequestAuth? = nil) -> Promise<Response> {
+    public func get<T: Serializable>(_ path: String,
+                                     parameters: JSON? = nil,
+                                     auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: .get, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: .get, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -69,16 +71,16 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func post(_ path: String,
-                     parameters: JSON? = nil,
-                     auth: RequestAuth? = nil) -> Promise<Response> {
+    public func post<T: Serializable>(_ path: String,
+                                      parameters: JSON? = nil,
+                                      auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: .post, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: .post, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -98,16 +100,16 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func put(_ path: String,
-                    parameters: JSON? = nil,
-                    auth: RequestAuth? = nil) -> Promise<Response> {
+    public func put<T: Serializable>(_ path: String,
+                                     parameters: JSON? = nil,
+                                     auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: .put, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: .put, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -127,16 +129,16 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func patch(_ path: String,
-                      parameters: JSON? = nil,
-                      auth: RequestAuth? = nil) -> Promise<Response> {
+    public func patch<T: Serializable>(_ path: String,
+                                       parameters: JSON? = nil,
+                                       auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: .patch, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: .patch, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -156,16 +158,16 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func delete(_ path: String,
-                       parameters: JSON? = nil,
-                       auth: RequestAuth? = nil) -> Promise<Response> {
+    public func delete<T: Serializable>(_ path: String,
+                                        parameters: JSON? = nil,
+                                        auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: .delete, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: .delete, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -186,17 +188,17 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func requestWithMethod(_ method: HTTPMethod,
-                                  path: String,
-                                  parameters: JSON? = nil,
-                                  auth: RequestAuth? = nil) -> Promise<Response> {
+    public func requestWithMethod<T: Serializable>(_ method: HTTPMethod,
+                                                   path: String,
+                                                   parameters: JSON? = nil,
+                                                   auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = Request(method: method, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: method, path: path, parameters: parameters, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }
@@ -218,18 +220,18 @@ extension Spider {
      - Parameter auth: An optional authorization type to use for this request. This will _override_ Spider's global authorization type. If no authorization type is provided, the request will fallback to Spider's global authorization type.
      - Returns: A promise over `Response`.
      */
-    public func multipart(method: HTTPMethod,
-                          path: String,
-                          parameters: JSON? = nil,
-                          files: [MultipartFile],
-                          auth: RequestAuth? = nil) -> Promise<Response> {
+    public func multipart<T: Serializable>(method: HTTPMethod,
+                                           path: String,
+                                           parameters: JSON? = nil,
+                                           files: [MultipartFile],
+                                           auth: RequestAuth? = nil) -> Promise<T> {
         
-        let request = MultipartRequest(method: method, path: path, parameters: parameters, files: files, auth: auth)
+        let request = MultipartRequest<T>(method: method, path: path, parameters: parameters, files: files, auth: auth)
         
-        return Promise<Response> { (seal) in
+        return Promise<T> { (seal) in
             
-            self.perform(request).done { (response) in
-                seal.fulfill(response)
+            self.perform(request).done { (value) in
+                seal.fulfill(value)
             }.catch { (error) in
                 seal.reject(error)
             }

@@ -9,13 +9,13 @@ import Foundation
 
 internal class RequestBuilder {
     
-    private weak var spider: Spider?
+    internal weak var spider: Spider?
     
     internal init(spider: Spider) {
         self.spider = spider
     }
     
-    internal func url(for request: Request) -> URLConvertible {
+    internal func url<T: Serializable>(for request: Request<T>) -> URLConvertible {
         
         if let base = spider?.baseUrl, let baseString = base.urlString {
             return "\(baseString)\(request.path)"
@@ -25,7 +25,7 @@ internal class RequestBuilder {
         
     }
     
-    internal func urlRequest(for request: Request) -> URLRequest? {
+    internal func urlRequest<T: Serializable>(for request: Request<T>) -> URLRequest? {
         
         // Request
         

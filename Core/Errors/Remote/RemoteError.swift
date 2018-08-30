@@ -1,5 +1,5 @@
 //
-//  ResponseRemoteError.swift
+//  RemoteError.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 8/23/18.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-public struct ResponseRemoteError: SpiderError {
+public struct ResponseRemoteError: SpiderErrorProtocol {
     
     public var description: String
-    public var response: Response
+    public var response: Response?
     
     public init(description: String, response: Response) {
         
@@ -19,23 +19,25 @@ public struct ResponseRemoteError: SpiderError {
         
     }
     
-    public init(error: Response.Error) {
+    public init(error: SpiderError) {
         
         self.description = error.localizedDescription
         
-        var _response: Response!
-        
         switch error {
-        case .bad(let res): _response = res
-        case .serialization(let res): _response = res
+        case .badResponse(let res): self.response = res
+        default: break
         }
-        
-        self.response = _response
         
     }
     
     public var errorDescription: String? {
-        return "[\(response.statusCode.rawValue)] <\(response.request.path)>: \(description)"
+        
+        if let res = response {
+            return "[\(res.statusCode.rawValue)] <\(res.request.path)>: \(description)"
+        }
+        
+        return description
+        
     }
     
 }

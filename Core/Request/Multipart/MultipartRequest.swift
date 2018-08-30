@@ -10,36 +10,7 @@ import Foundation
 /**
  `MultipartRequest` represents a configurable HTTP multipart request.
  */
-public class MultipartRequest: Request {
-    
-    /**
-     Representation of the various common MIME (media) types.
-     */
-    public enum MIMEType {
-        
-        case image_png
-        case image_jpg
-        case image_gif
-        case audio_mp3
-        case audio_aac
-        case video_mp4
-        case other(String)
-        
-    }
-    
-    internal func string(for mimeType: MIMEType) -> String {
-        
-        switch mimeType {
-        case .image_png: return "image/png"
-        case .image_jpg: return "image/jpeg"
-        case .image_gif: return "image/gif"
-        case .audio_mp3: return "audio/mpeg3"
-        case .audio_aac: return "audio/aac"
-        case .video_mp4: return "video/mp4"
-        case .other(let type): return type
-        }
-        
-    }
+public class MultipartRequest<T: Serializable>: Request<T> {
     
     /**
      A `UUID` string boundary used to separate multipart file data.
@@ -75,7 +46,7 @@ public class MultipartRequest: Request {
         
     }
     
-    internal func multipartBody() -> Request.Body? {
+    internal func multipartBody() -> Request<T>.Body? {
         
         guard let contentType = self.header.contentType, case .multipart = contentType else { return nil }
         
@@ -96,7 +67,7 @@ public class MultipartRequest: Request {
         
         files.forEach { (file) in
             
-            let mime = string(for: file.mimeType)
+            let mime = MultipartFile.string(for: file.mimeType)
             data.append(string: boundaryPrefix)
             data.append(string: "Content-Disposition: form-data; name=\"\(file.key)\"; filename=\"\(file.name)\"\r\n")
             data.append(string: "Content-Type: \(mime)\r\n\r\n")

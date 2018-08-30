@@ -10,20 +10,22 @@ import Foundation
 
 public class Weaver<T: Codable> {
     
-    private var object: JSON?
-    private var array: [JSON]?
+    private var json: JSON?
+    private var jsonArray: [JSON]?
     
     public init(_ json: JSON) {
-        self.object = json
+        self.json = json
     }
     
     public init(_ array: [JSON]) {
-        self.array = array
+        self.jsonArray = array
     }
     
     public func map() -> T? {
         
-        guard let data = self.object?.jsonData else { return nil }
+        guard let object = json else { return nil }
+        guard JSONSerialization.isValidJSONObject(object) else { return nil }
+        guard let data = try? JSONSerialization.data(withJSONObject: object) else { return nil }
         
         do {
             return try JSONDecoder().decode(T.self, from: data)
@@ -35,9 +37,11 @@ public class Weaver<T: Codable> {
         
     }
     
-    public func arrayMap() -> [T]? {
+    public func mapArray() -> [T]? {
         
-        guard let data = self.array?.jsonData else { return nil }
+        guard let object = jsonArray else { return nil }
+        guard JSONSerialization.isValidJSONObject(object) else { return nil }
+        guard let data = try? JSONSerialization.data(withJSONObject: object) else { return nil }
         
         do {
             return try JSONDecoder().decode([T].self, from: data)
@@ -46,7 +50,7 @@ public class Weaver<T: Codable> {
             print(error)
             return nil
         }
-                
+        
     }
     
 }

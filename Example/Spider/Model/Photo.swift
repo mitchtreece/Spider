@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Spider
 
 struct Photo: Codable {
     
@@ -14,5 +15,16 @@ struct Photo: Codable {
     var title: String
     var url: String
     var thumbnailUrl: String
+    
+}
+
+extension Photo: Serializable {
+    
+    static func serialized(from data: Data) -> SerializableType? {
+        
+        guard let json = JSON.serialized(from: data) as? JSON else { return nil }
+        return Weaver<Photo>(json).map()
+        
+    }
     
 }

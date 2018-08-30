@@ -2,26 +2,30 @@
 //  SpiderError.swift
 //  Spider-Web
 //
-//  Created by Mitch Treece on 8/23/18.
+//  Created by Mitch Treece on 8/27/18.
 //
 
 import Foundation
 
-public protocol SpiderError: LocalizedError {}
-
-public extension SpiderError {
+public enum SpiderError: SpiderErrorProtocol {
     
-    public static func from(response: Response, remoteErrorProvider: ResponseRemoteErrorProvider? = nil) -> SpiderError? {
+    case badUrl
+    case badRequest(Request)
+    case badResponse
+    case badData
+    case serialization
+    case other(description: String)
+    
+    public var errorDescription: String? {
         
-        if let error = response.error {
-            return HTTPError(description: error.localizedDescription, statusCode: response.statusCode, path: response.path)
+        switch self {
+        case .badUrl: return "Bad URL"
+        case .badRequest(let req): return "<\(req.path)>: Bad request"
+        case .badResponse: return "Bad response"
+        case .badData: return "Bad response data"
+        case .serialization: return "Serialization failure"
+        case .other(let desc): return desc
         }
-        
-        if let provider = remoteErrorProvider, let error = provider.error(from: response) {
-            return error
-        }
-        
-        return nil
         
     }
     

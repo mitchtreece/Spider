@@ -9,7 +9,7 @@
 import Foundation
 import SDWebImage
 
-public typealias SpiderImageDownloaderCompletion = (UIImage?, Bool, ErrorConvertible?)->()
+public typealias SpiderImageDownloaderCompletion = (UIImage?, Bool, SpiderError?)->()
 public typealias SpiderImageDownloadToken = SDWebImageDownloadToken
 
 /**
@@ -29,7 +29,7 @@ public class SpiderImageDownloader {
                                 completion: @escaping SpiderImageDownloaderCompletion) -> SpiderImageDownloadToken? {
         
         guard let url = url.url else {
-            completion(nil, false, URLError.invalid)
+            completion(nil, false, SpiderError.badUrl)
             return nil
         }
         
@@ -41,7 +41,7 @@ public class SpiderImageDownloader {
         let token = SDWebImageDownloader.shared().downloadImage(with: url, options: [], progress: nil) { (image, data, error, finished) in
             
             guard let image = image else {
-                completion(nil, false, DataError.invalidImageData)
+                completion(nil, false, SpiderError.other(description: "Invalid image data"))
                 return
             }
             

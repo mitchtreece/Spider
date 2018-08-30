@@ -7,9 +7,10 @@
 
 import Foundation
 
-public class Request {
+public class Request<T: Serializable> {
     
-    public typealias Completion = (Response)->()
+    // public typealias Completion = (Response)->()
+    public typealias Completion = (T?, SpiderErrorProtocol?)->()
     
     /**
      Representation of the various states of an HTTP request.
@@ -23,14 +24,14 @@ public class Request {
         case working
         
         /// State representing a request that has finished executing.
-        case finished(Response)
+        case finished(value: T?, error: SpiderErrorProtocol?)
         
     }
     
     /**
      The request's HTTP header.
      */
-    public internal(set) var header = Header()
+    public var header = Header()
     
     /**
      The request's HTTP body.
@@ -82,7 +83,7 @@ public class Request {
      */
     public internal(set) var state: State = .pending
     
-    public init(method: HTTPMethod, path: String, parameters: JSON?, auth: RequestAuth?) {
+    public init(method: HTTPMethod, path: String, parameters: JSON? = nil, auth: RequestAuth? = nil) {
         
         self.method = method
         self.path = path

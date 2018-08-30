@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260F8E6A2137028C006C66F3 /* SerializedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E692137028C006C66F3 /* SerializedRequestViewController.swift */; };
 		2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668C81E1FB6726D00199E77 /* MultipartViewController.swift */; };
 		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
 		266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		260F8E692137028C006C66F3 /* SerializedRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializedRequestViewController.swift; sourceTree = "<group>"; };
 		2668C81E1FB6726D00199E77 /* MultipartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartViewController.swift; sourceTree = "<group>"; };
 		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				267439B61EDBFA6700C5BD6E /* JSONViewController.swift */,
 				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
 				2668C81E1FB6726D00199E77 /* MultipartViewController.swift */,
+				260F8E692137028C006C66F3 /* SerializedRequestViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
 				266B4EBD1EDA7CD7000A39E5 /* Model */,
@@ -385,6 +388,7 @@
 				266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */,
+				260F8E6A2137028C006C66F3 /* SerializedRequestViewController.swift in Sources */,
 				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
 				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
 				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,

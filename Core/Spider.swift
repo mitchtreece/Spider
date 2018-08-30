@@ -13,8 +13,8 @@ import Foundation
     public var auth: RequestAuth?
     public var isDebugMode: Bool = false
     
-    private var builder: RequestBuilder!
-    private var session = URLSession.shared
+    internal var builder: RequestBuilder!
+    internal var session = URLSession.shared
     
     public static let web = Spider()
     
@@ -45,11 +45,10 @@ import Foundation
     
     // MARK: Request execution
     
-    public func perform(_ request: Request, completion: @escaping Request.Completion) {
+    public func perform<T: Serializable>(_ request: Request<T>, completion: @escaping Request<T>.Completion) {
         
         guard let urlRequest = builder.urlRequest(for: request) else {
-            let response = Response(request: request, urlResponse: nil, data: nil, error: Request.Error.bad(request))
-            return completion(response)
+            return completion(nil, SpiderError.badUrl)
         }
         
         _debugLogRequest(request)
@@ -58,8 +57,6 @@ import Foundation
         
         session.dataTask(with: urlRequest) { (data, res, err) in
             
-            var httpError: HTTPError?
-            
             if let err = err {
                 
                 var code: HTTPStatusCode = .none
@@ -67,35 +64,36 @@ import Foundation
                     code = HTTPStatusCode(rawValue: _code) ?? .none
                 }
                 
-                httpError = HTTPError(description: err.localizedDescription, statusCode: code, path: request.path)
+                return completion(nil, HTTPError(description: err.localizedDescription, statusCode: code, path: request.path))
                 
             }
             
-            let response = Response(request: request, urlResponse: res, data: data, error: httpError)
-            request.state = .finished(response)
-            completion(response)
+            guard let data = data else { return completion(nil, SpiderError.badData) }
+            guard let value = T.serialized(from: data) as? T else { return completion(nil, SpiderError.serialization) }
+            return completion(value, nil)
             
         }.resume()
         
     }
     
     @discardableResult
-    public func performRequest(withMethod method: HTTPMethod,
-                               path: String,
-                               parameters: JSON? = nil,
-                               auth: RequestAuth? = nil,
-                               completion: @escaping Request.Completion) -> Request {
+    public func performRequest<T: Serializable>(withMethod method: HTTPMethod,
+                                                path: String,
+                                                parameters: JSON? = nil,
+                                                auth: RequestAuth? = nil,
+                                                completion: @escaping Request<T>.Completion) -> Request<T> {
         
-        let request = Request(method: method, path: path, parameters: parameters, auth: auth)
+        let request = Request<T>(method: method, path: path, parameters: parameters, auth: auth)
         perform(request, completion: completion)
         return request
         
     }
     
-    public func get(_ path: String,
-                    queryParameters: JSON? = nil,
-                    auth: RequestAuth? = nil,
-                    completion: @escaping Request.Completion) -> Request {
+    @discardableResult
+    public func get<T: Serializable>(_ path: String,
+                                     queryParameters: JSON? = nil,
+                                     auth: RequestAuth? = nil,
+                                     completion: @escaping Request<T>.Completion) -> Request<T> {
         
         return performRequest(withMethod: .get,
                               path: path,
@@ -105,10 +103,11 @@ import Foundation
         
     }
     
-    public func post(_ path: String,
-                     parameters: JSON? = nil,
-                     auth: RequestAuth? = nil,
-                     completion: @escaping Request.Completion) -> Request {
+    @discardableResult
+    public func post<T: Serializable>(_ path: String,
+                                      parameters: JSON? = nil,
+                                      auth: RequestAuth? = nil,
+                                      completion: @escaping Request<T>.Completion) -> Request<T> {
         
         return performRequest(withMethod: .post,
                               path: path,
@@ -118,10 +117,11 @@ import Foundation
         
     }
     
-    public func put(_ path: String,
-                    parameters: JSON? = nil,
-                    auth: RequestAuth? = nil,
-                    completion: @escaping Request.Completion) -> Request {
+    @discardableResult
+    public func put<T: Serializable>(_ path: String,
+                                     parameters: JSON? = nil,
+                                     auth: RequestAuth? = nil,
+                                     completion: @escaping Request<T>.Completion) -> Request<T> {
         
         return performRequest(withMethod: .put,
                               path: path,
@@ -131,10 +131,11 @@ import Foundation
         
     }
     
-    public func patch(_ path: String,
-                      parameters: JSON? = nil,
-                      auth: RequestAuth? = nil,
-                      completion: @escaping Request.Completion) -> Request {
+    @discardableResult
+    public func patch<T: Serializable>(_ path: String,
+                                       parameters: JSON? = nil,
+                                       auth: RequestAuth? = nil,
+                                       completion: @escaping Request<T>.Completion) -> Request<T> {
         
         return performRequest(withMethod: .patch,
                               path: path,
@@ -144,10 +145,11 @@ import Foundation
         
     }
     
-    public func delete(_ path: String,
-                       parameters: JSON? = nil,
-                       auth: RequestAuth? = nil,
-                       completion: @escaping Request.Completion) -> Request {
+    @discardableResult
+    public func delete<T: Serializable>(_ path: String,
+                                        parameters: JSON? = nil,
+                                        auth: RequestAuth? = nil,
+                                        completion: @escaping Request<T>.Completion) -> Request<T> {
         
         return performRequest(withMethod: .delete,
                               path: path,
@@ -158,12 +160,12 @@ import Foundation
     }
     
     @discardableResult
-    public func multipart(method: HTTPMethod = .post, // TODO: Limit this to post || put
-                          path: String,
-                          parameters: JSON? = nil,
-                          files: [MultipartFile],
-                          auth: RequestAuth? = nil,
-                          completion: @escaping Request.Completion) -> Request {
+    public func multipart<T: Serializable>(method: HTTPMethod = .post,
+                                           path: String,
+                                           parameters: JSON? = nil,
+                                           files: [MultipartFile],
+                                           auth: RequestAuth? = nil,
+                                           completion: @escaping Request<T>.Completion) -> Request<T> {
         // TODO
         return Request(method: method, path: "", parameters: nil, auth: nil)
         
@@ -171,7 +173,7 @@ import Foundation
     
     // MARK: Debug
     
-    private func _debugLogRequest(_ request: Request) {
+    private func _debugLogRequest<T: Serializable>(_ request: Request<T>) {
         
         var string = "[\(request.method.value)] \(request.path)"
         if let params = request.parameters {

@@ -42,10 +42,10 @@ class MappingViewController: UIViewController {
         
         Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
             
-            guard let array = response.jsonArray(), response.err == nil else {
+            guard let array = response.jsonArray(), response.error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.err {
+                if let error = response.error {
                     message = error.localizedDescription
                 }
                 
@@ -54,7 +54,7 @@ class MappingViewController: UIViewController {
                 
             }
             
-            if let users = Weaver<User>(array).arrayMap() {
+            if let users = Weaver<User>(array).mapArray() {
                 
                 self.users = users
                 

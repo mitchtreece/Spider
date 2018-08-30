@@ -18,6 +18,7 @@ class RootViewController: UITableViewController {
         case json
         case mapping
         case multipart
+        case serializedRequests
         case uikit
         case promises
     }
@@ -25,7 +26,7 @@ class RootViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        Spider.web.isDebugModeEnabled = true
+        Spider.web.isDebugMode = true
         
     }
     
@@ -54,6 +55,7 @@ class RootViewController: UITableViewController {
         case .json: navigationController?.pushViewController(JSONViewController(), animated: true)
         case .mapping: navigationController?.pushViewController(MappingViewController(), animated: true)
         case .multipart: navigationController?.pushViewController(MultipartViewController(), animated: true)
+        case .serializedRequests: navigationController?.pushViewController(SerializedRequestViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
         case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
         }

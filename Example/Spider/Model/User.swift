@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Spider
 
 struct User: Codable {
     
@@ -16,5 +17,16 @@ struct User: Codable {
     var email: String
     var phone: String
     var website: String
+    
+}
+
+extension User: Serializable {
+    
+    static func serialized(from data: Data) -> SerializableType? {
+        
+        guard let json = JSON.serialized(from: data) as? JSON else { return nil }
+        return Weaver<User>(json).map()
+        
+    }
     
 }

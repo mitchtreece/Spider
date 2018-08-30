@@ -16,7 +16,7 @@ import Foundation
 //    }
 //}
 
-public class JSONRemoteError: ResponseRemoteErrorProvider {
+public class JSONRemoteError: RemoteErrorProvider {
     
     public var statusField = "status"
     public var errorField = "error"
@@ -27,13 +27,13 @@ public class JSONRemoteError: ResponseRemoteErrorProvider {
     public func error(from response: Response) -> ResponseRemoteError? {
         
         guard let json = response.data?.json, let status = json[statusField] as? String else {
-            return ResponseRemoteError(error: .bad(response))
+            return ResponseRemoteError(error: .badResponse(response))
         }
         
         guard status.uppercased() != "OK" else { return nil }
         
         guard let errorDict = json[errorField] as? JSON else {
-            return ResponseRemoteError(error: .bad(response))
+            return ResponseRemoteError(error: .badResponse(response))
         }
         
         var description = (errorDict[errorDescriptionField] as? String) ?? "JSON Response error"

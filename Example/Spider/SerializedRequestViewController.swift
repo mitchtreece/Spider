@@ -1,32 +1,31 @@
 //
-//  AuthViewController.swift
-//  Spider
+//  SerializedRequestViewController.swift
+//  Spider_Example
 //
-//  Created by Mitch Treece on 5/27/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Created by Mitch Treece on 8/29/18.
+//  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Spider
 
-class AuthViewController: LoadingViewController {
+class SerializedRequestViewController: LoadingViewController {
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = "Authorization"
+        self.title = "Serialized Requests"
         view.backgroundColor = UIColor.groupTableViewBackground
         
         self.startLoading()
         
-        let token = TokenRequestAuth(value: "24h21gg43y2gcc283423vhugvu")
-        
-        Spider.web.get("https://jsonplaceholder.typicode.com/users", auth: token) { (response) in
+        let req = SerializedRequest<User>(method: .get, path: "https://jsonplaceholder.typicode.com/users")
+        Spider.web.perform(request: req) { (user, error) in
             
-            guard let data = response.data, response.error == nil else {
+            guard let user = user, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 
@@ -36,7 +35,7 @@ class AuthViewController: LoadingViewController {
                 
             }
             
-            self.updateStatus("Fetched: \(data) of secret data")
+            self.updateStatus("Fetched: \(user)")
             self.stopLoading()
             
         }
