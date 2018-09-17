@@ -68,7 +68,7 @@ import Foundation
                 
             }
             
-            guard let data = data else { return completion(nil, SpiderError.badData) }
+            guard let data = data else { return completion(nil, SpiderError.badResponseData) }
             guard let value = T.serialized(from: data) as? T else { return completion(nil, SpiderError.serialization) }
             return completion(value, nil)
             
@@ -76,98 +76,102 @@ import Foundation
         
     }
     
-    @discardableResult
     public func performRequest<T: Serializable>(withMethod method: HTTPMethod,
                                                 path: String,
                                                 parameters: JSON? = nil,
+                                                as type: T.Type,
                                                 auth: RequestAuth? = nil,
-                                                completion: @escaping Request<T>.Completion) -> Request<T> {
+                                                completion: @escaping Request<T>.Completion) {
         
         let request = Request<T>(method: method, path: path, parameters: parameters, auth: auth)
         perform(request, completion: completion)
-        return request
         
     }
     
-    @discardableResult
     public func get<T: Serializable>(_ path: String,
                                      queryParameters: JSON? = nil,
+                                     as type: T.Type,
                                      auth: RequestAuth? = nil,
-                                     completion: @escaping Request<T>.Completion) -> Request<T> {
+                                     completion: @escaping Request<T>.Completion) {
         
-        return performRequest(withMethod: .get,
-                              path: path,
-                              parameters: queryParameters,
-                              auth: auth,
-                              completion: completion)
+        performRequest(withMethod: .get,
+                       path: path,
+                       parameters: queryParameters,
+                       as: type,
+                       auth: auth,
+                       completion: completion)
         
     }
     
-    @discardableResult
     public func post<T: Serializable>(_ path: String,
                                       parameters: JSON? = nil,
+                                      as type: T.Type,
                                       auth: RequestAuth? = nil,
-                                      completion: @escaping Request<T>.Completion) -> Request<T> {
+                                      completion: @escaping Request<T>.Completion) {
         
-        return performRequest(withMethod: .post,
-                              path: path,
-                              parameters: parameters,
-                              auth: auth,
-                              completion: completion)
+        performRequest(withMethod: .post,
+                       path: path,
+                       parameters: parameters,
+                       as: type,
+                       auth: auth,
+                       completion: completion)
         
     }
     
-    @discardableResult
     public func put<T: Serializable>(_ path: String,
                                      parameters: JSON? = nil,
+                                     as type: T.Type,
                                      auth: RequestAuth? = nil,
-                                     completion: @escaping Request<T>.Completion) -> Request<T> {
+                                     completion: @escaping Request<T>.Completion) {
         
-        return performRequest(withMethod: .put,
-                              path: path,
-                              parameters: parameters,
-                              auth: auth,
-                              completion: completion)
+        performRequest(withMethod: .put,
+                       path: path,
+                       parameters: parameters,
+                       as: type,
+                       auth: auth,
+                       completion: completion)
         
     }
     
-    @discardableResult
     public func patch<T: Serializable>(_ path: String,
                                        parameters: JSON? = nil,
+                                       as type: T.Type,
                                        auth: RequestAuth? = nil,
-                                       completion: @escaping Request<T>.Completion) -> Request<T> {
+                                       completion: @escaping Request<T>.Completion) {
         
-        return performRequest(withMethod: .patch,
-                              path: path,
-                              parameters: parameters,
-                              auth: auth,
-                              completion: completion)
+        performRequest(withMethod: .patch,
+                       path: path,
+                       parameters: parameters,
+                       as: type,
+                       auth: auth,
+                       completion: completion)
         
     }
     
-    @discardableResult
     public func delete<T: Serializable>(_ path: String,
                                         parameters: JSON? = nil,
+                                        as type: T.Type,
                                         auth: RequestAuth? = nil,
-                                        completion: @escaping Request<T>.Completion) -> Request<T> {
+                                        completion: @escaping Request<T>.Completion) {
         
-        return performRequest(withMethod: .delete,
-                              path: path,
-                              parameters: parameters,
-                              auth: auth,
-                              completion: completion)
+        performRequest(withMethod: .delete,
+                       path: path,
+                       parameters: parameters,
+                       as: type,
+                       auth: auth,
+                       completion: completion)
         
     }
     
-    @discardableResult
     public func multipart<T: Serializable>(method: HTTPMethod = .post,
                                            path: String,
                                            parameters: JSON? = nil,
                                            files: [MultipartFile],
+                                           as type: T.Type,
                                            auth: RequestAuth? = nil,
-                                           completion: @escaping Request<T>.Completion) -> Request<T> {
-        // TODO
-        return Request(method: method, path: "", parameters: nil, auth: nil)
+                                           completion: @escaping Request<T>.Completion) {
+        
+        // TODO: This
         
     }
     

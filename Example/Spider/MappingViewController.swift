@@ -40,12 +40,12 @@ class MappingViewController: UIViewController {
         users.removeAll()
         tableView.reloadData()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users", as: [User].self) { (users, error) in
             
-            guard let array = response.jsonArray(), response.error == nil else {
+            guard let users = users, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 
@@ -54,14 +54,10 @@ class MappingViewController: UIViewController {
                 
             }
             
-            if let users = Weaver<User>(array).mapArray() {
-                
-                self.users = users
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
+            self.users = users
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
             
         }

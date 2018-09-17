@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol RemoteErrorProvider {
-    func error(from response: Response) -> ResponseRemoteError?
-}
+//public protocol RemoteErrorProvider {
+//    func error(from response: Response) -> ResponseRemoteError?
+//}

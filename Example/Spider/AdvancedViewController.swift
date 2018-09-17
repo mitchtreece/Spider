@@ -19,16 +19,16 @@ class AdvancedViewController: LoadingViewController {
         
         self.startLoading()
         
-        let request = Request(method: .get, path: "https://jsonplaceholder.typicode.com/users", parameters: ["user_id": "12345"], auth: nil)
+        let request = Request<Data>(method: .get, path: "https://jsonplaceholder.typicode.com/users", parameters: ["user_id": "12345"], auth: nil)
         request.header.acceptTypes = [.text_plain, .text_json, .image_jpeg, .other("animal/cat")]
         request.header.set(value: "bar", forField: "foo")
 
-        Spider.web.perform(request) { (response) in
+        Spider.web.perform(request) { (data, error) in
             
-            guard let data = response.data, response.error == nil else {
+            guard let data = data, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 

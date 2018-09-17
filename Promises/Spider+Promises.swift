@@ -22,7 +22,7 @@ extension Spider {
             self.perform(request) { (value, error) in
                 
                 guard error == nil else { return seal.reject(error!) }
-                guard let value = value else { return seal.reject(SpiderError.badData) }
+                guard let value = value else { return seal.reject(SpiderError.badResponseData) }
                 seal.fulfill(value)
                 
             }
@@ -44,6 +44,7 @@ extension Spider {
      */
     public func get<T: Serializable>(_ path: String,
                                      parameters: JSON? = nil,
+                                     serializedTo type: T.Type,
                                      auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: .get, path: path, parameters: parameters, auth: auth)
@@ -73,6 +74,7 @@ extension Spider {
      */
     public func post<T: Serializable>(_ path: String,
                                       parameters: JSON? = nil,
+                                      serializedTo type: T.Type,
                                       auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: .post, path: path, parameters: parameters, auth: auth)
@@ -102,6 +104,7 @@ extension Spider {
      */
     public func put<T: Serializable>(_ path: String,
                                      parameters: JSON? = nil,
+                                     serializedTo type: T.Type,
                                      auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: .put, path: path, parameters: parameters, auth: auth)
@@ -131,6 +134,7 @@ extension Spider {
      */
     public func patch<T: Serializable>(_ path: String,
                                        parameters: JSON? = nil,
+                                       serializedTo type: T.Type,
                                        auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: .patch, path: path, parameters: parameters, auth: auth)
@@ -160,6 +164,7 @@ extension Spider {
      */
     public func delete<T: Serializable>(_ path: String,
                                         parameters: JSON? = nil,
+                                        serializedTo type: T.Type,
                                         auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: .delete, path: path, parameters: parameters, auth: auth)
@@ -191,6 +196,7 @@ extension Spider {
     public func requestWithMethod<T: Serializable>(_ method: HTTPMethod,
                                                    path: String,
                                                    parameters: JSON? = nil,
+                                                   serializedTo type: T.Type,
                                                    auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = Request<T>(method: method, path: path, parameters: parameters, auth: auth)
@@ -224,6 +230,7 @@ extension Spider {
                                            path: String,
                                            parameters: JSON? = nil,
                                            files: [MultipartFile],
+                                           serializedTo type: T.Type,
                                            auth: RequestAuth? = nil) -> Promise<T> {
         
         let request = MultipartRequest<T>(method: method, path: path, parameters: parameters, files: files, auth: auth)

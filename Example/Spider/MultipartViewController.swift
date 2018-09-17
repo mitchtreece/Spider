@@ -21,12 +21,12 @@ class MultipartViewController: LoadingViewController {
         
         let data = UIImagePNGRepresentation(#imageLiteral(resourceName: "logo"))!
         let file = MultipartFile(data: data, key: "image", name: "image.png", mimeType: .image_png)
-        let request = MultipartRequest(method: .post,
-                                       path: "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart",
-                                       parameters: nil,
-                                       files: [file],
-                                       auth: nil)
-        
+        let request = MultipartRequest<Data>(method: .post,
+                                             path: "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart",
+                                             parameters: nil,
+                                             files: [file],
+                                             auth: nil)
+                
         Spider.web.perform(request) { (response) in
             
             guard let data = response.data, response.error == nil else {

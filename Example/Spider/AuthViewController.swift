@@ -20,13 +20,13 @@ class AuthViewController: LoadingViewController {
         self.startLoading()
         
         let token = TokenRequestAuth(value: "24h21gg43y2gcc283423vhugvu")
-        
-        Spider.web.get("https://jsonplaceholder.typicode.com/users", auth: token) { (response) in
+                
+        Spider.web.get("https://jsonplaceholder.typicode.com/users", as: Data.self, auth: token) { (data, error) in
             
-            guard let data = response.data, response.error == nil else {
+            guard let data = data, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 

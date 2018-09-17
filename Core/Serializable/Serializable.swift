@@ -14,7 +14,7 @@ public protocol SerializableProtocol {
     static func serialized(from data: Data) -> SerializableType?
 }
 
-public typealias Serializable = (SerializableType & SerializableProtocol)
+public protocol Serializable: SerializableType, SerializableProtocol {}
 
 extension Data: Serializable {
     
@@ -32,7 +32,7 @@ extension String: Serializable {
     
 }
 
-extension Dictionary: Serializable where Key == String, Value == Any {
+extension Dictionary: SerializableType, SerializableProtocol where Key == String, Value == Any {
     
     public static func serialized(from data: Data) -> SerializableType? {
         return data.json
@@ -40,7 +40,7 @@ extension Dictionary: Serializable where Key == String, Value == Any {
     
 }
 
-extension Array: Serializable where Element: Serializable, Element: Codable {
+extension Array: SerializableType, SerializableProtocol where Element: Serializable, Element: Codable {
     
     public static func serialized(from data: Data) -> SerializableType? {
 

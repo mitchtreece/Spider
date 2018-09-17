@@ -20,12 +20,9 @@ class PromisesViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Guarantee<String> in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users", serializedTo: Data.self).then { (data) -> Guarantee<String> in
             
-            // When using Spider with promises, a response without data is handled as an error
-            // We can safely assume that `response.data` is non-nil here.
-            
-            return self.createStatusString(from: response.data!)
+            return self.createStatusString(from: data)
             
         }.done { (status) in
             

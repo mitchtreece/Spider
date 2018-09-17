@@ -30,12 +30,12 @@ class JSONViewController: LoadingViewController {
     
     private func loadUsers(completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users", as: [JSON].self) { (jsons, error) in
             
-            guard let array = response.jsonArray(), response.error == nil else {
+            guard let jsons = jsons, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 
@@ -45,7 +45,7 @@ class JSONViewController: LoadingViewController {
                 
             }
             
-            print("Loaded \(array.count) users")
+            print("Loaded \(jsons.count) users")
             completion()
             
         }
@@ -54,12 +54,12 @@ class JSONViewController: LoadingViewController {
     
     private func loadUserWithId(_ userId: String, completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)") { (response) in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)", as: JSON.self) { (json, error) in
             
-            guard let userDict = response.json(), response.error == nil else {
+            guard let json = json, error == nil else {
                 
                 var message = "There was an error fetching the data"
-                if let error = response.error {
+                if let error = error {
                     message = error.localizedDescription
                 }
                 
@@ -69,7 +69,7 @@ class JSONViewController: LoadingViewController {
                 
             }
             
-            print("Loaded user: \(userDict.jsonString() ?? "Unknown")")
+            print("Loaded user: \(json)")
             completion()
             
         }

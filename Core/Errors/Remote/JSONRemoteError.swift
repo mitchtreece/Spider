@@ -16,34 +16,34 @@ import Foundation
 //    }
 //}
 
-public class JSONRemoteError: RemoteErrorProvider {
-    
-    public var statusField = "status"
-    public var errorField = "error"
-    public var errorCodeField = "code"
-    public var errorNameField = "name"
-    public var errorDescriptionField = "description"
-    
-    public func error(from response: Response) -> ResponseRemoteError? {
-        
-        guard let json = response.data?.json, let status = json[statusField] as? String else {
-            return ResponseRemoteError(error: .badResponse(response))
-        }
-        
-        guard status.uppercased() != "OK" else { return nil }
-        
-        guard let errorDict = json[errorField] as? JSON else {
-            return ResponseRemoteError(error: .badResponse(response))
-        }
-        
-        var description = (errorDict[errorDescriptionField] as? String) ?? "JSON Response error"
-        
-        if response.statusCode != .none {
-            description = response.statusCode.name
-        }
-        
-        return ResponseRemoteError(description: description, response: response)
-        
-    }
-    
-}
+//public class JSONRemoteError: RemoteErrorProvider {
+//
+//    public var statusField = "status"
+//    public var errorField = "error"
+//    public var errorCodeField = "code"
+//    public var errorNameField = "name"
+//    public var errorDescriptionField = "description"
+//
+//    public func error(from response: Response) -> ResponseRemoteError? {
+//
+//        guard let json = response.data?.json, let status = json[statusField] as? String else {
+//            return ResponseRemoteError(error: .badResponse(response))
+//        }
+//
+//        guard status.uppercased() != "OK" else { return nil }
+//
+//        guard let errorDict = json[errorField] as? JSON else {
+//            return ResponseRemoteError(error: .badResponse(response))
+//        }
+//
+//        var description = (errorDict[errorDescriptionField] as? String) ?? "JSON Response error"
+//
+//        if response.statusCode != .none {
+//            description = response.statusCode.name
+//        }
+//
+//        return ResponseRemoteError(description: description, response: response)
+//
+//    }
+//
+//}

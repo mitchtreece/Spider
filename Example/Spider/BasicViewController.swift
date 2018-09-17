@@ -19,8 +19,7 @@ class BasicViewController: LoadingViewController {
         
         self.startLoading()
         
-        let req = SerializedRequest<Data>(method: .get, path: "https://jsonplaceholder.typicode.com/users")
-        Spider.web.perform(request: req) { (data, error) in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users", as: Data.self) { (data, error) in
 
             guard let data = data, error == nil else {
 
@@ -39,26 +38,6 @@ class BasicViewController: LoadingViewController {
             self.stopLoading()
 
         }
-        
-//        Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
-//
-//            guard let data = response.data, response.error == nil else {
-//
-//                var message = "There was an error fetching the data"
-//                if let error = response.error {
-//                    message = error.localizedDescription
-//                }
-//
-//                print(message)
-//                self.updateStatus(message)
-//                return
-//
-//            }
-//
-//            self.updateStatus("Fetched: \(data)")
-//            self.stopLoading()
-//
-//        }
         
     }
     

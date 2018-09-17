@@ -10,9 +10,9 @@ import Foundation
 public enum SpiderError: SpiderErrorProtocol {
     
     case badUrl
-    case badRequest(Request)
+    case badRequest
     case badResponse
-    case badData
+    case badResponseData
     case serialization
     case other(description: String)
     
@@ -20,9 +20,9 @@ public enum SpiderError: SpiderErrorProtocol {
         
         switch self {
         case .badUrl: return "Bad URL"
-        case .badRequest(let req): return "<\(req.path)>: Bad request"
+        case .badRequest: return "Bad request"
         case .badResponse: return "Bad response"
-        case .badData: return "Bad response data"
+        case .badResponseData: return "Bad response data"
         case .serialization: return "Serialization failure"
         case .other(let desc): return desc
         }
