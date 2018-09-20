@@ -27,7 +27,7 @@ class LoadingViewController: UIViewController {
             make.edges.equalTo(view).inset(14)
         }
         
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        spinner = UIActivityIndicatorView(style: .whiteLarge)
         spinner.color = UIColor.black
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
@@ -43,7 +43,7 @@ class LoadingViewController: UIViewController {
         isLoading = true
         
         DispatchQueue.main.async {
-            self.view.bringSubview(toFront: self.spinner)
+            self.view.bringSubviewToFront(self.spinner)
             self.spinner.startAnimating()
         }
         
