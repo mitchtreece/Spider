@@ -33,7 +33,7 @@ extension UIImage: ImageConvertible {
     
     public var imageData: Data? {
         
-        if let data = UIImagePNGRepresentation(self) {
+        if let data = self.pngData() {
             return data
         }
         

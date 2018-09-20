@@ -1,10 +1,10 @@
 PODS:
-  - PromiseKit/CorePromise (6.2.5)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
-  - SnapKit (4.0.0)
-  - Spider-Web (1.3.0):
+  - PromiseKit/CorePromise (6.4.0)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
+  - SnapKit (4.0.1)
+  - Spider-Web (1.4.0):
     - PromiseKit/CorePromise (~> 6.0)
     - SDWebImage (~> 4.0)
 
@@ -13,7 +13,7 @@ DEPENDENCIES:
   - Spider-Web (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - PromiseKit
     - SDWebImage
     - SnapKit
@@ -23,11 +23,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PromiseKit: a26828b0a8d5874960dfdb575b57a70790ec36f1
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Spider-Web: 3269464de6cb7ba8920b8c4005e10fc883d04fa8
+  PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  Spider-Web: c16ce952b7ef175c89b57a4b8efe30db1278b58d
 
 PODFILE CHECKSUM: ca09d59d0b36b8e715a5d310c6ecfa85a27e053d
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
