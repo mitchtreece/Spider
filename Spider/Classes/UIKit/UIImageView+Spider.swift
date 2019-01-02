@@ -56,14 +56,10 @@ public extension UISpider where T: UIImageView {
     
     /**
      Fetches an online _or_ cached image at a URL, then assigns it to the current `UIImageView`.
-     - Parameter url: The image's URL
-     - Parameter placeholder: An optional placeholder image to assign to the current `UIImageView` while the image is being fetched
-     - Parameter cacheImage: A boolean indicating wether or not the fetched image should be cached.
-     
-        Defaults to `true`.
-     - Parameter completion: The image download completion handler.
-     
-        If this is set, the caller is responsible for assigning the image to the `UIImageView`.
+     - Parameter url: The image URL.
+     - Parameter placeholder: An optional placeholder image to assign to the current `UIImageView` while the image is being fetched.
+     - Parameter cacheImage: A boolean indicating wether or not the fetched image should be cached; _defaults to `true`_.
+     - Parameter completion: The image download completion handler. If this is set, the caller is responsible for assigning the image to the `UIImageView`.
      */
     public func setImage(_ url: URLConvertible,
                          placeholder: UIImage? = nil,
@@ -82,9 +78,13 @@ public extension UISpider where T: UIImageView {
                 _completion(image, fromCache, error)
             }
             else {
+                
+                guard let image = image else { return }
+                
                 DispatchQueue.main.async {
                     imageView.image = image
                 }
+                
             }
             
         }
