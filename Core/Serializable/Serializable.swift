@@ -45,7 +45,7 @@ extension Array: SerializableType, SerializableProtocol where Element: Serializa
     public static func serialized(from data: Data) -> SerializableType? {
 
         guard let object = try? JSONSerialization.jsonObject(with: data), let array = object as? [JSON] else { return nil }
-        return array.compactMap({ Weaver<Element>($0).map() })
+        return array.compactMap { Weaver<Element>($0).map() }
         
     }
     
