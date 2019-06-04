@@ -47,7 +47,7 @@ public protocol SpiderAuth {
 
 public extension SpiderAuth {
     
-    public var rawValue: String {
+    var rawValue: String {
         return value
     }
     

@@ -38,7 +38,7 @@ public class SpiderImageDownloader {
             return nil
         }
         
-        let token = SDWebImageDownloader.shared().downloadImage(with: url, options: [], progress: nil) { (image, data, error, finished) in
+        let token = SDWebImageDownloader.shared.downloadImage(with: url, options: [], progress: nil) { (image, data, error, finished) in
             
             guard let image = image else {
                 completion(nil, false, SpiderError.invalidImageData)
@@ -65,9 +65,7 @@ public class SpiderImageDownloader {
      - Parameter token: The download token
      */
     public static func cancel(for token: SpiderImageDownloadToken) {
-        
-        SDWebImageDownloader.shared().cancel(token)
-        
+        token.cancel()
     }
     
 }

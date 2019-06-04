@@ -27,7 +27,7 @@ public class SpiderImageCache {
      */
     public static let shared = SpiderImageCache()
     
-    private let _cache = SDImageCache.shared()
+    private let _cache = SDImageCache.shared
     
     // TODO: Implement cache limits
     // var itemLimit: UInt

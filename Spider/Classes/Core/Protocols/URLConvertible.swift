@@ -32,7 +32,7 @@ public protocol URLConvertible {
 
 public extension URLConvertible {
     
-    public var urlQueryParameters: [String: String]? {
+    var urlQueryParameters: [String: String]? {
         
         var params = [String: String]()
         
