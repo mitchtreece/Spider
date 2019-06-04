@@ -14,7 +14,7 @@ public extension SpiderResponse {
      Serializes a response into `JSON`.
      - Returns: A `JSON` serialized object.
      */
-    public func json() -> JSON? {
+    func json() -> JSON? {
         
         return self.data?.json
         
@@ -24,7 +24,7 @@ public extension SpiderResponse {
      Serializes a response into a `JSON` array.
      - Returns: An array of `JSON` serialized objects.
      */
-    public func jsonArray() -> [JSON]? {
+    func jsonArray() -> [JSON]? {
         
         return self.data?.jsonArray
         

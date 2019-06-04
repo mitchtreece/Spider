@@ -3,7 +3,7 @@ use_frameworks!
 target 'Spider_Example' do
 
   pod 'Spider-Web', :path => '../'
-  pod 'SnapKit', '~> 4.0.0'
+  pod 'SnapKit', '~> 5.0'
 
   target 'Spider_Tests' do
     inherit! :search_paths

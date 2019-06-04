@@ -16,7 +16,7 @@ public extension UIImageView {
     /**
      The view's `UISpider` instance.
      */
-    public var web: UISpider<UIImageView> {
+    var web: UISpider<UIImageView> {
         
         get {
             
@@ -61,7 +61,7 @@ public extension UISpider where T: UIImageView {
      - Parameter cacheImage: A boolean indicating wether or not the fetched image should be cached; _defaults to `true`_.
      - Parameter completion: The image download completion handler. If this is set, the caller is responsible for assigning the image to the `UIImageView`.
      */
-    public func setImage(_ url: URLConvertible,
+    func setImage(_ url: URLConvertible,
                          placeholder: UIImage? = nil,
                          cacheImage: Bool = true,
                          completion: SpiderImageDownloaderCompletion? = nil) {
@@ -96,7 +96,7 @@ public extension UISpider where T: UIImageView {
     /**
      Cancels the current image download request.
      */
-    public func cancelCurrentImageLoad() {
+    func cancelCurrentImageLoad() {
         
         guard let imageView = self.view as? UIImageView else { return }
         guard let token = imageView.spdr_imageDownloadToken else { return }
