@@ -130,7 +130,7 @@ public class SpiderRequest {
     /**
      The base URL used when performing this request.
      */
-    internal(set) var baseUrl: URLConvertible?
+    var baseUrl: URLConvertible?
     
     /**
      The request's HTTP method.
