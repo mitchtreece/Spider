@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct HTTPError: SpiderErrorProtocol {
+public struct HTTPError: LocalizedError {
     
     public var description: String
     public var statusCode: HTTPStatusCode
