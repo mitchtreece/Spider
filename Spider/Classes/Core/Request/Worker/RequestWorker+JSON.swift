@@ -9,9 +9,9 @@ import Foundation
 
 public extension RequestWorker /* JSON */ {
     
-    func jsonResponse(_ completion: @escaping (Response<JSON>)->()) {
+    func json(_ completion: @escaping (Response<JSON>)->()) {
 
-        dataResponse { response in
+        data { response in
             
             let jsonResponse = response
                 .map { try $0.json() }
@@ -22,17 +22,22 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    func json(_ completion: @escaping (JSON?)->()) {
+    func jsonValue(_ completion: @escaping (JSON?, Error?)->()) {
         
-        jsonResponse { response in
-            completion(response.value)
+        json { response in
+            
+            completion(
+                response.value,
+                response.error
+            )
+            
         }
         
     }
     
-    func jsonArrayReponse(_ completion: @escaping (Response<[JSON]>)->()) {
+    func jsonArray(_ completion: @escaping (Response<[JSON]>)->()) {
         
-        dataResponse { response in
+        data { response in
             
             let jsonResponse = response
                 .map { try $0.jsonArray() }
@@ -43,10 +48,15 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    func jsonArray(_ completion: @escaping ([JSON]?)->()) {
+    func jsonArrayValue(_ completion: @escaping ([JSON]?, Error?)->()) {
         
-        jsonArrayReponse { response in
-            completion(response.value)
+        jsonArray { response in
+            
+            completion(
+                response.value,
+                response.error
+            )
+            
         }
         
     }

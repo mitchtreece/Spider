@@ -9,9 +9,9 @@ import Foundation
 
 public extension RequestWorker /* Decode */ {
 
-    func decodeResponse<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
+    func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
         
-        dataResponse { response in
+        data { response in
             
             completion(response.map { data in
                 try JSONDecoder().decode(T.self, from: data)
@@ -21,10 +21,15 @@ public extension RequestWorker /* Decode */ {
         
     }
     
-    func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (T?)->()) {
+    func decodeValue<T: Decodable>(_ type: T.Type, _ completion: @escaping (T?, Error?)->()) {
         
-        decodeResponse(type) { response in
-            completion(response.value)
+        decode(type) { response in
+            
+            completion(
+                response.value,
+                response.error
+            )
+            
         }
         
     }

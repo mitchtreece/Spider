@@ -39,7 +39,7 @@ public class RequestWorker {
         
     }
             
-    public func dataResponse(_ completion: @escaping (Response<Data>)->()) {
+    public func data(_ completion: @escaping (Response<Data>)->()) {
         
         if let error = self.error {
             return completion(Response<Data>(error: error))
@@ -81,12 +81,17 @@ public class RequestWorker {
         
     }
     
-    public func data(_ completion: @escaping (Data?)->()) {
-        
-        dataResponse { response in
-            completion(response.value)
+    public func dataValue(_ completion: @escaping (Data?, Error?)->()) {
+
+        data { response in
+            
+            completion(
+                response.value,
+                response.error
+            )
+            
         }
-        
+
     }
         
     private func _debugLogRequest() {
