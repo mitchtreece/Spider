@@ -15,35 +15,33 @@ class MultipartViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Multipart Requests"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
+                
+        let file = MultipartFile(
+            data: UIImagePNGRepresentation(UIImage(named: "logo")!)!,
+            key: "image",
+            name: "image.png",
+            mimeType: .image_png
+        )
+        
+        let request = MultipartRequest(
+            method: .post,
+            path: "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart",
+            parameters: nil,
+            files: [file],
+            authorization: nil
+        )
         
         self.startLoading()
         
-        let data = UIImagePNGRepresentation(#imageLiteral(resourceName: "logo"))!
-        let file = MultipartFile(data: data, key: "image", name: "image.png", mimeType: .image_png)
-        let request = MultipartRequest<Data>(method: .post,
-                                             path: "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart",
-                                             parameters: nil,
-                                             files: [file],
-                                             auth: nil)
-                
-        Spider.web.perform(request) { (response) in
+        Spider.web.perform(request).data { response in
             
-            guard let data = response.data, response.error == nil else {
-
-                var message = "There was an error fetching the data"
-                if let error = response.error {
-                    message = error.localizedDescription
-                }
-
-                print(message)
-                self.updateStatus(message)
-                return
-
-            }
-
-            self.updateStatus("Response: \(data)")
             self.stopLoading()
+            
+            switch response.result {
+            case .success(let data): self.updateStatus("Response: \(data)")
+            case .failure(let error): self.updateStatus(error.localizedDescription)
+            }
             
         }
         

@@ -15,9 +15,9 @@ internal class RequestBuilder {
         self.spider = spider
     }
     
-    internal func url<T: Serializable>(for request: Request<T>) -> URLConvertible {
+    internal func url(for request: Request) -> URLConvertible {
         
-        if let base = spider?.baseUrl, let baseString = base.urlString {
+        if let base = self.spider?.baseUrl, let baseString = base.urlString {
             return "\(baseString)\(request.path)"
         }
         
@@ -25,7 +25,7 @@ internal class RequestBuilder {
         
     }
     
-    internal func urlRequest<T: Serializable>(for request: Request<T>) -> URLRequest? {
+    internal func urlRequest(for request: Request) -> URLRequest? {
         
         // Request
         
@@ -58,13 +58,13 @@ internal class RequestBuilder {
         
         // Authorization
         
-        if let auth = request.auth {
+        if let auth = request.authorization {
             urlRequest.setValue(auth.value, forHTTPHeaderField: auth.field)
         }
-        else if let sharedAuth = spider?.auth {
+        else if let sharedAuth = spider?.authorization {
             
             urlRequest.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.field)
-            request.auth = sharedAuth
+            request.authorization = sharedAuth
             
         }
         

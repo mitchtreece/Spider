@@ -15,7 +15,7 @@ class JSONViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "JSON"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
         self.startLoading()
         
@@ -30,22 +30,13 @@ class JSONViewController: LoadingViewController {
     
     private func loadUsers(completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users", as: [JSON].self) { (jsons, error) in
-            
-            guard let jsons = jsons, error == nil else {
-                
-                var message = "There was an error fetching the data"
-                if let error = error {
-                    message = error.localizedDescription
-                }
-                
-                print(message)
-                self.updateStatus(message)
-                return
-                
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").jsonArray { response in
+                        
+            switch response.result {
+            case .success(let array): self.updateStatus("Fetched \(array.count) users")
+            case .failure(let error): self.updateStatus(error.localizedDescription)
             }
             
-            print("Loaded \(jsons.count) users")
             completion()
             
         }
@@ -54,22 +45,13 @@ class JSONViewController: LoadingViewController {
     
     private func loadUserWithId(_ userId: String, completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)", as: JSON.self) { (json, error) in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)").json { response in
             
-            guard let json = json, error == nil else {
-                
-                var message = "There was an error fetching the data"
-                if let error = error {
-                    message = error.localizedDescription
-                }
-                
-                print(message)
-                self.updateStatus(message)
-                return
-                
+            switch response.result {
+            case .success(let json): self.updateStatus("Fetched user: \(json)")
+            case .failure(let error): self.updateStatus(error.localizedDescription)
             }
             
-            print("Loaded user: \(json)")
             completion()
             
         }

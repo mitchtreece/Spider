@@ -10,7 +10,7 @@ import Foundation
 /**
  `MultipartRequest` represents a configurable HTTP multipart request.
  */
-public class MultipartRequest<T: Serializable>: Request<T> {
+public class MultipartRequest: Request {
     
     /**
      A `UUID` string boundary used to separate multipart file data.
@@ -32,11 +32,20 @@ public class MultipartRequest<T: Serializable>: Request<T> {
      - Parameter auth: An optional authorization type to use for this request.
      Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: HTTPMethod, path: String, parameters: JSON?, files: [MultipartFile], auth: RequestAuth? = nil) {
+    public init(method: HTTPMethod,
+                path: String,
+                parameters: JSON?,
+                files: [MultipartFile],
+                authorization: RequestAuth? = nil) {
         
         self.files = files
         
-        super.init(method: method, path: path, parameters: parameters, auth: auth)
+        super.init(
+            method: method,
+            path: path,
+            parameters: parameters,
+            authorization: authorization
+        )
         
         self.header.contentType = .multipart
         
@@ -46,7 +55,7 @@ public class MultipartRequest<T: Serializable>: Request<T> {
         
     }
     
-    internal func multipartBody() -> Request<T>.Body? {
+    internal func multipartBody() -> Request.Body? {
         
         guard let contentType = self.header.contentType, case .multipart = contentType else { return nil }
         

@@ -17,14 +17,3 @@ struct Photo: Codable {
     var thumbnailUrl: String
     
 }
-
-extension Photo: Serializable {
-    
-    static func serialized(from data: Data) -> SerializableType? {
-        
-        guard let json = JSON.serialized(from: data) as? JSON else { return nil }
-        return Weaver<Photo>(json).map()
-        
-    }
-    
-}

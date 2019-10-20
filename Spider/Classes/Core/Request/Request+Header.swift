@@ -1,5 +1,5 @@
 //
-//  Request+Body.swift
+//  Request+Header.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 8/22/18.
@@ -9,7 +9,7 @@ import Foundation
 
 public extension Request {
     
-    public struct Body {
+    struct Header {
         
         public enum ContentType {
             
@@ -21,7 +21,7 @@ public extension Request {
             case text_plain
             case image_jpeg
             case multipart
-            case other(String)
+            case custom(String)
             
             func value(for request: Request) -> String {
                 
@@ -38,17 +38,37 @@ public extension Request {
                     let boundary = (request as? MultipartRequest)?.boundary ?? UUID().uuidString
                     return "multipart/form-data; boundary=\(boundary)"
                     
-                case .other(let type): return type
+                case .custom(let type): return type
                 }
                 
             }
             
         }
         
-        public var data: Data?
+        /**
+         The type of content provided by the request.
+         */
+        public var contentType: ContentType?
         
-        internal init(data: Data?) {
-            self.data = data
+        /**
+         Array of acceptable content types supported by this request.
+         If none are provided, the request will accept _all_ content types.
+         */
+        public var acceptTypes: [ContentType]?
+        
+        internal var otherFields = [String: String]()
+        
+        /**
+         Sets the value of a given HTTP header field.
+         - Parameter value: The value to set
+         - Parameter field: The HTTP header field
+         */
+        public mutating func set(value: String, forField field: String) {
+            otherFields[field] = value
+        }
+        
+        internal init() {
+            //
         }
         
     }

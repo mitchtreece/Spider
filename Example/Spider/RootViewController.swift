@@ -25,7 +25,7 @@ class RootViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        Spider.web.isDebugMode = true
+        Spider.web.debugEnabled = true
         
     }
     

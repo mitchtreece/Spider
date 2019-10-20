@@ -9,7 +9,7 @@ import Foundation
 
 public extension HTTPStatusCode /* Name */ {
     
-    public var name: String {
+    var name: String {
         
         switch self {
         

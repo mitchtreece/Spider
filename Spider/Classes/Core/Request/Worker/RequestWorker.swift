@@ -1,0 +1,97 @@
+//
+//  RequestWorker.swift
+//  Spider-Web
+//
+//  Created by Mitch Treece on 10/20/19.
+//
+
+import Foundation
+
+public class RequestWorker {
+        
+    private let request: Request!
+    private let builder: RequestBuilder!
+    private let session: URLSession!
+    private let debugEnabled: Bool!
+    
+    private let error: Error?
+    
+    internal init(request: Request,
+                  builder: RequestBuilder,
+                  session: URLSession,
+                  debugEnabled: Bool) {
+        
+        self.request = request
+        self.builder = builder
+        self.session = session
+        self.debugEnabled = debugEnabled
+        self.error = nil
+        
+    }
+    
+    internal init(error: Error) {
+        
+        self.error = error
+        self.request = nil
+        self.builder = nil
+        self.session = nil
+        self.debugEnabled = nil
+        
+    }
+        
+    public func data(_ completion: @escaping (Response<Data>)->()) {
+        
+        if let error = self.error {
+            return completion(Response<Data>(error: error))
+        }
+        
+        guard let urlRequest = self.builder.urlRequest(for: request) else {
+            return completion(Response<Data>(error: SpiderError.badUrl))
+        }
+        
+        _debugLogRequest()
+        
+        request.state = .working
+        
+        self.session.dataTask(with: urlRequest) { (data, res, err) in
+            
+            if let err = err {
+                
+                var code: HTTPStatusCode = .none
+                
+                if let _code = (res as? HTTPURLResponse)?.statusCode {
+                    code = HTTPStatusCode(rawValue: _code) ?? .none
+                }
+
+                return completion(Response<Data>(error: HTTPError(
+                    description: err.localizedDescription,
+                    statusCode: code,
+                    path: self.request.path
+                )))
+                
+            }
+            
+            guard let data = data else {
+                return completion(Response<Data>(error: SpiderError.badResponseData))
+            }
+            
+            return completion(Response<Data>(value: data))
+            
+        }.resume()
+        
+    }
+        
+    private func _debugLogRequest() {
+        
+        guard self.debugEnabled else { return }
+        
+        var string = "[\(self.request.method.value)] \(self.request.path)"
+        if let params = self.request.parameters {
+            string += ", parameters: \(params.jsonString() ?? "some")"
+        }
+        
+        print("🌎 <Spider>: \(string)")
+        
+    }
+        
+}

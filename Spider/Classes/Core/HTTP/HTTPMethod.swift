@@ -14,13 +14,11 @@ public enum HTTPMethod {
     case put
     case patch
     case delete
-    
     case head
     case connect
     case options
     case trace
-    
-    case other(String)
+    case custom(String)
     
     public var value: String {
         
@@ -34,7 +32,7 @@ public enum HTTPMethod {
         case .connect: return "CONNECT"
         case .options: return "OPTIONS"
         case .trace: return "TRACE"
-        case .other(let method): return method.uppercased()
+        case .custom(let method): return method.uppercased()
         }
         
     }

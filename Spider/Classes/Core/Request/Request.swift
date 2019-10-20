@@ -7,11 +7,8 @@
 
 import Foundation
 
-public class Request<T: Serializable> {
-    
-    // public typealias Completion = (Response)->()
-    public typealias Completion = (T?, SpiderErrorProtocol?)->()
-    
+public class Request {
+        
     /**
      Representation of the various states of an HTTP request.
      */
@@ -24,7 +21,7 @@ public class Request<T: Serializable> {
         case working
         
         /// State representing a request that has finished executing.
-        case finished(value: T?, error: SpiderErrorProtocol?)
+        case finished
         
     }
     
@@ -53,7 +50,8 @@ public class Request<T: Serializable> {
     public var path: String = ""
     
     /**
-     An optional parameter object to be passed along in the request body.
+     An optional parameter object to be either passed along in the request body,
+     or encoded into query parameters.
      */
     public var parameters: JSON?
     
@@ -61,7 +59,7 @@ public class Request<T: Serializable> {
      An optional authorization type to use for this request.
      Setting this will _override_ Spider's global authorization type.
      */
-    public var auth: RequestAuth?
+    public var authorization: RequestAuth?
     
     /**
      The request's timeout interval in seconds; _defaults to 60_.
@@ -83,12 +81,15 @@ public class Request<T: Serializable> {
      */
     public internal(set) var state: State = .pending
     
-    public init(method: HTTPMethod, path: String, parameters: JSON? = nil, auth: RequestAuth? = nil) {
+    public init(method: HTTPMethod,
+                path: String,
+                parameters: JSON? = nil,
+                authorization: RequestAuth? = nil) {
         
         self.method = method
         self.path = path
         self.parameters = parameters
-        self.auth = auth
+        self.authorization = authorization
         
     }
     
@@ -97,5 +98,3 @@ public class Request<T: Serializable> {
     }
     
 }
-
-// TODO: Description
