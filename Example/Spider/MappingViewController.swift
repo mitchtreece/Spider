@@ -40,7 +40,7 @@ class MappingViewController: UIViewController {
     
     private func loadUsers() {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").decode([User].self) { response in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").decodeResponse([User].self) { response in
             
             switch response.result {
             case .success(let users):

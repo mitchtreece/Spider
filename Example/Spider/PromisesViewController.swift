@@ -20,8 +20,8 @@ class PromisesViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").data().then { response -> Guarantee<String> in
-            return self.createStatusString(from: response.value!)
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").data().then { data -> Guarantee<String> in
+            return self.createStatusString(from: data)
         }.done { status in
             self.updateStatus(status)
         }.catch { error in

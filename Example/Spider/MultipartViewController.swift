@@ -34,7 +34,7 @@ class MultipartViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.perform(request).data { response in
+        Spider.web.perform(request).dataResponse { response in
             
             self.stopLoading()
             

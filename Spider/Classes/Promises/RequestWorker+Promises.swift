@@ -8,13 +8,13 @@
 
 import PromiseKit
 
-extension RequestWorker /* Promises */ {
+public extension RequestWorker /* Promises */ {
 
-    public func data() -> Promise<Response<Data>> {
+    func dataResponse() -> Promise<Response<Data>> {
         
         return Promise<Response<Data>> { seal in
             
-            self.data() { response in
+            dataResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -27,11 +27,25 @@ extension RequestWorker /* Promises */ {
         
     }
     
-    public func json() -> Promise<Response<JSON>> {
+    func data() -> Promise<Data> {
+        
+        return Promise<Data> { seal in
+            
+            dataResponse().done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
+            }
+            
+        }
+        
+    }
+    
+    func jsonReponse() -> Promise<Response<JSON>> {
         
         return Promise<Response<JSON>> { seal in
             
-            self.json { response in
+            jsonResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -44,11 +58,25 @@ extension RequestWorker /* Promises */ {
         
     }
     
-    public func jsonArray() -> Promise<Response<[JSON]>> {
+    func json() -> Promise<JSON> {
+        
+        return Promise<JSON> { seal in
+            
+            jsonReponse().done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
+            }
+            
+        }
+        
+    }
+    
+    func jsonArrayResponse() -> Promise<Response<[JSON]>> {
         
         return Promise<Response<[JSON]>> { seal in
             
-            self.jsonArray { response in
+            jsonArrayReponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -61,17 +89,45 @@ extension RequestWorker /* Promises */ {
         
     }
     
-    public func decode<T: Decodable>(_ type: T.Type) -> Promise<Response<T>> {
+    func jsonArray() -> Promise<[JSON]> {
+        
+        return Promise<[JSON]> { seal in
+            
+            jsonArrayResponse().done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
+            }
+            
+        }
+        
+    }
+    
+    func decodeReponse<T: Decodable>(_ type: T.Type) -> Promise<Response<T>> {
         
         return Promise<Response<T>> { seal in
             
-            self.decode(type) { response in
+            decodeResponse(type) { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
                 case .failure(let error): seal.reject(error)
                 }
                 
+            }
+            
+        }
+        
+    }
+    
+    func decode<T: Decodable>(_ type: T.Type) -> Promise<T> {
+        
+        return Promise<T> { seal in
+            
+            decodeReponse(type).done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
             }
             
         }

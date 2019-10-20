@@ -19,7 +19,7 @@ class BasicViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").data { response in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").dataResponse { response in
             
             self.stopLoading()
             

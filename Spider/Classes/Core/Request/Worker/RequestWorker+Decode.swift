@@ -7,14 +7,24 @@
 
 import Foundation
 
-public extension RequestWorker /* Map */ {
+public extension RequestWorker /* Decode */ {
 
-    func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
+    func decodeResponse<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
         
-        self.data { dataResponse in
-            completion(dataResponse.map { data in
+        dataResponse { response in
+            
+            completion(response.map { data in
                 try JSONDecoder().decode(T.self, from: data)
             })
+            
+        }
+        
+    }
+    
+    func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (T?)->()) {
+        
+        decodeResponse(type) { response in
+            completion(response.value)
         }
         
     }

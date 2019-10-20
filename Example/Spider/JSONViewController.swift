@@ -30,7 +30,7 @@ class JSONViewController: LoadingViewController {
     
     private func loadUsers(completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").jsonArray { response in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users").jsonArrayReponse { response in
                         
             switch response.result {
             case .success(let array): self.updateStatus("Fetched \(array.count) users")
@@ -45,7 +45,7 @@ class JSONViewController: LoadingViewController {
     
     private func loadUserWithId(_ userId: String, completion: @escaping ()->()) {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)").json { response in
+        Spider.web.get("https://jsonplaceholder.typicode.com/users/\(userId)").jsonResponse { response in
             
             switch response.result {
             case .success(let json): self.updateStatus("Fetched user: \(json)")

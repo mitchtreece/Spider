@@ -38,8 +38,8 @@ public class RequestWorker {
         self.debugEnabled = nil
         
     }
-        
-    public func data(_ completion: @escaping (Response<Data>)->()) {
+            
+    public func dataResponse(_ completion: @escaping (Response<Data>)->()) {
         
         if let error = self.error {
             return completion(Response<Data>(error: error))
@@ -78,6 +78,14 @@ public class RequestWorker {
             return completion(Response<Data>(value: data))
             
         }.resume()
+        
+    }
+    
+    public func data(_ completion: @escaping (Data?)->()) {
+        
+        dataResponse { response in
+            completion(response.value)
+        }
         
     }
         

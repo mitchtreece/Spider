@@ -38,7 +38,7 @@ class AdvancedViewController: LoadingViewController {
             forField: "foo"
         )
         
-        Spider.web.perform(request).data { response in
+        Spider.web.perform(request).dataResponse { response in
             
             self.stopLoading()
             
