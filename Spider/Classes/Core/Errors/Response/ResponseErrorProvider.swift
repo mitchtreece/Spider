@@ -8,5 +8,8 @@
 import Foundation
 
 public protocol ResponseErrorProvider {
-    func error<T>(from response: Response<T>) -> Error?
+    
+    associatedtype T
+    func error(from response: Response<T>) -> ResponseError<T>?
+    
 }

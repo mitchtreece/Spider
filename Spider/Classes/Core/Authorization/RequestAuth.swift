@@ -11,15 +11,15 @@ public protocol RequestAuth {
     
     var prefix: String? { get }
     var field: String { get set }
-    var value: String { get }
+    var headerValue: String { get }
     var rawValue: String { get }
     
 }
 
 public extension RequestAuth {
     
-    public var rawValue: String {
-        return value
+    var rawValue: String {
+        return self.headerValue
     }
     
 }

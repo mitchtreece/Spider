@@ -9,12 +9,22 @@ import Foundation
 
 // Source: https://httpstatuses.com
 
+
+public extension HTTPStatusCode {
+    
+    static func from(response: URLResponse?) -> HTTPStatusCode? {
+        
+        if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+            return HTTPStatusCode(rawValue: statusCode)
+        }
+        
+        return nil
+        
+    }
+    
+}
+
 public enum HTTPStatusCode: Int {
-    
-    // MARK: None
-    
-    /// A client-side code representing the absence of an HTTP status code.
-    case none = 0
     
     // MARK: 100's - Informational
     

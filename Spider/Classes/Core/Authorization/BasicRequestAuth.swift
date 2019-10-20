@@ -15,20 +15,19 @@ public struct BasicRequestAuth: RequestAuth {
     public var prefix: String? = "Basic"
     public var field: String
     
-    public var value: String {
-        let encoded = Data("\(username):\(password)".utf8).base64EncodedString()
-        return (prefix != nil) ? "\(prefix!) \(encoded)" : "\(encoded)"
+    public var headerValue: String {
+        return (self.prefix != nil) ? "\(self.prefix!) \(self.rawValue)" : "\(self.rawValue)"
     }
     
     public var rawValue: String {
-        return Data("\(username):\(password)".utf8).base64EncodedString()
+        return Data("\(self.username):\(self.password)".utf8).base64EncodedString()
     }
     
-    public init(username: String, password: String, field: String? = nil) {
+    public init(username: String, password: String, field: String = "Authorization") {
         
         self.username = username
         self.password = password
-        self.field = field ?? "Authorization"
+        self.field = field
         
     }
 

@@ -12,20 +12,20 @@ public struct TokenRequestAuth: RequestAuth {
     public var prefix: String? = "Bearer"
     public var field: String
     
-    private var _value: String
+    private var tokenString: String
     
-    public var value: String {
-        return (prefix != nil) ? "\(prefix!) \(_value)" : _value
+    public var headerValue: String {
+        return (self.prefix != nil) ? "\(self.prefix!) \(self.rawValue)" : self.rawValue
     }
     
     public var rawValue: String {
-        return _value
+        return self.tokenString
     }
     
-    public init(field: String? = nil, value: String) {
+    public init(field: String = "Authorization", value: String) {
         
-        self._value = value
-        self.field = field ?? "Authorization"
+        self.field = field
+        self.tokenString = value
         
     }
     

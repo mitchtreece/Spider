@@ -59,11 +59,11 @@ internal class RequestBuilder {
         // Authorization
         
         if let auth = request.authorization {
-            urlRequest.setValue(auth.value, forHTTPHeaderField: auth.field)
+            urlRequest.setValue(auth.headerValue, forHTTPHeaderField: auth.field)
         }
         else if let sharedAuth = spider?.authorization {
             
-            urlRequest.setValue(sharedAuth.value, forHTTPHeaderField: sharedAuth.field)
+            urlRequest.setValue(sharedAuth.headerValue, forHTTPHeaderField: sharedAuth.field)
             request.authorization = sharedAuth
             
         }

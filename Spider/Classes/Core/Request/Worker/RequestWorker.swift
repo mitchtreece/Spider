@@ -42,40 +42,61 @@ public class RequestWorker {
     public func data(_ completion: @escaping (Response<Data>)->()) {
         
         if let error = self.error {
-            return completion(Response<Data>(error: error))
+            
+            return completion(Response<Data>(
+                request: self.request,
+                response: nil,
+                error: error
+            ))
+            
         }
         
         guard let urlRequest = self.builder.urlRequest(for: request) else {
-            return completion(Response<Data>(error: SpiderError.badUrl))
+            
+            return completion(Response<Data>(
+                request: self.request,
+                response: nil,
+                error: SpiderError.badUrl
+            ))
+            
         }
         
         _debugLogRequest()
         
-        request.state = .working
+        self.request.state = .working
         
         self.session.dataTask(with: urlRequest) { (data, res, err) in
             
+            self.request.state = .finished
+            
             if let err = err {
-                
-                var code: HTTPStatusCode = .none
-                
-                if let _code = (res as? HTTPURLResponse)?.statusCode {
-                    code = HTTPStatusCode(rawValue: _code) ?? .none
-                }
 
-                return completion(Response<Data>(error: HTTPError(
-                    description: err.localizedDescription,
-                    statusCode: code,
-                    path: self.request.path
-                )))
+                return completion(Response<Data>(
+                    request: self.request,
+                    response: res,
+                    error: HTTPError(
+                        description: err.localizedDescription,
+                        statusCode: HTTPStatusCode.from(response: res),
+                        path: self.request.path
+                    )))
                 
             }
             
             guard let data = data else {
-                return completion(Response<Data>(error: SpiderError.badResponseData))
+                
+                return completion(Response<Data>(
+                    request: self.request,
+                    response: res,
+                    error: SpiderError.badResponseData
+                ))
+                
             }
             
-            return completion(Response<Data>(value: data))
+            return completion(Response<Data>(
+                request: self.request,
+                response: res,
+                value: data
+            ))
             
         }.resume()
         

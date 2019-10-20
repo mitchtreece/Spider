@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum SpiderError: SpiderErrorProtocol {
+public enum SpiderError: LocalizedError {
     
     case badUrl
     case badRequest
@@ -19,7 +19,7 @@ public enum SpiderError: SpiderErrorProtocol {
     public var errorDescription: String? {
         
         switch self {
-        case .badUrl: return "Bad URL"
+        case .badUrl: return "Bad url"
         case .badRequest: return "Bad request"
         case .badResponse: return "Bad response"
         case .badResponseData: return "Bad response data"

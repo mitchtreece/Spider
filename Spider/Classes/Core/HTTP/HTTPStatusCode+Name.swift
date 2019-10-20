@@ -12,10 +12,6 @@ public extension HTTPStatusCode /* Name */ {
     var name: String {
         
         switch self {
-        
-        // MARK: None
-            
-        case .none: return "None"
             
         // MARK: 100's - Informational
             

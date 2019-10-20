@@ -10,10 +10,10 @@ import Foundation
 public struct HTTPError: LocalizedError {
     
     public var description: String
-    public var statusCode: HTTPStatusCode
+    public var statusCode: HTTPStatusCode?
     public var path: String
     
-    internal init(description: String, statusCode: HTTPStatusCode, path: String) {
+    internal init(description: String, statusCode: HTTPStatusCode?, path: String) {
         
         self.description = description
         self.statusCode = statusCode
@@ -22,7 +22,14 @@ public struct HTTPError: LocalizedError {
     }
     
     public var errorDescription: String? {
-        return "[\(statusCode.rawValue)] <\(path)>: \(description)"
+        
+        if let statusCode = self.statusCode {
+            return "[\(statusCode.rawValue)] <\(self.path)>: \(self.description)"
+        }
+        else {
+            return "<\(self.path)>: \(self.description)"
+        }
+        
     }
     
 }

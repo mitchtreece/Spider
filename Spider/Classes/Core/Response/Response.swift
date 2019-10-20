@@ -9,7 +9,13 @@ import Foundation
 
 public struct Response<T> {
     
+    public let request: Request
+    public let response: URLResponse?
     public let result: Result<T, Error>
+    
+    public var statusCode: HTTPStatusCode? {
+        return HTTPStatusCode.from(response: self.response)
+    }
     
     public var value: T? {
         
@@ -29,12 +35,20 @@ public struct Response<T> {
         
     }
     
-    internal init(value: T) {
+    internal init(request: Request, response: URLResponse?, value: T) {
+        
+        self.request = request
+        self.response = response
         self.result = Result<T, Error>.success(value)
+        
     }
     
-    internal init(error: Error) {
+    internal init(request: Request, response: URLResponse?, error: Error) {
+        
+        self.request = request
+        self.response = response
         self.result = Result<T, Error>.failure(error)
+        
     }
     
     internal func map<S>(_ transform: (T) throws -> S) -> Response<S> {
@@ -43,14 +57,32 @@ public struct Response<T> {
         case .success(let value):
             
             do {
-                let next = try transform(value)
-                return Response<S>(value: next)
+                        
+                return Response<S>(
+                    request: self.request,
+                    response: self.response,
+                    value: try transform(value)
+                )
+                
             }
             catch(let error) {
-                return Response<S>(error: error)
+                
+                return Response<S>(
+                    request: self.request,
+                    response: self.response,
+                    error: error
+                )
+                
             }
             
-        case .failure(let error): return Response<S>(error: error)
+        case .failure(let error):
+            
+            return Response<S>(
+                request: self.request,
+                response: self.response,
+                error: error
+            )
+            
         }
         
     }

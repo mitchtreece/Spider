@@ -11,6 +11,7 @@ public class Spider {
     
     public var baseUrl: URLConvertible?
     public var authorization: RequestAuth?
+    // TODO: Error providers: [ResponseErrorProvider]
     public var debugEnabled: Bool = false
     
     private var builder: RequestBuilder!
