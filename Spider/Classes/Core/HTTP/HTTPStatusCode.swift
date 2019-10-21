@@ -12,6 +12,10 @@ import Foundation
 
 public extension HTTPStatusCode {
     
+    var isOk: Bool {
+        return (200..<300).contains(self.rawValue)
+    }
+    
     static func from(response: URLResponse?) -> HTTPStatusCode? {
         
         if let statusCode = (response as? HTTPURLResponse)?.statusCode {

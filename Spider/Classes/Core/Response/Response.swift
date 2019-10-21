@@ -11,6 +11,7 @@ public struct Response<T> {
     
     public let request: Request
     public let response: URLResponse?
+    public let data: Data?
     public let result: Result<T, Error>
     
     public var statusCode: HTTPStatusCode? {
@@ -35,18 +36,26 @@ public struct Response<T> {
         
     }
     
-    internal init(request: Request, response: URLResponse?, value: T) {
+    internal init(request: Request,
+                  response: URLResponse?,
+                  data: Data?,
+                  value: T) {
         
         self.request = request
         self.response = response
+        self.data = data
         self.result = Result<T, Error>.success(value)
         
     }
     
-    internal init(request: Request, response: URLResponse?, error: Error) {
+    internal init(request: Request,
+                  response: URLResponse?,
+                  data: Data?,
+                  error: Error) {
         
         self.request = request
         self.response = response
+        self.data = data
         self.result = Result<T, Error>.failure(error)
         
     }
@@ -61,6 +70,7 @@ public struct Response<T> {
                 return Response<S>(
                     request: self.request,
                     response: self.response,
+                    data: self.data,
                     value: try transform(value)
                 )
                 
@@ -70,6 +80,7 @@ public struct Response<T> {
                 return Response<S>(
                     request: self.request,
                     response: self.response,
+                    data: self.data,
                     error: error
                 )
                 
@@ -80,6 +91,7 @@ public struct Response<T> {
             return Response<S>(
                 request: self.request,
                 response: self.response,
+                data: self.data,
                 error: error
             )
             
@@ -102,6 +114,7 @@ public struct Response<T> {
                 return Response<S>(
                     request: self.request,
                     response: self.response,
+                    data: self.data,
                     value: _nextValue
                 )
                 
@@ -111,6 +124,7 @@ public struct Response<T> {
                 return Response<S>(
                     request: self.request,
                     response: self.response,
+                    data: self.data,
                     error: error
                 )
                 
@@ -121,6 +135,7 @@ public struct Response<T> {
             return Response<S>(
                 request: self.request,
                 response: self.response,
+                data: self.data,
                 error: error
             )
             

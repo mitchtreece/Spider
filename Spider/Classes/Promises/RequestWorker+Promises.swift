@@ -6,7 +6,6 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
 import PromiseKit
 
 public extension RequestWorker /* Data */ {
@@ -147,9 +146,9 @@ public extension RequestWorker /* JSON */ {
 
 public extension RequestWorker /* UIImage */ {
     
-    func image() -> Promise<Response<UIImage>> {
+    func image() -> Promise<Response<Image>> {
         
-        return Promise<Response<UIImage>> { seal in
+        return Promise<Response<Image>> { seal in
             
             image { response in
                 
@@ -164,9 +163,9 @@ public extension RequestWorker /* UIImage */ {
         
     }
     
-    func imageValue() -> Promise<UIImage> {
+    func imageValue() -> Promise<Image> {
         
-        return Promise<UIImage> { seal in
+        return Promise<Image> { seal in
             
             image().done { response in
                 seal.fulfill(response.value!)

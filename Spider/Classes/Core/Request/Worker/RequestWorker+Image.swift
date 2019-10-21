@@ -1,25 +1,25 @@
 //
-//  RequestWorker+UIImage.swift
+//  RequestWorker+Image.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 10/20/19.
 //
 
-import UIKit
+import Foundation
 
 public extension RequestWorker /* UIImage */ {
     
-    func image(_ completion: @escaping (Response<UIImage>)->()) {
+    func image(_ completion: @escaping (Response<Image>)->()) {
         
         data { response in
             completion(response.compactMap {
-                UIImage(data: $0)
+                Image(data: $0)
             })
         }
         
     }
     
-    func imageValue(_ completion: @escaping (UIImage?, Error?)->()) {
+    func imageValue(_ completion: @escaping (Image?, Error?)->()) {
         
         image { completion(
             $0.value,

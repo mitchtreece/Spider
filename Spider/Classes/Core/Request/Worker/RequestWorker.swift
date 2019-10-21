@@ -46,6 +46,7 @@ public class RequestWorker {
             return completion(Response<Data>(
                 request: self.request,
                 response: nil,
+                data: nil,
                 error: error
             ))
             
@@ -56,6 +57,7 @@ public class RequestWorker {
             return completion(Response<Data>(
                 request: self.request,
                 response: nil,
+                data: nil,
                 error: SpiderError.badUrl
             ))
             
@@ -74,6 +76,7 @@ public class RequestWorker {
                 return completion(Response<Data>(
                     request: self.request,
                     response: res,
+                    data: data,
                     error: HTTPError(
                         description: err.localizedDescription,
                         statusCode: HTTPStatusCode.from(response: res),
@@ -87,6 +90,7 @@ public class RequestWorker {
                 return completion(Response<Data>(
                     request: self.request,
                     response: res,
+                    data: nil,
                     error: SpiderError.badResponseData
                 ))
                 
@@ -95,6 +99,7 @@ public class RequestWorker {
             return completion(Response<Data>(
                 request: self.request,
                 response: res,
+                data: data,
                 value: data
             ))
             
