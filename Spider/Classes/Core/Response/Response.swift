@@ -65,7 +65,48 @@ public struct Response<T> {
                 )
                 
             }
-            catch(let error) {
+            catch {
+                
+                return Response<S>(
+                    request: self.request,
+                    response: self.response,
+                    error: error
+                )
+                
+            }
+            
+        case .failure(let error):
+            
+            return Response<S>(
+                request: self.request,
+                response: self.response,
+                error: error
+            )
+            
+        }
+        
+    }
+    
+    internal func compactMap<S>(_ transform: (T) throws -> S?) -> Response<S> {
+        
+        switch self.result {
+        case .success(let value):
+            
+            do {
+                
+                let nextValue = try transform(value)
+                guard let _nextValue = nextValue else {
+                    throw SpiderError.compactMap
+                }
+                
+                return Response<S>(
+                    request: self.request,
+                    response: self.response,
+                    value: _nextValue
+                )
+                
+            }
+            catch {
                 
                 return Response<S>(
                     request: self.request,

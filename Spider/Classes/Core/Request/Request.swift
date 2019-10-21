@@ -26,19 +26,13 @@ public class Request {
     }
     
     /**
-     The request's HTTP header.
-     */
-    public var header = Header()
-    
-    /**
-     The request's HTTP body.
-     */
-    public internal(set) var body = Body(data: nil)
-    
-    /**
      The request's HTTP method; _defaults to GET_.
      */
-    public var method: HTTPMethod = .get
+    public var method: HTTPMethod = .get {
+        didSet {
+            createRequestBody()
+        }
+    }
     
     /**
      The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
@@ -48,18 +42,28 @@ public class Request {
      ```
      */
     public var path: String = ""
+    internal var queryEncodedPath: String?
     
     /**
      An optional parameter object to be either passed along in the request body,
      or encoded into query parameters.
      */
-    public var parameters: JSON?
+    public var parameters: JSON? {
+        didSet {
+            createRequestBody()
+        }
+    }
     
     /**
      An optional authorization type to use for this request.
      Setting this will _override_ Spider's global authorization type.
      */
     public var authorization: RequestAuth?
+    
+    /**
+     The request's HTTP header.
+     */
+    public var header = Header()
     
     /**
      The request's timeout interval in seconds; _defaults to 60_.
@@ -77,6 +81,11 @@ public class Request {
     public var allowsCellularAccess: Bool = true
     
     /**
+     The request's HTTP body.
+     */
+    public internal(set) var body: Body?
+    
+    /**
      The current state of the request.
      */
     public internal(set) var state: State = .pending
@@ -91,10 +100,47 @@ public class Request {
         self.parameters = parameters
         self.authorization = authorization
         
+        createRequestBody()
+                
     }
     
     private init() {
         //
+    }
+    
+    internal func createRequestBody() {
+        
+        guard let parameters = self.parameters, !parameters.isEmpty else {
+            
+            self.body = nil
+            self.queryEncodedPath = nil
+            return
+            
+        }
+        
+        switch self.method {
+        case .get:
+                        
+            guard var components = URLComponents(string: self.path) else { break }
+                        
+            components.queryItems = []
+            
+            for (key, value) in parameters {
+                
+                components.queryItems?.append(URLQueryItem(
+                    name: key,
+                    value: "\(value)"
+                ))
+                
+            }
+            
+            guard let path = components.string else { break }
+            self.queryEncodedPath = path
+            self.body = nil
+            
+        default: self.body = Body(data: try? parameters.jsonData())
+        }
+        
     }
     
 }

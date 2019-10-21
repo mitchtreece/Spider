@@ -12,25 +12,19 @@ public extension RequestWorker /* Decode */ {
     func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
         
         data { response in
-            
-            completion(response.map { data in
-                try JSONDecoder().decode(T.self, from: data)
+            completion(response.map {
+                try JSONDecoder().decode(T.self, from: $0)
             })
-            
         }
         
     }
     
     func decodeValue<T: Decodable>(_ type: T.Type, _ completion: @escaping (T?, Error?)->()) {
         
-        decode(type) { response in
-            
-            completion(
-                response.value,
-                response.error
-            )
-            
-        }
+        decode(type) { completion(
+            $0.value,
+            $0.error
+        )}
         
     }
     

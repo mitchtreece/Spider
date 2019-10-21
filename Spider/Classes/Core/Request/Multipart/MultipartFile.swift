@@ -23,7 +23,7 @@ public struct MultipartFile {
         case audio_mp3
         case audio_aac
         case video_mp4
-        case other(String)
+        case custom(String)
         
     }
     
@@ -36,7 +36,7 @@ public struct MultipartFile {
         case .audio_mp3: return "audio/mpeg3"
         case .audio_aac: return "audio/aac"
         case .video_mp4: return "video/mp4"
-        case .other(let type): return type
+        case .custom(let type): return type
         }
         
     }

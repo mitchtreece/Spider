@@ -11,8 +11,7 @@ public class Spider {
     
     public var baseUrl: URLConvertible?
     public var authorization: RequestAuth?
-    // TODO: Error providers: [ResponseErrorProvider]
-    public var debugEnabled: Bool = false
+    public var isDebugEnabled: Bool = false
     
     private var builder: RequestBuilder!
     private var session = URLSession.shared
@@ -51,7 +50,7 @@ public class Spider {
             request: request,
             builder: self.builder,
             session: self.session,
-            debugEnabled: self.debugEnabled
+            isDebugEnabled: self.isDebugEnabled
         )
         
     }

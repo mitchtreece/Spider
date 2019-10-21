@@ -14,6 +14,7 @@ public enum SpiderError: LocalizedError {
     case badResponse
     case badResponseData
     case serialization
+    case compactMap
     case other(description: String)
     
     public var errorDescription: String? {
@@ -24,6 +25,7 @@ public enum SpiderError: LocalizedError {
         case .badResponse: return "Bad response"
         case .badResponseData: return "Bad response data"
         case .serialization: return "Serialization failure"
+        case .compactMap: return "Compact map"
         case .other(let desc): return desc
         }
         

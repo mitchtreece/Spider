@@ -6,9 +6,10 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
+import UIKit
 import PromiseKit
 
-public extension RequestWorker /* Promises */ {
+public extension RequestWorker /* Data */ {
 
     func data() -> Promise<Response<Data>> {
         
@@ -40,6 +41,45 @@ public extension RequestWorker /* Promises */ {
         }
         
     }
+    
+}
+
+public extension RequestWorker /* String */ {
+    
+    func string(encoding: String.Encoding = .utf8) -> Promise<Response<String>> {
+        
+        return Promise<Response<String>> { seal in
+            
+            string(encoding: encoding) { response in
+                
+                switch response.result {
+                case .success: seal.fulfill(response)
+                case .failure(let error): seal.reject(error)
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func stringValue(encoding: String.Encoding = .utf8) -> Promise<String> {
+        
+        return Promise<String> { seal in
+            
+            string(encoding: encoding).done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
+            }
+            
+        }
+        
+    }
+    
+}
+
+public extension RequestWorker /* JSON */ {
     
     func json() -> Promise<Response<JSON>> {
         
@@ -102,6 +142,45 @@ public extension RequestWorker /* Promises */ {
         }
         
     }
+    
+}
+
+public extension RequestWorker /* UIImage */ {
+    
+    func image() -> Promise<Response<UIImage>> {
+        
+        return Promise<Response<UIImage>> { seal in
+            
+            image { response in
+                
+                switch response.result {
+                case .success: seal.fulfill(response)
+                case .failure(let error): seal.reject(error)
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func imageValue() -> Promise<UIImage> {
+        
+        return Promise<UIImage> { seal in
+            
+            image().done { response in
+                seal.fulfill(response.value!)
+            }.catch { error in
+                seal.reject(error)
+            }
+            
+        }
+        
+    }
+    
+}
+
+public extension RequestWorker /* Decode */ {
     
     func decode<T: Decodable>(_ type: T.Type) -> Promise<Response<T>> {
         

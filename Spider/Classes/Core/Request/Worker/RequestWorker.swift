@@ -12,19 +12,19 @@ public class RequestWorker {
     private let request: Request!
     private let builder: RequestBuilder!
     private let session: URLSession!
-    private let debugEnabled: Bool!
+    private let isDebugEnabled: Bool!
     
     private let error: Error?
     
     internal init(request: Request,
                   builder: RequestBuilder,
                   session: URLSession,
-                  debugEnabled: Bool) {
+                  isDebugEnabled: Bool) {
         
         self.request = request
         self.builder = builder
         self.session = session
-        self.debugEnabled = debugEnabled
+        self.isDebugEnabled = isDebugEnabled
         self.error = nil
         
     }
@@ -35,7 +35,7 @@ public class RequestWorker {
         self.request = nil
         self.builder = nil
         self.session = nil
-        self.debugEnabled = nil
+        self.isDebugEnabled = nil
         
     }
             
@@ -117,7 +117,7 @@ public class RequestWorker {
         
     private func _debugLogRequest() {
         
-        guard self.debugEnabled else { return }
+        guard self.isDebugEnabled else { return }
         
         var string = "[\(self.request.method.value)] \(self.request.path)"
         if let params = self.request.parameters {

@@ -17,23 +17,26 @@ internal class RequestBuilder {
     
     internal func url(for request: Request) -> URLConvertible {
         
-        if let base = self.spider?.baseUrl, let baseString = base.urlString {
-            return "\(baseString)\(request.path)"
+        let path = request.queryEncodedPath ?? request.path
+        
+        if let base = self.spider?.baseUrl,
+            let baseString = base.urlString {
+            return "\(baseString)\(path)"
         }
         
-        return request.path
+        return path
         
     }
     
     internal func urlRequest(for request: Request) -> URLRequest? {
         
-        // Request
-        
         guard let url = url(for: request).url else { return nil }
+        
+        // Request
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.value
-        urlRequest.httpBody = request.body.data
+        urlRequest.httpBody = request.body?.data
         urlRequest.timeoutInterval = request.timeout
         urlRequest.cachePolicy = request.cachePolicy
         urlRequest.allowsCellularAccess = request.allowsCellularAccess

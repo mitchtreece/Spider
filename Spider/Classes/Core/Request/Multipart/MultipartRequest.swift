@@ -12,6 +12,22 @@ import Foundation
  */
 public class MultipartRequest: Request {
     
+    public enum Method {
+        
+        case post
+        case put
+        
+        internal var httpMethod: HTTPMethod {
+            
+            switch self {
+            case .post: return .post
+            case .put: return .put
+            }
+            
+        }
+        
+    }
+    
     /**
      A `UUID` string boundary used to separate multipart file data.
      */
@@ -21,7 +37,7 @@ public class MultipartRequest: Request {
     
     /**
      Initializes a new `MultipartRequest` with a method, path, parameters, authorization type, & files.
-     - Parameter method: The HTTP method to use for the request
+     - Parameter method: The HTTP method to use for the request.
      - Parameter path: The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
      ```
      "/users/12345"
@@ -32,7 +48,7 @@ public class MultipartRequest: Request {
      - Parameter auth: An optional authorization type to use for this request.
      Setting this will _override_ Spider's global authorization type.
      */
-    public init(method: HTTPMethod,
+    public init(method: Method,
                 path: String,
                 parameters: JSON?,
                 files: [MultipartFile],
@@ -41,28 +57,37 @@ public class MultipartRequest: Request {
         self.files = files
         
         super.init(
-            method: method,
+            method: method.httpMethod,
             path: path,
             parameters: parameters,
             authorization: authorization
         )
         
         self.header.contentType = .multipart
-        
-        if let _body = self.multipartBody() {
-            self.body = _body // Replaces existing body
-        }
+        createRequestBody()
         
     }
     
-    internal func multipartBody() -> Request.Body? {
+    override func createRequestBody() {
         
-        guard let contentType = self.header.contentType, case .multipart = contentType else { return nil }
+        guard let multipartBody = self.multipartBody() else {
+            self.body = nil
+            return
+        }
+        
+        self.body = multipartBody
+        
+    }
+    
+    private func multipartBody() -> Request.Body? {
+        
+        guard let contentType = self.header.contentType,
+            case .multipart = contentType else { return nil }
         
         var data = Data()
         let boundaryPrefix = "--\(boundary)\r\n"
         
-        if let parameters = parameters {
+        if let parameters = self.parameters {
             
             for (key, value) in parameters {
                 
@@ -74,7 +99,7 @@ public class MultipartRequest: Request {
             
         }
         
-        files.forEach { (file) in
+        self.files.forEach { file in
             
             let mime = MultipartFile.string(for: file.mimeType)
             data.append(string: boundaryPrefix)
@@ -85,7 +110,7 @@ public class MultipartRequest: Request {
             
         }
         
-        data.append(string: "--\(boundary)--\r\n")
+        data.append(string: "--\(self.boundary)--\r\n")
         return Request.Body(data: data)
         
     }

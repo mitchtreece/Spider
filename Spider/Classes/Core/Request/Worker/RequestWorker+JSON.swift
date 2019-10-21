@@ -12,52 +12,38 @@ public extension RequestWorker /* JSON */ {
     func json(_ completion: @escaping (Response<JSON>)->()) {
 
         data { response in
-            
-            let jsonResponse = response
-                .map { try $0.json() }
-            
-            completion(jsonResponse)
-            
+            completion(response.map {
+                try $0.json()
+            })
         }
         
     }
     
     func jsonValue(_ completion: @escaping (JSON?, Error?)->()) {
         
-        json { response in
-            
-            completion(
-                response.value,
-                response.error
-            )
-            
-        }
+        json { completion(
+            $0.value,
+            $0.error
+        )}
         
     }
     
     func jsonArray(_ completion: @escaping (Response<[JSON]>)->()) {
         
         data { response in
-            
-            let jsonResponse = response
-                .map { try $0.jsonArray() }
-            
-            completion(jsonResponse)
-            
+            completion(response.map {
+                try $0.jsonArray()
+            })
         }
         
     }
     
     func jsonArrayValue(_ completion: @escaping ([JSON]?, Error?)->()) {
         
-        jsonArray { response in
-            
-            completion(
-                response.value,
-                response.error
-            )
-            
-        }
+        jsonArray { completion(
+            $0.value,
+            $0.error
+        )}
         
     }
     
