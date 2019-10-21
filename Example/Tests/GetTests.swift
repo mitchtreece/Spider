@@ -1,15 +1,20 @@
+//
+//  GetTests.swift
+//  Spider_Tests
+//
+//  Created by Mitch Treece on 10/20/19.
+//  Copyright © 2019 CocoaPods. All rights reserved.
+//
+
 import XCTest
 @testable import Spider
 
 class GetTests: XCTestCase {
     
-    private var spider: Spider!
+    private var spider = Spider()
     
     override func setUp() {
-        
         super.setUp()
-        self.spider = Spider.web
-        
     }
     
     override func tearDown() {
@@ -22,7 +27,7 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var data: Data?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/users/1").data { response in
+        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").data { response in
             
             status = response.statusCode
             data = response.value
@@ -43,7 +48,7 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var string: String?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/users/1").string { response in
+        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").string { response in
             
             status = response.statusCode
             string = response.value
@@ -64,7 +69,7 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var json: JSON?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/users/1").json { response in
+        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").json { response in
             
             status = response.statusCode
             json = response.value
@@ -81,11 +86,11 @@ class GetTests: XCTestCase {
     
     func testGetJSONArray() {
         
-        let exp = expectation(description: "HTTP status code is OK, JSON array is returned, & array isn't empty")
+        let exp = expectation(description: "HTTP status code is OK & JSON array is returned")
         var status: HTTPStatusCode?
         var array: [JSON]?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/users").jsonArray { response in
+        self.spider.get("https://jsonplaceholder.typicode.com/posts").jsonArray { response in
             
             status = response.statusCode
             array = response.value
@@ -97,7 +102,6 @@ class GetTests: XCTestCase {
         XCTAssertNotNil(status)
         XCTAssertTrue(status!.isOk)
         XCTAssertNotNil(array)
-        XCTAssertTrue(!(array!.isEmpty))
         
     }
     
@@ -124,14 +128,14 @@ class GetTests: XCTestCase {
     
     func testGetJSONAndDecode() {
         
-        let exp = expectation(description: "HTTP status code is OK & user is decoded")
+        let exp = expectation(description: "HTTP status code is OK & post is decoded")
         var status: HTTPStatusCode?
-        var user: User?
+        var post: Post?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/users/1").decode(User.self) { response in
+        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").decode(Post.self) { response in
             
             status = response.statusCode
-            user = response.value
+            post = response.value
             exp.fulfill()
             
         }
@@ -139,7 +143,7 @@ class GetTests: XCTestCase {
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
         XCTAssertTrue(status!.isOk)
-        XCTAssertNotNil(user)
+        XCTAssertNotNil(post)
         
     }
     

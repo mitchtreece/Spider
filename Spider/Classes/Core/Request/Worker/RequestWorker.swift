@@ -9,12 +9,12 @@ import Foundation
 
 public class RequestWorker {
         
-    private let request: Request!
-    private let builder: RequestBuilder!
-    private let session: URLSession!
-    private let isDebugEnabled: Bool!
+    private let request: Request
+    private let builder: RequestBuilder
+    private let session: URLSession
+    private let isDebugEnabled: Bool
     
-    private let error: Error?
+    // private let error: Error?
     
     internal init(request: Request,
                   builder: RequestBuilder,
@@ -25,32 +25,21 @@ public class RequestWorker {
         self.builder = builder
         self.session = session
         self.isDebugEnabled = isDebugEnabled
-        self.error = nil
-        
-    }
-    
-    internal init(error: Error) {
-        
-        self.error = error
-        self.request = nil
-        self.builder = nil
-        self.session = nil
-        self.isDebugEnabled = nil
         
     }
             
     public func data(_ completion: @escaping (Response<Data>)->()) {
         
-        if let error = self.error {
-            
-            return completion(Response<Data>(
-                request: self.request,
-                response: nil,
-                data: nil,
-                error: error
-            ))
-            
-        }
+//        if let error = self.error {
+//
+//            return completion(Response<Data>(
+//                request: self.request,
+//                response: nil,
+//                data: nil,
+//                error: error
+//            ))
+//
+//        }
         
         guard let urlRequest = self.builder.urlRequest(for: request) else {
             

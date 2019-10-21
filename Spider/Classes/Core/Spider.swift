@@ -127,7 +127,7 @@ public class Spider {
                           authorization: RequestAuth? = nil) -> RequestWorker {
         
         // TODO: This
-        return RequestWorker(error: SpiderError.badUrl)
+        fatalError("Not implemented")
         
     }
     

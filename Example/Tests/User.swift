@@ -6,7 +6,7 @@
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import Spider
 
 struct User: Codable {
     
