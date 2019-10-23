@@ -18,7 +18,7 @@ class MultipartViewController: LoadingViewController {
         self.view.backgroundColor = UIColor.groupTableViewBackground
                 
         let file = MultipartFile(
-            data: UIImagePNGRepresentation(UIImage(named: "logo")!)!,
+            data: UIImage(named: "logo")!.pngData()!,
             key: "image",
             name: "image.png",
             mimeType: .image_png
