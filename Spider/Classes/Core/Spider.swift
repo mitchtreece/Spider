@@ -9,8 +9,9 @@ import Foundation
 
 public class Spider {
     
-    public var baseUrl: URLConvertible?
+    public var baseUrl: URLRepresentable?
     public var authorization: RequestAuth?
+    public var errorCatchers: [ResponseErrorCatcher] = [TestCatcher()]
     public var isDebugEnabled: Bool = false
     
     private var builder: RequestBuilder!
@@ -19,7 +20,7 @@ public class Spider {
     public static let web: Spider = Spider()
     
     @discardableResult
-    public static func web(baseUrl: URLConvertible?, authorization: RequestAuth?) -> Spider {
+    public static func web(baseUrl: URLRepresentable?, authorization: RequestAuth?) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
@@ -28,7 +29,7 @@ public class Spider {
         
     }
     
-    public convenience init(baseUrl: URLConvertible?, authorization: RequestAuth?) {
+    public convenience init(baseUrl: URLRepresentable?, authorization: RequestAuth?) {
         
         self.init()
         self.baseUrl = baseUrl
@@ -50,6 +51,7 @@ public class Spider {
             request: request,
             builder: self.builder,
             session: self.session,
+            errorCatchers: self.errorCatchers,
             isDebugEnabled: self.isDebugEnabled
         )
         

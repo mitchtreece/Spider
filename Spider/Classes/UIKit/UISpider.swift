@@ -6,13 +6,13 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /**
- `UISpider` is a proxy between `Spider` and `UIKit`.
+ `UISpider` is a proxy between `Spider` & the current platform's UI layer.
  */
 public class UISpider<T> {
     
-    internal weak var view: UIView!
+    internal weak var view: View!
     
 }

@@ -7,9 +7,9 @@
 
 import Foundation
 
-public extension Data {
+internal extension Data /* Append */ {
     
-    public mutating func append(string: String) {
+    mutating func append(string: String) {
         
         if let data = string.data(using: .utf8) {
             self.append(data)

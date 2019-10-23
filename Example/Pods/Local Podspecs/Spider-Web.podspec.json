@@ -20,15 +20,15 @@
   "platforms": {
     "ios": "10.0"
   },
-  "swift_versions": "4.1",
+  "swift_versions": "5",
   "source_files": "Spider/Classes/**/*",
   "dependencies": {
-    "SDWebImage": [
-      "~> 4.0"
+    "Kingfisher": [
+      "~> 5.8.0"
     ],
     "PromiseKit/CorePromise": [
       "~> 6.0"
     ]
   },
-  "swift_version": "4.1"
+  "swift_version": "5"
 }

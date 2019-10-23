@@ -7,39 +7,65 @@
 
 import Foundation
 
-public class RequestWorker {
+public class RequestWorker: Cancellable {
+    
+    /// Representation of the various states of a request worker.
+    public enum State {
         
+        /// State representing a worker that has not started yet.
+        case pending
+        
+        /// State representing a worker that is currently executing.
+        case working
+        
+        /// State representing a worker that has finished executing.
+        case finished
+        
+        /// State representing a worker that has been cancelled.
+        case cancelled
+        
+    }
+    
     private let request: Request
     private let builder: RequestBuilder
     private let session: URLSession
+    private let errorCatchers: [ResponseErrorCatcher]
     private let isDebugEnabled: Bool
+        
+    public private(set) var state: State = .pending
+    public private(set) var isCancelled: Bool = false
     
-    // private let error: Error?
+    private var task: URLSessionDataTask?
     
     internal init(request: Request,
                   builder: RequestBuilder,
                   session: URLSession,
+                  errorCatchers: [ResponseErrorCatcher],
                   isDebugEnabled: Bool) {
         
         self.request = request
         self.builder = builder
         self.session = session
+        self.errorCatchers = errorCatchers
         self.isDebugEnabled = isDebugEnabled
         
     }
             
     public func data(_ completion: @escaping (Response<Data>)->()) {
         
-//        if let error = self.error {
-//
-//            return completion(Response<Data>(
-//                request: self.request,
-//                response: nil,
-//                data: nil,
-//                error: error
-//            ))
-//
-//        }
+        guard !self.isCancelled else {
+            
+            self.state = .cancelled
+            self.request.state = .cancelled
+            
+            return completion(Response<Data>(
+                request: self.request,
+                response: nil,
+                data: nil,
+                error: SpiderError.cancelled
+            ))
+            
+        }
         
         guard let urlRequest = self.builder.urlRequest(for: request) else {
             
@@ -51,14 +77,20 @@ public class RequestWorker {
             ))
             
         }
+                
+        self.state = .working
+        self.request.state = .working
         
         _debugLogRequest()
         
-        self.request.state = .working
-        
-        self.session.dataTask(with: urlRequest) { (data, res, err) in
+        self.task = self.session.dataTask(with: urlRequest) { (data, res, err) in
             
+            guard !self.isCancelled else { return }
+            
+            self.state = .finished
             self.request.state = .finished
+            
+            // HTTP error?
             
             if let err = err {
 
@@ -74,6 +106,8 @@ public class RequestWorker {
                 
             }
             
+            // Response data?
+            
             guard let data = data else {
                 
                 return completion(Response<Data>(
@@ -85,14 +119,37 @@ public class RequestWorker {
                 
             }
             
-            return completion(Response<Data>(
+            // Error catchers
+            
+            let response = Response<Data>(
                 request: self.request,
                 response: res,
                 data: data,
                 value: data
-            ))
+            )
             
-        }.resume()
+            for catcher in self.errorCatchers {
+            
+                if let responseError = catcher.catch(response) {
+                    
+                    return completion(Response<Data>(
+                        request: self.request,
+                        response: res,
+                        data: data,
+                        error: responseError
+                    ))
+                    
+                }
+                
+            }
+            
+            // Done
+            
+            return completion(response)
+            
+        }
+        
+        self.task!.resume()
         
     }
     
@@ -108,6 +165,16 @@ public class RequestWorker {
         }
 
     }
+    
+    public func cancel() {
+        
+        self.state = .cancelled
+        self.request.state = .cancelled
+        self.task?.cancel()
+        
+    }
+    
+    // MARK: Private
         
     private func _debugLogRequest() {
         
@@ -115,7 +182,7 @@ public class RequestWorker {
         
         var string = "[\(self.request.method.value)] \(self.request.path)"
         if let params = self.request.parameters {
-            string += ", parameters: \(params.jsonString() ?? "some")"
+            string += ", parameters: \(params.formattedJSONString ?? "some")"
         }
         
         print("🌎 <Spider>: \(string)")

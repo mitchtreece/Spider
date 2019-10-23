@@ -23,6 +23,9 @@ public class Request {
         /// State representing a request that has finished executing.
         case finished
         
+        /// State representing a request that has been cancelled.
+        case cancelled
+        
     }
     
     /**

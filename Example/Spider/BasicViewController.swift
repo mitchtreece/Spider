@@ -25,7 +25,7 @@ class BasicViewController: LoadingViewController {
             
             switch response.result {
             case .success(let data): self.updateStatus("Fetched: \(data)")
-            case .failure(let error): self.updateStatus(error.localizedDescription)
+            case .failure(let error): self.updateStatus("Error: \(error.localizedDescription)")
             }
             
         }

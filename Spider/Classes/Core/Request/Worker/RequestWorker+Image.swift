@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension RequestWorker /* UIImage */ {
+public extension RequestWorker /* Image */ {
     
     func image(_ completion: @escaping (Response<Image>)->()) {
         

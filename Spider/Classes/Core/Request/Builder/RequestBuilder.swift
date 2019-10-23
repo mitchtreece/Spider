@@ -15,7 +15,7 @@ internal class RequestBuilder {
         self.spider = spider
     }
     
-    internal func url(for request: Request) -> URLConvertible {
+    internal func url(for request: Request) -> URLRepresentable {
         
         let path = request.queryEncodedPath ?? request.path
         

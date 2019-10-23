@@ -7,6 +7,18 @@
 
 import Foundation
 
+public protocol ResponseErrorCatcher {
+    func `catch`(_ response: Response<Data>) -> ResponseError?
+}
+
+struct TestCatcher: ResponseErrorCatcher {
+    
+    func `catch`(_ response: Response<Data>) -> ResponseError? {
+        return ResponseError(response: response, description: "Nope")
+    }
+    
+}
+
 //public protocol ResponseErrorCatcher {
 //
 //    associatedtype T

@@ -11,6 +11,7 @@ public struct Response<T> {
     
     public let request: Request
     public let response: URLResponse?
+    
     public let data: Data?
     public let result: Result<T, Error>
     
@@ -141,6 +142,51 @@ public struct Response<T> {
             
         }
         
+    }
+    
+}
+
+extension Response: CustomStringConvertible, CustomDebugStringConvertible {
+    
+    public var description: String {
+        
+        var string = "Response<\(T.self)> {\n"
+        
+        // Path
+        
+        let path = self.response?.url?.absoluteString ?? self.request.path
+        string += "\tpath: \(path)\n"
+        
+        // Status Code
+        
+        if let statusCode = self.statusCode {
+            string += "\tstatus: \(statusCode.rawValue) - \(statusCode.name)\n"
+        }
+        
+        // Result
+        
+        switch self.result {
+        case .success: string += "\tresult: success\n"
+        case .failure: string += "\tresult: failure\n"
+        }
+        
+        // Value | Error
+        
+        if let value = self.value {
+            string += "\tvalue: \(value)\n"
+        }
+        else if let error = self.error {
+            string += "\terror: \(error.localizedDescription)\n"
+        }
+        
+        string += "}\n"
+        
+        return string
+        
+    }
+    
+    public var debugDescription: String {
+        return self.description
     }
     
 }

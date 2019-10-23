@@ -20,6 +20,22 @@ public enum HTTPMethod {
     case trace
     case custom(String)
     
+    public static var allValues: [String] {
+        
+        return [
+            HTTPMethod.get.value,
+            HTTPMethod.post.value,
+            HTTPMethod.put.value,
+            HTTPMethod.patch.value,
+            HTTPMethod.delete.value,
+            HTTPMethod.head.value,
+            HTTPMethod.connect.value,
+            HTTPMethod.options.value,
+            HTTPMethod.trace.value
+        ]
+        
+    }
+    
     public var value: String {
         
         switch self {

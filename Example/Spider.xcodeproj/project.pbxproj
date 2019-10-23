@@ -19,7 +19,6 @@
 		266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EBE1EDA7CED000A39E5 /* User.swift */; };
 		266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EC01EDA7D09000A39E5 /* Photo.swift */; };
 		267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267439B61EDBFA6700C5BD6E /* JSONViewController.swift */; };
-		269FAFF3235D7623005F609C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF2235D7623005F609C /* User.swift */; };
 		269FAFF5235D7C86005F609C /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF4235D7C86005F609C /* PostTests.swift */; };
 		269FAFF7235D7F36005F609C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF6235D7F36005F609C /* Post.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
@@ -55,7 +54,6 @@
 		266B4EBE1EDA7CED000A39E5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		266B4EC01EDA7D09000A39E5 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		267439B61EDBFA6700C5BD6E /* JSONViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONViewController.swift; sourceTree = "<group>"; };
-		269FAFF2235D7623005F609C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		269FAFF4235D7C86005F609C /* PostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		269FAFF6235D7F36005F609C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				269FAFF2235D7623005F609C /* User.swift */,
 				269FAFF6235D7F36005F609C /* Post.swift */,
 				607FACEB1AFB9204008FA782 /* GetTests.swift */,
 				269FAFF4235D7C86005F609C /* PostTests.swift */,
@@ -365,15 +362,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Spider_Example/Pods-Spider_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Spider-Web/Spider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spider.framework",
 			);
@@ -409,7 +406,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				269FAFF3235D7623005F609C /* User.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* GetTests.swift in Sources */,
 				269FAFF5235D7C86005F609C /* PostTests.swift in Sources */,
 				269FAFF7235D7F36005F609C /* Post.swift in Sources */,

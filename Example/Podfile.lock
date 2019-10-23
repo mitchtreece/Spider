@@ -1,12 +1,12 @@
 PODS:
+  - Kingfisher (5.8.3):
+    - Kingfisher/Core (= 5.8.3)
+  - Kingfisher/Core (5.8.3)
   - PromiseKit/CorePromise (6.2.5)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
   - SnapKit (4.0.0)
   - Spider-Web (1.4.0):
+    - Kingfisher (~> 5.8.0)
     - PromiseKit/CorePromise (~> 6.0)
-    - SDWebImage (~> 4.0)
 
 DEPENDENCIES:
   - SnapKit (~> 4.0.0)
@@ -14,8 +14,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Kingfisher
     - PromiseKit
-    - SDWebImage
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -23,10 +23,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Kingfisher: b7e4cb65ff24c264bd2a1284b75b974d907afd94
   PromiseKit: a26828b0a8d5874960dfdb575b57a70790ec36f1
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Spider-Web: 6a26a29ea2868c963710c584165103f889d1149b
+  Spider-Web: 131ed9fce1a4c15ebf92e77e2dc75dd88adb1c5f
 
 PODFILE CHECKSUM: 372cd911a749616e1d35c2206885fade55011133
 

@@ -14,7 +14,7 @@ public extension Data {
      - Parameter encoding: The string encoding to use; _defaults to utf8_.
      - Returns: An encoded data `String`.
      */
-    public func string(withEncoding encoding: String.Encoding = .utf8) -> String? {
+    func string(with encoding: String.Encoding = .utf8) -> String? {
         return String(data: self, encoding: encoding)
     }
     
