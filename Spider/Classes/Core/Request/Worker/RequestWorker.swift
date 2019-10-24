@@ -15,21 +15,23 @@ public class RequestWorker: Cancellable {
         /// State representing a worker that has not started yet.
         case pending
         
+        /// State representing a worker that has errored before executing.
+        case aborted
+        
+        /// State representing a worker that has cancelled execution.
+        case cancelled
+        
         /// State representing a worker that is currently executing.
         case working
         
         /// State representing a worker that has finished executing.
         case finished
         
-        /// State representing a worker that has been cancelled.
-        case cancelled
-        
     }
     
     private let request: Request
     private let builder: RequestBuilder
     private let session: URLSession
-    private let errorCatchers: [ResponseErrorCatcher]
     private let isDebugEnabled: Bool
         
     public private(set) var state: State = .pending
@@ -40,13 +42,11 @@ public class RequestWorker: Cancellable {
     internal init(request: Request,
                   builder: RequestBuilder,
                   session: URLSession,
-                  errorCatchers: [ResponseErrorCatcher],
                   isDebugEnabled: Bool) {
         
         self.request = request
         self.builder = builder
         self.session = session
-        self.errorCatchers = errorCatchers
         self.isDebugEnabled = isDebugEnabled
         
     }
@@ -58,16 +58,21 @@ public class RequestWorker: Cancellable {
             self.state = .cancelled
             self.request.state = .cancelled
             
-            return completion(Response<Data>(
-                request: self.request,
-                response: nil,
-                data: nil,
-                error: SpiderError.cancelled
-            ))
+//            return completion(Response<Data>(
+//                request: self.request,
+//                response: nil,
+//                data: nil,
+//                error: SpiderError.cancelled
+//            ))
+            
+            return
             
         }
         
         guard let urlRequest = self.builder.urlRequest(for: request) else {
+            
+            self.state = .aborted
+            self.request.state = .aborted
             
             return completion(Response<Data>(
                 request: self.request,
@@ -119,33 +124,38 @@ public class RequestWorker: Cancellable {
                 
             }
             
-            // Error catchers
+//            // Error catchers
+//
+//            let response = Response<Data>(
+//                request: self.request,
+//                response: res,
+//                data: data,
+//                value: data
+//            )
+//
+//            for catcher in self.errorCatchers {
+//
+//                if let responseError = catcher.catch(response) {
+//
+//                    return completion(Response<Data>(
+//                        request: self.request,
+//                        response: res,
+//                        data: data,
+//                        error: responseError
+//                    ))
+//
+//                }
+//
+//            }
             
-            let response = Response<Data>(
+            // Done
+            
+            return completion(Response<Data>(
                 request: self.request,
                 response: res,
                 data: data,
                 value: data
-            )
-            
-            for catcher in self.errorCatchers {
-            
-                if let responseError = catcher.catch(response) {
-                    
-                    return completion(Response<Data>(
-                        request: self.request,
-                        response: res,
-                        data: data,
-                        error: responseError
-                    ))
-                    
-                }
-                
-            }
-            
-            // Done
-            
-            return completion(response)
+            ))
             
         }
         
@@ -168,6 +178,7 @@ public class RequestWorker: Cancellable {
     
     public func cancel() {
         
+        self.isCancelled = true
         self.state = .cancelled
         self.request.state = .cancelled
         self.task?.cancel()

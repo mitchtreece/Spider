@@ -9,22 +9,23 @@ import Foundation
 
 public class Request {
         
-    /**
-     Representation of the various states of an HTTP request.
-     */
+    /// Representation of the various states of an HTTP request.
     public enum State {
         
-        /// State representing a request that has not started yet.
+        /// State representing a request that has not yet started.
         case pending
+        
+        /// State representing a request that has errored before executing.
+        case aborted
+        
+        /// State representing a request that has been cancelled.
+        case cancelled
         
         /// State representing a request that is currently executing.
         case working
         
         /// State representing a request that has finished executing.
         case finished
-        
-        /// State representing a request that has been cancelled.
-        case cancelled
         
     }
     

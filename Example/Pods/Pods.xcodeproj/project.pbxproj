@@ -30,8 +30,10 @@
 		1A695FE75DA194CA1CC8272FE891CF52 /* TokenRequestAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376569D5312B74D6B8C7817912F3C73A /* TokenRequestAuth.swift */; };
 		1A73F39CDDEEADB24723A3F6CBC359AE /* ImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD4C0D23B0942C9A06C4D7A8F9C8B51 /* ImageView+Kingfisher.swift */; };
 		26641FDD855A206137E54174E0BC4A7D /* after.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AC068440812164EF25C612FB2C5749 /* after.swift */; };
+		268265AE236171B700BBCF47 /* ResponseMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268265AD236171B700BBCF47 /* ResponseMiddleware.swift */; };
 		269FB01B23602636005F609C /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FB01A23602636005F609C /* Cancellable.swift */; };
 		269FB01D23602823005F609C /* SpiderImageDownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FB01C23602823005F609C /* SpiderImageDownloadTask.swift */; };
+		26FC4AB1236030CE000C3B3E /* Array+Contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC4AB0236030CE000C3B3E /* Array+Contains.swift */; };
 		276EE563D9B688173DBBF47DB80D72D8 /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C0A35ED1B6EA85D118140DF6BE9041 /* ConstraintLayoutGuideDSL.swift */; };
 		28400157B63F40AA135BF16780AB4B96 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D4673C8D422BFA58E747396036704101 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2BA5B97468D9EFCCCB7021E4F5633433 /* SpiderImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413ECCBD387DCBBFF8D2163A33EFCEA6 /* SpiderImageCache.swift */; };
@@ -87,7 +89,6 @@
 		717C581962354033F5A82D15D6F676D5 /* WKInterfaceImage+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9894C981D34E5D92469C850551631 /* WKInterfaceImage+Kingfisher.swift */; };
 		72C2B5D60A24B4B663C8994276A962B6 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2CCBA29AB88070EFE6B9A7354599E0 /* ConstraintOffsetTarget.swift */; };
 		74F16EAC797A560DA6EE944A8CEBEC04 /* Kingfisher.h in Headers */ = {isa = PBXBuildFile; fileRef = 5894C6031C5AAB8F79299106D476A1F0 /* Kingfisher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		757DA050F013BED0B74A7A6B90A8F9CD /* ResponseContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FD65F9A4A5C723FF16AF941E66BEA /* ResponseContract.swift */; };
 		75B91CA2F7D0281050F9E48810E316AF /* Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C5EB7BF7783DFD327D2015E6867338 /* Spider.swift */; };
 		767925B99CC34D22E127120952AC715D /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7769AA5360225D7E03AB792F69CBC7 /* Runtime.swift */; };
 		77A618FE4FF299682F776C974300EBA1 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6713223D8BA2AA6547AE808F7FA33E9D /* ConstraintView+Extensions.swift */; };
@@ -174,7 +175,6 @@
 		F6C7F81AA5BBC4042A3A78D5EA8E62A4 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A3C7F438D53BC5C4C0209F2EC352E /* ConstraintLayoutSupportDSL.swift */; };
 		F753D38D51511ED562DF49F0E39737D1 /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF9BA2160A9F997A4C3A28C17AA8E4 /* Data+String.swift */; };
 		F780F31334A5B069C756121AE82F008B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3930AA5CF3004B1C139E7C51839BB52B /* Storage.swift */; };
-		F88148324DC2507286FA1F7561D03179 /* JSONContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02E3D939716D7A39434E01C21686EF /* JSONContract.swift */; };
 		FBF55D3A9CAEFF7AAB6AC6E103576B32 /* RequestWorker+Promises.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D206DBA9E36BF98A2017F5C0852C668 /* RequestWorker+Promises.swift */; };
 		FDB1EA3A997C11287CFEE3E3588414B9 /* BasicRequestAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4257EC3A6D57D630C3EE1ED718C439A /* BasicRequestAuth.swift */; };
 		FE8451AA7E95E0CBFDF14B1339C9E8CF /* hang.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EAD0010FCE72EA6C6FB9EC51327FB5 /* hang.m */; };
@@ -256,7 +256,6 @@
 		172A1BECDF7E3E31183184F9AACB0E55 /* GIFAnimatedImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFAnimatedImage.swift; path = Sources/Image/GIFAnimatedImage.swift; sourceTree = "<group>"; };
 		172A3C7F438D53BC5C4C0209F2EC352E /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		177FC1CFE8F8294541581F64016BEA5A /* RequestBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
-		1B02E3D939716D7A39434E01C21686EF /* JSONContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONContract.swift; sourceTree = "<group>"; };
 		1B1CD5E13DE61AEDCF5CEEFB113C645B /* PromiseKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PromiseKit.modulemap; sourceTree = "<group>"; };
 		1D35A440A0E59A77FC5E2AC4537E57CB /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		1D6448621B5432C7E96E45781A27A448 /* MemoryStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MemoryStorage.swift; path = Sources/Cache/MemoryStorage.swift; sourceTree = "<group>"; };
@@ -264,8 +263,10 @@
 		1F47480AAA666D79355CFB02207D2ACA /* Pods-Spider_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spider_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1F66837D6AB18EFA90DACC3B2B28309E /* Resolver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resolver.swift; path = Sources/Resolver.swift; sourceTree = "<group>"; };
 		242EDC4BBA505316E438A4F185673DF9 /* Thenable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Thenable.swift; path = Sources/Thenable.swift; sourceTree = "<group>"; };
+		268265AD236171B700BBCF47 /* ResponseMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMiddleware.swift; sourceTree = "<group>"; };
 		269FB01A23602636005F609C /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		269FB01C23602823005F609C /* SpiderImageDownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpiderImageDownloadTask.swift; sourceTree = "<group>"; };
+		26FC4AB0236030CE000C3B3E /* Array+Contains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Contains.swift"; sourceTree = "<group>"; };
 		2B5AEDB834F2108B16B0BAEE6E156D96 /* Pods-Spider_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spider_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2BEF9BA2160A9F997A4C3A28C17AA8E4 /* Data+String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Data+String.swift"; sourceTree = "<group>"; };
 		2C2C96F4CA0EC58048658851F58CA00A /* URLRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = URLRepresentable.swift; sourceTree = "<group>"; };
@@ -299,7 +300,6 @@
 		47B045928E2C646D4CB7B320AAD73C0F /* ResponseErrorCatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseErrorCatcher.swift; sourceTree = "<group>"; };
 		4848F2906FF07C67AECAD416C8618893 /* Kingfisher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kingfisher.xcconfig; sourceTree = "<group>"; };
 		49C1273DD854D5FD2C73480B80107A36 /* SizeExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SizeExtensions.swift; path = Sources/Utility/SizeExtensions.swift; sourceTree = "<group>"; };
-		4D5FD65F9A4A5C723FF16AF941E66BEA /* ResponseContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseContract.swift; sourceTree = "<group>"; };
 		4E2B15FA8DDCC10EC4E8D3207E969912 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		4EB073506F1D59CC4CE454937E3FDBEB /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		4EC7C50481A6E27462ABB3FCAB0DF727 /* Kingfisher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Kingfisher.modulemap; sourceTree = "<group>"; };
@@ -502,16 +502,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01B6AFA29F1FD505DC3CAE86DE3E6C1B /* Response */ = {
-			isa = PBXGroup;
-			children = (
-				0413686F55D145D16ECA6E09AB003D89 /* JSONResponseErrorCatcher.swift */,
-				B8457EFFC65AA70D6837AE2F4A327848 /* ResponseError.swift */,
-				47B045928E2C646D4CB7B320AAD73C0F /* ResponseErrorCatcher.swift */,
-			);
-			path = Response;
-			sourceTree = "<group>";
-		};
 		03B909550E1DC69158F8FD9889F674F2 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +553,7 @@
 				CFA6B387F5B402407F8AA9508D305148 /* Data+Append.swift */,
 				2BEF9BA2160A9F997A4C3A28C17AA8E4 /* Data+String.swift */,
 				77A1C7DFCDC7C42D7A0140A4CE0F7533 /* Dictionary+JSON.swift */,
+				26FC4AB0236030CE000C3B3E /* Array+Contains.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -578,6 +569,24 @@
 				520F5AF55AD3EE9A9F5C5D3C8DF5EA5C /* Spider.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		268265AB23616F7D00BBCF47 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				269FB01A23602636005F609C /* Cancellable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		268265AC23616FFE00BBCF47 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				268265AD236171B700BBCF47 /* ResponseMiddleware.swift */,
+				47B045928E2C646D4CB7B320AAD73C0F /* ResponseErrorCatcher.swift */,
+				0413686F55D145D16ECA6E09AB003D89 /* JSONResponseErrorCatcher.swift */,
+			);
+			path = Middleware;
 			sourceTree = "<group>";
 		};
 		269FB01E23602839005F609C /* Image */ = {
@@ -625,7 +634,7 @@
 			children = (
 				87A0BD1778B7F0340022EBCEA5ABCD35 /* HTTPError.swift */,
 				BC09F1CF37D5965FB40A2E82B7581FFA /* SpiderError.swift */,
-				01B6AFA29F1FD505DC3CAE86DE3E6C1B /* Response */,
+				B8457EFFC65AA70D6837AE2F4A327848 /* ResponseError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -695,15 +704,6 @@
 				566A15116042C26525CDAFDD642D3C66 /* Worker */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		61B67EF262D3B88760ED77F532F08513 /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				1B02E3D939716D7A39434E01C21686EF /* JSONContract.swift */,
-				4D5FD65F9A4A5C723FF16AF941E66BEA /* ResponseContract.swift */,
-			);
-			path = Contracts;
 			sourceTree = "<group>";
 		};
 		6F44716518B9B7ED2858E86D41F42054 /* iOS */ = {
@@ -926,13 +926,13 @@
 			isa = PBXGroup;
 			children = (
 				86C5EB7BF7783DFD327D2015E6867338 /* Spider.swift */,
-				269FB01A23602636005F609C /* Cancellable.swift */,
 				F3774F461F96DDFE85D2C2D886A7B410 /* PlatformSupport.swift */,
 				509D1216006004120ECD0744794A420E /* Authorization */,
-				61B67EF262D3B88760ED77F532F08513 /* Contracts */,
 				3C02D391BCA16C0DBED7F20789846E9D /* Errors */,
 				0F2CEADCAC9DFA5B1218A9AB352B64BA /* Helpers */,
 				08ABC21806572EE5F76472B466ED3870 /* HTTP */,
+				268265AC23616FFE00BBCF47 /* Middleware */,
+				268265AB23616F7D00BBCF47 /* Protocols */,
 				47811C00664C8CEE3C984A00915E8E40 /* Representables */,
 				5862F14ACDE8F386E53C3799B53A74E0 /* Request */,
 				FA625CF5F2F5A63D7DBDAF5C3CAD3BA5 /* Response */,
@@ -1341,6 +1341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				268265AE236171B700BBCF47 /* ResponseMiddleware.swift in Sources */,
 				FDB1EA3A997C11287CFEE3E3588414B9 /* BasicRequestAuth.swift in Sources */,
 				A2BCF82A9A2650CC53773A1A43024616 /* BoolRepresentable.swift in Sources */,
 				6425F1FC56D45E486FE2CC6E36269B09 /* Data+Append.swift in Sources */,
@@ -1354,7 +1355,6 @@
 				0452AE5E4D8D5EA4D368E6DBAF7A803D /* HTTPStatusCode.swift in Sources */,
 				36A9F893D724619C68A2F3A808EFDC75 /* ImageRepresentable.swift in Sources */,
 				099504AC10D73486131DA7883A59B43C /* ImageView+Spider.swift in Sources */,
-				F88148324DC2507286FA1F7561D03179 /* JSONContract.swift in Sources */,
 				CCF6BDAD8D27E8E2438378CAEE52181F /* JSONRepresentable.swift in Sources */,
 				0809512A7989561985113A2167AA2BC1 /* JSONResponseErrorCatcher.swift in Sources */,
 				E95B704B1BD566EB85E17CCFC806BB69 /* MultipartFile.swift in Sources */,
@@ -1363,6 +1363,7 @@
 				97BC48B95F0FD2DB6549CA4A32FD78C6 /* PlatformSupport.swift in Sources */,
 				35DC7C624DA3FD6A17FAD7934C2E5C2A /* Request+Body.swift in Sources */,
 				77AACB5852BDABA5AD0A604164510A7F /* Request+Header.swift in Sources */,
+				26FC4AB1236030CE000C3B3E /* Array+Contains.swift in Sources */,
 				516514B949C1B5478C8CFFEAB0843771 /* Request.swift in Sources */,
 				B721F3963BF07016B1A90E1272CE748D /* RequestAuth.swift in Sources */,
 				439005B562193CCC87B08A1C6BEDD0EB /* RequestBuilder.swift in Sources */,
@@ -1374,7 +1375,6 @@
 				B81DBE9DD94225FD5F8A848C83FA866E /* RequestWorker.swift in Sources */,
 				89E4AA7016A7BBB2B36A52BE9DBFF649 /* Response+JSON.swift in Sources */,
 				5D0EB1D0A3970B605D075DEA5A1AECEB /* Response.swift in Sources */,
-				757DA050F013BED0B74A7A6B90A8F9CD /* ResponseContract.swift in Sources */,
 				8A50E4C76DB68FB3EFDEC43D76498DBD /* ResponseError.swift in Sources */,
 				E9F03588931C91243E3AFDA7E5347AE8 /* ResponseErrorCatcher.swift in Sources */,
 				A722CDAB7BA7ADC101B92101E7D0F22E /* Spider-Web-dummy.m in Sources */,

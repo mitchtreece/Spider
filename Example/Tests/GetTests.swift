@@ -147,4 +147,30 @@ class GetTests: XCTestCase {
         
     }
     
+    func testGetQueryParameters() {
+        
+        let exp = expectation(description: "Request path has expected query parameters")
+        
+        let path = "https://jsonplaceholder.typicode.com/posts"
+        var finalPath: String?
+        
+        let parameters: JSON = [
+            "sort": "top",
+            "filter": "friends"
+        ]
+        
+        self.spider.get(path, parameters: parameters).data { response in
+            
+            finalPath = response.response?.url?.absoluteString
+            exp.fulfill()
+            
+        }
+        
+        wait(for: [exp], timeout: 5)
+        XCTAssertNotNil(finalPath)
+        XCTAssertTrue(finalPath!.contains("sort=top"))
+        XCTAssertTrue(finalPath!.contains("filter=friends"))
+        
+    }
+    
 }

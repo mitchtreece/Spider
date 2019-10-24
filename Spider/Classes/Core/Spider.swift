@@ -11,7 +11,6 @@ public class Spider {
     
     public var baseUrl: URLRepresentable?
     public var authorization: RequestAuth?
-    public var errorCatchers: [ResponseErrorCatcher] = [TestCatcher()]
     public var isDebugEnabled: Bool = false
     
     private var builder: RequestBuilder!
@@ -51,7 +50,6 @@ public class Spider {
             request: request,
             builder: self.builder,
             session: self.session,
-            errorCatchers: self.errorCatchers,
             isDebugEnabled: self.isDebugEnabled
         )
         
