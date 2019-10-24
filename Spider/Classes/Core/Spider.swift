@@ -11,28 +11,41 @@ public class Spider {
     
     public var baseUrl: URLRepresentable?
     public var authorization: RequestAuth?
-    public var isDebugEnabled: Bool = false
+    
+    public var isDebugEnabled: Bool = false {
+        didSet {
+            self.reachability?.isDebugEnabled = isDebugEnabled
+        }
+    }
+    
+    public private(set) var reachability: ReachabilityMonitor?
     
     private var builder: RequestBuilder!
     private var session = URLSession.shared
-    
+
     public static let web: Spider = Spider()
     
     @discardableResult
-    public static func web(baseUrl: URLRepresentable?, authorization: RequestAuth?) -> Spider {
+    public static func web(baseUrl: URLRepresentable?,
+                           authorization: RequestAuth?,
+                           reachabilityHostUrl: URLRepresentable?) -> Spider {
         
         let web = Spider.web
         web.baseUrl = baseUrl
         web.authorization = authorization
+        web.reachability = ReachabilityMonitor(host: reachabilityHostUrl)
         return web
         
     }
     
-    public convenience init(baseUrl: URLRepresentable?, authorization: RequestAuth?) {
+    public convenience init(baseUrl: URLRepresentable?,
+                            authorization: RequestAuth?,
+                            reachabilityHostUrl: URLRepresentable?) {
         
         self.init()
         self.baseUrl = baseUrl
         self.authorization = authorization
+        self.reachability = ReachabilityMonitor(host: reachabilityHostUrl)
         
     }
     

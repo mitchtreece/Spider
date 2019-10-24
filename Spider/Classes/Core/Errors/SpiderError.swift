@@ -16,6 +16,7 @@ public enum SpiderError: LocalizedError {
     case serialization
     case compactMap
     case cancelled
+    case unreachable
     case other(description: String)
     
     public var errorDescription: String? {
@@ -28,6 +29,7 @@ public enum SpiderError: LocalizedError {
         case .serialization: return "Serialization failure"
         case .compactMap: return "Compact map"
         case .cancelled: return "Cancelled"
+        case .unreachable: return "Unreachable"
         case .other(let desc): return desc
         }
         

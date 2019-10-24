@@ -21,7 +21,8 @@ Pod::Spec.new do |s|
     s.swift_version     = '5'
     s.source_files      = 'Spider/Classes/**/*'
 
-    s.dependency        'Kingfisher', '~> 5.8.0'
+    s.dependency        'ReachabilitySwift',      '~> 5.0.0'
+    s.dependency        'Kingfisher',             '~> 5.8.0'
     s.dependency        'PromiseKit/CorePromise', '~> 6.0'
 
 end

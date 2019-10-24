@@ -23,6 +23,9 @@
   "swift_versions": "5",
   "source_files": "Spider/Classes/**/*",
   "dependencies": {
+    "ReachabilitySwift": [
+      "~> 5.0.0"
+    ],
     "Kingfisher": [
       "~> 5.8.0"
     ],
