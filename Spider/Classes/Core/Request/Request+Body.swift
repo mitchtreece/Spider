@@ -8,10 +8,14 @@
 import Foundation
 
 public extension Request {
-    
+        
     struct Body {
         
-        public var data: Data?
+        public private(set) var data: Data?
+        
+        public var size: Data.Size {
+            return self.data?.size ?? Data.Size(byteCount: 0)
+        }
         
         internal init(data: Data?) {
             self.data = data

@@ -65,9 +65,9 @@ public class Request {
     public var authorization: RequestAuth?
     
     /**
-     The request's HTTP header.
+     The request's HTTP headers.
      */
-    public var header = Header()
+    public var headers = Headers()
     
     /**
      The request's timeout interval in seconds; _defaults to 60_.
@@ -89,9 +89,27 @@ public class Request {
      */
     public internal(set) var body: Body?
     
-    /**
-     The current state of the request.
-     */
+    /// The request's start date.
+    public internal(set) var startDate: Date?
+    
+    /// The request's end date.
+    public internal(set) var endDate: Date?
+    
+    /// The request's working duration.
+    public var duration: TimeInterval? {
+        
+        guard let start = self.startDate,
+            let end = self.endDate else { return nil }
+        
+        return end.timeIntervalSince(start)
+        
+    }
+    
+    public var size: Data.Size {
+        return self.body?.size ?? Data.Size(byteCount: 0)
+    }
+    
+    /// The current state of the request.
     public internal(set) var state: State = .pending
     
     public init(method: HTTPMethod,

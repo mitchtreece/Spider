@@ -1,5 +1,5 @@
 //
-//  Request+Header.swift
+//  Request+Headers.swift
 //  Spider-Web
 //
 //  Created by Mitch Treece on 8/22/18.
@@ -9,7 +9,7 @@ import Foundation
 
 public extension Request {
     
-    struct Header {
+    struct Headers {
         
         public enum ContentType {
             

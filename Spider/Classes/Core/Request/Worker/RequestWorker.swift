@@ -85,6 +85,7 @@ public class RequestWorker: Cancellable {
                 
         self.state = .working
         self.request.state = .working
+        self.request.startDate = Date()
         
         _debugLogRequest()
         
@@ -94,6 +95,7 @@ public class RequestWorker: Cancellable {
             
             self.state = .finished
             self.request.state = .finished
+            self.request.endDate = Date()
             
             // HTTP error?
             

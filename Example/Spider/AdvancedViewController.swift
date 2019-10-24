@@ -26,14 +26,14 @@ class AdvancedViewController: LoadingViewController {
             authorization: nil
         )
         
-        request.header.acceptTypes = [
+        request.headers.acceptTypes = [
             .text_plain,
             .text_json,
             .image_jpeg,
             .custom("animal/cat")
         ]
         
-        request.header.set(
+        request.headers.set(
             value: "bar",
             forField: "foo"
         )

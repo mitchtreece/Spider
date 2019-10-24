@@ -63,7 +63,7 @@ public class MultipartRequest: Request {
             authorization: authorization
         )
         
-        self.header.contentType = .multipart
+        self.headers.contentType = .multipart
         createRequestBody()
         
     }
@@ -81,7 +81,7 @@ public class MultipartRequest: Request {
     
     private func multipartBody() -> Request.Body? {
         
-        guard let contentType = self.header.contentType,
+        guard let contentType = self.headers.contentType,
             case .multipart = contentType else { return nil }
         
         var data = Data()

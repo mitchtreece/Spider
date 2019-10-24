@@ -43,19 +43,19 @@ internal class RequestBuilder {
         
         // Header
         
-        if let contentType = request.header.contentType?.value(for: request) {
+        if let contentType = request.headers.contentType?.value(for: request) {
             urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
         }
         
         var acceptString: String?
-        request.header.acceptTypes?.forEach { (type) in
+        request.headers.acceptTypes?.forEach { (type) in
             let value = type.value(for: request)
             acceptString = (acceptString == nil) ? value : "\(acceptString!), \(value)"
         }
         
         urlRequest.setValue(acceptString, forHTTPHeaderField: "Accept")
         
-        for (key, value) in request.header.otherFields {
+        for (key, value) in request.headers.otherFields {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         

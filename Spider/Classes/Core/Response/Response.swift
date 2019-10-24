@@ -19,6 +19,10 @@ public struct Response<T> {
         return HTTPStatusCode.from(response: self.response)
     }
     
+    public var size: Data.Size {
+        return self.data?.size ?? Data.Size(byteCount: 0)
+    }
+    
     public var value: T? {
         
         switch self.result {
