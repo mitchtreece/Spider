@@ -13,8 +13,8 @@ public final class ReachabilityMonitor {
     internal var isDebugEnabled: Bool = false
     public private(set) var isMonitoring: Bool = false
     
-    public var whenReachable: ((Reachability.Connection)->())?
-    public var whenUnreachable: ((Reachability.Connection)->())?
+    public var reachable: ((Reachability.Connection)->())?
+    public var unreachable: ((Reachability.Connection)->())?
     
     internal init?(host: URLRepresentable?) {
         
@@ -37,12 +37,12 @@ public final class ReachabilityMonitor {
                 
         self.reachability.whenReachable = { reachability in
             self._debugLog("network reachable (\(reachability.connection.description))")
-            self.whenReachable?(reachability.connection)
+            self.reachable?(reachability.connection)
         }
         
         self.reachability.whenUnreachable = { reachability in
             self._debugLog("network unreachable")
-            self.whenUnreachable?(reachability.connection)
+            self.unreachable?(reachability.connection)
         }
         
         start()

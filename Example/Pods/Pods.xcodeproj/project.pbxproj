@@ -36,6 +36,7 @@
 		232B2F922E972D9F43D2EE15ACECE734 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED918F0BB3BDE22301D663BE156462C0 /* ConstraintPriority.swift */; };
 		244F8E5A4CDF3E1C11101479597CE561 /* ImageView+Spider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C31205029EF8598435A6D9B49DAE744 /* ImageView+Spider.swift */; };
 		26641FDD855A206137E54174E0BC4A7D /* after.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050BD65D4316D06B2AACF00F665D4690 /* after.swift */; };
+		26E10C042362C35200F8D616 /* Response+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E10C032362C35200F8D616 /* Response+Map.swift */; };
 		293462A3A2283A2777825DA99133AA12 /* Data+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD3625194877ABCF9CCFDA4B80F9AB5 /* Data+Size.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA8512CD511F3DC3297B8E8B93C02E /* ConstraintAttributes.swift */; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14159C3C3D319111D1F7951F301EEB74 /* ConstraintInsetTarget.swift */; };
@@ -158,7 +159,7 @@
 		C8291022120388F17682CB7F2039B1BB /* when.m in Sources */ = {isa = PBXBuildFile; fileRef = CB66FD63ADEC87E7C3E43BD025AFE1A5 /* when.m */; };
 		C885114A0675EC040AFE61E9A7900D98 /* Pods-Spider_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D1D72F3509F8716BBBB0A4958D0A52D /* Pods-Spider_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8A0C071A449D3B59EF891BC87125577 /* BasicRequestAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CE9EB4CCDEB62E8F7CE766AF5FD2CD /* BasicRequestAuth.swift */; };
-		CA14744C0EC17942CA721B29F359FB39 /* Response+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C76FF59F706BB69FB67058ABF24280 /* Response+JSON.swift */; };
+		CA14744C0EC17942CA721B29F359FB39 /* Response+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C76FF59F706BB69FB67058ABF24280 /* Response+Debug.swift */; };
 		CD698D8D49A0DB3669D8D58B4571268E /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1BA06F5F6973517C91C7EA104D0239 /* ImageProcessor.swift */; };
 		CDD0010E034A229BDED392B9101B7579 /* Data+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C84FC9E44A383F393D64E3353BF0B2F /* Data+String.swift */; };
 		CDD42E25D201469CAFEA9E6181525FA8 /* RequestModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED41EA90070D3190BDD262DEF3ECC636 /* RequestModifier.swift */; };
@@ -296,6 +297,7 @@
 		22B61B1F56F94A9FFF1B856B5359E9DA /* ErrorRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorRepresentable.swift; sourceTree = "<group>"; };
 		2392DEA3A774EC1C32771E8697259A45 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		254E4CDED9239FD6ADA7529275359B84 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
+		26E10C032362C35200F8D616 /* Response+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+Map.swift"; sourceTree = "<group>"; };
 		29EE2CE586E01080FA1139D1A43D0476 /* TokenRequestAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TokenRequestAuth.swift; sourceTree = "<group>"; };
 		2B5AEDB834F2108B16B0BAEE6E156D96 /* Pods-Spider_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spider_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2B6E208809CB34230A0E5849F704C812 /* PromiseKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-prefix.pch"; sourceTree = "<group>"; };
@@ -459,7 +461,7 @@
 		E1F13A1765C7C4F3CFA9182BB82192E7 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
 		E765649A19B780C9CD63AB1A002A9F1F /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D36B76E37FEFB01F7A444BE44C4CC7 /* ResponseErrorCatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseErrorCatcher.swift; sourceTree = "<group>"; };
-		E9C76FF59F706BB69FB67058ABF24280 /* Response+JSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Response+JSON.swift"; sourceTree = "<group>"; };
+		E9C76FF59F706BB69FB67058ABF24280 /* Response+Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Response+Debug.swift"; sourceTree = "<group>"; };
 		ECB217D0433B07C427FDFFF6EC8CA8C6 /* when.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = when.swift; path = Sources/when.swift; sourceTree = "<group>"; };
 		ED41EA90070D3190BDD262DEF3ECC636 /* RequestModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestModifier.swift; path = Sources/Networking/RequestModifier.swift; sourceTree = "<group>"; };
 		ED8F9B867E177A30D920910016440F72 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Sources/Networking/ImageDownloader.swift; sourceTree = "<group>"; };
@@ -1076,7 +1078,8 @@
 			isa = PBXGroup;
 			children = (
 				110B2D9E0578D4A8492677824697412E /* Response.swift */,
-				E9C76FF59F706BB69FB67058ABF24280 /* Response+JSON.swift */,
+				26E10C032362C35200F8D616 /* Response+Map.swift */,
+				E9C76FF59F706BB69FB67058ABF24280 /* Response+Debug.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1476,6 +1479,7 @@
 				42D67912E4A0168708D32A08247633B7 /* BoolRepresentable.swift in Sources */,
 				536F85E19A1CCE5EE3E8EEAEF5269C14 /* Cancellable.swift in Sources */,
 				EF4C3B839A412D4F050288C88E4CFFFB /* Data+Append.swift in Sources */,
+				26E10C042362C35200F8D616 /* Response+Map.swift in Sources */,
 				293462A3A2283A2777825DA99133AA12 /* Data+Size.swift in Sources */,
 				CDD0010E034A229BDED392B9101B7579 /* Data+String.swift in Sources */,
 				557151A3B49BA0AC97580B15ECD4C3F0 /* Dictionary+JSON.swift in Sources */,
@@ -1504,7 +1508,7 @@
 				AAF7D457DA1E285E418B19D2459C8533 /* RequestWorker+Promises.swift in Sources */,
 				F33DCE130CB2A869FA273B51BB1319B1 /* RequestWorker+String.swift in Sources */,
 				80EF2C4AB913CB794E90919406CD8348 /* RequestWorker.swift in Sources */,
-				CA14744C0EC17942CA721B29F359FB39 /* Response+JSON.swift in Sources */,
+				CA14744C0EC17942CA721B29F359FB39 /* Response+Debug.swift in Sources */,
 				C3C2E4CF77FAA49C3ACD52BD0E025DC1 /* Response.swift in Sources */,
 				20C8DAD6CC68EC4947BA482CC6A01277 /* ResponseError.swift in Sources */,
 				EB69DEB89CE5D9A0C942838C64C38DB2 /* ResponseErrorCatcher.swift in Sources */,

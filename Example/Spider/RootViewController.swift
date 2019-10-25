@@ -26,7 +26,7 @@ class RootViewController: UITableViewController {
         
         super.viewDidLoad()
         Spider.web.isDebugEnabled = true
-        
+                
     }
     
     override func didReceiveMemoryWarning() {

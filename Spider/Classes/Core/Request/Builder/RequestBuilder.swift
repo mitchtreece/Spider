@@ -9,7 +9,7 @@ import Foundation
 
 internal class RequestBuilder {
     
-    internal weak var spider: Spider?
+    internal weak var spider: Spider!
     
     internal init(spider: Spider) {
         self.spider = spider
@@ -43,32 +43,14 @@ internal class RequestBuilder {
         
         // Header
         
-        if let contentType = request.headers.contentType?.value(for: request) {
-            urlRequest.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        }
-        
-        var acceptString: String?
-        request.headers.acceptTypes?.forEach { (type) in
-            let value = type.value(for: request)
-            acceptString = (acceptString == nil) ? value : "\(acceptString!), \(value)"
-        }
-        
-        urlRequest.setValue(acceptString, forHTTPHeaderField: "Accept")
-        
-        for (key, value) in request.headers.otherFields {
+        for (key, value) in request.headers.dictionaryRepresentation(for: request, using: self.spider) {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        // Authorization
+        // Set shared auth if needed
         
-        if let auth = request.authorization {
-            urlRequest.setValue(auth.headerValue, forHTTPHeaderField: auth.field)
-        }
-        else if let sharedAuth = spider?.authorization {
-            
-            urlRequest.setValue(sharedAuth.headerValue, forHTTPHeaderField: sharedAuth.field)
+        if let sharedAuth = self.spider.authorization, request.authorization == nil {
             request.authorization = sharedAuth
-            
         }
         
         return urlRequest

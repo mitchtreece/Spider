@@ -161,7 +161,7 @@ class GetTests: XCTestCase {
         
         self.spider.get(path, parameters: parameters).data { response in
             
-            finalPath = response.response?.url?.absoluteString
+            finalPath = response.urlResponse?.url?.absoluteString
             exp.fulfill()
             
         }

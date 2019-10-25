@@ -52,12 +52,15 @@ public class Spider {
     public init() {
         
         self.builder = RequestBuilder(spider: self)
+        self.reachability = ReachabilityMonitor(host: nil)
         
     }
     
     // MARK: Perform
     
     public func perform(_ request: Request) -> RequestWorker {
+        
+        request.spider = self
         
         return RequestWorker(
             request: request,
@@ -133,14 +136,19 @@ public class Spider {
         
     }
     
-    public func multipart(method: HTTPMethod = .post,
+    public func multipart(method: MultipartRequest.Method = .post,
                           path: String,
                           parameters: JSON? = nil,
                           files: [MultipartFile],
                           authorization: RequestAuth? = nil) -> RequestWorker {
-        
-        // TODO: This
-        fatalError("Not implemented")
+
+        return perform(MultipartRequest(
+            method: method,
+            path: path,
+            parameters: parameters,
+            files: files,
+            authorization: authorization
+        ))
         
     }
     

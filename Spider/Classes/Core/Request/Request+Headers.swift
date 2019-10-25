@@ -55,8 +55,52 @@ public extension Request {
          If none are provided, the request will accept _all_ content types.
          */
         public var acceptTypes: [ContentType]?
-        
+                
         internal var otherFields = [String: String]()
+        
+        internal func dictionaryRepresentation(for request: Request, using spider: Spider) -> [String: String] {
+
+            var dictionary = [String: String]()
+            
+            // Auth
+            
+            if let auth = request.authorization {
+                dictionary[auth.field] = auth.headerValue
+            }
+            else if let sharedAuth = spider.authorization {
+                dictionary[sharedAuth.field] = sharedAuth.headerValue
+            }
+            
+            // Content type
+            
+            if let contentType = self.contentType?.value(for: request) {
+                dictionary["Content-Type"] = contentType
+            }
+            
+            // Accept types
+            
+            if let acceptTypes = self.acceptTypes {
+                
+                var string: String?
+                
+                acceptTypes.forEach { type in
+                    let value = type.value(for: request)
+                    string = (string == nil) ? value : "\(string!), \(value)"
+                }
+                
+                dictionary["Accept"] = string
+                
+            }
+            
+            // Other fields
+            
+            for (key, value) in self.otherFields {
+                dictionary[key] = value
+            }
+            
+            return dictionary
+            
+        }
         
         /**
          Sets the value of a given HTTP header field.

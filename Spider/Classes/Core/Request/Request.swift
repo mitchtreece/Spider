@@ -10,7 +10,7 @@ import Foundation
 public class Request {
         
     /// Representation of the various states of an HTTP request.
-    public enum State {
+    public enum State: String {
         
         /// State representing a request that has not yet started.
         case pending
@@ -112,6 +112,8 @@ public class Request {
     /// The current state of the request.
     public internal(set) var state: State = .pending
     
+    internal weak var spider: Spider!
+    
     public init(method: HTTPMethod,
                 path: String,
                 parameters: JSON? = nil,
@@ -162,6 +164,58 @@ public class Request {
             
         default: self.body = Body(data: try? parameters.jsonData())
         }
+        
+    }
+    
+}
+
+extension Request: CustomStringConvertible, CustomReflectable {
+    
+    public var customMirror: Mirror {
+        return Mirror(self, children: [])
+    }
+    
+    public var description: String {
+        
+        var string = "Request {\n"
+        string += "\tmethod: \(self.method.value)\n"
+        string += "\tpath: \(self.queryEncodedPath ?? self.path)\n"
+                
+        if let auth = authorization {
+            
+            var authString = "\tauth: "
+            
+            if let _ = auth as? BasicRequestAuth {
+                authString += "basic - "
+            }
+            else if let _ = auth as? TokenRequestAuth {
+                authString += "token - "
+            }
+            
+            authString += "\(auth.rawValue)\n"
+            string += authString
+            
+        }
+        
+        var headerString = "\theaders: {"
+        
+        for (key, value) in self.headers.dictionaryRepresentation(for: self, using: self.spider) {
+            headerString += "\n\t\t\"\(key)\": \"\(value)\""
+        }
+        
+        headerString += "\n\t}\n"
+        string += headerString
+        
+        string += "\tstate: \(self.state.rawValue)\n"
+        
+        if let duration = self.duration {
+            string += "\tduration: \(duration)\n"
+        }
+        
+        string += "\tsize: \(self.size)\n"
+        string += "}"
+        
+        return string
         
     }
     

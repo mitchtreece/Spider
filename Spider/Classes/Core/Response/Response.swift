@@ -10,18 +10,9 @@ import Foundation
 public struct Response<T> {
     
     public let request: Request
-    public let response: URLResponse?
-    
-    public let data: Data?
+    public let urlResponse: URLResponse?
     public let result: Result<T, Error>
-    
-    public var statusCode: HTTPStatusCode? {
-        return HTTPStatusCode.from(response: self.response)
-    }
-    
-    public var size: Data.Size {
-        return self.data?.size ?? Data.Size(byteCount: 0)
-    }
+    public let data: Data?
     
     public var value: T? {
         
@@ -41,13 +32,21 @@ public struct Response<T> {
         
     }
     
+    public var statusCode: HTTPStatusCode? {
+        return HTTPStatusCode.from(response: self.urlResponse)
+    }
+    
+    public var size: Data.Size {
+        return self.data?.size ?? Data.Size(byteCount: 0)
+    }
+        
     internal init(request: Request,
                   response: URLResponse?,
                   data: Data?,
                   value: T) {
         
         self.request = request
-        self.response = response
+        self.urlResponse = response
         self.data = data
         self.result = Result<T, Error>.success(value)
         
@@ -59,98 +58,15 @@ public struct Response<T> {
                   error: Error) {
         
         self.request = request
-        self.response = response
+        self.urlResponse = response
         self.data = data
         self.result = Result<T, Error>.failure(error)
         
     }
     
-    internal func map<S>(_ transform: (T) throws -> S) -> Response<S> {
-        
-        switch self.result {
-        case .success(let value):
-            
-            do {
-                        
-                return Response<S>(
-                    request: self.request,
-                    response: self.response,
-                    data: self.data,
-                    value: try transform(value)
-                )
-                
-            }
-            catch {
-                
-                return Response<S>(
-                    request: self.request,
-                    response: self.response,
-                    data: self.data,
-                    error: error
-                )
-                
-            }
-            
-        case .failure(let error):
-            
-            return Response<S>(
-                request: self.request,
-                response: self.response,
-                data: self.data,
-                error: error
-            )
-            
-        }
-        
-    }
-    
-    internal func compactMap<S>(_ transform: (T) throws -> S?) -> Response<S> {
-        
-        switch self.result {
-        case .success(let value):
-            
-            do {
-                
-                let nextValue = try transform(value)
-                guard let _nextValue = nextValue else {
-                    throw SpiderError.compactMap
-                }
-                
-                return Response<S>(
-                    request: self.request,
-                    response: self.response,
-                    data: self.data,
-                    value: _nextValue
-                )
-                
-            }
-            catch {
-                
-                return Response<S>(
-                    request: self.request,
-                    response: self.response,
-                    data: self.data,
-                    error: error
-                )
-                
-            }
-            
-        case .failure(let error):
-            
-            return Response<S>(
-                request: self.request,
-                response: self.response,
-                data: self.data,
-                error: error
-            )
-            
-        }
-        
-    }
-    
 }
 
-extension Response: CustomStringConvertible, CustomDebugStringConvertible {
+extension Response: CustomStringConvertible, CustomReflectable {
     
     public var description: String {
         
@@ -158,7 +74,7 @@ extension Response: CustomStringConvertible, CustomDebugStringConvertible {
         
         // Path
         
-        let path = self.response?.url?.absoluteString ?? self.request.path
+        let path = self.urlResponse?.url?.absoluteString ?? self.request.path
         string += "\tpath: \(path)\n"
         
         // Status Code
@@ -177,20 +93,62 @@ extension Response: CustomStringConvertible, CustomDebugStringConvertible {
         // Value | Error
         
         if let value = self.value {
-            string += "\tvalue: \(value)\n"
+            string += "\tvalue: \(description(for: value))\n"
         }
         else if let error = self.error {
-            string += "\terror: \(error.localizedDescription)\n"
+            string += "\terror: \(description(for: error))\n"
         }
         
-        string += "}\n"
-        
+        string += "}"
         return string
         
     }
     
-    public var debugDescription: String {
-        return self.description
+    public var customMirror: Mirror {
+        return Mirror(self, children: [])
+    }
+    
+    private func description(for value: T) -> String {
+        
+        if let array = value as? [Any] {
+            
+            if let _ = array as? [JSON] {
+                return "Array<JSON> - \(array.count) element(s)"
+            }
+            
+            return "\(type(of: value)) - \(array.count) element(s)"
+            
+        }
+        else if let json = value as? JSON {
+            return "JSON - \(json.keys.count) key/value pair(s)"
+        }
+        else if let string = value as? String {
+            return "\"\(string)\""
+        }
+        else if let bool = value as? Bool {
+            return bool ? "true" : "false"
+        }
+        
+        return String(describing: value)
+        
+    }
+    
+    private func description(for error: Error) -> String {
+        
+        if let decodingError = error as? DecodingError {
+            
+            switch decodingError {
+            case .dataCorrupted: return "decoding data corrupted"
+            case .keyNotFound(let key, _): return "decoding key not found \"\(key.stringValue)\""
+            case .valueNotFound(let value, _): return "decoding value not found \"\(value)\""
+            case .typeMismatch(let type, _): return "decoding type mismatch: \"\(type)\""
+            @unknown default: return "decoding error"
+            }
+            
+        }
+        
+        return error.localizedDescription
+        
     }
     
 }
