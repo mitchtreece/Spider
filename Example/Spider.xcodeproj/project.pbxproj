@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
 		2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668C81E1FB6726D00199E77 /* MultipartViewController.swift */; };
 		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
 		266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		2668C81E1FB6726D00199E77 /* MultipartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartViewController.swift; sourceTree = "<group>"; };
 		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				269FAFF6235D7F36005F609C /* Post.swift */,
 				607FACEB1AFB9204008FA782 /* GetTests.swift */,
 				269FAFF4235D7C86005F609C /* PostTests.swift */,
+				26362641236E444400D8C6A7 /* HeaderTests.swift */,
 				268265AF23617A3300BBCF47 /* CancelTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -414,6 +417,7 @@
 				607FACEC1AFB9204008FA782 /* GetTests.swift in Sources */,
 				268265B023617A3300BBCF47 /* CancelTests.swift in Sources */,
 				269FAFF5235D7C86005F609C /* PostTests.swift in Sources */,
+				26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */,
 				269FAFF7235D7F36005F609C /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

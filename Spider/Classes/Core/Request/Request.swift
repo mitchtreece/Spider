@@ -111,9 +111,7 @@ public class Request {
     
     /// The current state of the request.
     public internal(set) var state: State = .pending
-    
-    internal weak var spider: Spider!
-    
+        
     public init(method: HTTPMethod,
                 path: String,
                 parameters: JSON? = nil,
@@ -197,14 +195,14 @@ extension Request: CustomStringConvertible, CustomReflectable {
             
         }
         
-        var headerString = "\theaders: {"
-        
-        for (key, value) in self.headers.dictionaryRepresentation(for: self, using: self.spider) {
-            headerString += "\n\t\t\"\(key)\": \"\(value)\""
-        }
-        
-        headerString += "\n\t}\n"
-        string += headerString
+//        var headerString = "\theaders: {"
+//
+//        for (key, value) in self.headers.dictionary(for: self, spider: self.spider) {
+//            headerString += "\n\t\t\"\(key)\": \"\(value)\""
+//        }
+//
+//        headerString += "\n\t}\n"
+//        string += headerString
         
         string += "\tstate: \(self.state.rawValue)\n"
         

@@ -12,7 +12,9 @@ public struct Response<T> {
     public let request: Request
     public let urlResponse: URLResponse?
     public let result: Result<T, Error>
-    public let data: Data?
+    public let body: Body?
+    
+    //public let data: Data?
     
     public var value: T? {
         
@@ -37,7 +39,7 @@ public struct Response<T> {
     }
     
     public var size: Data.Size {
-        return self.data?.size ?? Data.Size(byteCount: 0)
+        return self.body?.size ?? Data.Size(byteCount: 0)
     }
         
     internal init(request: Request,
@@ -47,7 +49,7 @@ public struct Response<T> {
         
         self.request = request
         self.urlResponse = response
-        self.data = data
+        self.body = Body(data: data)
         self.result = Result<T, Error>.success(value)
         
     }
@@ -59,7 +61,7 @@ public struct Response<T> {
         
         self.request = request
         self.urlResponse = response
-        self.data = data
+        self.body = Body(data: data)
         self.result = Result<T, Error>.failure(error)
         
     }

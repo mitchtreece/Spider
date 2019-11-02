@@ -32,7 +32,7 @@ class PostTests: XCTestCase {
             "https://jsonplaceholder.typicode.com/posts",
             parameters: Post.mockJSON
             
-            ).json { response in
+        ).json { response in
             
             status = response.statusCode
             postId = (response.value?["id"] as? Int)

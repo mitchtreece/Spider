@@ -41,11 +41,23 @@ internal class RequestBuilder {
         urlRequest.cachePolicy = request.cachePolicy
         urlRequest.allowsCellularAccess = request.allowsCellularAccess
         
-        // Header
+        // Headers
+                
+        let headers = Headers.merged(
+            base: self.spider.headers ?? Headers(),
+            override: request.headers,
+            request: request,
+            spider: spider
+        )
         
-        for (key, value) in request.headers.dictionaryRepresentation(for: request, using: self.spider) {
+        for (key, value) in headers.dictionary(for: request, spider: self.spider) {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+        
+        // Set the request headers to our
+        // updated (merged) headers
+        
+        request.headers = headers
         
         // Set shared auth if needed
         

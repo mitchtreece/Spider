@@ -63,7 +63,6 @@ public class MultipartRequest: Request {
             authorization: authorization
         )
         
-        self.headers.contentType = .multipart
         createRequestBody()
         
     }
@@ -79,13 +78,10 @@ public class MultipartRequest: Request {
         
     }
     
-    private func multipartBody() -> Request.Body? {
-        
-        guard let contentType = self.headers.contentType,
-            case .multipart = contentType else { return nil }
+    private func multipartBody() -> Body? {
         
         var data = Data()
-        let boundaryPrefix = "--\(boundary)\r\n"
+        let boundaryPrefix = "--\(self.boundary)\r\n"
         
         if let parameters = self.parameters {
             
@@ -111,7 +107,7 @@ public class MultipartRequest: Request {
         }
         
         data.append(string: "--\(self.boundary)--\r\n")
-        return Request.Body(data: data)
+        return Body(data: data)
         
     }
     

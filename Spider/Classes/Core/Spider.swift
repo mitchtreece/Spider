@@ -11,6 +11,7 @@ public class Spider {
     
     public var baseUrl: URLRepresentable?
     public var authorization: RequestAuth?
+    public var headers: Headers?
     
     public var isDebugEnabled: Bool = false {
         didSet {
@@ -59,9 +60,7 @@ public class Spider {
     // MARK: Perform
     
     public func perform(_ request: Request) -> RequestWorker {
-        
-        request.spider = self
-        
+                
         return RequestWorker(
             request: request,
             builder: self.builder,

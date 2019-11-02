@@ -19,7 +19,7 @@ internal extension Response /* Map */ {
                 return Response<S>(
                     request: self.request,
                     response: self.urlResponse,
-                    data: self.data,
+                    data: self.body?.data,
                     value: try transform(value)
                 )
                 
@@ -48,7 +48,7 @@ internal extension Response /* Map */ {
                 return Response<S>(
                     request: self.request,
                     response: self.urlResponse,
-                    data: self.data,
+                    data: self.body?.data,
                     value: _nextValue
                 )
                 
@@ -67,7 +67,7 @@ internal extension Response /* Map */ {
         return Response<S>(
             request: self.request,
             response: self.urlResponse,
-            data: self.data,
+            data: self.body?.data,
             error: error
         )
         

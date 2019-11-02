@@ -18,7 +18,7 @@ public extension Response /* Debug */ {
     
     func debug(_ type: DebugType) {
         
-        guard let data = self.data else {
+        guard let data = self.body?.data else {
             print("bad data")
             return
         }
