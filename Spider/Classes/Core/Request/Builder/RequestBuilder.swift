@@ -43,14 +43,10 @@ internal class RequestBuilder {
         
         // Headers
                 
-        let headers = Headers.merged(
-            base: self.spider.headers ?? Headers(),
-            override: request.headers,
-            request: request,
-            spider: spider
-        )
+        var headers = (self.spider.headers ?? Headers())
+            .merged(with: request.headers)
         
-        for (key, value) in headers.dictionary(for: request, spider: self.spider) {
+        for (key, value) in headers.jsonifyAndPrepare(for: request, using: self.spider) {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
@@ -61,7 +57,8 @@ internal class RequestBuilder {
         
         // Set shared auth if needed
         
-        if let sharedAuth = self.spider.authorization, request.authorization == nil {
+        if let sharedAuth = self.spider.authorization,
+            request.authorization == nil {
             request.authorization = sharedAuth
         }
         

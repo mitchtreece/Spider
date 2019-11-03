@@ -69,7 +69,7 @@ public class RequestWorker: Cancellable {
             
         }
         
-        guard let urlRequest = self.builder.urlRequest(for: request) else {
+        guard let urlRequest = self.builder.urlRequest(for: self.request) else {
             
             self.state = .aborted
             self.request.state = .aborted

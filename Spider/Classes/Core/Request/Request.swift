@@ -68,7 +68,7 @@ public class Request {
      The request's HTTP headers.
      */
     public var headers = Headers()
-    
+        
     /**
      The request's timeout interval in seconds; _defaults to 60_.
      */

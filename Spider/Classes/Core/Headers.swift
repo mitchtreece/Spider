@@ -55,38 +55,6 @@ public struct Headers {
             
     internal private(set) var customFields = [String: String]()
     
-    internal static func merged(base: Headers,
-                                override: Headers,
-                                request: Request,
-                                spider: Spider) -> Headers {
-                
-        let contentType = override.contentType ?? base.contentType
-        let acceptTypes = override.acceptTypes ?? base.acceptTypes
-        
-        var fields = [String: String]()
-        
-        for (key, value) in base.customFields {
-            
-            if override.customFields.keys.contains(key) {
-                fields[key] = override.customFields[key]
-            }
-            else {
-                fields[key] = value
-            }
-            
-        }
-        
-        // No need to set content & accept types explicitly.
-        // They will already be contained in the fields dictionary.
-        
-        return Headers(
-            content: contentType,
-            accept: acceptTypes,
-            fields: fields
-        )
-        
-    }
-    
     public init(content: ContentType?,
                 accept: [ContentType]?,
                 fields: [String: String]?) {
@@ -111,7 +79,38 @@ public struct Headers {
         self.customFields[field] = value
     }
     
-    internal func dictionary(for request: Request, spider: Spider) -> [String: String] {
+    /// Creates a new set of headers by merging another set into the receiver.
+    /// - parameter headers: The set of headers to merge in.
+    /// - returns: A new set of headers.
+    public func merged(with headers: Headers) -> Headers {
+        
+        let contentType = headers.contentType ?? self.contentType
+        let acceptTypes = headers.acceptTypes ?? self.acceptTypes
+        
+        var fields = [String: String]()
+        
+        for (key, value) in self.customFields {
+            
+            if headers.customFields.keys.contains(key) {
+                fields[key] = headers.customFields[key]
+            }
+            else {
+                fields[key] = value
+            }
+            
+        }
+        
+        return Headers(
+            content: contentType,
+            accept: acceptTypes,
+            fields: fields
+        )
+        
+    }
+    
+    // MARK: Private
+    
+    internal mutating func jsonifyAndPrepare(for request: Request, using spider: Spider) -> [String: String] {
         
         var dictionary = [String: String]()
         
@@ -129,6 +128,11 @@ public struct Headers {
         if let multipartRequest = request as? MultipartRequest {
             
             let content = "multipart/form-data; boundary=\(multipartRequest.boundary)"
+            
+            // Kinda weird to also mutate our object & update
+            // the content-type here.
+            
+            self.contentType = .custom(content)
             dictionary["Content-Type"] = content
             
         }

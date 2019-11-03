@@ -49,5 +49,38 @@ class HeaderTests: XCTestCase {
         XCTAssertTrue(request!.headers.customFields == fields)
         
     }
+    
+    func testSharedHeadersOverride() {
+        
+        let exp = expectation(description: "Request is executed with shared & overridden header fields")
+        var request: Request?
+        
+        let accept: [Headers.ContentType] = [.custom("spider/web")]
+        let sharedFields: [String: String] = ["foo": "bar"]
+        
+        self.spider.headers = Headers(
+            content: nil,
+            accept: accept,
+            fields: sharedFields
+        )
+        
+        let req = Request(
+            method: .get,
+            path: "https://jsonplaceholder.typicode.com/posts/1"
+        )
+        
+        req.headers.set(value: "bar2", forField: "foo")
+        
+        self.spider.perform(req).data { response in
+            request = response.request
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+        XCTAssertNotNil(request)
+        XCTAssertTrue(request!.headers.acceptTypes == accept)
+        XCTAssertTrue(request!.headers.customFields == ["foo": "bar2"])
+        
+    }
 
 }
