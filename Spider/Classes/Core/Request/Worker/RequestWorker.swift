@@ -31,6 +31,7 @@ public class RequestWorker: Cancellable {
     
     private let request: Request
     private let builder: RequestBuilder
+    private let middlewares: [Middleware]
     private let session: URLSession
     private let isDebugEnabled: Bool
         
@@ -41,11 +42,13 @@ public class RequestWorker: Cancellable {
     
     internal init(request: Request,
                   builder: RequestBuilder,
+                  middlewares: [Middleware],
                   session: URLSession,
                   isDebugEnabled: Bool) {
         
         self.request = request
         self.builder = builder
+        self.middlewares = middlewares
         self.session = session
         self.isDebugEnabled = isDebugEnabled
         
@@ -57,6 +60,8 @@ public class RequestWorker: Cancellable {
             
             self.state = .cancelled
             self.request.state = .cancelled
+            
+            // If cancelled then fuck off, no need to call completion
             
 //            return completion(Response<Data>(
 //                request: self.request,
@@ -126,38 +131,36 @@ public class RequestWorker: Cancellable {
                 
             }
             
-//            // Error catchers
-//
-//            let response = Response<Data>(
-//                request: self.request,
-//                response: res,
-//                data: data,
-//                value: data
-//            )
-//
-//            for catcher in self.errorCatchers {
-//
-//                if let responseError = catcher.catch(response) {
-//
-//                    return completion(Response<Data>(
-//                        request: self.request,
-//                        response: res,
-//                        data: data,
-//                        error: responseError
-//                    ))
-//
-//                }
-//
-//            }
+            // Middlewares
             
-            // Done
-            
-            return completion(Response<Data>(
+            var response = Response<Data>(
                 request: self.request,
                 response: res,
                 data: data,
                 value: data
-            ))
+            )
+            
+            for middleware in self.middlewares {
+                
+                do {
+                    response = try middleware.next(response)
+                }
+                catch {
+                    
+                    return completion(Response<Data>(
+                        request: self.request,
+                        response: res,
+                        data: data,
+                        error: error
+                    ))
+                    
+                }
+                
+            }
+            
+            // Done
+            
+            return completion(response)
             
         }
         

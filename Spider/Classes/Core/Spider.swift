@@ -12,6 +12,7 @@ public class Spider {
     public var baseUrl: URLRepresentable?
     public var authorization: RequestAuth?
     public var headers: Headers?
+    public var middlewares: [Middleware]?
     
     public var isDebugEnabled: Bool = false {
         didSet {
@@ -64,6 +65,7 @@ public class Spider {
         return RequestWorker(
             request: request,
             builder: self.builder,
+            middlewares: self.middlewares ?? [],
             session: self.session,
             isDebugEnabled: self.isDebugEnabled
         )
