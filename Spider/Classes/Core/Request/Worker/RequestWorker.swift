@@ -78,7 +78,7 @@ public class RequestWorker: Cancellable {
                 request: self.request,
                 response: nil,
                 data: nil,
-                error: SpiderError.badUrl
+                error: Request.Error.badUrl
             ))
             
         }
@@ -121,7 +121,7 @@ public class RequestWorker: Cancellable {
                     request: self.request,
                     response: res,
                     data: nil,
-                    error: SpiderError.badResponseData
+                    error: Response<Data>.Error.badData
                 ))
                 
             }

@@ -30,7 +30,7 @@ public class SpiderImageDownloader {
         
         guard let url = url.url,
             let urlString = url.urlString else {
-            completion(nil, false, SpiderError.badUrl)
+            completion(nil, false, Request.Error.badUrl)
             return nil
         }
         

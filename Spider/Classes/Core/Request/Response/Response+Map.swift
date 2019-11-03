@@ -42,7 +42,7 @@ internal extension Response /* Map */ {
                 
                 let nextValue = try transform(value)
                 guard let _nextValue = nextValue else {
-                    throw SpiderError.compactMap
+                    throw Response.Error.compactMap
                 }
                 
                 return Response<S>(
@@ -62,7 +62,7 @@ internal extension Response /* Map */ {
         
     }
     
-    private func response<S>(with error: Error) -> Response<S> {
+    private func response<S>(with error: Swift.Error) -> Response<S> {
         
         return Response<S>(
             request: self.request,

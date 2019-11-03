@@ -9,9 +9,29 @@ import Foundation
 
 public struct Response<T> {
     
+    public enum Error: Swift.Error {
+        
+        case badData
+        case serialization
+        case compactMap
+        case other(description: String)
+        
+        public var localizedDescription: String {
+            
+            switch self {
+            case .badData: return "Bad data"
+            case .serialization: return "Serialization"
+            case .compactMap: return "Compact map"
+            case .other(let desc): return desc
+            }
+            
+        }
+        
+    }
+    
     public let request: Request
     public let urlResponse: URLResponse?
-    public let result: Result<T, Error>
+    public let result: Result<T, Swift.Error>
     public let body: Body?
     
     //public let data: Data?
@@ -25,7 +45,7 @@ public struct Response<T> {
         
     }
     
-    public var error: Error? {
+    public var error: Swift.Error? {
         
         switch self.result {
         case .failure(let error): return error
@@ -50,19 +70,19 @@ public struct Response<T> {
         self.request = request
         self.urlResponse = response
         self.body = Body(data: data)
-        self.result = Result<T, Error>.success(value)
+        self.result = Result<T, Swift.Error>.success(value)
         
     }
     
     internal init(request: Request,
                   response: URLResponse?,
                   data: Data?,
-                  error: Error) {
+                  error: Swift.Error) {
         
         self.request = request
         self.urlResponse = response
         self.body = Body(data: data)
-        self.result = Result<T, Error>.failure(error)
+        self.result = Result<T, Swift.Error>.failure(error)
         
     }
     
@@ -135,7 +155,7 @@ extension Response: CustomStringConvertible, CustomReflectable {
         
     }
     
-    private func description(for error: Error) -> String {
+    private func description(for error: Swift.Error) -> String {
         
         if let decodingError = error as? DecodingError {
             

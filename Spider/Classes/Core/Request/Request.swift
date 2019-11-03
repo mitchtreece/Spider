@@ -8,6 +8,24 @@
 import Foundation
 
 public class Request {
+    
+    public enum Error: Swift.Error {
+        
+        case badUrl
+        case cancelled
+        case other(description: String)
+        
+        public var localizedDescription: String {
+            
+            switch self {
+            case .badUrl: return "Bad url"
+            case .cancelled: return "Cancelled"
+            case .other(let desc): return desc
+            }
+            
+        }
+        
+    }
         
     /// Representation of the various states of an HTTP request.
     public enum State: String {

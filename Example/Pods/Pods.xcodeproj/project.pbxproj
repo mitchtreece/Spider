@@ -171,7 +171,6 @@
 		D4697DC40F3B059E4A0867838CA1814E /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94BCEC0E805376BF7DACDD298E17B4A /* ConstraintMultiplierTarget.swift */; };
 		D65C023165A4D556A8FCBA80FCCAEF78 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A504DE98A08F8F31CA7496192314387 /* Error.swift */; };
 		D6F41C5987C098D9C87CD33AFD74A3B0 /* SpiderImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0893DB9BFCFCA637607D46599957B282 /* SpiderImageDownloader.swift */; };
-		DAAB653A0E7890859ED0A61C68337F3F /* SpiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C93D60660AF4A7E547371D896201FF /* SpiderError.swift */; };
 		DBC51C4C9C30B150796A8E1C9DEA7C3B /* ImageRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC55752895816309E6E3B6FDC13D2C7 /* ImageRepresentable.swift */; };
 		E5938189529B1F8BD074BB166C8BDE57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2EA5B5A8AB9A48AB57A9F87246B2B8B /* SystemConfiguration.framework */; };
 		E5F6ACACDF29D937A21E7DEC85A13E3E /* ReachabilitySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45137F57F96511AD2E3C2CB677E67292 /* ReachabilitySwift-dummy.m */; };
@@ -379,7 +378,6 @@
 		7F74C40A9DCF437BB84819912B50DC8D /* RequestWorker+Promises.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RequestWorker+Promises.swift"; sourceTree = "<group>"; };
 		80685223060293D1E98AB060AAF0710F /* Pods-Spider_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spider_Example-Info.plist"; sourceTree = "<group>"; };
 		82D6B99FDB3F0A13C69CBE40A3BFCAB2 /* RequestWorker+Decode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "RequestWorker+Decode.swift"; sourceTree = "<group>"; };
-		83C93D60660AF4A7E547371D896201FF /* SpiderError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpiderError.swift; sourceTree = "<group>"; };
 		8487977CF6BAE5829912AD578E48E7E7 /* Spider-Web-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Spider-Web-umbrella.h"; sourceTree = "<group>"; };
 		852434C0CCEBB6F7A3B7A025C1629ED4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8B5CFD844429F66DCDF5E1A80B83C1C0 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Image/Filter.swift; sourceTree = "<group>"; };
@@ -605,6 +603,14 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		26362643236F56F000D8C6A7 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				C0341F2D208F103545183913CF232407 /* ReachabilityMonitor.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		2AB432FD7F3E9FE9119E41220EEFE0CB /* Kingfisher */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,7 +678,6 @@
 			children = (
 				4080B05AD74E58164ABFE4026327D572 /* HTTPError.swift */,
 				3B001CAB103EBD44EEA6707348212FD1 /* ResponseError.swift */,
-				83C93D60660AF4A7E547371D896201FF /* SpiderError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -681,9 +686,12 @@
 			isa = PBXGroup;
 			children = (
 				3D9C4F1D7979A02DEC3C30A61815D068 /* Request.swift */,
+				2636263F236E435000D8C6A7 /* Body.swift */,
+				2636263D236E38A000D8C6A7 /* Headers.swift */,
 				E48784F2A033DBC9274A93D192E70D95 /* Builder */,
 				D5AD6F9F514BE4AFD58BC63A8AFFDB0F /* Multipart */,
 				55474608153C99A801136F1FCE205F6E /* Worker */,
+				FCDDA2D55D77C3521B35845FFBFB78DA /* Response */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1030,19 +1038,16 @@
 			isa = PBXGroup;
 			children = (
 				76E2C62C2F03EE678D88D1BFC03F4EA5 /* PlatformSupport.swift */,
-				C0341F2D208F103545183913CF232407 /* ReachabilityMonitor.swift */,
 				9E7969554F3015CD15334BDA9AB7F439 /* Spider.swift */,
-				2636263D236E38A000D8C6A7 /* Headers.swift */,
-				2636263F236E435000D8C6A7 /* Body.swift */,
 				3AAE643C904F77DB0184EE975CEEC302 /* Authorization */,
 				426ACC96A0D3783E2878CA04C6168BD8 /* Errors */,
 				721530DEA95AAE421937872E87055E79 /* Helpers */,
 				416F6ECA9AE36B8869932938108666D8 /* HTTP */,
 				8D005CADC2D9E4CF49B892569EE20E16 /* Middleware */,
 				FF39974905C070B006005896B264082E /* Protocols */,
+				26362643236F56F000D8C6A7 /* Reachability */,
 				F225A792BB57ED7AB5BF804661BCB29D /* Representables */,
 				43F31B0E3669EB50CC840B78C832A755 /* Request */,
-				FCDDA2D55D77C3521B35845FFBFB78DA /* Response */,
 			);
 			name = Core;
 			path = Spider/Classes/Core;
@@ -1515,7 +1520,6 @@
 				07020F172C025271FBA38CC27A6C40F7 /* ResponseMiddleware.swift in Sources */,
 				6EEA2C71C8208CE90308B67E48F73BD0 /* Spider-Web-dummy.m in Sources */,
 				706102A8C03515F515EF1D4D7722509F /* Spider.swift in Sources */,
-				DAAB653A0E7890859ED0A61C68337F3F /* SpiderError.swift in Sources */,
 				CE0EE7CE0E57D340149929DD63AA06BB /* SpiderImageCache.swift in Sources */,
 				D6F41C5987C098D9C87CD33AFD74A3B0 /* SpiderImageDownloader.swift in Sources */,
 				848C89CEE8473D41D9DD4394571A0F9F /* SpiderImageDownloadTask.swift in Sources */,
