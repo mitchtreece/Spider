@@ -7,14 +7,16 @@
 
 import Foundation
 
-/**
- `MultipartRequest` represents a configurable HTTP multipart request.
- */
+/// A configurable HTTP multipart request.
 public class MultipartRequest: Request {
     
+    /// Representation of the various multipart HTTP methods.
     public enum Method {
         
+        /// A POST HTTP method.
         case post
+        
+        /// A PUT HTTP method.
         case put
         
         internal var httpMethod: HTTPMethod {
@@ -28,26 +30,22 @@ public class MultipartRequest: Request {
         
     }
     
-    /**
-     A `UUID` string boundary used to separate multipart file data.
-     */
+    /// A `UUID` string boundary used to separate multipart file data.
     public let boundary = UUID().uuidString
     
     private(set) var files: [MultipartFile]
-    
-    /**
-     Initializes a new `MultipartRequest` with a method, path, parameters, authorization type, & files.
-     - Parameter method: The HTTP method to use for the request.
-     - Parameter path: The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
-     ```
-     "/users/12345"
-     "http://base.url/v1/users/12345"
-     ```
-     - Parameter parameters: An optional parameter object to be passed along in the request body.
-     - Parameter files: An array of files to be sent with the request.
-     - Parameter auth: An optional authorization type to use for this request.
-     Setting this will _override_ Spider's global authorization type.
-     */
+
+    /// Initializes a multipart request.
+    /// - Parameter method: The multipart HTTP request method.
+    /// - Parameter path: The request's resource path to append to any shared base URL **or** a fully qualified URL path.
+    ///     ```
+    ///     "/users/12345"
+    ///     "http://base.url/v1/users/12345"
+    ///     ```
+    /// - Parameter parameters: An optional parameter object to be passed along in the request body.
+    /// - Parameter files: An array of files to be sent with the request.
+    /// - Parameter authorization: Optional authorization to use for this request.
+    /// Setting this will _override_ any shared authorization.
     public init(method: Method,
                 path: String,
                 parameters: JSON?,

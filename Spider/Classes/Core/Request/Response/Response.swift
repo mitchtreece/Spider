@@ -7,14 +7,25 @@
 
 import Foundation
 
+/// An HTTP response.
 public struct Response<T> {
     
+    /// Representation of the various HTTP response errors.
     public enum Error: Swift.Error {
         
+        /// A bad data error.
         case badData
+        
+        /// A data serialization error.
         case serialization
+        
+        /// A compact map error.
         case compactMap
+        
+        /// A middleware error.
         case middleware
+        
+        /// A custom response error.
         case other(description: String)
         
         public var localizedDescription: String {
@@ -31,13 +42,19 @@ public struct Response<T> {
         
     }
     
+    /// The response's associated request.
     public let request: Request
+    
+    /// The response's underlying `URLResponse`.
     public let urlResponse: URLResponse?
+    
+    /// The response's result.
     public let result: Result<T, Swift.Error>
+    
+    // The response's data body.
     public let body: Body?
     
-    //public let data: Data?
-    
+    /// The response's value.
     public var value: T? {
         
         switch self.result {
@@ -47,6 +64,7 @@ public struct Response<T> {
         
     }
     
+    /// The response's error.
     public var error: Swift.Error? {
         
         switch self.result {
@@ -56,10 +74,12 @@ public struct Response<T> {
         
     }
     
+    /// The response's HTTP status code.
     public var statusCode: HTTPStatusCode? {
         return HTTPStatusCode.from(response: self.urlResponse)
     }
     
+    /// The response's body size.
     public var size: Data.Size {
         return self.body?.size ?? Data.Size(byteCount: 0)
     }

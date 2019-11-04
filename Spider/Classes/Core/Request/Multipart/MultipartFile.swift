@@ -7,22 +7,31 @@
 
 import Foundation
 
-/**
- `MultipartFile` is a wrapper over common properties of HTTP multipart files.
- */
+/// Wrapper over common properties of a multipart file.
 public struct MultipartFile {
     
-    /**
-     Representation of the various common MIME (media) types.
-     */
+    /// Representation of the various common MIME (media) types.
     public enum MIMEType {
         
+        /// An image/png type.
         case image_png
+        
+        /// An image/jpeg type.
         case image_jpg
+        
+        /// An image/gif type.
         case image_gif
+        
+        /// An audio/mpeg3 type.
         case audio_mp3
+        
+        /// An audio/aac type.
         case audio_aac
+        
+        /// A video/mp4 type.
         case video_mp4
+        
+        /// A custom MIME type.
         case custom(String)
         
     }
@@ -41,12 +50,27 @@ public struct MultipartFile {
         
     }
     
+    /// The multipart file's data.
     public var data: Data
+    
+    /// The multipart file's key.
     public var key: String
+    
+    /// The multipart file's name.
     public var name: String
+    
+    /// The multipart file's MIME type.
     public var mimeType: MIMEType
     
-    public init(data: Data, key: String, name: String, mimeType: MIMEType) {
+    /// Initializes a multipart file.
+    /// - Parameter data: The multipart file data.
+    /// - Parameter key: The mmultipart file key.
+    /// - Parameter name: The multipart file name.
+    /// - Parameter mimeType: The multipart file MIME type.
+    public init(data: Data,
+                key: String,
+                name: String,
+                mimeType: MIMEType) {
         
         self.data = data
         self.key = key

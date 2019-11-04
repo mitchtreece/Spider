@@ -137,7 +137,7 @@ public class Request {
         
     /// Initializes a request.
     /// - Parameter method: The request's HTTP method.
-    /// - Parameter path: The request's resource path to append to any shared base URL **or** a fully qualified UR path.
+    /// - Parameter path: The request's resource path to append to any shared base URL **or** a fully qualified URL path.
     ///     ```
     ///     "/users/12345"
     ///     "http://base.url/v1/users/12345"

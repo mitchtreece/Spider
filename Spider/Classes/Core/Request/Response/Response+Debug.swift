@@ -9,13 +9,19 @@ import Foundation
 
 public extension Response /* Debug */ {
     
+    /// Representation of the various debug types.
     enum DebugType {
-        
+
+        /// A debug string type.
         case string
+        
+        /// A debug JSON type.
         case json
         
     }
     
+    /// Debug prints the response.
+    /// - Parameter type: The debug type.
     func debug(_ type: DebugType) {
         
         guard let data = self.body?.data else {

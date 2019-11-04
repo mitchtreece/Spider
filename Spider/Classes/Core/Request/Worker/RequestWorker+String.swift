@@ -9,6 +9,9 @@ import Foundation
 
 public extension RequestWorker /* String */ {
     
+    /// Executes the HTTP request & serializes a `String` response.
+    /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
+    /// - Parameter completion: The request's completion handler.
     func string(encoding: String.Encoding = .utf8,
                 _ completion: @escaping (Response<String>)->()) {
         
@@ -20,6 +23,9 @@ public extension RequestWorker /* String */ {
         
     }
     
+    /// Executes the HTTP request & serializes a `String` value.
+    /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
+    /// - Parameter completion: The request's completion handler.
     func stringValue(encoding: String.Encoding = .utf8,
                      _ completion: @escaping (String?, Error?)->()) {
         

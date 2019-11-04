@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Proxy class thst manages the execution and serialization of HTTP requests & responses.
 public class RequestWorker: Cancellable {
     
     /// Representation of the various states of a request worker.
@@ -35,7 +36,10 @@ public class RequestWorker: Cancellable {
     private let session: URLSession
     private let isDebugEnabled: Bool
         
+    /// The request worker's state.
     public private(set) var state: State = .pending
+    
+    /// Flag indicating if the request worker has been cancelled.
     public private(set) var isCancelled: Bool = false
     
     private var task: URLSessionDataTask?
@@ -53,23 +57,17 @@ public class RequestWorker: Cancellable {
         self.isDebugEnabled = isDebugEnabled
         
     }
-            
+         
+    /// Executes the HTTP request & serializes a `Data` response.
+    /// - Parameter completion: The request's completion handler.
     public func data(_ completion: @escaping (Response<Data>)->()) {
         
         guard !self.isCancelled else {
             
+            // If cancelled then no need to call completion
+            
             self.state = .cancelled
             self.request.state = .cancelled
-            
-            // If cancelled then fuck off, no need to call completion
-            
-//            return completion(Response<Data>(
-//                request: self.request,
-//                response: nil,
-//                data: nil,
-//                error: SpiderError.cancelled
-//            ))
-            
             return
             
         }
@@ -172,6 +170,8 @@ public class RequestWorker: Cancellable {
         
     }
     
+    /// Executes the HTTP request & serializes a `Data` value.
+    /// - Parameter completion: The request's completion handler.
     public func dataValue(_ completion: @escaping (Data?, Error?)->()) {
 
         data { response in
@@ -185,6 +185,7 @@ public class RequestWorker: Cancellable {
 
     }
     
+    /// Cancels the request worker.
     public func cancel() {
         
         self.isCancelled = true

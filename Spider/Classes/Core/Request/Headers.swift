@@ -7,23 +7,40 @@
 
 import Foundation
 
+/// A configurable HTTP request header.
 public struct Headers {
     
+    /// Representation of the various header content types.
     public enum ContentType: Equatable {
         
+        /// An application/json content type.
         case app_json
+        
+        /// An application/javascript content type.
         case app_js
         
+        /// A text/plain content type.
         case text
+        
+        /// An text/html content type.
         case text_html
+        
+        /// A text/json content type.
         case text_json
+        
+        /// A text/javascript content type.
         case text_js
         
+        /// An image/png content type.
         case image_png
+        
+        /// An image/jpeg content type.
         case image_jpeg
         
+        /// An custom content type.
         case custom(String)
         
+        /// The content type's raw value.
         public var value: String {
             
             switch self {
@@ -45,7 +62,7 @@ public struct Headers {
         
     }
     
-    /// The type of content provided by a request.
+    /// The HTTP content type.
     public var contentType: ContentType?
     
     /// Array of acceptable content types supported by a request.
@@ -55,6 +72,10 @@ public struct Headers {
             
     internal private(set) var customFields = [String: String]()
     
+    /// Initializes HTTP request headers.
+    /// - Parameter content: An optional header content type.
+    /// - Parameter accept: Optional header accept types.
+    /// - Parameter fields: An optional custom header fields object.
     public init(content: ContentType?,
                 accept: [ContentType]?,
                 fields: [String: String]?) {
