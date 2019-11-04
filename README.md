@@ -8,7 +8,7 @@
 
 ## Overview
 Spider is an easy-to-use web framework built for speed & readability. Modern syntax & response handling makes working
-with web services so simple, it's almost spooky.
+with web services so simple - it's almost spooky.
 
 ## Installation
 ### CocoaPods
@@ -32,7 +32,7 @@ You can also manually add the source files to your project.
 
 ## The Basics
 
-Spider can be used in many different ways. Most times, a shared (one-off) approach is all you need.
+Spider can be used in many different ways. Most times, the shared Spider instance is all you need.
 
 ```swift
 Spider.web.get("https://path/to/endpoint").data { response in
@@ -93,7 +93,7 @@ tarantula.get("https://path/to/endpoint").data { response in
 }
 ```
 
-Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Spooky! Naturally, Spider instances created like this also support base urls:
+Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Scary! Naturally, Spider instances created like this also support base URLs:
 
 ```swift
 let blackWidow = Spider(baseUrl: "https://base.url/v1")
@@ -139,7 +139,7 @@ let file = MultipartFile(
     type: .image_png
 )
 
-let request = SpiderMultipartRequest(
+let request = MultipartRequest(
     method: .put,
     path: "https://path/to/upload",
     parameters: nil,
@@ -157,7 +157,7 @@ Spider.web.perform(request).data { response in
 
 Currently, Spider supports the following authorization types:
 - Basic (user:pass base64 encoded)
-- Token
+- Bearer token
 
 Authorization can be added on a per-request or instance-based basis. Typically we would want to provide our Spider instance authorization that all requests would be sent with:
 
@@ -186,7 +186,7 @@ mySpider.get("/topSecretData", authorization: token).data { response in
 Advanced requests can also provide authorization:
 
 ```swift
-let request = SpiderRequest(
+let request = Request(
     method: .get,
     path: "https://path/to/endpoint",
     authorization: TokenAuth(value: "0123456789")
@@ -207,7 +207,7 @@ Spider.web.perform(request).data { response in
 }
 ```
 
-By default, authorization is added to the _"Authorization"_ header field of your request. This can be changed by passing in a custom field when creating the auth:
+By default, authorization is added to the _"Authorization"_ header field. This can be changed by passing in a custom field when creating the authorization:
 
 ```swift
 let basic = BasicRequestAuth(
@@ -256,7 +256,7 @@ Likewise, the `TokenRequestAuth` _"Bearer"_ prefix can be modified in the same w
 
 ### Responses
 
-`Response` objects are clean & easy to work with. A typical data response might look something like this:
+`Response` objects are clean & easy to work with. A typical data response might look something like the following:
 
 ```swift
 Spider.web.get("https://some/data/endpoint").data { response in
@@ -277,11 +277,90 @@ Spider.web.get("https://some/data/endpoint").data { response in
 }
 ```
 
-`Response` also has helper `value` & `error` properties if you prefer that over the result syntax.
+`Response` also has helper `value` & `error` properties if you prefer that over the result syntax:
+
+```swift
+Spider.web.get("https://some/data/endpoint").data { response in
+
+    if let error = response.error {
+        // Handle the error
+        return
+    }
+
+    guard let data = response.value else {
+        // Missing data
+        return
+    }
+
+    // Do something with the response data!
+
+}
+```
 
 #### Workers & Serialization
+When asked to perform a request, Spider creates & returns a `RequestWorker` instance. Workers are what actually manage the execution of requests, and serialization of responses. For instance, the above example could be broken down as follows:
 
-TODO
+```swift
+let worker = Spider.web.get("https://some/data/endpoint")
+
+worker.data { response in
+
+    if let error = response.error {
+        // Handle the error
+        return
+    }
+
+    guard let data = response.value else {
+        // Missing data
+        return
+    }
+
+    // Do something with the response data!
+
+}
+```
+
+If you'd rather work directly with response _values_ instead of responses themselves, each worker function has a raw value alternative:
+
+```swift
+let worker = Spider.web.get("https://some/data/endpoint")
+
+worker.dataValue { (data, error) in
+
+    if let error = error {
+        // Handle the error
+        return
+    }
+
+    guard let data = data else {
+        // Missing data
+        return
+    }
+
+    // Do something with the data!
+
+}
+```
+
+In addition to `Data`, `RequestWorker` also supports the following serialization functions:
+
+```swift
+func string(encoding: String.Encoding, completion: ...)
+func stringValue(encoding: String.Encoding, completion: ...)
+
+func json(completion: ...)
+func jsonValue(completion: ...)
+func jsonArray(completion: ...)
+func jsonArrayValue(completion: ...)
+
+func image(completion:)
+func imageValue(completion: ...)
+
+func decode<T: Decodable>(type: T.Type, completion: ...)
+func decodeValue<T: Decodable>(type: T.Type, completion: ...)
+```
+
+Custom serialization functions can be added via `RequestWorker` extensions.
 
 ### Images
 
@@ -291,10 +370,11 @@ Image downloading & caching is supported via `SpiderImageDownloader` & `SpiderIm
 
 Downloading images with `SpiderImageDownloader` is easy!
 
-```Swift
-SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
+```swift
+SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isFromCache, error) in
 
-    guard let image = image, error == nil else {
+    guard let image = image,
+        error == nil else {
         // Handle error
     }
 
@@ -303,14 +383,14 @@ SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImag
 }
 ```
 
-The above `getImage()` function returns a discardable token that can be used to cancel the image download if needed:
+The above `getImage()` function returns a discardable task that can be used to cancel the download if needed:
 
-```Swift
-let token = SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
+```swift
+let task = SpiderImageDownloader.getImage("http://url.to/image.png") { (image, isCachedImage, error) in
     ...
 }
 
-SpiderImageDownloader.cancel(for: token)
+task.cancel()
 ```
 
 By default, `SpiderImageDownloader` does not cache downloaded images. If you want images to be cached, simply set the `cache` flag to `true` when calling the `getImage()` function.
@@ -319,167 +399,77 @@ By default, `SpiderImageDownloader` does not cache downloaded images. If you wan
 
 Caching, fetching, & removing images from the cache:
 
-```Swift
+```swift
+let imageCache = SpiderImageCache.shared
 let image: UIImage = ...
 let key = "my_image_key"
 
 // Add an image to the cache
-SpiderImageCache.shared.cache(image, forKey: key)
+imageCache.cache(image, forKey: key) {
+    // Finished caching image!
+}
 
 // Fetch an image from the cache
-if let image = SpiderImageCache.shared.image(forKey: key) {
+if let image = imageCache.image(forKey: key) {
     // Do something with the image!
 }
 
 // Remove an image from the cache
-SpiderImageCache.shared.removeImage(forKey: key)
+imageCache.removeImage(forKey: key) {
+    // Finished removing image!
+}
 ```
 
 You can also clean the cache:
 
-```Swift
+```swift
 // Clean the disk cache
-SpiderImageCache.shared.clean(.disk)
+imageCache.clean(.disk)
 
 // Clean the memory cache
-SpiderImageCache.shared.clean(.memory)
+imageCache.clean(.memory)
 
 // Clean all caches
-SpiderImageCache.shared.cleanAll()
+imageCache.cleanAll()
 ```
 
-### UIKit Integration
+### UI Integrations
 
-Spider also has some nifty UIKit integrations, like `UIImageView` image downloading!
+Spider also has some nifty UI integrations, like image view loading!
 
-```Swift
+```swift
 imageView.web.setImage("http://url.to/image.png")
 ```
 
-Currently, Spider has integrations for the following UIKit components:
-- `UIImageView`
-
-### Weaver
-
-Spider has basic object mapping features via it's `Weaver` class. Objects wishing to integrate with Spider's mapping features simply need to conform to Swift 4's built-in `Codable` protocol:
-
-```Swift
-struct User: Codable {
-
-    var name: String
-    var age: Int
-
-}
-```
-
-```Swift
-Spider.web.get("https://get/user/123") { (response) in
-
-    guard let userDict = response.json(), response.err == nil else {
-
-        var message = "There was an error fetching the json object"
-        if let error = response.err {
-            message = error
-        }
-
-        print(message)
-        return
-
-    }
-
-    if let user = Weaver<User>(userDict).map() {
-        print("Fetched user: \(user.name)")
-    }
-
-}
-```
-
-Array mapping:
-
-```Swift
-Spider.web.get("https://list/of/users") { (response) in
-
-    guard let userArray = response.jsonArray(), response.err == nil else {
-
-        var message = "There was an error fetching the json array"
-        if let error = response.err {
-            message = error
-        }
-
-        print(message)
-        return
-
-    }
-
-    if let users = Weaver<User>(userArray).arrayMap() {
-        print("Fetched \(users.count) users")
-    }
-
-}
-```
+Currently, Spider has integrations for the following UI components:
+- `UIImageView` / `NSImageView`
 
 ### Promises
 
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
-```Swift
-Spider.web.get("https://jsonplaceholder.typicode.com/photos").then { (response) -> Promise<SpiderResponse> in
+```swift
+Spider.web.get("https://jsonplaceholder.typicode.com/photos/1").decodeValue(Photo.self).then { photo -> Promise<Image> in
 
-    guard let photos = response.jsonArray(), response.err == nil && photos.count > 0 else {
-        throw SpiderError.badResponse
-    }
+    return Spider.web.get(photo.url).imageValue()
 
-    return Spider.web.get(path: photos[0]["url"] as! String)
+}.done { image in
 
-}.then { (response) -> Void in
+    // Do something with the image!
 
-    guard let image = response.image() else {
-        throw SpiderError.badResponse
-    }
+}.catch { error in
 
-    print(image)
-
-}.catch { (error) in
-
-    print(error)
+    // Handle error
 
 }
+
 ```
 
-This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org). I highly encourage you to consider using promises whenever possible.
-
-### Helpers
-
-Some useful additions are also included to help cut down on development & debugging time.
+This is just a basic example of how promises can help organize your code. For more information, please visit [PromiseKit](http://promisekit.org).
 
 #### Debug Mode
 
-Enabling Spider's `isDebugModeEnabled` flag will print all debug information (including all outgoing requests) to the console.
-
-#### cURL Generation
-
-`SpiderRequest` includes a `printCURL()` function that, as the name implies, prints the cURL command for a given request.
-
-```Swift
-let request = SpiderRequest(method: "GET", path: "https://path/to/endpoint", parameters: ["user_id": "1234"])
-request.header.set(value: "bar", forField: "foo")
-request.printCURL()
-
-==>
-
-curl https://path/to/endpoint \
--X GET \
--H "foo: bar" \
--d "user_id=1234"
-```
-
-**NOTE**: If your request is dependent on a `Spider` instance's `baseUrl` _or_ `authorization` properties,
-cURL information **will not** be accurate until _after_ the request is performed.
-
-## To-do
-- Better error handling for Weaver object mapping
-- Objective-C compatibility
-- Test coverage
+Enabling Spider's `isDebugEnabled` flag will print all debug information (including all outgoing requests) to the console.
 
 ## Contributing
 
