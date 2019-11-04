@@ -8,7 +8,7 @@
 import Foundation
 import Kingfisher
 
-/// A cancellable image download task class.
+/// A cancellable image download task.
 public class SpiderImageDownloadTask: Cancellable {
     
     internal var downloadTask: DownloadTask? {

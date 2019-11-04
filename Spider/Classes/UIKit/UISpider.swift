@@ -8,9 +8,7 @@
 
 import Foundation
 
-/**
- `UISpider` is a proxy between `Spider` & the current platform's UI layer.
- */
+/// Proxy class between `Spider` & the current platform's UI layer.
 public class UISpider<T> {
     
     internal weak var view: View!

@@ -9,9 +9,9 @@ import Foundation
 
 public extension RequestWorker /* Decode */ {
 
-    /// Executes the HTTP request & serializes a `Decodable` object response.
-    /// - Parameter type: The `Decodable` type to serialize.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes a `Decodable` object response.
+    /// - Parameter type: The `Decodable` object type to serialize.
+    /// - Parameter completion: The worker's completion handler.
     func decode<T: Decodable>(_ type: T.Type, _ completion: @escaping (Response<T>)->()) {
         
         data { response in
@@ -22,9 +22,9 @@ public extension RequestWorker /* Decode */ {
         
     }
     
-    /// Executes the HTTP request & serializes a `Decodable` object value.
-    /// - Parameter type: The `Decodable` type to serialize.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes a `Decodable` object value.
+    /// - Parameter type: The `Decodable` object type to serialize.
+    /// - Parameter completion: The worker's completion handler.
     func decodeValue<T: Decodable>(_ type: T.Type, _ completion: @escaping (T?, Error?)->()) {
         
         decode(type) { completion(

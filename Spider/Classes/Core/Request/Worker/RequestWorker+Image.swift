@@ -9,8 +9,8 @@ import Foundation
 
 public extension RequestWorker /* Image */ {
     
-    /// Executes the HTTP request & serializes an `Image` response.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes an `Image` response.
+    /// - Parameter completion: The worker's completion handler.
     func image(_ completion: @escaping (Response<Image>)->()) {
         
         data { response in
@@ -21,8 +21,8 @@ public extension RequestWorker /* Image */ {
         
     }
     
-    /// Executes the HTTP request & serializes an `Image` value.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes an `Image` value.
+    /// - Parameter completion: The worker's completion handler.
     func imageValue(_ completion: @escaping (Image?, Error?)->()) {
         
         image { completion(

@@ -12,10 +12,10 @@ public extension Response /* Debug */ {
     /// Representation of the various debug types.
     enum DebugType {
 
-        /// A debug string type.
+        /// A string debug type.
         case string
         
-        /// A debug JSON type.
+        /// A JSON debug type.
         case json
         
     }

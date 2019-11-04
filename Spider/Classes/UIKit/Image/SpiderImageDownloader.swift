@@ -15,14 +15,14 @@ import Kingfisher
 /// - Parameter error: The error associated with the download task.
 public typealias SpiderImageDownloaderCompletion = (_ image: Image?, _ fromCache: Bool, _ error: Error?)->()
 
-/// `SpiderImageDownloader` is an image download helper class.
+/// Image download helper class.
 public class SpiderImageDownloader {
     
     /// Fetches an image at a given URL.
     /// - Parameter url: The image URL.
-    /// - Parameter cache: A boolean indicating wether or not the image should be cached; _defaults to false_.
+    /// - Parameter cache: A boolean indicating if the image should be cached; _defaults to false_.
     /// - Parameter completion: The image download completion handler.
-    /// - Returns: A cancellable image download task.
+    /// - Returns: An image download task.
     @discardableResult
     public static func getImage(_ url: URLRepresentable,
                                 cache: Bool = false,

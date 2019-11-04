@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Proxy class thst manages the execution and serialization of HTTP requests & responses.
+/// Proxy class that manages the execution and serialization of HTTP requests & responses.
 public class RequestWorker: Cancellable {
     
     /// Representation of the various states of a request worker.
@@ -36,10 +36,10 @@ public class RequestWorker: Cancellable {
     private let session: URLSession
     private let isDebugEnabled: Bool
         
-    /// The request worker's state.
+    /// The worker's state.
     public private(set) var state: State = .pending
     
-    /// Flag indicating if the request worker has been cancelled.
+    /// Flag indicating if the worker has been cancelled.
     public private(set) var isCancelled: Bool = false
     
     private var task: URLSessionDataTask?
@@ -58,8 +58,8 @@ public class RequestWorker: Cancellable {
         
     }
          
-    /// Executes the HTTP request & serializes a `Data` response.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes a `Data` response.
+    /// - Parameter completion: The workers's completion handler.
     public func data(_ completion: @escaping (Response<Data>)->()) {
         
         guard !self.isCancelled else {
@@ -170,8 +170,8 @@ public class RequestWorker: Cancellable {
         
     }
     
-    /// Executes the HTTP request & serializes a `Data` value.
-    /// - Parameter completion: The request's completion handler.
+    /// Starts the worker & serializes a `Data` value.
+    /// - Parameter completion: The worker's completion handler.
     public func dataValue(_ completion: @escaping (Data?, Error?)->()) {
 
         data { response in
@@ -185,7 +185,7 @@ public class RequestWorker: Cancellable {
 
     }
     
-    /// Cancels the request worker.
+    /// Cancels the worker.
     public func cancel() {
         
         self.isCancelled = true

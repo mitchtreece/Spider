@@ -17,9 +17,8 @@ private enum AssociatedKeys {
 
 public extension ImageView {
     
-    /// The image view's `UISpider` instance.
+    /// The image view's `UISpiders` instance.
     var web: UISpider<ImageView> {
-        
         get {
             
             if let web = objc_getAssociatedObject(self, &AssociatedKeys.spider) as? UISpider<ImageView> {
@@ -38,7 +37,6 @@ public extension ImageView {
             objc_setAssociatedObject(self, &AssociatedKeys.spider, web, .OBJC_ASSOCIATION_RETAIN)
             
         }
-        
     }
     
     internal var imageDownloadTask: SpiderImageDownloadTask? {
@@ -56,10 +54,10 @@ public extension ImageView {
 
 public extension UISpider where T: ImageView {
     
-    /// Fetches an online _or_ cached image at a URL, then assigns it to the current image view.
-    /// - Parameter url: The image's URL
-    /// - Parameter placeholder: A placeholder image to assign to the current `UIImageView` while the image is being fetched; _defaults to nil_.
-    /// - Parameter cacheImage: A boolean indicating wether or not the fetched image should be cached; _defaults to true_.
+    /// Fetches a remote _or_ cached image for a given URL, then assigns it to the current image view.
+    /// - Parameter url: The image's URL.
+    /// - Parameter placeholder: A placeholder image to assign to the current image view while the image is being fetched; _defaults to nil_.
+    /// - Parameter cacheImage: Flag indicating if the fetched image should be cached; _defaults to true_.
     /// - Parameter completion: The image download completion handler; _defaults to nil_.
     ///
     /// If a `completion` handler is set, the caller is responsible for assigning the image to the image view.
@@ -92,7 +90,7 @@ public extension UISpider where T: ImageView {
     }
     
     /// Cancels the current image download task.
-    func cancelImageLoad() {
+    func cancelImageDownload() {
         
         guard let imageView = self.view as? ImageView else { return }
         guard let task = imageView.imageDownloadTask else { return }

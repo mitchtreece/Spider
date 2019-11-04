@@ -9,13 +9,18 @@
 import Foundation
 import Kingfisher
 
-/// `SpiderImageCache` helps cache images to memory & disk.
+/// Helper class that caches images to memory & disk.
 public class SpiderImageCache {
     
-    /// Representation of cache types.
+    /// Representation of the various cache types.
     public enum CacheType {
+        
+        /// A disk cache type.
         case disk
+        
+        /// An in-memory cache type.
         case memory
+        
     }
     
     /// The shared `SpiderImageCache` instance.
@@ -28,9 +33,9 @@ public class SpiderImageCache {
     }
 
     /// Caches an image for a given key.
-    /// - Parameter image: The image to cache
-    /// - Parameter key: The key to cache the image with
-    /// - Parameter completion: The image cache completion handler
+    /// - Parameter image: The image to cache.
+    /// - Parameter key: The key to cache the image with.
+    /// - Parameter completion: An optional image cache completion handler.
     public func cache(_ image: Image, forKey key: String, completion: (()->())?) {
 
         self.cache.store(
@@ -43,8 +48,8 @@ public class SpiderImageCache {
     }
     
     /// Fetches a cached image for a given key.
-    /// - Parameter key: The cached image's key
-    /// - Parameter completion: The retrieval completion handler
+    /// - Parameter key: The cached image's key.
+    /// - Parameter completion: The retrieval completion handler.
     public func image(forKey key: String, completion: @escaping (Image?, Error?)->()) {
                 
         self.cache.retrieveImage(forKey: key) { result in
@@ -59,8 +64,8 @@ public class SpiderImageCache {
     }
     
     /// Removes a cached image for a given key.
-    /// - Parameter key: The cached image's key
-    /// - Parameter completion: The image removal completion handler
+    /// - Parameter key: The cached image's key.
+    /// - Parameter completion: An optional image removal completion handler.
     public func removeImage(forKey key: String, completion: (()->())?) {
                 
         self.cache.removeImage(
@@ -71,7 +76,7 @@ public class SpiderImageCache {
     }
     
     /// Cleans the cache for a given type.
-    /// - Parameter type: The cache type
+    /// - Parameter type: The cache type.
     public func clean(_ type: CacheType) {
         
         switch type {
