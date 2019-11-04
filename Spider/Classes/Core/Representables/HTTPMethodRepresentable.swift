@@ -9,7 +9,10 @@ import Foundation
 
 /// `HTTPMethodRepresentable` is a protocol describing the conversion to various HTTP request method representations.
 public protocol HTTPMethodRepresentable {
+    
+    /// An `HTTPMethod` representation.
     var httpMethod: HTTPMethod { get }
+    
 }
 
 extension String: HTTPMethodRepresentable {

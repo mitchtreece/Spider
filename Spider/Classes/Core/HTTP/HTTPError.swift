@@ -7,10 +7,16 @@
 
 import Foundation
 
-public struct HTTPError: LocalizedError {
+/// An HTTP error.
+public struct HTTPError: Error {
     
+    /// The error description.
     public var description: String
+    
+    /// The HTTP status code.
     public var statusCode: HTTPStatusCode?
+    
+    /// The associated request path.
     public var path: String
     
     internal init(description: String, statusCode: HTTPStatusCode?, path: String) {
@@ -21,7 +27,7 @@ public struct HTTPError: LocalizedError {
         
     }
     
-    public var errorDescription: String? {
+    public var localizedDescription: String {
         
         if let statusCode = self.statusCode {
             return "[\(statusCode.rawValue)] <\(self.path)>: \(self.description)"

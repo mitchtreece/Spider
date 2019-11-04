@@ -12,7 +12,7 @@ public extension Data {
     /**
      Serializes data into a `String`.
      - Parameter encoding: The string encoding to use; _defaults to utf8_.
-     - Returns: An encoded data `String`.
+     - Returns: An encoded data string.
      */
     func string(with encoding: String.Encoding = .utf8) -> String? {
         return String(data: self, encoding: encoding)

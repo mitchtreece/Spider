@@ -7,12 +7,19 @@
 
 import Foundation
 
+/// A configurable HTTP request.
 public class Request {
     
+    /// Representation of the various request errors.
     public enum Error: Swift.Error {
         
+        /// A bad request URL error.
         case badUrl
+        
+        /// A request cancelled error.
         case cancelled
+        
+        /// A custom request error.
         case other(description: String)
         
         public var localizedDescription: String {
@@ -47,64 +54,61 @@ public class Request {
         
     }
     
-    /**
-     The request's HTTP method; _defaults to GET_.
-     */
+    /// The request's HTTP method; _defaults to GET_.
     public var method: HTTPMethod = .get {
         didSet {
             createRequestBody()
         }
     }
     
-    /**
-     The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
-     ```
-     "/users/12345"
-     "http://base.url/v1/users/12345"
-     ```
-     */
+    /// The request's endpoint path to append to it's base URL **or** a fully qualified URL (if no global/request base URL is provided).
+    /// ```
+    /// "/users/12345"
+    /// "http://base.url/v1/users/12345"
+    /// ```
     public var path: String = ""
     internal var queryEncodedPath: String?
-    
-    /**
-     An optional parameter object to be either passed along in the request body,
-     or encoded into query parameters.
-     */
+
+    /// An optional parameter object to be either passed along in the request body,
+    /// or encoded into query parameters.
     public var parameters: JSON? {
         didSet {
             createRequestBody()
         }
     }
     
-    /**
-     An optional authorization type to use for this request.
-     Setting this will _override_ Spider's global authorization type.
-     */
+    /// An optional authorization type to use for this request.
+    /// Setting this will _override_ Spider's global authorization type.
     public var authorization: RequestAuth?
     
-    /**
-     The request's HTTP headers.
-     */
+    /// Flag indicating if the request should ignore any shared authorization; _defaults to false_.
+    public var ignoreSharedAuthorization: Bool = false
+    
+    /// The request's HTTP headers.
     public var headers = Headers()
+    
+    /// Flag indicating if the request should ignore any shared headers; _defaults to false_.
+    public var ignoreSharedHeaders: Bool = false
         
-    /**
-     The request's timeout interval in seconds; _defaults to 60_.
-     */
+    /// The request's timeout interval in seconds; _defaults to 60_.
     public var timeout: TimeInterval = 60
     
-    /**
-     The request's cache policy; _defaults to useProtocolCachePolicy_.
-     */
+    /// The request's cache policy; _defaults to useProtocolCachePolicy_.
     public var cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
     
-    /**
-     A boolean representing if the request can be performed using the cellular network; _defaults to true_.
-     */
+    /// Flag indicating if the request can be performed using the cellular network; _defaults to true_.
     public var allowsCellularAccess: Bool = true
+        
+    /// An optional middlewares array to be used for this request.
+    ///
+    /// If shared middlewares also exist, the request's middlewares will
+    /// be _prepended_ & executed **before** any shared middlewares.
+    public var middlewares: [Middleware]?
     
-    /**
-     The request's HTTP body.
-     */
+    /// Flag indicating if the request should ignore any shared middlewares; _defaults to false_.
+    public var ignoreSharedMiddlewares: Bool = false
+    
+    /// The request's HTTP body.
     public internal(set) var body: Body?
     
     /// The request's start date.
@@ -123,6 +127,7 @@ public class Request {
         
     }
     
+    /// The request's body size.
     public var size: Data.Size {
         return self.body?.size ?? Data.Size(byteCount: 0)
     }
@@ -130,6 +135,17 @@ public class Request {
     /// The current state of the request.
     public internal(set) var state: State = .pending
         
+    /// Initializes a request.
+    /// - Parameter method: The request's HTTP method.
+    /// - Parameter path: The request's resource path to append to any shared base URL **or** a fully qualified UR path.
+    ///     ```
+    ///     "/users/12345"
+    ///     "http://base.url/v1/users/12345"
+    ///     ```
+    /// - Parameter parameters: An optional parameter object to be either passed along in the request body,
+    /// or encoded into query parameters.
+    /// - Parameter authorization: Optional authorization to use for this request.
+    /// Setting this will _override_ any shared authorization.
     public init(method: HTTPMethod,
                 path: String,
                 parameters: JSON? = nil,

@@ -7,16 +7,27 @@
 
 import Foundation
 
+/// JSON typealias
 public typealias JSON = [String: Any]
 
+/// Representation of the various JSON errors.
 public enum JSONError: Error {
+    
+    // An invalid JSON object error
     case invalidJSONObject
+    
 }
 
+/// Protocol describing the conversion to various `JSON` representations.
 public protocol JSONRepresentable {
     
+    /// A `JSON` representation.
     func json() throws -> JSON
+    
+    /// A `JSON` array representation.
     func jsonArray() throws -> [JSON]
+    
+    /// A `JSON` data representation.
     func jsonData() throws -> Data
     
 }

@@ -9,6 +9,7 @@ import Foundation
 
 public extension HTTPStatusCode /* Name */ {
     
+    /// The status code's human-readable name.
     var name: String {
         
         switch self {

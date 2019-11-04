@@ -7,13 +7,19 @@
 
 import Reachability
 
+/// Helper class that manages & notifies on reachability events.
 public final class ReachabilityMonitor {
         
     private let reachability: Reachability
     internal var isDebugEnabled: Bool = false
+    
+    /// Flag indicating if monitoring has started.
     public private(set) var isMonitoring: Bool = false
     
+    /// The reachable handler.
     public var reachable: ((Reachability.Connection)->())?
+    
+    /// The unreachable handler.
     public var unreachable: ((Reachability.Connection)->())?
     
     internal init?(host: URLRepresentable?) {
@@ -49,6 +55,7 @@ public final class ReachabilityMonitor {
         
     }
     
+    /// Starts reachability monitoring.
     public func start() {
         
         guard !self.isMonitoring else { return }
@@ -63,6 +70,7 @@ public final class ReachabilityMonitor {
         
     }
     
+    /// Stops reachability monitoring.
     private func stop() {
         
         guard self.isMonitoring else { return }

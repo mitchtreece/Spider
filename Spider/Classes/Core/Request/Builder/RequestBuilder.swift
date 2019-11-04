@@ -42,10 +42,11 @@ internal class RequestBuilder {
         urlRequest.allowsCellularAccess = request.allowsCellularAccess
         
         // Headers
-                
-        var headers = (self.spider.headers ?? Headers())
-            .merged(with: request.headers)
-        
+
+        var headers = !request.ignoreSharedHeaders ?
+            (self.spider.headers ?? Headers()).merged(with: request.headers) :
+            request.headers
+
         for (key, value) in headers.jsonifyAndPrepare(for: request, using: self.spider) {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
@@ -58,6 +59,7 @@ internal class RequestBuilder {
         // Set shared auth if needed
         
         if let sharedAuth = self.spider.authorization,
+            !request.ignoreSharedAuthorization,
             request.authorization == nil {
             request.authorization = sharedAuth
         }

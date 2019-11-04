@@ -140,22 +140,26 @@ public class RequestWorker: Cancellable {
                 value: data
             )
             
-            for middleware in self.middlewares {
-                
+            let middlewares = !self.request.ignoreSharedMiddlewares ?
+                (self.request.middlewares ?? []) + self.middlewares :
+                self.middlewares
+            
+            for middleware in middlewares {
+
                 do {
                     response = try middleware.next(response)
                 }
                 catch {
-                    
+
                     return completion(Response<Data>(
                         request: self.request,
                         response: res,
                         data: data,
                         error: error
                     ))
-                    
+
                 }
-                
+
             }
             
             // Done

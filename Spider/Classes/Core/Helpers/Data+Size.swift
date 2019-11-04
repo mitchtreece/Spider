@@ -9,6 +9,7 @@ import Foundation
 
 public extension Data /* Size */ {
     
+    /// Representation of th size of `Data`.
     struct Size: CustomStringConvertible, CustomDebugStringConvertible {
                 
         private var formatter: ByteCountFormatter {
@@ -20,8 +21,10 @@ public extension Data /* Size */ {
             
         }
         
+        /// The byte count.
         public let byteCount: Int64
 
+        /// The formatted size string.
         public var string: String {
             return self.formatter.string(fromByteCount: self.byteCount)
         }
@@ -40,6 +43,7 @@ public extension Data /* Size */ {
         
     }
     
+    /// The data's size descriptor.
     var size: Size {
         return Size(byteCount: Int64(self.count))
     }

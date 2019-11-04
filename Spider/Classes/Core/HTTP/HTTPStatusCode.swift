@@ -9,13 +9,18 @@ import Foundation
 
 // Source: https://httpstatuses.com
 
-
 public extension HTTPStatusCode {
     
+    /// Flag indicating if the status code is considered `OK`.
+    ///
+    /// A status code is considered `OK` if it's value is contained in the `200..<300` range.
     var isOk: Bool {
         return (200..<300).contains(self.rawValue)
     }
     
+    /// Creates an `HTTPStatusCode` from a url response.
+    /// - Parameter response: The url response.
+    /// - Returns: An optional `HTTPStatusCode`.
     static func from(response: URLResponse?) -> HTTPStatusCode? {
         
         if let statusCode = (response as? HTTPURLResponse)?.statusCode {
@@ -28,6 +33,7 @@ public extension HTTPStatusCode {
     
 }
 
+/// Representation of the various HTTP status codes.
 public enum HTTPStatusCode: Int {
     
     // MARK: 100's - Informational

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// `TokenRequestAuth` is a bearer token authorization type.
 public struct TokenRequestAuth: RequestAuth {
     
     public var prefix: String? = "Bearer"
@@ -22,6 +23,9 @@ public struct TokenRequestAuth: RequestAuth {
         return self.tokenString
     }
     
+    /// Initializes a token auth object.
+    /// - Parameter field: The HTTP request header field; _defaults to "Authorization"_.
+    /// - Parameter value: The token value.
     public init(field: String = "Authorization", value: String) {
         
         self.field = field

@@ -14,6 +14,7 @@ public struct Response<T> {
         case badData
         case serialization
         case compactMap
+        case middleware
         case other(description: String)
         
         public var localizedDescription: String {
@@ -22,6 +23,7 @@ public struct Response<T> {
             case .badData: return "Bad data"
             case .serialization: return "Serialization"
             case .compactMap: return "Compact map"
+            case .middleware: return "Middleware"
             case .other(let desc): return desc
             }
             

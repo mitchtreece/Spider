@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// A data-backed body.
 public struct Body {
     
+    /// The underlying body data.
     public private(set) var data: Data?
     
+    /// The body's size.
     public var size: Data.Size {
         return self.data?.size ?? Data.Size(byteCount: 0)
     }

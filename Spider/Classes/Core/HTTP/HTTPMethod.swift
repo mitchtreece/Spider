@@ -7,19 +7,40 @@
 
 import Foundation
 
+/// Representation of the various HTTP methods.
 public enum HTTPMethod {
     
+    /// A GET HTTP method.
     case get
+    
+    /// A POST HTTP method.
     case post
+    
+    /// A PUT HTTP method.
     case put
+    
+    /// A PATCH HTTP method.
     case patch
+    
+    /// A DELETE HTTP method.
     case delete
+    
+    /// A HEAD HTTP method.
     case head
+    
+    /// A CONNECT HTTP method.
     case connect
+    
+    /// An OPTIONS HTTP method.
     case options
+    
+    /// A TRACE HTTP method.
     case trace
+    
+    /// A custom HTTP method.
     case custom(String)
     
+    /// An array of all the HTTP method raw values.
     public static var allValues: [String] {
         
         return [
@@ -36,6 +57,7 @@ public enum HTTPMethod {
         
     }
     
+    /// The method's raw value.
     public var value: String {
         
         switch self {

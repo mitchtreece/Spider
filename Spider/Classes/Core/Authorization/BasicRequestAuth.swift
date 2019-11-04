@@ -7,9 +7,13 @@
 
 import Foundation
 
+/// `BasicRequestAuth` is a base64 user/pass authorization type.
 public struct BasicRequestAuth: RequestAuth {
     
+    /// The username for authorization.
     public var username: String
+    
+    /// The password for authorization.
     public var password: String
     
     public var prefix: String? = "Basic"
