@@ -1,6 +1,6 @@
 //
 //  BoolRepresentable.swift
-//  Pods
+//  Spider-Web
 //
 //  Created by Mitch Treece on 4/24/17.
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.

@@ -34,18 +34,18 @@ public struct MultipartFile {
         /// A custom MIME type.
         case custom(String)
         
-    }
-    
-    internal static func string(for mimeType: MIMEType) -> String {
-        
-        switch mimeType {
-        case .image_png: return "image/png"
-        case .image_jpg: return "image/jpeg"
-        case .image_gif: return "image/gif"
-        case .audio_mp3: return "audio/mpeg3"
-        case .audio_aac: return "audio/aac"
-        case .video_mp4: return "video/mp4"
-        case .custom(let type): return type
+        internal var value: String {
+            
+            switch self {
+            case .image_png: return "image/png"
+            case .image_jpg: return "image/jpeg"
+            case .image_gif: return "image/gif"
+            case .audio_mp3: return "audio/mpeg3"
+            case .audio_aac: return "audio/aac"
+            case .video_mp4: return "video/mp4"
+            case .custom(let type): return type
+            }
+            
         }
         
     }

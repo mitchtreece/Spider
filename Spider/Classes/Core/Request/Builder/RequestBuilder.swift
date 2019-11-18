@@ -43,11 +43,18 @@ internal class RequestBuilder {
         
         // Headers
 
+        let baseHeaders = self.spider.headers ?? Headers()
+        
         var headers = !request.ignoreSharedHeaders ?
-            (self.spider.headers ?? Headers()).merged(with: request.headers) :
+            baseHeaders.merged(with: request.headers) :
             request.headers
+        
+        let jsonHeaders = headers.jsonifyAndPrepare(
+            for: request,
+            using: self.spider
+        )
 
-        for (key, value) in headers.jsonifyAndPrepare(for: request, using: self.spider) {
+        for (key, value) in jsonHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         

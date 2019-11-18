@@ -7,7 +7,7 @@
 
 import Reachability
 
-/// Helper class that manages & notifies on reachability events.
+/// Helper class that manages & notifies on network reachability events.
 public final class ReachabilityMonitor {
         
     private let reachability: Reachability
@@ -36,7 +36,7 @@ public final class ReachabilityMonitor {
         }
         catch {
             
-            print("🚫 <Spider>: failed to create reachability link - \(error.localizedDescription)")
+            print("🚫 <Spider>: failed to create reachability monitor - \(error.localizedDescription)")
             return nil
             
         }

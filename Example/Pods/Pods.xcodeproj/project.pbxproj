@@ -83,7 +83,7 @@
 		62AD7D42C96A04828EEA3CC151AA5E38 /* RedirectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8C7B36FB429D39A8958476E102BABB /* RedirectHandler.swift */; };
 		63C2BA763C69F183DDB32456D7201543 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5CFD844429F66DCDF5E1A80B83C1C0 /* Filter.swift */; };
 		6489B8D861811CAED3AA2004DBC70644 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A543334A7574CCE694408D94CE86662 /* Box.swift */; };
-		66E255D6D229E9E3326E3F1846CF4C59 /* PlatformSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2C62C2F03EE678D88D1BFC03F4EA5 /* PlatformSupport.swift */; };
+		66E255D6D229E9E3326E3F1846CF4C59 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2C62C2F03EE678D88D1BFC03F4EA5 /* Platform.swift */; };
 		66E39871D4B8B81B282FE9AB71611234 /* RequestWorker+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6B99FDB3F0A13C69CBE40A3BFCAB2 /* RequestWorker+Decode.swift */; };
 		6804393EA55473086BC9AC4FE08F33F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852434C0CCEBB6F7A3B7A025C1629ED4 /* Foundation.framework */; };
 		686FF933FB5A33BA7A11CF986A916A06 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941684AB02AFCDD9C22FE685680794D6 /* Placeholder.swift */; };
@@ -365,7 +365,7 @@
 		71468C4D1D7F5BCA779C7D23AF377069 /* RequestWorker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestWorker.swift; sourceTree = "<group>"; };
 		72008CF4C8591C5AA98A521B436E2B71 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
 		72D22EF98A80DAF2D74D6E772E9780CD /* Pods-Spider_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spider_Tests-dummy.m"; sourceTree = "<group>"; };
-		76E2C62C2F03EE678D88D1BFC03F4EA5 /* PlatformSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlatformSupport.swift; sourceTree = "<group>"; };
+		76E2C62C2F03EE678D88D1BFC03F4EA5 /* Platform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		778BA3BC6CE355F29B06D697790317A2 /* ImageModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Sources/Networking/ImageModifier.swift; sourceTree = "<group>"; };
 		79C5FE123738A43B3AEFDA971F32CBA1 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
 		7C11407D59A6D60532ECF6A82875078E /* Guarantee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Guarantee.swift; path = Sources/Guarantee.swift; sourceTree = "<group>"; };
@@ -1024,7 +1024,7 @@
 		EBA9408B3BD33A9A21119ED824AB43FD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				76E2C62C2F03EE678D88D1BFC03F4EA5 /* PlatformSupport.swift */,
+				76E2C62C2F03EE678D88D1BFC03F4EA5 /* Platform.swift */,
 				9E7969554F3015CD15334BDA9AB7F439 /* Spider.swift */,
 				3AAE643C904F77DB0184EE975CEEC302 /* Authorization */,
 				721530DEA95AAE421937872E87055E79 /* Helpers */,
@@ -1489,7 +1489,7 @@
 				76826DB18284856011389919D134D15B /* JSONRepresentable.swift in Sources */,
 				2304EE4284716D3213CFFB3E134D6BA5 /* MultipartFile.swift in Sources */,
 				A95AAF4842E51D0ED05B045A6C90B308 /* MultipartRequest.swift in Sources */,
-				66E255D6D229E9E3326E3F1846CF4C59 /* PlatformSupport.swift in Sources */,
+				66E255D6D229E9E3326E3F1846CF4C59 /* Platform.swift in Sources */,
 				7F1412F1C4B88F152E52CAE223D856C2 /* ReachabilityMonitor.swift in Sources */,
 				53EFFF8EF1F5DD9B7FEB630ACACFF2F7 /* Request.swift in Sources */,
 				5E123F70B599D0F35DED7B7CF9878E52 /* RequestAuth.swift in Sources */,

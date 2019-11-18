@@ -26,7 +26,7 @@ public struct Response<T> {
         case middleware
         
         /// A custom response error.
-        case other(description: String)
+        case custom(description: String)
         
         public var localizedDescription: String {
             
@@ -35,7 +35,7 @@ public struct Response<T> {
             case .serialization: return "Serialization"
             case .compactMap: return "Compact map"
             case .middleware: return "Middleware"
-            case .other(let desc): return desc
+            case .custom(let desc): return desc
             }
             
         }

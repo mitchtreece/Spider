@@ -1,6 +1,6 @@
 //
 //  ImageRepresentable.swift
-//  Pods
+//  Spider-Web
 //
 //  Created by Mitch Treece on 5/31/17.
 //
@@ -24,9 +24,7 @@ extension ImageRepresentable {
         guard let image = self.image else { return nil }
         
         #if canImport(UIKit)
-        
         return image.pngData()
-        
         #elseif os(macOS)
         
         guard let tiffData = image.tiffRepresentation else { return nil }
@@ -34,9 +32,7 @@ extension ImageRepresentable {
         return rep.representation(using: .png, properties: [:])
         
         #else
-        
         return nil
-        
         #endif
                 
     }

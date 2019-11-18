@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A configurable HTTP multipart request.
+/// A configurable multipart HTTP request.
 public class MultipartRequest: Request {
     
     /// Representation of the various multipart HTTP methods.
@@ -95,7 +95,7 @@ public class MultipartRequest: Request {
         
         self.files.forEach { file in
             
-            let mime = MultipartFile.string(for: file.mimeType)
+            let mime = file.mimeType.value
             data.append(string: boundaryPrefix)
             data.append(string: "Content-Disposition: form-data; name=\"\(file.key)\"; filename=\"\(file.name)\"\r\n")
             data.append(string: "Content-Type: \(mime)\r\n\r\n")

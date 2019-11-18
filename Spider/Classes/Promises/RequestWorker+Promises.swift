@@ -8,6 +8,8 @@
 
 import PromiseKit
 
+// MARK: Data
+
 public extension RequestWorker /* Data */ {
 
     /// Starts the worker & serializes a `Data` response.
@@ -46,6 +48,8 @@ public extension RequestWorker /* Data */ {
     }
     
 }
+
+// MARK: String
 
 public extension RequestWorker /* String */ {
     
@@ -87,6 +91,8 @@ public extension RequestWorker /* String */ {
     }
     
 }
+
+// MARK: JSON
 
 public extension RequestWorker /* JSON */ {
     
@@ -162,7 +168,9 @@ public extension RequestWorker /* JSON */ {
     
 }
 
-public extension RequestWorker /* UIImage */ {
+// MARK: Image
+
+public extension RequestWorker /* Image */ {
     
     /// Starts the worker & serializes an `Image` response.
     /// - Returns: An `Image` response promise.
@@ -200,6 +208,8 @@ public extension RequestWorker /* UIImage */ {
     }
     
 }
+
+// MARK: Decode
 
 public extension RequestWorker /* Decode */ {
     

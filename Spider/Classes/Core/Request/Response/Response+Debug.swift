@@ -9,7 +9,7 @@ import Foundation
 
 public extension Response /* Debug */ {
     
-    /// Representation of the various debug types.
+    /// Representation of the various response debug types.
     enum DebugType {
 
         /// A string debug type.
@@ -20,7 +20,7 @@ public extension Response /* Debug */ {
         
     }
     
-    /// Debug prints the response.
+    /// Debug prints the response to the console.
     /// - Parameter type: The debug type.
     func debug(_ type: DebugType) {
         

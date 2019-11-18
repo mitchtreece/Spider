@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Proxy class that manages the execution and serialization of HTTP requests & responses.
+/// Worker class that manages the execution and serialization of HTTP requests & responses.
 public class RequestWorker: Cancellable {
     
     /// Representation of the various states of a request worker.
@@ -39,7 +39,6 @@ public class RequestWorker: Cancellable {
     /// The worker's state.
     public private(set) var state: State = .pending
     
-    /// Flag indicating if the worker has been cancelled.
     public private(set) var isCancelled: Bool = false
     
     private var task: URLSessionDataTask?
@@ -185,7 +184,6 @@ public class RequestWorker: Cancellable {
 
     }
     
-    /// Cancels the worker.
     public func cancel() {
         
         self.isCancelled = true
