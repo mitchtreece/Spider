@@ -1,10 +1,9 @@
 ![Spider](Resources/logo.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
-![Swift](https://img.shields.io/badge/Swift-5-orange.svg)
-[![Platform](https://img.shields.io/cocoapods/p/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
-![iOS](https://img.shields.io/badge/iOS-10,%2011-blue.svg)
-[![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=flat)](http://cocoapods.org/pods/Spider-Web)
+[![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
+![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
+![iOS](https://img.shields.io/badge/iOS-12+-green.svg?style=for-the-badge)
+[![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 
 ## Overview
 Spider is an easy-to-use web framework built for speed & readability. Modern syntax & response handling makes working
