@@ -19,16 +19,18 @@ class BasicViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").data { response in
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .data { response in
             
-            self.stopLoading()
+                self.stopLoading()
+                
+                switch response.result {
+                case .success(let data): self.updateStatus("Fetched: \(data)")
+                case .failure(let error): self.updateStatus("Error: \(error.localizedDescription)")
+                }
             
-            switch response.result {
-            case .success(let data): self.updateStatus("Fetched: \(data)")
-            case .failure(let error): self.updateStatus("Error: \(error.localizedDescription)")
             }
-            
-        }
         
     }
     

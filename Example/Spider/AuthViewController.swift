@@ -21,16 +21,18 @@ class AuthViewController: LoadingViewController {
                   
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users", authorization: token).data { response in
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users", authorization: token)
+            .data { response in
             
-            self.stopLoading()
+                self.stopLoading()
+                
+                switch response.result {
+                case .success(let data): self.updateStatus("Fetched: \(data) of secret data")
+                case .failure(let error): self.updateStatus(error.localizedDescription)
+                }
             
-            switch response.result {
-            case .success(let data): self.updateStatus("Fetched: \(data) of secret data")
-            case .failure(let error): self.updateStatus(error.localizedDescription)
             }
-            
-        }
         
     }
     

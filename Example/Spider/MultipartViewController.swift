@@ -34,16 +34,18 @@ class MultipartViewController: LoadingViewController {
         
         self.startLoading()
         
-        Spider.web.perform(request).data { response in
+        Spider.web
+            .perform(request)
+            .data { response in
             
-            self.stopLoading()
+                self.stopLoading()
+                
+                switch response.result {
+                case .success(let data): self.updateStatus("Response: \(data)")
+                case .failure(let error): self.updateStatus(error.localizedDescription)
+                }
             
-            switch response.result {
-            case .success(let data): self.updateStatus("Response: \(data)")
-            case .failure(let error): self.updateStatus(error.localizedDescription)
             }
-            
-        }
         
     }
     

@@ -40,21 +40,23 @@ class MappingViewController: UIViewController {
     
     private func loadUsers() {
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").decode([User].self) { response in
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .decode([User].self) { response in
             
-            switch response.result {
-            case .success(let users):
-                
-                self.users = users
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                switch response.result {
+                case .success(let users):
+                    
+                    self.users = users
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                case .failure(let error): print(error.localizedDescription)
                 }
-                
-            case .failure(let error): print(error.localizedDescription)
-            }
             
-        }
+            }
         
     }
     

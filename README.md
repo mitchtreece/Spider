@@ -35,9 +35,11 @@ You can also manually add the source files to your project.
 Spider can be used in many different ways. Most times, the shared Spider instance is all you need.
 
 ```swift
-Spider.web.get("https://path/to/endpoint").data { response in
+Spider.web
+  .get("https://path/to/endpoint")
+  .data { response in
     print("We got a response!")
-}
+  }
 ```
 
 This makes a **GET** request with a given path, then returns a `Response` object.
@@ -49,13 +51,17 @@ Because we typically make more than one request to a given API, using _base URLs
 ```swift
 let spider = Spider.web(baseUrl: "https://base.url/v1")
 
-spider.get("/users").data { response in
+spider
+  .get("/users")
+  .data { response in
     print("We got a response!")
-}
+  }
 
-spider.get("/locations").data { response in
+spider
+  .get("/locations")
+  .data { response in
     print("We got another response!")
-}
+  }
 ```
 
 Notice how we can now make requests to specific endpoints with the same shared base url. The above requests would hit the endpoints:
@@ -74,9 +80,11 @@ All variations of `Request` instantiation have a means for you to pass in reques
 ```swift
 let params = ["user_id": "123456789"]
 
-Spider.web.post("https://path/to/endpoint", parameters: params).data { response in
+Spider.web
+  .post("https://path/to/endpoint", parameters: params)
+  .data { response in
     print("We got a response!")
-}
+  }
 ```
 
 This will take your parameters and pass them along in the request's body. For **GET** requests, parameters will be encoded into the path as query parameters.
@@ -88,9 +96,11 @@ So far, we have been working with the shared instance of Spider. This is usually
 ```swift
 let tarantula = Spider()
 
-tarantula.get("https://path/to/endpoint").data { response in
+tarantula
+  .get("https://path/to/endpoint")
+  .data { response in
     print("Tarantula got a response!")
-}
+  }
 ```
 
 Instead of using the shared Spider instance, we created our own instance named _tarantuala_ and made a request with it. Scary! Naturally, Spider instances created like this also support base URLs:
@@ -98,9 +108,11 @@ Instead of using the shared Spider instance, we created our own instance named _
 ```swift
 let blackWidow = Spider(baseUrl: "https://base.url/v1")
 
-blackWidow.get("/users").data { response in
+blackWidow
+  .get("/users")
+  .data { response in
     print("Black Widow got a response!")
-}
+  }
 ```
 
 ### Advanced & Multipart Requests
@@ -124,9 +136,11 @@ request.header.set(
     forHeaderField: "user_id"
 )
 
-Spider.web.perform(request).data { response in
+Spider.web
+  .perform(request)
+  .data { response in
     print("We got a response!")
-}
+  }
 ```
 
 Multipart requests can also be constructed & executed in a similar fashion:
@@ -146,9 +160,11 @@ let request = MultipartRequest(
     files: [file]
 )
 
-Spider.web.perform(request).data { response in
+Spider.web
+  .perform(request)
+  .data { response in
     print("We got a response!")
-}
+  }
 ```
 
 `MultipartRequest` is a `Request` subclass that is initialized with an array of `MultipartFile` objects. Everything else works the exact same as a normal request.
@@ -167,9 +183,11 @@ let bigHairySpider = Spider.web(
     authorization: TokenRequestAuth(value: "0123456789")
 )
 
-bigHairySpider.get("/topSecretData").data { response in
+bigHairySpider
+  .get("/topSecretData")
+  .data { response in
     print("Big hairy spider got a response!")
-}
+  }
 ```
 
 However, authorization can also be provided on a per-request basis if it better fits your situation:
@@ -178,9 +196,11 @@ However, authorization can also be provided on a per-request basis if it better 
 let token = TokenRequestAuth(value: "0123456789")
 let mySpider = Spider.web(baseUrl: "https://base.url/v1")
 
-mySpider.get("/topSecretData", authorization: token).data { response in
+mySpider
+  .get("/topSecretData", authorization: token)
+  .data { response in
     print("Spider got a response!")
-}
+  }
 ```
 
 Advanced requests can also provide authorization:
@@ -202,9 +222,11 @@ request.header.set(
     forHeaderField: "user_id"
 )
 
-Spider.web.perform(request).data { response in
+Spider.web
+  .perform(request)
+  .data { response in
     print("We got a response!")
-}
+  }
 ```
 
 By default, authorization is added to the _"Authorization"_ header field. This can be changed by passing in a custom field when creating the authorization:
@@ -221,9 +243,11 @@ let charlotte = Spider.web(
     authorization: basic
 )
 
-charlotte.get("/topSecretData").data { response in
+charlotte
+  .get("/topSecretData")
+  .data { response in
     print("Charlotte got a response!")
-}
+  }
 ```
 
 The authorization _prefix_ can also be customized if needed. For example, `BasicRequestAuth` generates the following for the credentials "root:pa55w0rd"
@@ -247,9 +271,11 @@ let spider = Spider.web(
     authorization: basic
 )
 
-spider.get("/topSecretData").data { response in
+spider
+  .get("/topSecretData")
+  .data { response in
     print("Got a response!")
-}
+  }
 ```
 
 Likewise, the `TokenRequestAuth` _"Bearer"_ prefix can be modified in the same way.
@@ -259,7 +285,9 @@ Likewise, the `TokenRequestAuth` _"Bearer"_ prefix can be modified in the same w
 `Response` objects are clean & easy to work with. A typical data response might look something like the following:
 
 ```swift
-Spider.web.get("https://some/data/endpoint").data { response in
+Spider.web
+  .get("https://some/data/endpoint")
+  .data { response in
 
     switch response.result {
     case .success(let data):
@@ -274,13 +302,15 @@ Spider.web.get("https://some/data/endpoint").data { response in
 
     }
 
-}
+  }
 ```
 
 `Response` also has helper `value` & `error` properties if you prefer that over the result syntax:
 
 ```swift
-Spider.web.get("https://some/data/endpoint").data { response in
+Spider.web
+  .get("https://some/data/endpoint")
+  .data { response in
 
     if let error = response.error {
         // Handle the error
@@ -294,7 +324,7 @@ Spider.web.get("https://some/data/endpoint").data { response in
 
     // Do something with the response data!
 
-}
+  }
 ```
 
 #### Workers & Serialization
@@ -449,19 +479,22 @@ Currently, Spider has integrations for the following UI components:
 Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
 ```swift
-Spider.web.get("https://jsonplaceholder.typicode.com/photos/1").decodeValue(Photo.self).then { photo -> Promise<Image> in
+Spider.web
+  .get("https://jsonplaceholder.typicode.com/photos/1")
+  .decodeValue(Photo.self)
+  .then { photo -> Promise<Image> in
 
     return Spider.web.get(photo.url).imageValue()
 
-}.done { image in
+  }.done { image in
 
     // Do something with the image!
 
-}.catch { error in
+  }.catch { error in
 
     // Handle error
 
-}
+  }
 
 ```
 
