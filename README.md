@@ -1,8 +1,7 @@
-<div>
-  <img src="Resources/logo.png" alt="Spider" width="50" height="50">
-  &nbsp;&nbsp;Spider: Creepy Networking Library for Swift
-</div>
+<img src="Resources/logo.png" alt="Spider" width="32" height="32">&nbsp;&nbsp;Spider: Creepy Networking Library for Swift
 ===
+
+<br>
 
 [![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
