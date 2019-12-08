@@ -15,7 +15,7 @@
 
 </div> -->
 
-<img src="Resources/logo.png" alt="Spider" width="64" height="64">&nbsp;&nbsp;Spider
+<img src="Resources/logo.png" alt="Spider" width="36" height="36">&nbsp;&nbsp;Spider
 ===
 
 ## Overview
