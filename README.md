@@ -1,6 +1,6 @@
 <!-- ![Spider](Resources/logo.png) -->
 
-<div align="center">
+<!-- <div align="center">
 
   <img src="Resources/logo.png" width="200" height="200">
 
@@ -13,7 +13,10 @@
   ![iOS](https://img.shields.io/badge/iOS-12+-green.svg?style=for-the-badge)
   [![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 
-</div>
+</div> -->
+
+<img src="Resources/logo.png" alt="Spider" width="64" height="64">&nbsp;&nbsp;Spider
+===
 
 ## Overview
 Spider is an easy-to-use web framework built for speed & readability. Modern syntax & response handling makes working
