@@ -15,31 +15,24 @@ class AuthViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Authorization"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
+        let token = TokenRequestAuth(value: "24h21gg43y2gcc283423vhugvu")
+                  
         self.startLoading()
         
-        let token = TokenAuth(value: "24h21gg43y2gcc283423vhugvu")
-        
-        Spider.web.get("https://jsonplaceholder.typicode.com/users", auth: token) { (response) in
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users", authorization: token)
+            .data { response in
             
-            guard let data = response.data, response.err == nil else {
+                self.stopLoading()
                 
-                var message = "There was an error fetching the data"
-                if let error = response.err {
-                    message = error.localizedDescription
+                switch response.result {
+                case .success(let data): self.updateStatus("Fetched: \(data) of secret data")
+                case .failure(let error): self.updateStatus(error.localizedDescription)
                 }
-                
-                print(message)
-                self.updateStatus(message)
-                return
-                
+            
             }
-            
-            self.updateStatus("Fetched: \(data) of secret data")
-            self.stopLoading()
-            
-        }
         
     }
     

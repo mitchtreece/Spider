@@ -15,29 +15,22 @@ class BasicViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Basic Requests"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
-                        
-            guard let data = response.data, response.err == nil else {
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .data { response in
+            
+                self.stopLoading()
                 
-                var message = "There was an error fetching the data"
-                if let error = response.err {
-                    message = error.localizedDescription
+                switch response.result {
+                case .success(let data): self.updateStatus("Fetched: \(data)")
+                case .failure(let error): self.updateStatus("Error: \(error.localizedDescription)")
                 }
-                
-                print(message)
-                self.updateStatus(message)
-                return
-                
+            
             }
-            
-            self.updateStatus("Fetched: \(data)")
-            self.stopLoading()
-            
-        }
         
     }
     

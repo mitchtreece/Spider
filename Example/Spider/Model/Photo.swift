@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Spider
 
 struct Photo: Codable {
     

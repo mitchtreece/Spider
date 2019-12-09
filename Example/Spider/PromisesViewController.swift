@@ -16,30 +16,22 @@ class PromisesViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Promises"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
         self.startLoading()
         
-        Spider.web.get("https://jsonplaceholder.typicode.com/users").then { (response) -> Guarantee<String> in
-            
-            // When using Spider with promises, a response without data is handled as an error
-            // We can safely assume that `response.data` is non-nil here.
-            
-            return self.createStatusString(from: response.data!)
-            
-        }.done { (status) in
-            
-            self.updateStatus(status)
-            
-        }.catch { (error) in
-            
-            self.updateStatus(error.localizedDescription)
-            
-        }.finally {
-            
-            self.stopLoading()
-            
-        }
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .dataValue()
+            .then { data -> Guarantee<String> in
+                return self.createStatusString(from: data)
+            }.done { status in
+                self.updateStatus(status)
+            }.catch { error in
+                self.updateStatus(error.localizedDescription)
+            }.finally {
+                self.stopLoading()
+            }
         
     }
     
