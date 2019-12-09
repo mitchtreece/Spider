@@ -40,4 +40,11 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'All' do |all|
+
+      all.dependency 'Spider-Web/Core'
+      all.dependency 'Spider-Web/Promise'
+
+    end
+
 end
