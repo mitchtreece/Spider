@@ -47,7 +47,7 @@ class MiddlewareViewController: LoadingViewController {
         self.view.backgroundColor = UIColor.groupTableViewBackground
         
         startLoading()
-        
+                
         let spider = Spider()
         spider.middlewares = [ExampleMiddleware()]
         
