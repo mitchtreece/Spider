@@ -12,14 +12,17 @@ import Spider
 class RootViewController: UITableViewController {
     
     enum Row: Int {
+        
         case basic
         case advanced
         case auth
         case json
         case mapping
         case multipart
+        case middleware
         case uikit
         case promises
+        
     }
     
     override func viewDidLoad() {
@@ -54,6 +57,7 @@ class RootViewController: UITableViewController {
         case .json: navigationController?.pushViewController(JSONViewController(), animated: true)
         case .mapping: navigationController?.pushViewController(MappingViewController(), animated: true)
         case .multipart: navigationController?.pushViewController(MultipartViewController(), animated: true)
+        case .middleware: navigationController?.pushViewController(MiddlewareViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
         case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
         }

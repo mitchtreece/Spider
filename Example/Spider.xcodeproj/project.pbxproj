@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625C71C239EC3A00066542E /* MiddlewareViewController.swift */; };
 		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
 		2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668C81E1FB6726D00199E77 /* MultipartViewController.swift */; };
 		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2625C71C239EC3A00066542E /* MiddlewareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		2668C81E1FB6726D00199E77 /* MultipartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartViewController.swift; sourceTree = "<group>"; };
 		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				267439B61EDBFA6700C5BD6E /* JSONViewController.swift */,
 				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
 				2668C81E1FB6726D00199E77 /* MultipartViewController.swift */,
+				2625C71C239EC3A00066542E /* MiddlewareViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
 				266B4EBD1EDA7CD7000A39E5 /* Model */,
@@ -403,6 +406,7 @@
 				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
 				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
 				267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */,
+				2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */,
 				266B4EBC1EDA7CBD000A39E5 /* PromisesViewController.swift in Sources */,
 				266B4EBF1EDA7CED000A39E5 /* User.swift in Sources */,
 				266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */,

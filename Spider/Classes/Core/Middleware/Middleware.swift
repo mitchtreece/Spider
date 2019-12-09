@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol describing the attributes of a response middleware.
-public class Middleware {
+open class Middleware {
 
     public init() {
         //
@@ -17,7 +17,7 @@ public class Middleware {
     /// Validates and/or transforms a response.
     /// - Parameter response: The response.
     /// - Returns: The validated and/or transformed response.
-    public func next(_ response: Response<Data>) throws -> Response<Data> {
+    open func next(_ response: Response<Data>) throws -> Response<Data> {
         fatalError("Middleware must override next(response:)")
     }
     

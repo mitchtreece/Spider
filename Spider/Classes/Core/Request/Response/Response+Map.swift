@@ -7,8 +7,14 @@
 
 import Foundation
 
-internal extension Response /* Map */ {
+public extension Response /* Map */ {
     
+    /// Maps a response to another over a different type using a value transform.
+    ///
+    /// If the value transform throws, this function will return an errored response.
+    ///
+    /// - Parameter transform: The value transform block.
+    /// - Returns: A response over a new type.
     func map<S>(_ transform: (T) throws -> S) -> Response<S> {
         
         switch self.result {
@@ -33,6 +39,13 @@ internal extension Response /* Map */ {
         
     }
     
+    /// Compact maps a response to another over a different type using a value transform.
+    ///
+    /// If the value transform throws _or_ produces a `nil` value, this function will
+    /// return an errored response.
+    ///
+    /// - Parameter transform: The value transform block.
+    /// - Returns: A response over a new type.
     func compactMap<S>(_ transform: (T) throws -> S?) -> Response<S> {
         
         switch self.result {
