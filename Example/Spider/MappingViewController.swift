@@ -19,17 +19,20 @@ class MappingViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Object Mapping"
-        view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
-        tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        self.tableView = UITableView()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UserCell")
+        self.tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "UserCell"
+        )
         
         loadUsers()
         
@@ -37,34 +40,23 @@ class MappingViewController: UIViewController {
     
     private func loadUsers() {
         
-        users.removeAll()
-        tableView.reloadData()
-        
-        Spider.web.get("https://jsonplaceholder.typicode.com/users") { (response) in
+        Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .decode([User].self) { response in
             
-            guard let array = response.jsonArray(), response.err == nil else {
-                
-                var message = "There was an error fetching the data"
-                if let error = response.err {
-                    message = error.localizedDescription
+                switch response.result {
+                case .success(let users):
+                    
+                    self.users = users
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                case .failure(let error): print(error.localizedDescription)
                 }
-                
-                print(message)
-                return
-                
-            }
             
-            if let users = Weaver<User>(array).arrayMap() {
-                
-                self.users = users
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
             }
-            
-        }
         
     }
     

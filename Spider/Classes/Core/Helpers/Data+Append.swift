@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Data {
+internal extension Data /* Append */ {
     
     mutating func append(string: String) {
         
