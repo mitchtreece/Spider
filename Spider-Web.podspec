@@ -2,11 +2,11 @@ Pod::Spec.new do |s|
 
     s.name              = 'Spider-Web'
     s.module_name       = 'Spider'
-    s.version           = '1.4.0'
-    s.summary           = 'Creepy web framework for Swift.'
+    s.version           = '2.0.0'
+    s.summary           = 'Creepy networking library for Swift.'
 
     s.description = <<-DESC
-    Spider is an easy-to-use web framework built for
+    Spider is an easy-to-use networking library built for
     speed & readability. Spider's modern syntax & response handling
     makes working with web services fun again.
     DESC
@@ -19,10 +19,25 @@ Pod::Spec.new do |s|
 
     s.platform          = :ios, "10.0"
     s.swift_version     = '5'
-    s.source_files      = 'Spider/Classes/**/*'
 
-    s.dependency        'ReachabilitySwift',      '~> 5.0.0'
-    s.dependency        'Kingfisher',             '~> 5.8.0'
-    s.dependency        'PromiseKit/CorePromise', '~> 6.0'
+    # Subspecs
+
+    s.default_subspec = 'Core'
+
+    s.subspec 'Core' do |core|
+
+        core.source_files = 'Spider/Classes/Core/**/*'
+        core.dependency     'ReachabilitySwift', '~> 5.0.0'
+        core.dependency     'Kingfisher',        '~> 5.8.0'
+
+    end
+
+    s.subspec 'Promise' do |promise|
+
+      promise.source_files = 'Spider/Classes/Promises/**/*'
+      promise.dependency     'Spider-Web/Core'
+      promise.dependency     'PromiseKit/CorePromise', '~> 6.0'
+
+    end
 
 end
