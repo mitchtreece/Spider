@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.description = <<-DESC
     Spider is an easy-to-use networking library built for
     speed & readability. Spider's modern syntax & response handling
-    makes working with web services fun again.
+    makes working with web services so simple - it's almost spooky.
     DESC
 
     s.homepage          = 'https://github.com/mitchtreece/Spider'

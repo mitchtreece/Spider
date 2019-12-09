@@ -6,7 +6,7 @@
 ![iOS](https://img.shields.io/badge/iOS-12+-green.svg?style=for-the-badge)
 [![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 
-Spider is an easy-to-use web framework built for speed & readability. Modern syntax & response handling makes working
+Spider is an easy-to-use networking library built for speed & readability. Modern syntax & response handling makes working
 with web services so simple - it's almost spooky.
 
 ## Installation
