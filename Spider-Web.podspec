@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
     s.name              = 'Spider-Web'
     s.module_name       = 'Spider'
-    s.version           = '2.0.0'
+    s.version           = '2.0.1'
     s.summary           = 'Creepy networking library for Swift.'
 
     s.description = <<-DESC
