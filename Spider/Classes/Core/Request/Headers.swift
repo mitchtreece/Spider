@@ -108,17 +108,9 @@ public struct Headers {
         let contentType = headers.contentType ?? self.contentType
         let acceptTypes = headers.acceptTypes ?? self.acceptTypes
         
-        var fields = [String: String]()
-        
-        for (key, value) in self.customFields {
-            
-            if headers.customFields.keys.contains(key) {
-                fields[key] = headers.customFields[key]
-            }
-            else {
-                fields[key] = value
-            }
-            
+        var fields = self.customFields
+        for (key, value) in headers.customFields {
+            fields[key] = value
         }
         
         return Headers(
