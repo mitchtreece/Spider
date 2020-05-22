@@ -8,6 +8,47 @@
 
 import PromiseKit
 
+// MARK: Void
+
+public extension RequestWorker /* Void */ {
+    
+    /// Starts the worker & serializes a `Void` response.
+    /// - Returns: A `Void` response promise.
+    func void() -> Promise<Response<Void>> {
+        
+        return Promise<Response<Void>> { seal in
+            
+            void { res in
+                
+                switch res.result {
+                case .success: seal.fulfill(res)
+                case .failure(let error): seal.reject(error)
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    /// Starts the worker without serializing a value.
+    /// - Returns: A `Void` promise.
+    func voidValue() -> Promise<Void> {
+        
+        return Promise<Void> { seal in
+            
+            void().done { res in
+                seal.fulfill(())
+            }.catch { err in
+                seal.reject(err)
+            }
+            
+        }
+        
+    }
+    
+}
+
 // MARK: Data
 
 public extension RequestWorker /* Data */ {
