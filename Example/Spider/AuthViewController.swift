@@ -15,7 +15,7 @@ class AuthViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Authorization"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         let token = TokenRequestAuth(value: "24h21gg43y2gcc283423vhugvu")
                   
@@ -23,7 +23,7 @@ class AuthViewController: LoadingViewController {
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users", authorization: token)
-            .data { response in
+            .dataResponse { response in
             
                 self.stopLoading()
                 

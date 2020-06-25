@@ -15,14 +15,14 @@ class PromisesViewController: LoadingViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.title = "Promises"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.title = "PromiseKit"
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .dataValue()
+            .dataPromise()
             .then { data -> Guarantee<String> in
                 return self.createStatusString(from: data)
             }.done { status in

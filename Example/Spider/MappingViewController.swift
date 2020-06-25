@@ -19,7 +19,7 @@ class MappingViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Object Mapping"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.tableView = UITableView()
         self.tableView.delegate = self
@@ -42,7 +42,7 @@ class MappingViewController: UIViewController {
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .decode([User].self) { response in
+            .decodedResponse([User].self) { response in
             
                 switch response.result {
                 case .success(let users):

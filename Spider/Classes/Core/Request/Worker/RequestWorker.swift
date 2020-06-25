@@ -59,7 +59,7 @@ public class RequestWorker: Cancellable {
          
     /// Starts the worker & serializes a `Data` response.
     /// - Parameter completion: The workers's completion handler.
-    public func data(_ completion: @escaping (Response<Data>)->()) {
+    public func dataResponse(_ completion: @escaping (Response<Data>)->()) {
         
         guard !self.isCancelled else {
             
@@ -171,9 +171,9 @@ public class RequestWorker: Cancellable {
     
     /// Starts the worker & serializes a `Data` value.
     /// - Parameter completion: The worker's completion handler.
-    public func dataValue(_ completion: @escaping (Data?, Error?)->()) {
+    public func data(_ completion: @escaping (Data?, Error?)->()) {
 
-        data { response in
+        dataResponse { response in
             
             completion(
                 response.value,

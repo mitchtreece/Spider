@@ -27,7 +27,7 @@ class LoadingViewController: UIViewController {
             make.edges.equalTo(view).inset(14)
         }
         
-        spinner = UIActivityIndicatorView(style: .whiteLarge)
+        spinner = UIActivityIndicatorView(style: .large)
         spinner.color = UIColor.black
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)

@@ -15,13 +15,13 @@ class BasicViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Basic Requests"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .data { response in
+            .dataResponse { response in
             
                 self.stopLoading()
                 

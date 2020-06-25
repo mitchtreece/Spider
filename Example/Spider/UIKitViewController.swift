@@ -18,7 +18,7 @@ class UIKitViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "UIKit"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.imageView = UIImageView()
         self.imageView.backgroundColor = UIColor.white

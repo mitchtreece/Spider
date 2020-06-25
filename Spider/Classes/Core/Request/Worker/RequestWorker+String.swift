@@ -12,10 +12,10 @@ public extension RequestWorker /* String */ {
     /// Starts the worker & serializes a `String` response.
     /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
     /// - Parameter completion: The worker's completion handler.
-    func string(encoding: String.Encoding = .utf8,
-                _ completion: @escaping (Response<String>)->()) {
+    func stringResponse(encoding: String.Encoding = .utf8,
+                        _ completion: @escaping (Response<String>)->()) {
         
-        data { response in
+        dataResponse { response in
             completion(response.compactMap {
                 String(data: $0, encoding: encoding)
             })
@@ -26,10 +26,10 @@ public extension RequestWorker /* String */ {
     /// Starts the worker & serializes a `String` value.
     /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
     /// - Parameter completion: The worker's completion handler.
-    func stringValue(encoding: String.Encoding = .utf8,
-                     _ completion: @escaping (String?, Error?)->()) {
+    func string(encoding: String.Encoding = .utf8,
+                _ completion: @escaping (String?, Error?)->()) {
         
-        string { completion(
+        stringResponse(encoding: encoding) { completion(
             $0.value,
             $0.error
         )}

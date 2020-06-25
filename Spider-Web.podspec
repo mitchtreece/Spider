@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     s.source            = { :git => 'https://github.com/mitchtreece/Spider.git', :tag => s.version.to_s }
     s.social_media_url  = 'https://twitter.com/MitchTreece'
 
-    s.platform          = :ios, "10.0"
+    s.platform          = :ios, "13.0"
     s.swift_version     = '5'
 
     # Subspecs
@@ -32,6 +32,13 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'Combine' do |combine|
+
+      combine.source_files = 'Spider/Classes/Combine/**/*'
+      combine.dependency     'Spider-Web/Core'
+
+    end
+
     s.subspec 'Promise' do |promise|
 
       promise.source_files = 'Spider/Classes/Promises/**/*'
@@ -43,6 +50,7 @@ Pod::Spec.new do |s|
     s.subspec 'All' do |all|
 
       all.dependency 'Spider-Web/Core'
+      all.dependency 'Spider-Web/Combine'
       all.dependency 'Spider-Web/Promise'
 
     end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625C71C239EC3A00066542E /* MiddlewareViewController.swift */; };
 		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
+		26386CE124A40C1D00B552C5 /* CombineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26386CE024A40C1D00B552C5 /* CombineViewController.swift */; };
 		2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2668C81E1FB6726D00199E77 /* MultipartViewController.swift */; };
 		266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAB1EDA792C000A39E5 /* RootViewController.swift */; };
 		266B4EAF1EDA7AF4000A39E5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */; };
@@ -47,6 +48,7 @@
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2625C71C239EC3A00066542E /* MiddlewareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
+		26386CE024A40C1D00B552C5 /* CombineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineViewController.swift; sourceTree = "<group>"; };
 		2668C81E1FB6726D00199E77 /* MultipartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartViewController.swift; sourceTree = "<group>"; };
 		266B4EAB1EDA792C000A39E5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		266B4EAE1EDA7AF4000A39E5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				2625C71C239EC3A00066542E /* MiddlewareViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
+				26386CE024A40C1D00B552C5 /* CombineViewController.swift */,
 				266B4EBD1EDA7CD7000A39E5 /* Model */,
 				266B4EAD1EDA7938000A39E5 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -403,6 +406,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */,
 				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
+				26386CE124A40C1D00B552C5 /* CombineViewController.swift in Sources */,
 				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
 				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
 				267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */,
@@ -569,7 +573,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -586,7 +590,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -607,7 +611,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -624,7 +628,7 @@
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

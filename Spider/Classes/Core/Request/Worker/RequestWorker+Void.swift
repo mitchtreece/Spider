@@ -11,9 +11,9 @@ public extension RequestWorker /* Void */ {
     
     /// Starts the worker & serializes a `Void` response.
     /// - Parameter completion: The worker's completion handler.
-    func void(_ completion: @escaping (Response<Void>)->()) {
+    func voidResponse(_ completion: @escaping (Response<Void>)->()) {
         
-        data { res in
+        dataResponse { res in
             completion(res.map { _ -> Void in
                 return ()
             })
@@ -23,9 +23,9 @@ public extension RequestWorker /* Void */ {
     
     /// Starts the worker without serializing a value.
     /// - Parameter completion: The worker's completion handler.
-    func voidValue(_ completion: @escaping (Error?)->()) {
+    func void(_ completion: @escaping (Error?)->()) {
         
-        void { completion(
+        voidResponse { completion(
             $0.error
         )}
         

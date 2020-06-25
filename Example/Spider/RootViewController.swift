@@ -21,7 +21,8 @@ class RootViewController: UITableViewController {
         case multipart
         case middleware
         case uikit
-        case promises
+        case combine
+        case promiseKit
         
     }
     
@@ -59,7 +60,8 @@ class RootViewController: UITableViewController {
         case .multipart: navigationController?.pushViewController(MultipartViewController(), animated: true)
         case .middleware: navigationController?.pushViewController(MiddlewareViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
-        case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
+        case .combine: navigationController?.pushViewController(CombineViewController(), animated: true)
+        case .promiseKit: navigationController?.pushViewController(PromisesViewController(), animated: true)
         }
         
     }
