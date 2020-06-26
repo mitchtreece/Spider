@@ -45,8 +45,8 @@
       }
     },
     {
-      "name": "Promise",
-      "source_files": "Spider/Classes/Promises/**/*",
+      "name": "PromiseKit",
+      "source_files": "Spider/Classes/PromiseKit/**/*",
       "dependencies": {
         "Spider-Web/Core": [
 
@@ -65,7 +65,7 @@
         "Spider-Web/Combine": [
 
         ],
-        "Spider-Web/Promise": [
+        "Spider-Web/PromiseKit": [
 
         ]
       }

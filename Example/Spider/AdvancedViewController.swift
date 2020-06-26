@@ -27,9 +27,9 @@ class AdvancedViewController: LoadingViewController {
         )
         
         request.headers.acceptTypes = [
-            .text,
-            .text_json,
-            .image_jpeg,
+            .text(.plain),
+            .text(.json),
+            .image(.jpeg),
             .custom("animal/cat")
         ]
         

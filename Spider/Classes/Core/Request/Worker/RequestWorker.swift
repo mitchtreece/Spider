@@ -57,9 +57,37 @@ public class RequestWorker: Cancellable {
         
     }
          
+    public func cancel() {
+        
+        self.isCancelled = true
+        self.state = .cancelled
+        self.request.state = .cancelled
+        self.task?.cancel()
+        
+    }
+    
+    // MARK: Private
+        
+    private func _debugLogRequest() {
+        
+        guard self.isDebugEnabled else { return }
+        
+        var string = "[\(self.request.method.value)] \(self.request.path)"
+        if let params = self.request.parameters {
+            string += ", parameters: \(params.formattedJSONString ?? "some")"
+        }
+        
+        print("🌎 <Spider>: \(string)")
+        
+    }
+        
+}
+
+public extension RequestWorker /* Data */ {
+    
     /// Starts the worker & serializes a `Data` response.
     /// - Parameter completion: The workers's completion handler.
-    public func dataResponse(_ completion: @escaping (Response<Data>)->()) {
+    func dataResponse(_ completion: @escaping (Response<Data>)->()) {
         
         guard !self.isCancelled else {
             
@@ -171,7 +199,7 @@ public class RequestWorker: Cancellable {
     
     /// Starts the worker & serializes a `Data` value.
     /// - Parameter completion: The worker's completion handler.
-    public func data(_ completion: @escaping (Data?, Error?)->()) {
+    func data(_ completion: @escaping (Data?, Error?)->()) {
 
         dataResponse { response in
             
@@ -184,28 +212,4 @@ public class RequestWorker: Cancellable {
 
     }
     
-    public func cancel() {
-        
-        self.isCancelled = true
-        self.state = .cancelled
-        self.request.state = .cancelled
-        self.task?.cancel()
-        
-    }
-    
-    // MARK: Private
-        
-    private func _debugLogRequest() {
-        
-        guard self.isDebugEnabled else { return }
-        
-        var string = "[\(self.request.method.value)] \(self.request.path)"
-        if let params = self.request.parameters {
-            string += ", parameters: \(params.formattedJSONString ?? "some")"
-        }
-        
-        print("🌎 <Spider>: \(string)")
-        
-    }
-        
 }

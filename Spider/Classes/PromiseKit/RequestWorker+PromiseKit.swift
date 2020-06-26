@@ -1,5 +1,5 @@
 //
-//  RequestWorker+Promises.swift
+//  RequestWorker+PromiseKit.swift
 //  Pods
 //
 //  Created by Mitch Treece on 12/13/16.
@@ -250,7 +250,7 @@ public extension RequestWorker /* Image */ {
     
 }
 
-// MARK: Decode
+// MARK: Decoded
 
 public extension RequestWorker /* Decode */ {
     

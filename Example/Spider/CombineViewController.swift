@@ -12,7 +12,7 @@ import Combine
 
 class CombineViewController: LoadingViewController {
     
-    private var cancellables = Set<AnyCancellable>()
+    private var storage = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         
@@ -22,48 +22,37 @@ class CombineViewController: LoadingViewController {
                 
         self.startLoading()
         
-//        Spider.web
-//            .get("https://jsonplaceholder.typicode.com/users")
-//            .dataValue()
-//            .then { data -> Guarantee<String> in
-//                return self.createStatusString(from: data)
-//            }.done { status in
-//                self.updateStatus(status)
-//            }.catch { error in
-//                self.updateStatus(error.localizedDescription)
-//            }.finally {
-//                self.stopLoading()
-//            }
-                
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .stringFuture()
-            .sink(receiveCompletion: { comp in
-                print("")
-            }, receiveValue: { val in
-                print("")
-            })
-            .store(in: &self.cancellables)
-            
-//            .resultSink { result in
-//
-//                switch result {
-//                case .success(let string): self.updateStatus(string)
-//                case .failure(let error): self.updateStatus(error.localizedDescription)
-//                }
-//
-//                self.stopLoading()
-//
+            .dataPublisher()
+            .resultSink { result in
+
+                self.stopLoading()
+
+                switch result {
+                case .success(let data): self.updateStatus("Fetched \(data)")
+                case .failure(let error): self.updateStatus(error.localizedDescription)
+                }
+
+            }
+            .store(in: &self.storage)
+        
+//        Spider.web
+//            .get("https://jsonplaceholder.typicode.com/users")
+//            .dataPublisher()
+//            .valueSink { data in
+//                print("")
 //            }
-//            .store(in: &self.cancellables)
+//            .store(in: &self.storage)
         
     }
     
-    func createStatusString(from data: Data) -> Future<String, Never> {
+    func createStatusString(from data: Data) -> AnyPublisher<String, Never> {
         
         return Future<String, Never> { seal in
             seal(.success("Fetched \(data)"))
         }
+        .eraseToAnyPublisher()
                 
     }
     

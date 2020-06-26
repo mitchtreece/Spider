@@ -39,11 +39,11 @@ Pod::Spec.new do |s|
 
     end
 
-    s.subspec 'Promise' do |promise|
+    s.subspec 'PromiseKit' do |promisekit|
 
-      promise.source_files = 'Spider/Classes/Promises/**/*'
-      promise.dependency     'Spider-Web/Core'
-      promise.dependency     'PromiseKit/CorePromise', '~> 6.0'
+      promisekit.source_files = 'Spider/Classes/PromiseKit/**/*'
+      promisekit.dependency     'Spider-Web/Core'
+      promisekit.dependency     'PromiseKit/CorePromise', '~> 6.0'
 
     end
 
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
 
       all.dependency 'Spider-Web/Core'
       all.dependency 'Spider-Web/Combine'
-      all.dependency 'Spider-Web/Promise'
+      all.dependency 'Spider-Web/PromiseKit'
 
     end
 

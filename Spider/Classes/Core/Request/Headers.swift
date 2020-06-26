@@ -13,49 +13,62 @@ public struct Headers {
     /// Representation of the various header content types.
     public enum ContentType: Equatable {
         
-        /// An application/json content type.
-        case app_json
+        public enum Application: String {
+            
+            /// An application/json content type.
+            case json
+            
+            /// An application/javascript content type.
+            case javascript
+            
+        }
         
-        /// An application/javascript content type.
-        case app_js
+        public enum Text: String {
+            
+            /// A text/plain content type.
+            case plain
+            
+            /// An text/html content type.
+            case html
+            
+            /// A text/json content type.
+            case json
+            
+            /// A text/javascript content type.
+            case javascript
+            
+        }
         
-        /// A text/plain content type.
-        case text
+        public enum Image: String {
+            
+            /// An image/png content type.
+            case png
+            
+            /// An image/jpeg content type.
+            case jpeg
+            
+        }
         
-        /// An text/html content type.
-        case text_html
+        /// An application content type.
+        case application(Application)
         
-        /// A text/json content type.
-        case text_json
+        /// A text content type.
+        case text(Text)
         
-        /// A text/javascript content type.
-        case text_js
+        /// An image content type.
+        case image(Image)
         
-        /// An image/png content type.
-        case image_png
-        
-        /// An image/jpeg content type.
-        case image_jpeg
-        
-        /// An custom content type.
+        /// A custom content type.
         case custom(String)
         
         /// The content type's raw value.
         public var value: String {
             
             switch self {
-            case .app_json: return "application/json"
-            case .app_js: return "application/javascript"
-            
-            case .text: return "text/plain"
-            case .text_html: return "text/html"
-            case .text_json: return "text/json"
-            case .text_js: return "text/javascript"
-                
-            case .image_png: return "image/png"
-            case .image_jpeg: return "image/jpeg"
-                
-            case .custom(let type): return type
+            case .application(let type): return "application/\(type.rawValue)"
+            case .text(let type): return "text/\(type.rawValue)"
+            case .image(let type): return "image/\(type.rawValue)"
+            case .custom(let value): return value
             }
             
         }

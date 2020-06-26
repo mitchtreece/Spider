@@ -12,7 +12,7 @@ import Combine
 
 public extension RequestWorker /* Void */ {
     
-    func voidResponseFuture() -> Future<Response<Void>, Error> {
+    func voidResponsePublisher() -> AnyPublisher<Response<Void>, Error> {
         
         return Future<Response<Void>, Error> { seal in
             
@@ -26,24 +26,24 @@ public extension RequestWorker /* Void */ {
             }
             
         }
+        .eraseToAnyPublisher()
         
     }
     
     
-    func voidFuture() -> Future<Void, Error> {
-        
-        return Future<Void, Error> { seal in
-            
-            self.voidResponseFuture().resultSink { result in
+    func voidPublisher() -> AnyPublisher<Void, Error> {
+
+        return self
+            .voidResponsePublisher()
+            .tryMap { res in
                 
-                switch result {
-                case .success: seal(.success(()))
-                case .failure(let err): seal(.failure(err))
+                switch res.result {
+                case .success: return ()
+                case .failure(let err): throw err
                 }
                 
             }
-            
-        }
+            .eraseToAnyPublisher()
         
     }
     
@@ -53,7 +53,7 @@ public extension RequestWorker /* Void */ {
 
 public extension RequestWorker /* Data */ {
     
-    func dataResponseFuture() -> Future<Response<Data>, Error> {
+    func dataResponsePublisher() -> AnyPublisher<Response<Data>, Error> {
         
         return Future<Response<Data>, Error> { seal in
             
@@ -67,24 +67,23 @@ public extension RequestWorker /* Data */ {
             }
             
         }
+        .eraseToAnyPublisher()
         
     }
     
-    
-    func dataFuture() -> Future<Data, Error> {
+    func dataPublisher() -> AnyPublisher<Data, Error> {
         
-        return Future<Data, Error> { seal in
-            
-            self.dataResponseFuture().resultSink { result in
+        return self
+            .dataResponsePublisher()
+            .tryMap { res in
                 
-                switch result {
-                case .success(let res): seal(.success(res.value!))
-                case .failure(let err): seal(.failure(err))
+                switch res.result {
+                case .success(let val): return val
+                case .failure(let err): throw err
                 }
                 
             }
-            
-        }
+            .eraseToAnyPublisher()
         
     }
     
@@ -94,7 +93,7 @@ public extension RequestWorker /* Data */ {
 
 public extension RequestWorker /* String */ {
     
-    func stringResponseFuture(encoding: String.Encoding = .utf8) -> Future<Response<String>, Error> {
+    func stringResponsePublisher(encoding: String.Encoding = .utf8) -> AnyPublisher<Response<String>, Error> {
         
         return Future<Response<String>, Error> { seal in
             
@@ -108,37 +107,23 @@ public extension RequestWorker /* String */ {
             }
             
         }
+        .eraseToAnyPublisher()
         
     }
     
-    func stringFuture(encoding: String.Encoding = .utf8) -> Future<String, Error> {
+    func stringPublisher(encoding: String.Encoding = .utf8) -> AnyPublisher<String, Error> {
         
-        return stringResponseFuture(encoding: encoding)
-            .flatMap { res in
+        return self
+            .stringResponsePublisher()
+            .tryMap { res in
                 
-                Future<String, Error> { seal in
-                    
-                    switch res.result {
-                    case .success(let val): seal(.success(val))
-                    case .failure(let err): seal(.failure(err))
-                    }
-                    
+                switch res.result {
+                case .success(let val): return val
+                case .failure(let err): throw err
                 }
                 
-            })
-        
-//        return Future<String, Error> { seal in
-//
-//            self.stringResponseFuture(encoding: encoding).resultSink { result in
-//
-//                switch result {
-//                case .success(let res): seal(.success(res.value!))
-//                case .failure(let err): seal(.failure(err))
-//                }
-//
-//            }
-//
-//        }
+            }
+            .eraseToAnyPublisher()
         
     }
     
@@ -261,7 +246,7 @@ public extension RequestWorker /* String */ {
 //
 //}
 //
-//// MARK: Decode
+//// MARK: Decoded
 //
 //public extension RequestWorker /* Decode */ {
 //
