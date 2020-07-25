@@ -21,6 +21,9 @@ public class Spider {
     /// The shared headers applied to all requests.
     public var headers: Headers?
     
+    /// The shared timeout applied to all requests.
+    public var timeout: TimeInterval?
+    
     /// The shared middlewares applied to all responses.
     public var middlewares: [Middleware]?
     

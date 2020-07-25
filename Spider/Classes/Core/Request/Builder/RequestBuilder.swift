@@ -68,6 +68,13 @@ internal class RequestBuilder {
             request.authorization = sharedAuth
         }
         
+        // Set shared timeout if needed
+        
+        if let sharedTimeout = self.spider.timeout,
+            !request.ignoreSharedTimeout {
+            request.timeout = sharedTimeout
+        }
+        
         return urlRequest
         
     }

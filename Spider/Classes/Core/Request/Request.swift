@@ -93,6 +93,9 @@ public class Request {
     /// The request's timeout interval in seconds; _defaults to 60_.
     public var timeout: TimeInterval = 60
     
+    /// Flag indicating if the request should ignore any shared timeout; _defaults to false_.
+    public var ignoreSharedTimeout: Bool = false
+    
     /// The request's cache policy; _defaults to useProtocolCachePolicy_.
     public var cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
     

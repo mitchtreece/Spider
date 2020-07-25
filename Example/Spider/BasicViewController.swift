@@ -19,6 +19,8 @@ class BasicViewController: LoadingViewController {
         
         self.startLoading()
         
+        Spider.web.timeout = 1
+        
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
             .data { response in
