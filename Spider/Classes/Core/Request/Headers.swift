@@ -31,12 +31,15 @@ public struct Headers {
         /// A text/javascript content type.
         case text_js
         
+        /// A text/event-stream content type.
+        case text_event_stream
+                
         /// An image/png content type.
         case image_png
         
         /// An image/jpeg content type.
         case image_jpeg
-        
+                
         /// An custom content type.
         case custom(String)
         
@@ -51,6 +54,7 @@ public struct Headers {
             case .text_html: return "text/html"
             case .text_json: return "text/json"
             case .text_js: return "text/javascript"
+            case .text_event_stream: return "text/event-stream"
                 
             case .image_png: return "image/png"
             case .image_jpeg: return "image/jpeg"
@@ -123,7 +127,7 @@ public struct Headers {
     
     // MARK: Private
     
-    internal mutating func jsonifyAndPrepare(for request: Request, using spider: Spider) -> [String: String] {
+    internal mutating func prepare(for request: Request, using spider: Spider) -> [String: String] {
         
         var dictionary = [String: String]()
         
@@ -175,6 +179,34 @@ public struct Headers {
         
         // Done
 
+        return dictionary
+        
+    }
+    
+    internal mutating func prepare(for eventSource: EventSource) -> [String: String] {
+        
+        var dictionary = [String: String]()
+
+        if let auth = eventSource.authorization {
+            dictionary[auth.field] = auth.headerValue
+        }
+        
+        if let content = self.contentType?.value {
+            dictionary["Content-Type"] = content
+        }
+        
+        if let acceptTypes = self.acceptTypes {
+
+            var string: String?
+
+            acceptTypes.forEach { type in
+                string = (string == nil) ? type.value : "\(string!), \(type.value)"
+            }
+
+            dictionary["Accept"] = string
+
+        }
+        
         return dictionary
         
     }

@@ -46,7 +46,7 @@ internal class RequestBuilder {
         let baseHeaders = self.spider.headers ?? Headers()
         var headers = request.ignoreSharedHeaders ? request.headers : baseHeaders.merged(with: request.headers)
         
-        let jsonHeaders = headers.jsonifyAndPrepare(
+        let jsonHeaders = headers.prepare(
             for: request,
             using: self.spider
         )
