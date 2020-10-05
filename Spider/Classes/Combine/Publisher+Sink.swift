@@ -7,10 +7,10 @@
 
 import Combine
 
-public extension Publisher {
+public extension Publisher /* Sink */ {
     
-    func sink(receiveValue: @escaping (Self.Output)->(),
-              receiveCompletion: @escaping (Subscribers.Completion<Self.Failure>)->()) -> AnyCancellable {
+    func sink(receiveValue: @escaping (Output)->(),
+              receiveCompletion: @escaping (Subscribers.Completion<Failure>)->()) -> AnyCancellable {
         
         return sink(
             receiveCompletion: receiveCompletion,
@@ -24,9 +24,9 @@ public extension Publisher {
     /// This method creates the subscriber and holds the latest value until a completion event is received.
     /// - parameter body: The closure to execute on completion.
     /// - returns: A cancellable instance; used when you end assignment of the received value. Deallocation of the result will tear down the subscription stream.
-    func resultSink(_ body: @escaping (Result<Self.Output, Self.Failure>)->()) -> AnyCancellable {
+    func resultSink(_ body: @escaping (Result<Output, Failure>)->()) -> AnyCancellable {
         
-        var _value: Self.Output!
+        var _value: Output!
         
         return sink(
             receiveValue: { _value = $0 },
@@ -42,7 +42,7 @@ public extension Publisher {
     }
     
     // Ignores errors. only sinks values
-    func valueSink(_ body: @escaping (Self.Output)->()) -> AnyCancellable {
+    func valueSink(_ body: @escaping (Output)->()) -> AnyCancellable {
         
         return sink(
             receiveValue: { body($0) },

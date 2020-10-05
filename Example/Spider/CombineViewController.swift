@@ -22,26 +22,72 @@ class CombineViewController: LoadingViewController {
                 
         self.startLoading()
         
+        // how to error handle?
+        
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
             .dataPublisher()
-            .resultSink { result in
-
-                self.stopLoading()
-
-                switch result {
-                case .success(let data): self.updateStatus("Fetched \(data)")
-                case .failure(let error): self.updateStatus(error.localizedDescription)
-                }
-
-            }
+            .err
+            .valueSink({ (<#Data#>) in
+                <#code#>
+            })
             .store(in: &self.storage)
+            
+            
+            
+            
+            
+            
+//            .resultSink { result in
+//
+//                self.stopLoading()
+//
+//                switch result {
+//                case .success(let string): self.updateStatus(string)
+//                case .failure(let error): self.updateStatus(error.localizedDescription)
+//                }
+//
+//            }
+//            .store(in: &self.storage)
+            
         
+//        Spider.web
+//            .get("https://jsonplaceholder.typicode.com/users")
+//            .dataPublisher()
+//            .resultSink { result in
+//
+//                self.stopLoading()
+//
+//                switch result {
+//                case .success(let data): self.updateStatus("Fetched \(data)")
+//                case .failure(let error): self.updateStatus(error.localizedDescription)
+//                }
+//
+//            }
+//            .store(in: &self.storage)
+//
 //        Spider.web
 //            .get("https://jsonplaceholder.typicode.com/users")
 //            .dataPublisher()
 //            .valueSink { data in
 //                print("")
+//            }
+//            .store(in: &self.storage)
+//
+//        Spider.web
+//            .get("https://jsonplaceholder.typicode.com/users")
+//            .dataPublisher()
+//            .decode(type: User.self, decoder: JSONDecoder())
+//            .resultSink { result in
+//                // ...
+//            }
+//            .store(in: &self.storage)
+//
+//        Spider.web
+//            .get("https://jsonplaceholder.typicode.com/users")
+//            .decodedPublisher(User.self)
+//            .resultSink { result in
+//                // ...
 //            }
 //            .store(in: &self.storage)
         
