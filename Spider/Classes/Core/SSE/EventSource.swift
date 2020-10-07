@@ -9,16 +9,24 @@ import Foundation
 
 public typealias EventListener = (Event)->()
 
+/// An event source class used to manage connection & observation of server-side-events.
 public class EventSource: NSObject {
     
+    /// Representation of the various event source ready states.
     public enum State: Int {
         
+        /// A connecting state.
         case connecting
+        
+        /// An open state.
         case open
+        
+        /// A closed state.
         case closed
         
     }
     
+    /// Object used to describe an event source's closure parameters.
     public struct Closure {
         
         public let error: Error?
@@ -27,6 +35,7 @@ public class EventSource: NSObject {
         
     }
     
+    /// Representation of the various event source errors.
     public enum EventSourceError: Error {
         
         case invalidUrl
@@ -35,9 +44,16 @@ public class EventSource: NSObject {
     
     private static var defaultRetryTime: Int = 3000
     
+    /// The event source's stream url.
     public let url: URL
+    
+    /// The event source's connection request headers.
     public var headers = [String: String]()
+    
+    /// The event source's connection retry interval; _defaults to 3000_.
     public private(set) var retryTime: Int = EventSource.defaultRetryTime
+    
+    /// The event source's current state.
     public private(set) var state: State = .closed
 
     private var urlSession: URLSession?
@@ -52,6 +68,10 @@ public class EventSource: NSObject {
     private var lastEventId: String?
     private var listeners = [String: EventListener]()
 
+    /// Initializes an event source with a given url.
+    /// - parameter url: The stream url.
+    ///
+    /// This initializer throws if the stream url is invalid.
     public init(url: URLRepresentable) throws {
         
         guard let url = url.url else { throw EventSourceError.invalidUrl }
@@ -63,6 +83,11 @@ public class EventSource: NSObject {
         
     }
     
+    /// Connects the event source to the stream.
+    /// - parameter lastEventId: The last event id to use while connecting; _defaults to nil_.
+    ///
+    /// If the `lastEventId` parameter is set, it will be passed along while connecting. This
+    /// can be used to "replay" past events in the stream.
     public func connect(lastEventId: String? = nil) {
         
         self.state = .connecting
@@ -79,6 +104,7 @@ public class EventSource: NSObject {
         
     }
     
+    /// Disconnects the event source from the stream.
     public func disconnect() {
         
         self.state = .closed
@@ -88,6 +114,9 @@ public class EventSource: NSObject {
         
     }
     
+    /// Sets the event source's stream opened listener.
+    /// - parameter block: The listener block.
+    /// - returns: The event stream instance.
     @discardableResult
     public func opened(_ block: @escaping ()->()) -> Self {
         
@@ -96,6 +125,9 @@ public class EventSource: NSObject {
         
     }
     
+    /// Sets the event source's stream closed listener.
+    /// - parameter block: The listener block.
+    /// - returns: The event stream instance.
     @discardableResult
     public func closed(_ block: @escaping (Closure)->()) -> Self {
         
@@ -104,6 +136,10 @@ public class EventSource: NSObject {
         
     }
     
+    /// Adds an event listener.
+    /// - parameter type: The event type.
+    /// - parameter listener: The event listener block.
+    /// - returns: The event stream instance.
     @discardableResult
     public func event(_ type: String, _ listener: @escaping EventListener) -> Self {
         
@@ -112,6 +148,9 @@ public class EventSource: NSObject {
         
     }
     
+    /// Adds a message event listener.
+    /// - parameter block: The message event listener block.
+    /// - returns: The event stream instance.
     @discardableResult
     public func message(_ block: @escaping (MessageEvent)->()) -> Self {
         
@@ -120,6 +159,11 @@ public class EventSource: NSObject {
         
     }
     
+    /// Sets the event source's any event listener.
+    /// - parameter block: The listener block.
+    /// - returns: The event stream instance.
+    ///
+    /// This will always be called _after_ any typed event listeners.
     @discardableResult
     public func anyEvent(_ block: @escaping (EventProtocol)->()) -> Self {
         

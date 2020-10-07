@@ -7,17 +7,26 @@
 
 import Foundation
 
+/// Protocol describing the characteristics of a server-side-event.
 public protocol EventProtocol {
     
+    /// The event's unique id.
     var id: String? { get }
+    
+    /// The event's type (or name).
     var type: String? { get }
+    
+    /// The event's data payload.
     var data: String? { get }
+    
+    /// The event's retry time.
     var retryTime: Int? { get }
     
 }
 
 public extension EventProtocol /* JSON data */ {
     
+    /// A `JSON` representation of the event data.
     var jsonData: JSON? {
         
         guard let string = self.data,
@@ -30,6 +39,7 @@ public extension EventProtocol /* JSON data */ {
         
     }
     
+    /// A `[JSON]` representation of the event data.
     var jsonArrayData: [JSON]? {
         
         guard let string = self.data,
