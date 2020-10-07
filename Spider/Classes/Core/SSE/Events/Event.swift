@@ -12,12 +12,14 @@ public struct Event: EventProtocol {
     public let id: String?
     public let type: String?
     public let data: String?
+    public let retryTime: Int?
     
     internal func messageEvent() -> MessageEvent {
         
         return MessageEvent(
             id: self.id,
-            data: self.data
+            data: self.data,
+            retryTime: self.retryTime
         )
         
     }

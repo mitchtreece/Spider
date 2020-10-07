@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias EventListener = (Event)->()
+
 public class EventSource: NSObject {
     
     public enum State: Int {
@@ -31,12 +33,15 @@ public class EventSource: NSObject {
         
     }
     
+    private static var defaultRetryTime: Int = 3000
+    
     public let url: URL
     public var headers = [String: String]()
+    public private(set) var retryTime: Int = EventSource.defaultRetryTime
     public private(set) var state: State = .closed
-    
-    private var queue: OperationQueue
+
     private var urlSession: URLSession?
+    private var queue: OperationQueue
     private var parser = EventParser()
     
     private var onOpened: (()->())?
@@ -44,6 +49,7 @@ public class EventSource: NSObject {
     private var onMessageEvent: ((MessageEvent)->())?
     private var onAnyEvent: ((EventProtocol)->())?
     
+    private var lastEventId: String?
     private var listeners = [String: EventListener]()
 
     public init(url: URLRepresentable) throws {
@@ -76,6 +82,7 @@ public class EventSource: NSObject {
     public func disconnect() {
         
         self.state = .closed
+        
         self.urlSession?.invalidateAndCancel()
         self.urlSession = nil
         
@@ -149,12 +156,10 @@ public class EventSource: NSObject {
                 
         for event in events {
             
-            // self.lastEventId = event.id
-            // retryTime = event.retryTime ?? EventSource.DefaultRetryTime
+            self.lastEventId = event.id
+            self.retryTime = event.retryTime ?? EventSource.defaultRetryTime
             
-//            if event.isRetryEvent {
-//                continue
-//            }
+            guard !event.isRetry else { continue }
             
             if event.type == nil || event.type == "message" {
                 

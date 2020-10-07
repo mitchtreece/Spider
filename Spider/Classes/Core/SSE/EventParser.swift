@@ -52,11 +52,18 @@ internal class EventParser {
             }
             
         }
-                
+
+        var retryTime: Int?
+        
+        if let retryString = (event["retry"] ?? nil) {
+            retryTime = Int(retryString.trimmingCharacters(in: CharacterSet.whitespaces))
+        }
+        
         return Event(
             id: event["id"] ?? nil,
             type: event["event"] ?? nil,
-            data: event["data"] ?? nil
+            data: event["data"] ?? nil,
+            retryTime: retryTime
         )
         
     }

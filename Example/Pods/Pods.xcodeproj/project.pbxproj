@@ -32,7 +32,6 @@
 		24AC7AA7EF856168B2808038A99560A4 /* BasicRequestAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F995A24750B745313F75F792052709 /* BasicRequestAuth.swift */; };
 		263BF8D4252CDECF00557C06 /* EventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8D3252CDECF00557C06 /* EventSource.swift */; };
 		263BF8E4252CDED800557C06 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8E3252CDED800557C06 /* Event.swift */; };
-		263BF8ED252CE90600557C06 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8EC252CE90600557C06 /* EventListener.swift */; };
 		26D81302252D1A19005A0767 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D81301252D1A19005A0767 /* EventParser.swift */; };
 		26D8130B252D1F04005A0767 /* EventBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8130A252D1F04005A0767 /* EventBuffer.swift */; };
 		26D81353252D2D50005A0767 /* MessageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D81352252D2D50005A0767 /* MessageEvent.swift */; };
@@ -305,7 +304,6 @@
 		254E4CDED9239FD6ADA7529275359B84 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
 		263BF8D3252CDECF00557C06 /* EventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSource.swift; sourceTree = "<group>"; };
 		263BF8E3252CDED800557C06 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		263BF8EC252CE90600557C06 /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		26D81301252D1A19005A0767 /* EventParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
 		26D8130A252D1F04005A0767 /* EventBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuffer.swift; sourceTree = "<group>"; };
 		26D81352252D2D50005A0767 /* MessageEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEvent.swift; sourceTree = "<group>"; };
@@ -676,7 +674,6 @@
 			children = (
 				26D81364252D3576005A0767 /* Events */,
 				263BF8D3252CDECF00557C06 /* EventSource.swift */,
-				263BF8EC252CE90600557C06 /* EventListener.swift */,
 				26D81301252D1A19005A0767 /* EventParser.swift */,
 				26D8130A252D1F04005A0767 /* EventBuffer.swift */,
 			);
@@ -1433,7 +1430,6 @@
 				05E22606CAFC46E45B544245FCBC9FBE /* Data+Size.swift in Sources */,
 				FD15E3EC49AE9E56408257955D8881E6 /* Data+String.swift in Sources */,
 				5FBC470ACBCAE4E5D937FFDF135DD2D4 /* Dictionary+JSON.swift in Sources */,
-				263BF8ED252CE90600557C06 /* EventListener.swift in Sources */,
 				3A550C328A82EBFB210532F5436328B4 /* ErrorRepresentable.swift in Sources */,
 				069B26155C853C75397D75AF736B766B /* Headers.swift in Sources */,
 				AD9930F6D4FFC60BC98934E637691D36 /* HTTPError.swift in Sources */,

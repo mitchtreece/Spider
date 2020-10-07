@@ -11,8 +11,10 @@ public struct MessageEvent: EventProtocol {
     
     public let id: String?
     public let data: String?
+    public let retryTime: Int?
+    
     public var type: String? {
         return "message"
     }
-    
+        
 }
