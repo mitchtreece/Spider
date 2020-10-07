@@ -30,6 +30,12 @@
 		21AB1101BBE4D28D74ED4EDF0D59025A /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39823A9C588E4364492AF7D006082893 /* ConstraintInsets.swift */; };
 		232B2F922E972D9F43D2EE15ACECE734 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED918F0BB3BDE22301D663BE156462C0 /* ConstraintPriority.swift */; };
 		24AC7AA7EF856168B2808038A99560A4 /* BasicRequestAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F995A24750B745313F75F792052709 /* BasicRequestAuth.swift */; };
+		263BF8D4252CDECF00557C06 /* EventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8D3252CDECF00557C06 /* EventSource.swift */; };
+		263BF8E4252CDED800557C06 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8E3252CDED800557C06 /* Event.swift */; };
+		26D81302252D1A19005A0767 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D81301252D1A19005A0767 /* EventParser.swift */; };
+		26D8130B252D1F04005A0767 /* EventBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D8130A252D1F04005A0767 /* EventBuffer.swift */; };
+		26D81353252D2D50005A0767 /* MessageEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D81352252D2D50005A0767 /* MessageEvent.swift */; };
+		26D81366252D3591005A0767 /* EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D81365252D3591005A0767 /* EventProtocol.swift */; };
 		26F02B76247878B100F3677A /* RequestWorker+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F02B75247878B100F3677A /* RequestWorker+Void.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFA8512CD511F3DC3297B8E8B93C02E /* ConstraintAttributes.swift */; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14159C3C3D319111D1F7951F301EEB74 /* ConstraintInsetTarget.swift */; };
@@ -296,6 +302,12 @@
 		2392DEA3A774EC1C32771E8697259A45 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		242702ADFD97F7CB3A300BB7109E0913 /* MultipartFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MultipartFile.swift; sourceTree = "<group>"; };
 		254E4CDED9239FD6ADA7529275359B84 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
+		263BF8D3252CDECF00557C06 /* EventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSource.swift; sourceTree = "<group>"; };
+		263BF8E3252CDED800557C06 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		26D81301252D1A19005A0767 /* EventParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
+		26D8130A252D1F04005A0767 /* EventBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuffer.swift; sourceTree = "<group>"; };
+		26D81352252D2D50005A0767 /* MessageEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEvent.swift; sourceTree = "<group>"; };
+		26D81365252D3591005A0767 /* EventProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProtocol.swift; sourceTree = "<group>"; };
 		26F02B75247878B100F3677A /* RequestWorker+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RequestWorker+Void.swift"; sourceTree = "<group>"; };
 		2789680BE0254911AEA0E2B7704713B0 /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		27F995A24750B745313F75F792052709 /* BasicRequestAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BasicRequestAuth.swift; sourceTree = "<group>"; };
@@ -601,6 +613,7 @@
 				73B61D8AA18582AA20BFF870DE32158B /* Reachability */,
 				9B7BF94EA7153496B27D916FE5DF18FD /* Representables */,
 				14BEE65821849EE9EE24307B1D88F299 /* Request */,
+				262319FB252B8B6800606CAF /* SSE */,
 				7856C73F6F718CD7B7394175000CC9F6 /* UIKit */,
 			);
 			name = Core;
@@ -654,6 +667,28 @@
 			);
 			name = Protocols;
 			path = Spider/Classes/Core/Protocols;
+			sourceTree = "<group>";
+		};
+		262319FB252B8B6800606CAF /* SSE */ = {
+			isa = PBXGroup;
+			children = (
+				26D81364252D3576005A0767 /* Events */,
+				263BF8D3252CDECF00557C06 /* EventSource.swift */,
+				26D81301252D1A19005A0767 /* EventParser.swift */,
+				26D8130A252D1F04005A0767 /* EventBuffer.swift */,
+			);
+			name = SSE;
+			path = Spider/Classes/Core/SSE;
+			sourceTree = "<group>";
+		};
+		26D81364252D3576005A0767 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				263BF8E3252CDED800557C06 /* Event.swift */,
+				26D81365252D3591005A0767 /* EventProtocol.swift */,
+				26D81352252D2D50005A0767 /* MessageEvent.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		2AB432FD7F3E9FE9119E41220EEFE0CB /* Kingfisher */ = {
@@ -1398,6 +1433,7 @@
 				3A550C328A82EBFB210532F5436328B4 /* ErrorRepresentable.swift in Sources */,
 				069B26155C853C75397D75AF736B766B /* Headers.swift in Sources */,
 				AD9930F6D4FFC60BC98934E637691D36 /* HTTPError.swift in Sources */,
+				26D8130B252D1F04005A0767 /* EventBuffer.swift in Sources */,
 				07F06E8A38F3A0F137B39E9B8F9E6E27 /* HTTPMethod.swift in Sources */,
 				7797811156C5F2937BBC50AAFA93594E /* HTTPMethodRepresentable.swift in Sources */,
 				ECB1C952E7664B6AD5963DE39E73577B /* HTTPStatusCode+Name.swift in Sources */,
@@ -1411,6 +1447,7 @@
 				7FE7C0636CBBAB2B0D7A2DD7AD89CCCD /* MultipartRequest.swift in Sources */,
 				408AAF6A7E8D7344AD02A6CA3053B065 /* Platform.swift in Sources */,
 				C32D1185533B5ACE307FBBF3A91EC978 /* ReachabilityMonitor.swift in Sources */,
+				26D81353252D2D50005A0767 /* MessageEvent.swift in Sources */,
 				452354330DE9E668E57474F8A1342362 /* Request.swift in Sources */,
 				922B67BC85F810CAA87184DFD5DE5496 /* RequestAuth.swift in Sources */,
 				2F78A889FEC2B76F0E52CA623EA9A8BB /* RequestBuilder.swift in Sources */,
@@ -1418,13 +1455,17 @@
 				54CA7263618CF21209BE9457A5E88047 /* RequestWorker+Image.swift in Sources */,
 				90E30C9CB3B36BE7ECC0921B15B550E5 /* RequestWorker+JSON.swift in Sources */,
 				AB2D81294A3B62A0CEAE02A7E5C5D6D8 /* RequestWorker+Promises.swift in Sources */,
+				263BF8D4252CDECF00557C06 /* EventSource.swift in Sources */,
 				D7096D4D0680F4687EAF3FBC811B973D /* RequestWorker+String.swift in Sources */,
 				D852EFF0266533D047B16BB5EA04116D /* RequestWorker.swift in Sources */,
 				131B9E83AEC69828665695085E52F8D5 /* Response+Debug.swift in Sources */,
+				26D81366252D3591005A0767 /* EventProtocol.swift in Sources */,
 				349657A29E0257E43E9C7CE476E8B27C /* Response+Map.swift in Sources */,
 				1F747A9CE669B6019AFA22CF08EC4B1F /* Response.swift in Sources */,
 				6158ADD47888ADAB59CAA22A5DBC1006 /* Spider-Web-dummy.m in Sources */,
+				263BF8E4252CDED800557C06 /* Event.swift in Sources */,
 				0E5F957F73173414855899603B9F9F76 /* Spider.swift in Sources */,
+				26D81302252D1A19005A0767 /* EventParser.swift in Sources */,
 				08D6973E372275E11E950D604B7C24FB /* SpiderImageCache.swift in Sources */,
 				D0CBEF17407552B676E449E007385B98 /* SpiderImageDownloader.swift in Sources */,
 				7F86BA7D579835F6B343D58DEFB28A10 /* SpiderImageDownloadTask.swift in Sources */,
