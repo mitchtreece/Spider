@@ -20,6 +20,7 @@ class RootViewController: UITableViewController {
         case mapping
         case multipart
         case middleware
+        case sse
         case uikit
         case promises
         
@@ -58,6 +59,7 @@ class RootViewController: UITableViewController {
         case .mapping: navigationController?.pushViewController(MappingViewController(), animated: true)
         case .multipart: navigationController?.pushViewController(MultipartViewController(), animated: true)
         case .middleware: navigationController?.pushViewController(MiddlewareViewController(), animated: true)
+        case .sse: navigationController?.pushViewController(SSEViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
         case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
         }
