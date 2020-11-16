@@ -538,7 +538,7 @@ Currently, Spider has integrations for the following UI components:
 
 ### Promises
 
-Spider has built-in support for [PromiseKit](http://promisekit.org). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
+Spider has built-in support for [PromiseKit](https://github.com/mxcl/PromiseKit). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
 
 ```swift
 Spider.web
@@ -563,9 +563,6 @@ Spider.web
     }
 
 ```
-
-This is just a basic example of how promises can help organize your code. For more information, please visit
-[PromiseKit](http://promisekit.org).
 
 ### Debug Mode
 
