@@ -41,23 +41,12 @@ public class Spider {
     private var session = URLSession.shared
 
     /// The shared `Spider` instance.
-    public static let web: Spider = Spider()
+    public static let web = Spider()
     
-    /// Fetches the shared `Spider` instance.
-    /// - Parameter baseUrl: An optional global base URL.
-    /// - Parameter authorization: An optional global authorization type.
-    /// - Parameter reachabilityHostUrl: An optional host URL to use for reachability monitoring.
-    /// - Returns: The configured shared `Spider` instance.
-    @discardableResult
-    public static func web(baseUrl: URLRepresentable?,
-                           authorization: RequestAuth?,
-                           reachabilityHostUrl: URLRepresentable?) -> Spider {
+    public init() {
         
-        let web = Spider.web
-        web.baseUrl = baseUrl
-        web.authorization = authorization
-        web.reachability = ReachabilityMonitor(host: reachabilityHostUrl)
-        return web
+        self.builder = RequestBuilder(spider: self)
+        self.reachability = ReachabilityMonitor(host: nil)
         
     }
     
@@ -71,16 +60,10 @@ public class Spider {
                             reachabilityHostUrl: URLRepresentable?) {
         
         self.init()
+        
         self.baseUrl = baseUrl
         self.authorization = authorization
         self.reachability = ReachabilityMonitor(host: reachabilityHostUrl)
-        
-    }
-    
-    public init() {
-        
-        self.builder = RequestBuilder(spider: self)
-        self.reachability = ReachabilityMonitor(host: nil)
         
     }
     
