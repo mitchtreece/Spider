@@ -23,6 +23,7 @@ class RootViewController: UITableViewController {
         case sse
         case uikit
         case promises
+        case `async`
         
     }
     
@@ -62,6 +63,27 @@ class RootViewController: UITableViewController {
         case .sse: navigationController?.pushViewController(SSEViewController(), animated: true)
         case .uikit: navigationController?.pushViewController(UIKitViewController(), animated: true)
         case .promises: navigationController?.pushViewController(PromisesViewController(), animated: true)
+        case .async:
+            
+            if #available(iOS 15, *) {
+                navigationController?.pushViewController(AsyncViewController(), animated: true)
+            }
+            else {
+                
+                let alert = UIAlertController(
+                    title: "Time to update 😆",
+                    message: "async/await is only available on iOS 15 or higher.",
+                    preferredStyle: .alert
+                )
+                
+                present(
+                    alert,
+                    animated: true,
+                    completion: nil
+                )
+                
+            }
+            
         }
         
     }

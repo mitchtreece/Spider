@@ -1,5 +1,5 @@
 //
-//  Spider+Promises.swift
+//  Spider+Promise.swift
 //  Pods
 //
 //  Created by Mitch Treece on 12/13/16.

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261F35F62679BC09001ACDB8 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261F35F52679BC09001ACDB8 /* AsyncViewController.swift */; };
 		2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625C71C239EC3A00066542E /* MiddlewareViewController.swift */; };
 		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
 		263BF8F6252CEDDA00557C06 /* SSEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8F5252CEDDA00557C06 /* SSEViewController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		261F35F52679BC09001ACDB8 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
 		2625C71C239EC3A00066542E /* MiddlewareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		263BF8F5252CEDDA00557C06 /* SSEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				263BF8F5252CEDDA00557C06 /* SSEViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
+				261F35F52679BC09001ACDB8 /* AsyncViewController.swift */,
 				266B4EBD1EDA7CD7000A39E5 /* Model */,
 				266B4EAD1EDA7938000A39E5 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */,
+				261F35F62679BC09001ACDB8 /* AsyncViewController.swift in Sources */,
 				266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */,
 				266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */,
 				266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */,

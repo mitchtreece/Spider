@@ -32,9 +32,16 @@ Pod::Spec.new do |s|
 
     end
 
+    s.subspec 'Async' do |async|
+
+      async.source_files = 'Spider/Classes/Async/**/*'
+      async.dependency     'Spider-Web/Core'
+
+    end
+
     s.subspec 'Promise' do |promise|
 
-      promise.source_files = 'Spider/Classes/Promises/**/*'
+      promise.source_files = 'Spider/Classes/Promise/**/*'
       promise.dependency     'Spider-Web/Core'
       promise.dependency     'PromiseKit/CorePromise', '~> 6.0'
 
@@ -42,8 +49,9 @@ Pod::Spec.new do |s|
 
     s.subspec 'All' do |all|
 
-      all.dependency 'Spider-Web/Core'
-      all.dependency 'Spider-Web/Promise'
+      all.dependency          'Spider-Web/Core'
+      all.dependency          'Spider-Web/Async'
+      all.dependency          'Spider-Web/Promise'
 
     end
 
