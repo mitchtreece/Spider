@@ -19,7 +19,7 @@ public extension RequestWorker /* Void */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            void { res in
+            voidResponse { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -36,7 +36,7 @@ public extension RequestWorker /* Void */ {
     func void() async throws {
         
         try await withCheckedThrowingContinuation { (c: CheckedContinuation<Void, Error>) in
-            void {
+            voidResponse {
                 c.resume(with: $0.result)
             }
         }
@@ -57,7 +57,7 @@ public extension RequestWorker /* Data */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            data { res in
+            dataResponse { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -75,7 +75,7 @@ public extension RequestWorker /* Data */ {
     func data() async throws -> Data {
         
         try await withCheckedThrowingContinuation { c in
-            data {
+            dataResponse {
                 c.resume(with: $0.result)
             }
         }
@@ -97,7 +97,7 @@ public extension RequestWorker /* String */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            string(encoding: encoding) { res in
+            stringResponse(encoding: encoding) { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -116,7 +116,7 @@ public extension RequestWorker /* String */ {
     func string(encoding: String.Encoding = .utf8) async throws -> String {
         
         try await withCheckedThrowingContinuation { c in
-            string(encoding: encoding) {
+            stringResponse(encoding: encoding) {
                 c.resume(with: $0.result)
             }
         }
@@ -137,7 +137,7 @@ public extension RequestWorker /* JSON */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            json { res in
+            jsonResponse { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -155,20 +155,20 @@ public extension RequestWorker /* JSON */ {
     func json() async throws -> JSON {
     
         try await withCheckedThrowingContinuation { c in
-            json {
+            jsonResponse {
                 c.resume(with: $0.result)
             }
         }
         
     }
     
-    /// Starts the worker & serializes a `[JSON]` response.
-    /// - returns: A serialized `[JSON]` response.
+    /// Starts the worker & serializes a `JSON` array response.
+    /// - returns: A serialized `JSON` array response.
     func jsonArrayResponse() async throws -> Response<[JSON]> {
         
         try await withCheckedThrowingContinuation { c in
             
-            jsonArray { res in
+            jsonArrayResponse { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -181,12 +181,12 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    /// Starts the worker & serializes a `[JSON]` value.
-    /// - returns: A serialized `[JSON]` value.
+    /// Starts the worker & serializes a `JSON` array value.
+    /// - returns: A serialized `JSON` array value.
     func jsonArray() async throws -> [JSON] {
         
         try await withCheckedThrowingContinuation { c in
-            jsonArray {
+            jsonArrayResponse {
                 c.resume(with: $0.result)
             }
         }
@@ -207,7 +207,7 @@ public extension RequestWorker /* Image */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            image { res in
+            imageResponse { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -225,7 +225,7 @@ public extension RequestWorker /* Image */ {
     func image() async throws -> Image {
         
         try await withCheckedThrowingContinuation { c in
-            image {
+            imageResponse {
                 c.resume(with: $0.result)
             }
         }
@@ -246,7 +246,7 @@ public extension RequestWorker /* Image */ {
         
         try await withCheckedThrowingContinuation { c in
             
-            decode(type) { res in
+            decodeResponse(type) { res in
                 
                 switch res.result {
                 case .success: c.resume(returning: res)
@@ -264,7 +264,7 @@ public extension RequestWorker /* Image */ {
     func decode<T: Decodable>(_ type: T.Type) async throws -> T {
         
         try await withCheckedThrowingContinuation { c in
-            decode(type) {
+            decodeResponse(type) {
                 c.resume(with: $0.result)
             }
         }

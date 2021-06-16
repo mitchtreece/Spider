@@ -28,11 +28,10 @@ class PostTests: XCTestCase {
         var postId: Int?
         
         self.spider.post(
-            
             "https://jsonplaceholder.typicode.com/posts",
             parameters: Post.mockJSON
-            
-        ).json { response in
+        )
+        .jsonResponse { response in
             
             status = response.statusCode
             postId = (response.value?["id"] as? Int)

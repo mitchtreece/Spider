@@ -53,7 +53,7 @@ class MiddlewareViewController: LoadingViewController {
         
         spider
             .get("https://jsonplaceholder.typicode.com/users")
-            .data { response in
+            .dataResponse { response in
                 
                 self.stopLoading()
                 

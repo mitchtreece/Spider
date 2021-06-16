@@ -40,7 +40,7 @@ class AdvancedViewController: LoadingViewController {
         
         Spider.web
             .perform(request)
-            .data { response in
+            .dataResponse { response in
             
                 self.stopLoading()
                 

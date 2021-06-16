@@ -33,7 +33,7 @@ class CancelTests: XCTestCase {
         
         let worker = self.spider.perform(request)
         worker.cancel()
-        worker.data { response in
+        worker.dataResponse { response in
             completionCalled = true
         }
         
@@ -59,7 +59,7 @@ class CancelTests: XCTestCase {
         )
         
         let worker = self.spider.perform(request)
-        worker.data { response in
+        worker.dataResponse { response in
             completionCalled = true
         }
         

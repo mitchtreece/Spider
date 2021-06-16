@@ -10,10 +10,10 @@ import Foundation
 public extension RequestWorker /* Image */ {
     
     /// Starts the worker & serializes an `Image` response.
-    /// - Parameter completion: The worker's completion handler.
-    func image(_ completion: @escaping (Response<Image>)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func imageResponse(_ completion: @escaping (Response<Image>)->()) {
         
-        data { response in
+        dataResponse { response in
             completion(response.compactMap {
                 Image(data: $0)
             })
@@ -22,13 +22,15 @@ public extension RequestWorker /* Image */ {
     }
     
     /// Starts the worker & serializes an `Image` value.
-    /// - Parameter completion: The worker's completion handler.
-    func imageValue(_ completion: @escaping (Image?, Error?)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func image(_ completion: @escaping (Image?, Error?)->()) {
         
-        image { completion(
-            $0.value,
-            $0.error
-        )}
+        imageResponse {
+            completion(
+                $0.value,
+                $0.error
+            )
+        }
         
     }
     

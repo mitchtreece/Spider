@@ -42,7 +42,7 @@ class MappingViewController: UIViewController {
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .decode([User].self) { response in
+            .decodeResponse([User].self) { response in
             
                 switch response.result {
                 case .success(let users):

@@ -22,8 +22,11 @@ class AuthViewController: LoadingViewController {
         self.startLoading()
         
         Spider.web
-            .get("https://jsonplaceholder.typicode.com/users", authorization: token)
-            .data { response in
+            .get(
+                "https://jsonplaceholder.typicode.com/users",
+                authorization: token
+            )
+            .dataResponse { response in
             
                 self.stopLoading()
                 
