@@ -10,10 +10,10 @@ import Foundation
 public extension RequestWorker /* JSON */ {
     
     /// Starts the worker & serializes a `JSON` response.
-    /// - Parameter completion: The worker's completion handler.
-    func json(_ completion: @escaping (Response<JSON>)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func jsonResponse(_ completion: @escaping (Response<JSON>)->()) {
 
-        data { response in
+        dataResponse { response in
             completion(response.map {
                 try $0.json()
             })
@@ -22,21 +22,23 @@ public extension RequestWorker /* JSON */ {
     }
     
     /// Starts the worker & serializes a `JSON` value.
-    /// - Parameter completion: The worker's completion handler.
-    func jsonValue(_ completion: @escaping (JSON?, Error?)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func json(_ completion: @escaping (JSON?, Error?)->()) {
         
-        json { completion(
-            $0.value,
-            $0.error
-        )}
+        jsonResponse {
+            completion(
+                $0.value,
+                $0.error
+            )
+        }
         
     }
     
     /// Starts the worker & serializes a `JSON` array response.
-    /// - Parameter completion: The worker's completion handler.
-    func jsonArray(_ completion: @escaping (Response<[JSON]>)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func jsonArrayResponse(_ completion: @escaping (Response<[JSON]>)->()) {
         
-        data { response in
+        dataResponse { response in
             completion(response.map {
                 try $0.jsonArray()
             })
@@ -45,13 +47,15 @@ public extension RequestWorker /* JSON */ {
     }
     
     /// Starts the worker & serializes a `JSON` array value.
-    /// - Parameter completion: The worker's completion handler.
-    func jsonArrayValue(_ completion: @escaping ([JSON]?, Error?)->()) {
+    /// - parameter completion: The worker's completion closure.
+    func jsonArray(_ completion: @escaping ([JSON]?, Error?)->()) {
         
-        jsonArray { completion(
-            $0.value,
-            $0.error
-        )}
+        jsonArrayResponse {
+            completion(
+                $0.value,
+                $0.error
+            )
+        }
         
     }
     

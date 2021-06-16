@@ -12,13 +12,13 @@ import PromiseKit
 
 public extension RequestWorker /* Void */ {
     
-    /// Starts the worker & serializes a `Void` response.
-    /// - Returns: A `Void` response promise.
-    func void() -> Promise<Response<Void>> {
+    /// Starts the worker & serializes a response without a value.
+    /// - returns: A serialized `Void` response promise.
+    func voidResponse() -> Promise<Response<Void>> {
         
         return Promise<Response<Void>> { seal in
             
-            void { res in
+            voidResponse { res in
                 
                 switch res.result {
                 case .success: seal.fulfill(res)
@@ -31,17 +31,15 @@ public extension RequestWorker /* Void */ {
         
     }
     
-    /// Starts the worker without serializing a value.
-    /// - Returns: A `Void` promise.
-    func voidValue() -> Promise<Void> {
+    /// Starts the worker without serializing a response value.
+    /// - returns: A `Void` promise.
+    func void() -> Promise<Void> {
         
         return Promise<Void> { seal in
             
-            void().done { res in
-                seal.fulfill(())
-            }.catch { err in
-                seal.reject(err)
-            }
+            voidResponse()
+                .done { _ in seal.fulfill(()) }
+                .catch { seal.reject($0) }
             
         }
         
@@ -54,12 +52,12 @@ public extension RequestWorker /* Void */ {
 public extension RequestWorker /* Data */ {
 
     /// Starts the worker & serializes a `Data` response.
-    /// - Returns: A `Data` response promise.
-    func data() -> Promise<Response<Data>> {
+    /// - returns: A serialized `Data` response promise.
+    func dataResponse() -> Promise<Response<Data>> {
         
         return Promise<Response<Data>> { seal in
             
-            data { response in
+            dataResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -72,17 +70,15 @@ public extension RequestWorker /* Data */ {
         
     }
     
-    /// Starts the worker & serializes a `Data` response.
-    /// - Returns: A `Data` promise.
-    func dataValue() -> Promise<Data> {
+    /// Starts the worker & serializes a `Data` value.
+    /// - returns: A serialized `Data` value promise.
+    func data() -> Promise<Data> {
         
         return Promise<Data> { seal in
             
-            data().done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            dataResponse()
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         
@@ -95,13 +91,13 @@ public extension RequestWorker /* Data */ {
 public extension RequestWorker /* String */ {
     
     /// Starts the worker & serializes a `String` response.
-    /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
-    /// - Returns: A `String` response promise.
-    func string(encoding: String.Encoding = .utf8) -> Promise<Response<String>> {
+    /// - parameter encoding: The string encoding to use; _defaults to utf8_.
+    /// - returns: A serialized `String` response promise.
+    func stringResponse(encoding: String.Encoding = .utf8) -> Promise<Response<String>> {
         
         return Promise<Response<String>> { seal in
             
-            string(encoding: encoding) { response in
+            stringResponse(encoding: encoding) { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -114,18 +110,16 @@ public extension RequestWorker /* String */ {
         
     }
     
-    /// Starts the worker & serializes a `String` response.
-    /// - Parameter encoding: The string encoding to use; _defaults to utf8_.
-    /// - Returns: A `String` promise.
-    func stringValue(encoding: String.Encoding = .utf8) -> Promise<String> {
+    /// Starts the worker & serializes a `String` value.
+    /// - parameter encoding: The string encoding to use; _defaults to utf8_.
+    /// - returns: A serialized `String` value promise.
+    func string(encoding: String.Encoding = .utf8) -> Promise<String> {
         
         return Promise<String> { seal in
             
-            string(encoding: encoding).done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            stringResponse(encoding: encoding)
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         
@@ -138,12 +132,12 @@ public extension RequestWorker /* String */ {
 public extension RequestWorker /* JSON */ {
     
     /// Starts the worker & serializes a `JSON` response.
-    /// - Returns: A `JSON` response promise.
-    func json() -> Promise<Response<JSON>> {
+    /// - returns: A serialized `JSON` response promise.
+    func jsonResponse() -> Promise<Response<JSON>> {
         
         return Promise<Response<JSON>> { seal in
             
-            json { response in
+            jsonResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -156,29 +150,27 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    /// Starts the worker & serializes a `JSON` response.
-    /// - Returns: A `JSON` promise.
-    func jsonValue() -> Promise<JSON> {
+    /// Starts the worker & serializes a `JSON` value.
+    /// - returns: A serialized `JSON` value promise.
+    func json() -> Promise<JSON> {
         
         return Promise<JSON> { seal in
             
-            json().done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            jsonResponse()
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         
     }
     
     /// Starts the worker & serializes a `JSON` array response.
-    /// - Returns: A `JSON` array response promise.
-    func jsonArray() -> Promise<Response<[JSON]>> {
+    /// - returns: A serialized `JSON` array response promise.
+    func jsonArrayResponse() -> Promise<Response<[JSON]>> {
         
         return Promise<Response<[JSON]>> { seal in
             
-            jsonArray { response in
+            jsonArrayResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -191,17 +183,15 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    /// Starts the worker & serializes a `JSON` array response.
-    /// - Returns: A `JSON` array promise.
-    func jsonArrayValue() -> Promise<[JSON]> {
+    /// Starts the worker & serializes a `JSON` array value.
+    /// - returns: A serialized `JSON` array value promise.
+    func jsonArray() -> Promise<[JSON]> {
         
         return Promise<[JSON]> { seal in
             
-            jsonArray().done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            jsonArrayResponse()
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         
@@ -214,12 +204,12 @@ public extension RequestWorker /* JSON */ {
 public extension RequestWorker /* Image */ {
     
     /// Starts the worker & serializes an `Image` response.
-    /// - Returns: An `Image` response promise.
-    func image() -> Promise<Response<Image>> {
+    /// - returns: A serialized `Image` response promise.
+    func imageResponse() -> Promise<Response<Image>> {
         
         return Promise<Response<Image>> { seal in
             
-            image { response in
+            imageResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -232,17 +222,15 @@ public extension RequestWorker /* Image */ {
         
     }
     
-    /// Starts the worker & serializes an `Image` response.
-    /// - Returns: An `Image` promise.
-    func imageValue() -> Promise<Image> {
+    /// Starts the worker & serializes an `Image` value.
+    /// - returns: A serialized `Image` value promise.
+    func image() -> Promise<Image> {
         
         return Promise<Image> { seal in
             
-            image().done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            imageResponse()
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         
@@ -255,12 +243,12 @@ public extension RequestWorker /* Image */ {
 public extension RequestWorker /* Decode */ {
     
     /// Starts the worker & serializes a `Decodable` object response.
-    /// - Returns: A `Decodable` object response promise.
-    func decode<T: Decodable>(_ type: T.Type) -> Promise<Response<T>> {
+    /// - returns: A serialized `Decodable` object response promise.
+    func decodeResponse<T: Decodable>(_ type: T.Type) -> Promise<Response<T>> {
         
         return Promise<Response<T>> { seal in
             
-            decode(type) { response in
+            decodeResponse(type) { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
@@ -274,16 +262,14 @@ public extension RequestWorker /* Decode */ {
     }
     
     /// Starts the worker & serializes a `Decodable` object response.
-    /// - Returns: A `Decodable` object promise.
-    func decodeValue<T: Decodable>(_ type: T.Type) -> Promise<T> {
+    /// - returns: A serialized `Decodable` object value promise.
+    func decode<T: Decodable>(_ type: T.Type) -> Promise<T> {
         
         return Promise<T> { seal in
             
-            decode(type).done { response in
-                seal.fulfill(response.value!)
-            }.catch { error in
-                seal.reject(error)
-            }
+            decodeResponse(type)
+                .done { seal.fulfill($0.value!) }
+                .catch { seal.reject($0) }
             
         }
         

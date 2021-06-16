@@ -36,7 +36,7 @@ Spider can be used in many different ways. Most times, the shared Spider instanc
 ```swift
 Spider.web
     .get("https://path/to/endpoint")
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -53,13 +53,13 @@ Spider.web.baseUrl = "https://api.spider.com/v1"
 
 Spider.web
     .get("/users")
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 
 Spider.web
     .get("/locations")
-    .data { response in
+    .data { _ in
         print("We got another response!")
     }
 ```
@@ -83,8 +83,11 @@ All variations of `Request` instantiation have a means for you to pass in reques
 let params = ["user_id": "123456789"]
 
 Spider.web
-    .post("https://path/to/endpoint", parameters: params)
-    .data { response in
+    .post(
+        "https://path/to/endpoint", 
+        parameters: params
+    )
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -102,7 +105,7 @@ let tarantula = Spider()
 
 tarantula
     .get("https://path/to/endpoint")
-    .data { response in
+    .data { _ in
         print("Tarantula got a response!")
     }
 ```
@@ -115,7 +118,7 @@ let blackWidow = Spider(baseUrl: "https://base.url/v1")
 
 blackWidow
     .get("/users")
-    .data { response in
+    .data { _ in
         print("Black Widow got a response!")
     }
 ```
@@ -143,7 +146,7 @@ request.header.set(
 
 Spider.web
     .perform(request)
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -167,7 +170,7 @@ let request = MultipartRequest(
 
 Spider.web
     .perform(request)
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -191,7 +194,7 @@ let authSpider = Spider(
 
 authSpider
     .get("/topSecretData")
-    .data { response in
+    .data { _ in
         print("Big hairy spider got a response!")
     }
 ```
@@ -207,7 +210,7 @@ spider
         "/topSecretData", 
         authorization: token
     )
-    .data { response in
+    .data { _ in
         print("Spider got a response!")
     }
 ```
@@ -233,7 +236,7 @@ request.header.set(
 
 Spider.web
     .perform(request)
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -255,7 +258,7 @@ let authSpider = Spider(
 
 authSpider
     .get("/topSecretData")
-    .data { response in
+    .data { _ in
         print("Spider got a response!")
     }
 ```
@@ -284,7 +287,7 @@ let spider = Spider(
 
 spider
     .get("/topSecretData")
-    .data { response in
+    .data { _ in
         print("Got a response!")
     }
 ```
@@ -298,17 +301,11 @@ Likewise, the `TokenRequestAuth` _"Bearer"_ prefix can be modified in the same w
 ```swift
 Spider.web
     .get("https://some/data/endpoint")
-    .data { response in
+    .dataResponse { res in
 
-        switch response.result {
-        case .success(let data):
-
-            // Handle response data
-
-        case .failure(let error):
-
-            // Handle response error
-
+        switch res.result {
+        case .success(let data): // Handle response data
+        case .failure(let error): // Handle response error
         }
 
     }
@@ -319,14 +316,14 @@ Spider.web
 ```swift
 Spider.web
     .get("https://some/data/endpoint")
-    .data { response in
+    .dataResponse { res in
 
-        if let error = response.error {
+        if let error = res.error {
             // Handle the error
             return
         }
 
-        guard let data = response.value else {
+        guard let data = res.value else {
             // Missing data
             return
         }
@@ -341,16 +338,17 @@ Spider.web
 When asked to perform a request, Spider creates & returns a `RequestWorker` instance. Workers are what actually manage the execution of requests, and serialization of responses. For instance, the above example could be broken down as follows:
 
 ```swift
-let worker = Spider.web.get("https://some/data/endpoint")
+let worker = Spider.web
+    .get("https://some/data/endpoint")
 
-worker.data { response in
+worker.dataResponse { res in
 
-    if let error = response.error {
+    if let error = res.error {
         // Handle the error
         return
     }
 
-    guard let data = response.value else {
+    guard let data = res.value else {
         // Missing data
         return
     }
@@ -363,9 +361,10 @@ worker.data { response in
 If you'd rather work directly with response _values_ instead of responses themselves, each worker function has a raw value alternative:
 
 ```swift
-let worker = Spider.web.get("https://some/data/endpoint")
+let worker = Spider.web
+    .get("https://some/data/endpoint")
 
-worker.dataValue { (data, error) in
+worker.data { (data, error) in
 
     if let error = error {
         // Handle the error
@@ -385,19 +384,19 @@ worker.dataValue { (data, error) in
 In addition to `Data`, `RequestWorker` also supports the following serialization functions:
 
 ```swift
+func stringResponse(encoding: String.Encoding, completion: ...)
 func string(encoding: String.Encoding, completion: ...)
-func stringValue(encoding: String.Encoding, completion: ...)
 
+func jsonResponse(completion: ...)
 func json(completion: ...)
-func jsonValue(completion: ...)
+func jsonArrayResponse(completion: ...)
 func jsonArray(completion: ...)
-func jsonArrayValue(completion: ...)
 
-func image(completion:)
-func imageValue(completion: ...)
+func imageResponse(completion:)
+func image(completion: ...)
 
+func decodeResponse<T: Decodable>(type: T.Type, completion: ...)
 func decode<T: Decodable>(type: T.Type, completion: ...)
-func decodeValue<T: Decodable>(type: T.Type, completion: ...)
 ```
 
 Custom serialization functions can be added via `RequestWorker` extensions.
@@ -411,7 +410,7 @@ class ExampleMiddleware: Middleware {
 
   override func next(_ response: Response<Data>) throws -> Response<Data> {
 
-    let stringResponse = response.compactMap { $0.string() }
+    let stringResponse = response.compactMap { $0.stringResponse() }
 
     switch stringResponse.result {
     case .success(let string):
@@ -441,7 +440,7 @@ Spider.web.middlewares = [ExampleMiddleware()]
 
 Spider.web
     .get("https://path/to/endpoint")
-    .data { response in
+    .data { _ in
         print("We got a response!")
     }
 ```
@@ -543,12 +542,12 @@ Spider has built-in support for [PromiseKit](https://github.com/mxcl/PromiseKit)
 ```swift
 Spider.web
     .get("https://jsonplaceholder.typicode.com/photos/1")
-    .decodeValue(Photo.self)
+    .decode(Photo.self)
     .then { photo -> Promise<Image> in
 
         return Spider.web
             .get(photo.url)
-            .imageValue()
+            .image()
 
     }
     .done { image in
@@ -562,6 +561,31 @@ Spider.web
 
     }
 
+```
+
+### Async / Await
+
+As of Swift 5.5, **async/await** has been built into the standard library! If you're targeting iOS 15 _or_ macOS 12 you can use Spider's async worker variants.
+
+```swift
+do {
+
+    let photo = try await Spider.web
+        .get("https://jsonplaceholder.typicode.com/photos/1")
+        .decode(Photo.self)
+
+    let image = try await Spider.web
+        .get(photo.url)
+        .image()
+
+    // Do something with the image!
+
+}
+catch {
+
+    // Handle error
+
+}
 ```
 
 ### Debug Mode
