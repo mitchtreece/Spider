@@ -27,6 +27,9 @@
 		242A3003CF191FE473691D3B7A8795C8 /* RequestWorker+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005E657C1CD5FB0BFA39E1B4834D5D6 /* RequestWorker+Promise.swift */; };
 		25C786B8AE141C473AE64442EC154B42 /* Pods-Spider_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3442E22442AE6F9334BBABE488B90F46 /* Pods-Spider_Example-dummy.m */; };
 		261F35F42679A57E001ACDB8 /* RequestWorker+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261F35F32679A57E001ACDB8 /* RequestWorker+Async.swift */; };
+		264CB612267A758700AECB00 /* SpiderImageCache+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CB611267A758700AECB00 /* SpiderImageCache+Promise.swift */; };
+		264CB614267A778700AECB00 /* UISpider+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CB613267A778700AECB00 /* UISpider+Promise.swift */; };
+		264CB616267A79AD00AECB00 /* SpiderImageDownloader+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CB615267A79AD00AECB00 /* SpiderImageDownloader+Promise.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0F30377865879833C2BF7A4A90675 /* ConstraintAttributes.swift */; };
 		2AE0A4B9705B93F9C0C44013A162B047 /* Spider-Web-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7032815AF16D89BB4283484C2DCE6468 /* Spider-Web-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EB06C73EF7076A8922CA28B50023BB /* ConstraintInsetTarget.swift */; };
@@ -305,6 +308,9 @@
 		2485CA8B706264FC1896CC14D5B0F447 /* Spider-Web-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Spider-Web-Info.plist"; sourceTree = "<group>"; };
 		24AAEF32BCAADC875E64C5EA2B5FA85F /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Configuration.swift; sourceTree = "<group>"; };
 		261F35F32679A57E001ACDB8 /* RequestWorker+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RequestWorker+Async.swift"; sourceTree = "<group>"; };
+		264CB611267A758700AECB00 /* SpiderImageCache+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpiderImageCache+Promise.swift"; sourceTree = "<group>"; };
+		264CB613267A778700AECB00 /* UISpider+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISpider+Promise.swift"; sourceTree = "<group>"; };
+		264CB615267A79AD00AECB00 /* SpiderImageDownloader+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpiderImageDownloader+Promise.swift"; sourceTree = "<group>"; };
 		268A68C6ED7A65AB296566A3B0B7EADA /* Storage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = Sources/Cache/Storage.swift; sourceTree = "<group>"; };
 		26D7766C07C78E3B5D3A224AFFE53AB5 /* PromiseKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-umbrella.h"; sourceTree = "<group>"; };
 		2769CA1D82957A155768CEB0C1BBA6A4 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Sources/Networking/ImageDownloader.swift; sourceTree = "<group>"; };
@@ -682,6 +688,9 @@
 			isa = PBXGroup;
 			children = (
 				B005E657C1CD5FB0BFA39E1B4834D5D6 /* RequestWorker+Promise.swift */,
+				264CB611267A758700AECB00 /* SpiderImageCache+Promise.swift */,
+				264CB615267A79AD00AECB00 /* SpiderImageDownloader+Promise.swift */,
+				264CB613267A778700AECB00 /* UISpider+Promise.swift */,
 			);
 			name = Promise;
 			sourceTree = "<group>";
@@ -1444,6 +1453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC667285CB7B6911FBCACF511BC7CBB6 /* Array+Contains.swift in Sources */,
+				264CB614267A778700AECB00 /* UISpider+Promise.swift in Sources */,
 				89336E5FC32A1D14EB9D3961F449DA0D /* BasicRequestAuth.swift in Sources */,
 				49DAD93ED4B37A2A87A64405F9798E5D /* Body.swift in Sources */,
 				6AE1FA9DA239E1B4E20416AB5C7EECB9 /* BoolRepresentable.swift in Sources */,
@@ -1452,6 +1462,7 @@
 				44F8B2F00D10C65951594364804B6B6B /* Data+Size.swift in Sources */,
 				5644767972C287BCF71E445C14123D11 /* Data+String.swift in Sources */,
 				84A9543C20D20A81DD05F8D3EBAF5566 /* Dictionary+JSON.swift in Sources */,
+				264CB612267A758700AECB00 /* SpiderImageCache+Promise.swift in Sources */,
 				C1B28D27413ED38255037D17F9D26EE5 /* ErrorRepresentable.swift in Sources */,
 				950094B1255DEAB03516E4E770F5678E /* Event.swift in Sources */,
 				B0C9A94B57CE42A0227E4DD47974A497 /* EventBuffer.swift in Sources */,
@@ -1466,6 +1477,7 @@
 				97D16B963CFBB2795AF512FF626E49CD /* HTTPStatusCode.swift in Sources */,
 				B361CC5C851A4C210F58A75BE573F523 /* ImageRepresentable.swift in Sources */,
 				C7151DF4F27D3D2AC0B27E6E0CB03634 /* ImageView+Spider.swift in Sources */,
+				264CB616267A79AD00AECB00 /* SpiderImageDownloader+Promise.swift in Sources */,
 				ABBC428528D1FFF43BA5823152266D93 /* JSONErrorMiddleware.swift in Sources */,
 				7DA7DAFA51470EFC0FC8BA4B716CAFFF /* JSONRepresentable.swift in Sources */,
 				7B5129F375CCE1C8E2C01F0C8B76EB99 /* MessageEvent.swift in Sources */,

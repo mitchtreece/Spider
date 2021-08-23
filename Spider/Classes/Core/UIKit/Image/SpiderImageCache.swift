@@ -26,7 +26,7 @@ public class SpiderImageCache {
     /// The shared `SpiderImageCache` instance.
     public static let shared = SpiderImageCache()
     
-    private let cache = ImageCache.default
+    internal let cache = ImageCache.default
     
     private init() {
         //
