@@ -18,7 +18,7 @@ public struct Body {
         return self.data?.size ?? Data.Size(byteCount: 0)
     }
     
-    internal init(data: Data?) {
+    public init(data: Data?) {
         self.data = data
     }
     

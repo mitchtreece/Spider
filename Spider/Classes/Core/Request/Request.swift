@@ -115,7 +115,7 @@ public class Request {
     public var ignoreSharedMiddlewares: Bool = false
     
     /// The request's HTTP body.
-    public internal(set) var body: Body?
+    public var body: Body?
     
     /// The request's start date.
     public internal(set) var startDate: Date?
