@@ -67,6 +67,16 @@ public protocol Indicator {
     
     /// The indicator view which would be added to the super view.
     var view: IndicatorView { get }
+
+    /// The size strategy used when adding the indicator to image view.
+    /// - Parameter imageView: The super view of indicator.
+    func sizeStrategy(in imageView: KFCrossPlatformImageView) -> IndicatorSizeStrategy
+}
+
+public enum IndicatorSizeStrategy {
+    case intrinsicSize
+    case full
+    case size(CGSize)
 }
 
 extension Indicator {
@@ -74,6 +84,13 @@ extension Indicator {
     /// Default implementation of `centerOffset` of `Indicator`. The default value is `.zero`, means that there is
     /// no offset for the indicator view.
     public var centerOffset: CGPoint { return .zero }
+
+
+    /// Default implementation of `centerOffset` of `Indicator`. The default value is `.full`, means that the indicator
+    /// will pin to the same height and width as the image view.
+    public func sizeStrategy(in imageView: KFCrossPlatformImageView) -> IndicatorSizeStrategy {
+        return .full
+    }
 }
 
 // Displays a NSProgressIndicator / UIActivityIndicatorView
@@ -114,6 +131,10 @@ final class ActivityIndicator: Indicator {
         }
     }
 
+    func sizeStrategy(in imageView: KFCrossPlatformImageView) -> IndicatorSizeStrategy {
+        return .intrinsicSize
+    }
+
     init() {
         #if os(macOS)
             activityIndicatorView = NSProgressIndicator(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
@@ -136,11 +157,7 @@ final class ActivityIndicator: Indicator {
             }
             #endif
 
-            #if swift(>=4.2)
             activityIndicatorView = UIActivityIndicatorView(style: indicatorStyle)
-            #else
-            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: indicatorStyle)
-            #endif
         #endif
     }
 }
