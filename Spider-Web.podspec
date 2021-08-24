@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
         core.source_files = 'Spider/Classes/Core/**/*'
         core.dependency     'ReachabilitySwift', '~> 5.0.0'
-        core.dependency     'Kingfisher',        '~> 5.8.0'
+        core.dependency     'Kingfisher',        '~> 6.0'
 
     end
 
