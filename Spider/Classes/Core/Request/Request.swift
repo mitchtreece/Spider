@@ -101,6 +101,9 @@ public class Request {
     
     /// Flag indicating if the request can be performed using the cellular network; _defaults to true_.
     public var allowsCellularAccess: Bool = true
+    
+    /// Flag indicating if the request should handle HTTP cookies; _defaults to true_.
+    public var shouldHandleCookies: Bool = true
         
     /// An optional middlewares array to be used for this request.
     ///
