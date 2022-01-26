@@ -29,7 +29,7 @@ public extension SpiderImageCache {
     
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
-    /// - returns completion: An `Image` promise.
+    /// - returns: An `Image` promise.
     func image(forKey key: String) -> Promise<Image> {
         
         return Promise<Image> { seal in

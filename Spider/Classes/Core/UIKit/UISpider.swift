@@ -11,6 +11,14 @@ import Foundation
 /// Proxy class between `Spider` & the current platform's UI layer.
 public class UISpider<T> {
     
+    /// Representation of the various UI errors.
+    public enum ErrorType: Error {
+        
+        /// An invalid image error.
+        case invalidImage
+        
+    }
+    
     internal weak var view: View!
     
 }

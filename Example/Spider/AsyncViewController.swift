@@ -9,7 +9,7 @@
 import UIKit
 import Spider
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 class AsyncViewController: LoadingViewController {
 
     override func viewDidLoad() {
@@ -18,37 +18,33 @@ class AsyncViewController: LoadingViewController {
         self.title = "Async"
         self.view.backgroundColor = .groupTableViewBackground
         
-        detach {
+        Task {
             await self.loadData()
         }
-        
+                
     }
     
     private func loadData() async {
         
         startLoading()
         
-        do {
-            
-            let data = try await Spider.web
-                .get("https://jsonplaceholder.typicode.com/users")
-                .data()
-            
-            let status = await createStatusString(from: data)
-            updateStatus(status)
-            
-        }
-        catch {
-            updateStatus(error.localizedDescription)
-        }
+        let data = await Spider.web
+            .get("https://jsonplaceholder.typicode.com/users")
+            .data()
+        
+        updateStatus(await createStatusString(from: data))
 
         stopLoading()
         
     }
-    
-    private func createStatusString(from data: Data) async -> String {
+
+    private func createStatusString(from data: Data?) async -> String {
         
-        await Task.sleep(3 * 1_000_000_000) // 3 seconds
+        guard let data = data else {
+            return "invalid data"
+        }
+                
+        try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 2 seconds
         return "Fetched \(data)"
         
     }

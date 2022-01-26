@@ -9,28 +9,9 @@ import Foundation
 
 // MARK: Void
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* Void */ {
-    
-    /// Starts the worker & serializes a response without a value.
-    /// - returns: A serialized `Void` response.
-    func voidResponse() async throws -> Response<Void> {
-        
-        try await withCheckedThrowingContinuation { c in
-            
-            voidResponse { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
-            }
-            
-        }
-        
-    }
     
     /// Starts the worker without serializing a response value.
     func void() async throws {
@@ -40,6 +21,18 @@ public extension RequestWorker /* Void */ {
                 c.resume(with: $0.result)
             }
         }
+                        
+    }
+    
+    /// Starts the worker & serializes a response without a value.
+    /// - returns: A serialized `Void` response.
+    func voidResponse() async -> Response<Void> {
+        
+        await withCheckedContinuation { c in
+            voidResponse {
+                c.resume(returning: $0)
+            }
+        }
         
     }
     
@@ -47,36 +40,41 @@ public extension RequestWorker /* Void */ {
 
 // MARK: Data
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* Data */ {
     
-    /// Starts the worker & serializes a `Data` response.
-    /// - returns: A serialized `Data` response.
-    func dataResponse() async throws -> Response<Data> {
+    /// Starts the worker & serializes a `Data` value.
+    /// - returns: An optional serialized `Data` value.
+    func data() async -> Data? {
         
-        try await withCheckedThrowingContinuation { c in
-            
-            dataResponse { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+        await withCheckedContinuation { c in
+            dataResponse {
+                c.resume(returning: $0.value)
             }
-            
         }
         
     }
     
     /// Starts the worker & serializes a `Data` value.
     /// - returns: A serialized `Data` value.
-    func data() async throws -> Data {
+    func dataThrowing() async throws -> Data {
         
         try await withCheckedThrowingContinuation { c in
             dataResponse {
                 c.resume(with: $0.result)
+            }
+        }
+        
+    }
+
+    /// Starts the worker & serializes a `Data` response.
+    /// - returns: A serialized `Data` response.
+    func dataResponse() async -> Response<Data> {
+        
+        await withCheckedContinuation { c in
+            dataResponse {
+                c.resume(returning: $0)
             }
         }
         
@@ -86,26 +84,19 @@ public extension RequestWorker /* Data */ {
 
 // MARK: String
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* String */ {
     
-    /// Starts the worker & serializes a `String` response.
+    /// Starts the worker & serializes a `String` value.
     /// - parameter encoding: The string encoding to use; _defaults to utf8_.
-    /// - returns: A serialized `String` response.
-    func stringResponse(encoding: String.Encoding = .utf8) async throws -> Response<String> {
+    /// - returns: An optional serialized `String` value.
+    func string(encoding: String.Encoding = .utf8) async -> String? {
         
-        try await withCheckedThrowingContinuation { c in
-            
-            stringResponse(encoding: encoding) { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+        await withCheckedContinuation { c in
+            stringResponse(encoding: encoding) {
+                c.resume(returning: $0.value)
             }
-            
         }
         
     }
@@ -113,7 +104,7 @@ public extension RequestWorker /* String */ {
     /// Starts the worker & serializes a `String` value.
     /// - parameter encoding: The string encoding to use; _defaults to utf8_.
     /// - returns: A serialized `String` value.
-    func string(encoding: String.Encoding = .utf8) async throws -> String {
+    func stringThrowing(encoding: String.Encoding = .utf8) async throws -> String {
         
         try await withCheckedThrowingContinuation { c in
             stringResponse(encoding: encoding) {
@@ -123,36 +114,42 @@ public extension RequestWorker /* String */ {
         
     }
     
+    /// Starts the worker & serializes a `String` response.
+    /// - parameter encoding: The string encoding to use; _defaults to utf8_.
+    /// - returns: A serialized `String` response.
+    func stringResponse(encoding: String.Encoding = .utf8) async -> Response<String> {
+        
+        await withCheckedContinuation { c in
+            stringResponse(encoding: encoding) {
+                c.resume(returning: $0)
+            }
+        }
+        
+    }
+    
 }
 
 // MARK: JSON
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* JSON */ {
     
-    /// Starts the worker & serializes a `JSON` response.
-    /// - returns: A serialized `JSON` response.
-    func jsonResponse() async throws -> Response<JSON> {
-        
-        try await withCheckedThrowingContinuation { c in
-            
-            jsonResponse { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+    /// Starts the worker & serializes a `JSON` value.
+    /// - returns: An optional serialized `JSON` value.
+    func json() async -> JSON? {
+    
+        await withCheckedContinuation { c in
+            jsonResponse {
+                c.resume(returning: $0.value)
             }
-            
         }
         
     }
     
     /// Starts the worker & serializes a `JSON` value.
     /// - returns: A serialized `JSON` value.
-    func json() async throws -> JSON {
+    func jsonThrowing() async throws -> JSON {
     
         try await withCheckedThrowingContinuation { c in
             jsonResponse {
@@ -162,28 +159,33 @@ public extension RequestWorker /* JSON */ {
         
     }
     
-    /// Starts the worker & serializes a `JSON` array response.
-    /// - returns: A serialized `JSON` array response.
-    func jsonArrayResponse() async throws -> Response<[JSON]> {
+    /// Starts the worker & serializes a `JSON` response.
+    /// - returns: A serialized `JSON` response.
+    func jsonResponse() async -> Response<JSON> {
         
-        try await withCheckedThrowingContinuation { c in
-            
-            jsonArrayResponse { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+        await withCheckedContinuation { c in
+            jsonResponse {
+                c.resume(returning: $0)
             }
-            
+        }
+        
+    }
+
+    /// Starts the worker & serializes a `JSON` array value.
+    /// - returns: An optional serialized `JSON` array value.
+    func jsonArray() async -> [JSON]? {
+        
+        await withCheckedContinuation { c in
+            jsonArrayResponse {
+                c.resume(returning: $0.value)
+            }
         }
         
     }
     
     /// Starts the worker & serializes a `JSON` array value.
     /// - returns: A serialized `JSON` array value.
-    func jsonArray() async throws -> [JSON] {
+    func jsonArrayThrowing() async throws -> [JSON] {
         
         try await withCheckedThrowingContinuation { c in
             jsonArrayResponse {
@@ -193,36 +195,41 @@ public extension RequestWorker /* JSON */ {
         
     }
     
+    /// Starts the worker & serializes a `JSON` array response.
+    /// - returns: A serialized `JSON` array response.
+    func jsonArrayResponse() async -> Response<[JSON]> {
+        
+        await withCheckedContinuation { c in
+            jsonArrayResponse {
+                c.resume(returning: $0)
+            }
+        }
+        
+    }
+    
 }
 
 // MARK: Image
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* Image */ {
     
-    /// Starts the worker & serializes a `Image` response.
-    /// - returns: A serialized `Image` response.
-    func imageResponse() async throws -> Response<Image> {
+    /// Starts the worker & serializes an `Image` value.
+    /// - returns: An optional serialized `Image` value.
+    func image() async -> Image? {
         
-        try await withCheckedThrowingContinuation { c in
-            
-            imageResponse { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+        await withCheckedContinuation { c in
+            imageResponse {
+                c.resume(returning: $0.value)
             }
-            
         }
         
     }
     
     /// Starts the worker & serializes an `Image` value.
     /// - returns: A serialized `Image` value.
-    func image() async throws -> Image {
+    func imageThrowing() async throws -> Image {
         
         try await withCheckedThrowingContinuation { c in
             imageResponse {
@@ -232,40 +239,57 @@ public extension RequestWorker /* Image */ {
         
     }
     
+    /// Starts the worker & serializes a `Image` response.
+    /// - returns: A serialized `Image` response.
+    func imageResponse() async -> Response<Image> {
+        
+        await withCheckedContinuation { c in
+            imageResponse {
+                c.resume(returning: $0)
+            }
+        }
+        
+    }
+    
 }
 
 // MARK: Decode
 
-@available(iOS 15, *)
+@available(iOS 13, *)
 @available(macOS 12, *)
 public extension RequestWorker /* Image */ {
     
-    /// Starts the worker & serializes a `Decodable` object response.
-    /// - returns: A serialized `Decodable` object response.
-    func decodeResponse<T: Decodable>(_ type: T.Type) async throws -> Response<T> {
+    /// Starts the worker & serializes a `Decodable` object value.
+    /// - returns: An optional serialized `Decodable` object value.
+    func decode<T: Decodable>(_ type: T.Type) async -> T? {
         
-        try await withCheckedThrowingContinuation { c in
-            
-            decodeResponse(type) { res in
-                
-                switch res.result {
-                case .success: c.resume(returning: res)
-                case .failure(let err): c.resume(throwing: err)
-                }
-                
+        await withCheckedContinuation { c in
+            decodeResponse(type) {
+                c.resume(returning: $0.value)
             }
-            
         }
         
     }
     
     /// Starts the worker & serializes a `Decodable` object value.
     /// - returns: A serialized `Decodable` object value.
-    func decode<T: Decodable>(_ type: T.Type) async throws -> T {
+    func decodeThrowing<T: Decodable>(_ type: T.Type) async throws -> T {
         
         try await withCheckedThrowingContinuation { c in
             decodeResponse(type) {
                 c.resume(with: $0.result)
+            }
+        }
+        
+    }
+    
+    /// Starts the worker & serializes a `Decodable` object response.
+    /// - returns: A serialized `Decodable` object response.
+    func decodeResponse<T: Decodable>(_ type: T.Type) async -> Response<T> {
+        
+        await withCheckedContinuation { c in
+            decodeResponse(type) {
+                c.resume(returning: $0)
             }
         }
         
