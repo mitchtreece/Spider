@@ -13,14 +13,6 @@ class CancelTests: XCTestCase {
     
     private var spider = Spider()
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testRequestCancelImmediately() {
         
         let exp = expectation(description: "Request & worker have a cancelled state, and completion handler is never called")

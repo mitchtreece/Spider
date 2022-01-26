@@ -13,14 +13,6 @@ class PostTests: XCTestCase {
     
     private var spider = Spider()
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testPostJSON() {
         
         let exp = expectation(description: "HTTP status code is OK & created post ID is returned")

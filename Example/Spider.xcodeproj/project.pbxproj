@@ -26,6 +26,8 @@
 		268265B023617A3300BBCF47 /* CancelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268265AF23617A3300BBCF47 /* CancelTests.swift */; };
 		269FAFF5235D7C86005F609C /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF4235D7C86005F609C /* PostTests.swift */; };
 		269FAFF7235D7F36005F609C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF6235D7F36005F609C /* Post.swift */; };
+		26D2FC5327A206CD00DB028C /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2FC5227A206CD00DB028C /* PromiseTests.swift */; };
+		26D2FC5527A206D500DB028C /* AsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2FC5427A206D500DB028C /* AsyncTests.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -66,6 +68,8 @@
 		268265AF23617A3300BBCF47 /* CancelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTests.swift; sourceTree = "<group>"; };
 		269FAFF4235D7C86005F609C /* PostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		269FAFF6235D7F36005F609C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		26D2FC5227A206CD00DB028C /* PromiseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
+		26D2FC5427A206D500DB028C /* AsyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTests.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider_Example/Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Spider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,8 @@
 				269FAFF4235D7C86005F609C /* PostTests.swift */,
 				26362641236E444400D8C6A7 /* HeaderTests.swift */,
 				268265AF23617A3300BBCF47 /* CancelTests.swift */,
+				26D2FC5227A206CD00DB028C /* PromiseTests.swift */,
+				26D2FC5427A206D500DB028C /* AsyncTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -428,7 +434,9 @@
 				607FACEC1AFB9204008FA782 /* GetTests.swift in Sources */,
 				268265B023617A3300BBCF47 /* CancelTests.swift in Sources */,
 				269FAFF5235D7C86005F609C /* PostTests.swift in Sources */,
+				26D2FC5327A206CD00DB028C /* PromiseTests.swift in Sources */,
 				26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */,
+				26D2FC5527A206D500DB028C /* AsyncTests.swift in Sources */,
 				269FAFF7235D7F36005F609C /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +587,7 @@
 				INFOPLIST_FILE = Spider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -596,6 +605,7 @@
 				INFOPLIST_FILE = Spider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
