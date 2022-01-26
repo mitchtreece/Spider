@@ -585,6 +585,31 @@ Spider.web
 
 ```
 
+### Async / Await
+
+As of Swift 5.5, **async/await** has been built into the standard library! If you're targeting iOS 15 _or_ macOS 12 you can use Spider's async worker variants.
+
+```swift
+do {
+
+    let photo = try await Spider.web
+        .get("https://jsonplaceholder.typicode.com/photos/1")
+        .decode(Photo.self)
+
+    let image = try await Spider.web
+        .get(photo.url)
+        .image()
+
+    // Do something with the image!
+
+}
+catch {
+
+    // Handle error
+
+}
+```
+
 ### Debug Mode
 
 Enabling Spider's `isDebugEnabled` flag will print all debug information (including all outgoing requests) to the console.

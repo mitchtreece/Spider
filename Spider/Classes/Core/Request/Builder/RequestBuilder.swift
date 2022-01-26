@@ -40,6 +40,7 @@ internal class RequestBuilder {
         urlRequest.timeoutInterval = request.timeout
         urlRequest.cachePolicy = request.cachePolicy
         urlRequest.allowsCellularAccess = request.allowsCellularAccess
+        urlRequest.httpShouldHandleCookies = request.shouldHandleCookies
         
         // Headers
 

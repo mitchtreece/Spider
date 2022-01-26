@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     s.source            = { :git => 'https://github.com/mitchtreece/Spider.git', :tag => s.version.to_s }
     s.social_media_url  = 'https://twitter.com/MitchTreece'
 
-    s.platform          = :ios, "10.0"
+    s.platform          = :ios, "12.0"
     s.swift_version     = '5'
 
     # Subspecs
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
         core.source_files = 'Spider/Classes/Core/**/*'
         core.dependency     'ReachabilitySwift', '~> 5.0.0'
-        core.dependency     'Kingfisher',        '~> 5.8.0'
+        core.dependency     'Kingfisher',        '~> 7.0'
 
     end
 
