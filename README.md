@@ -535,6 +535,28 @@ imageView.web.setImage("http://url.to/image.png")
 Currently, Spider has integrations for the following UI components:
 - `UIImageView` / `NSImageView`
 
+### Async / Await
+
+As of Swift 5.5, **async/await** has been built into the standard library! If you're targeting iOS 13 _or_ macOS 12 you can use Spider's async worker variants.
+
+```swift
+let photo = await Spider.web
+    .get("https://jsonplaceholder.typicode.com/photos/1")
+    .decode(Photo.self)
+
+guard let photo = photo else { return }
+
+let image = await Spider.web
+    .get(photo.url)
+    .image()
+
+if let image = image {
+
+    // Do something with the image!
+
+}
+```
+
 ### Promises
 
 Spider has built-in support for [PromiseKit](https://github.com/mxcl/PromiseKit). Promises help keep your codebase clean & readable by eliminating pesky nested callbacks.
@@ -561,31 +583,6 @@ Spider.web
 
     }
 
-```
-
-### Async / Await
-
-As of Swift 5.5, **async/await** has been built into the standard library! If you're targeting iOS 15 _or_ macOS 12 you can use Spider's async worker variants.
-
-```swift
-do {
-
-    let photo = try await Spider.web
-        .get("https://jsonplaceholder.typicode.com/photos/1")
-        .decode(Photo.self)
-
-    let image = try await Spider.web
-        .get(photo.url)
-        .image()
-
-    // Do something with the image!
-
-}
-catch {
-
-    // Handle error
-
-}
 ```
 
 ### Debug Mode
