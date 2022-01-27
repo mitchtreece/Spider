@@ -1,9 +1,9 @@
 {
   "name": "Spider-Web",
   "module_name": "Spider",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "summary": "Creepy networking library for Swift.",
-  "description": "Spider is an easy-to-use networking library built for\nspeed & readability. Spider's modern syntax & response handling\nmakes working with web services fun again.",
+  "description": "Spider is an easy-to-use networking library built for\nspeed & readability. Spider's modern syntax & response handling\nmakes working with web services so simple - it's almost spooky.",
   "homepage": "https://github.com/mitchtreece/Spider",
   "license": {
     "type": "MIT",
@@ -14,11 +14,11 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Spider.git",
-    "tag": "2.0.0"
+    "tag": "2.0.1"
   },
   "social_media_url": "https://twitter.com/MitchTreece",
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.0"
   },
   "swift_versions": "5",
   "default_subspecs": "Core",
@@ -31,13 +31,22 @@
           "~> 5.0.0"
         ],
         "Kingfisher": [
-          "~> 5.8.0"
+          "~> 7.0"
+        ]
+      }
+    },
+    {
+      "name": "Async",
+      "source_files": "Spider/Classes/Async/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
         ]
       }
     },
     {
       "name": "Promise",
-      "source_files": "Spider/Classes/Promises/**/*",
+      "source_files": "Spider/Classes/Promise/**/*",
       "dependencies": {
         "Spider-Web/Core": [
 
@@ -51,6 +60,9 @@
       "name": "All",
       "dependencies": {
         "Spider-Web/Core": [
+
+        ],
+        "Spider-Web/Async": [
 
         ],
         "Spider-Web/Promise": [

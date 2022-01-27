@@ -12,28 +12,22 @@ import XCTest
 class GetTests: XCTestCase {
     
     private var spider = Spider()
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
+
     func testGetData() {
         
         let exp = expectation(description: "HTTP status code is OK & data is returned")
         var status: HTTPStatusCode?
         var data: Data?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").data { response in
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .dataResponse { response in
             
-            status = response.statusCode
-            data = response.value
-            exp.fulfill()
+                status = response.statusCode
+                data = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -48,13 +42,15 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var string: String?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").string { response in
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .stringResponse { response in
             
-            status = response.statusCode
-            string = response.value
-            exp.fulfill()
+                status = response.statusCode
+                string = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -69,13 +65,15 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var json: JSON?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").json { response in
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .jsonResponse { response in
             
-            status = response.statusCode
-            json = response.value
-            exp.fulfill()
+                status = response.statusCode
+                json = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -90,13 +88,15 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var array: [JSON]?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts").jsonArray { response in
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts")
+            .jsonArrayResponse { response in
             
-            status = response.statusCode
-            array = response.value
-            exp.fulfill()
+                status = response.statusCode
+                array = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -111,13 +111,15 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var image: Image?
         
-        self.spider.get("https://unsplash.it/500/?random").image { response in
+        self.spider
+            .get("https://unsplash.it/500/?random")
+            .imageResponse { response in
             
-            status = response.statusCode
-            image = response.value
-            exp.fulfill()
+                status = response.statusCode
+                image = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -132,13 +134,15 @@ class GetTests: XCTestCase {
         var status: HTTPStatusCode?
         var post: Post?
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").decode(Post.self) { response in
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .decodeResponse(Post.self) { response in
             
-            status = response.statusCode
-            post = response.value
-            exp.fulfill()
+                status = response.statusCode
+                post = response.value
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(status)
@@ -159,12 +163,17 @@ class GetTests: XCTestCase {
             "filter": "friends"
         ]
         
-        self.spider.get(path, parameters: parameters).data { response in
+        self.spider
+            .get(
+                path,
+                parameters: parameters
+            )
+            .dataResponse { response in
             
-            finalPath = response.urlResponse?.url?.absoluteString
-            exp.fulfill()
+                finalPath = response.urlResponse?.url?.absoluteString
+                exp.fulfill()
             
-        }
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(finalPath)

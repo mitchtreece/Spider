@@ -40,6 +40,7 @@ internal class RequestBuilder {
         urlRequest.timeoutInterval = request.timeout
         urlRequest.cachePolicy = request.cachePolicy
         urlRequest.allowsCellularAccess = request.allowsCellularAccess
+        urlRequest.httpShouldHandleCookies = request.shouldHandleCookies
         
         // Headers
 
@@ -66,6 +67,13 @@ internal class RequestBuilder {
             !request.ignoreSharedAuthorization,
             request.authorization == nil {
             request.authorization = sharedAuth
+        }
+        
+        // Set shared timeout if needed
+        
+        if let sharedTimeout = self.spider.timeout,
+            !request.ignoreSharedTimeout {
+            request.timeout = sharedTimeout
         }
         
         return urlRequest

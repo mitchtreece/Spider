@@ -93,11 +93,17 @@ public class Request {
     /// The request's timeout interval in seconds; _defaults to 60_.
     public var timeout: TimeInterval = 60
     
+    /// Flag indicating if the request should ignore any shared timeout; _defaults to false_.
+    public var ignoreSharedTimeout: Bool = false
+    
     /// The request's cache policy; _defaults to useProtocolCachePolicy_.
     public var cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
     
     /// Flag indicating if the request can be performed using the cellular network; _defaults to true_.
     public var allowsCellularAccess: Bool = true
+    
+    /// Flag indicating if the request should handle HTTP cookies; _defaults to true_.
+    public var shouldHandleCookies: Bool = true
         
     /// An optional middlewares array to be used for this request.
     ///
@@ -109,7 +115,7 @@ public class Request {
     public var ignoreSharedMiddlewares: Bool = false
     
     /// The request's HTTP body.
-    public internal(set) var body: Body?
+    public var body: Body?
     
     /// The request's start date.
     public internal(set) var startDate: Date?

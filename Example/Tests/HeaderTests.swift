@@ -38,10 +38,12 @@ class HeaderTests: XCTestCase {
             fields: fields
         )
         
-        self.spider.get("https://jsonplaceholder.typicode.com/posts/1").data { response in
-            request = response.request
-            exp.fulfill()
-        }
+        self.spider
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .dataResponse { response in
+                request = response.request
+                exp.fulfill()
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(request)
@@ -71,10 +73,12 @@ class HeaderTests: XCTestCase {
         
         req.headers.set(value: "bar2", forField: "foo")
         
-        self.spider.perform(req).data { response in
-            request = response.request
-            exp.fulfill()
-        }
+        self.spider
+            .perform(req)
+            .dataResponse { response in
+                request = response.request
+                exp.fulfill()
+            }
         
         wait(for: [exp], timeout: 5)
         XCTAssertNotNil(request)

@@ -22,7 +22,7 @@ class PromisesViewController: LoadingViewController {
         
         Spider.web
             .get("https://jsonplaceholder.typicode.com/users")
-            .dataValue()
+            .data()
             .then { data -> Guarantee<String> in
                 return self.createStatusString(from: data)
             }.done { status in
