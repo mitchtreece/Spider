@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
     s.name              = 'Spider-Web'
     s.module_name       = 'Spider'
-    s.version           = '2.0.1'
+    s.version           = '2.1.0'
     s.summary           = 'Creepy networking library for Swift.'
 
     s.description = <<-DESC
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
     s.subspec 'Core' do |core|
 
         core.source_files = 'Spider/Classes/Core/**/*'
-        core.dependency     'ReachabilitySwift', '~> 5.0.0'
+        core.dependency     'ReachabilitySwift', '~> 5.0'
         core.dependency     'Kingfisher',        '~> 7.0'
 
     end
