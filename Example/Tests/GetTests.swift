@@ -12,15 +12,7 @@ import XCTest
 class GetTests: XCTestCase {
     
     private var spider = Spider()
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
+
     func testGetData() {
         
         let exp = expectation(description: "HTTP status code is OK & data is returned")

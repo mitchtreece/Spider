@@ -36,8 +36,17 @@
       }
     },
     {
+      "name": "Async",
+      "source_files": "Spider/Classes/Async/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
+        ]
+      }
+    },
+    {
       "name": "Promise",
-      "source_files": "Spider/Classes/Promises/**/*",
+      "source_files": "Spider/Classes/Promise/**/*",
       "dependencies": {
         "Spider-Web/Core": [
 
@@ -51,6 +60,9 @@
       "name": "All",
       "dependencies": {
         "Spider-Web/Core": [
+
+        ],
+        "Spider-Web/Async": [
 
         ],
         "Spider-Web/Promise": [

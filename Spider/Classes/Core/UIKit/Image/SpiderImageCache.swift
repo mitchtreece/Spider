@@ -23,10 +23,18 @@ public class SpiderImageCache {
         
     }
     
+    /// Representation of the various image caching errors.
+    public enum ErrorType: Error {
+        
+        /// An invalid image error.
+        case invalidImage
+        
+    }
+    
     /// The shared `SpiderImageCache` instance.
     public static let shared = SpiderImageCache()
     
-    private let cache = ImageCache.default
+    internal let cache = ImageCache.default
     
     private init() {
         //

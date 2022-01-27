@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261F35F62679BC09001ACDB8 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261F35F52679BC09001ACDB8 /* AsyncViewController.swift */; };
 		2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625C71C239EC3A00066542E /* MiddlewareViewController.swift */; };
 		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
 		263BF8F6252CEDDA00557C06 /* SSEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263BF8F5252CEDDA00557C06 /* SSEViewController.swift */; };
@@ -25,6 +26,8 @@
 		268265B023617A3300BBCF47 /* CancelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268265AF23617A3300BBCF47 /* CancelTests.swift */; };
 		269FAFF5235D7C86005F609C /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF4235D7C86005F609C /* PostTests.swift */; };
 		269FAFF7235D7F36005F609C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FAFF6235D7F36005F609C /* Post.swift */; };
+		26D2FC5327A206CD00DB028C /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2FC5227A206CD00DB028C /* PromiseTests.swift */; };
+		26D2FC5527A206D500DB028C /* AsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2FC5427A206D500DB028C /* AsyncTests.swift */; };
 		4934EC8E74BEC75A4A8F679F /* Pods_Spider_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADF44DC69E48E630B0C3E95 /* Pods_Spider_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -46,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		261F35F52679BC09001ACDB8 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
 		2625C71C239EC3A00066542E /* MiddlewareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		263BF8F5252CEDDA00557C06 /* SSEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSEViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		268265AF23617A3300BBCF47 /* CancelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTests.swift; sourceTree = "<group>"; };
 		269FAFF4235D7C86005F609C /* PostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		269FAFF6235D7F36005F609C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		26D2FC5227A206CD00DB028C /* PromiseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
+		26D2FC5427A206D500DB028C /* AsyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncTests.swift; sourceTree = "<group>"; };
 		337F85B045CFCC058675742F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spider_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spider_Example/Pods-Spider_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Spider_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spider_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +165,7 @@
 				263BF8F5252CEDDA00557C06 /* SSEViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
 				266B4EBB1EDA7CBD000A39E5 /* PromisesViewController.swift */,
+				261F35F52679BC09001ACDB8 /* AsyncViewController.swift */,
 				266B4EBD1EDA7CD7000A39E5 /* Model */,
 				266B4EAD1EDA7938000A39E5 /* Resources */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -183,6 +190,8 @@
 				269FAFF4235D7C86005F609C /* PostTests.swift */,
 				26362641236E444400D8C6A7 /* HeaderTests.swift */,
 				268265AF23617A3300BBCF47 /* CancelTests.swift */,
+				26D2FC5227A206CD00DB028C /* PromiseTests.swift */,
+				26D2FC5427A206D500DB028C /* AsyncTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -400,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				266B4EAC1EDA792C000A39E5 /* RootViewController.swift in Sources */,
+				261F35F62679BC09001ACDB8 /* AsyncViewController.swift in Sources */,
 				266B4EBA1EDA7C9A000A39E5 /* UIKitViewController.swift in Sources */,
 				266B4EB31EDA7BE0000A39E5 /* AdvancedViewController.swift in Sources */,
 				266B4EB11EDA7BC0000A39E5 /* BasicViewController.swift in Sources */,
@@ -424,7 +434,9 @@
 				607FACEC1AFB9204008FA782 /* GetTests.swift in Sources */,
 				268265B023617A3300BBCF47 /* CancelTests.swift in Sources */,
 				269FAFF5235D7C86005F609C /* PostTests.swift in Sources */,
+				26D2FC5327A206CD00DB028C /* PromiseTests.swift in Sources */,
 				26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */,
+				26D2FC5527A206D500DB028C /* AsyncTests.swift in Sources */,
 				269FAFF7235D7F36005F609C /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +587,7 @@
 				INFOPLIST_FILE = Spider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -592,6 +605,7 @@
 				INFOPLIST_FILE = Spider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

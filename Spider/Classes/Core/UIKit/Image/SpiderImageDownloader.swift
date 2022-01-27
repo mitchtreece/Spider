@@ -18,6 +18,14 @@ public typealias SpiderImageDownloaderCompletion = (_ image: Image?, _ fromCache
 /// Image download helper class.
 public class SpiderImageDownloader {
     
+    /// Representation of the various image downloading errors.
+    public enum ErrorType: Error {
+        
+        /// An invalid image download error.
+        case invalidImage
+        
+    }
+    
     /// Fetches an image at a given URL.
     /// - Parameter url: The image URL.
     /// - Parameter cache: A boolean indicating if the image should be cached; _defaults to false_.
