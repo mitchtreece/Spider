@@ -49,9 +49,9 @@ Pod::Spec.new do |s|
 
     s.subspec 'All' do |all|
 
-      all.dependency          'Spider-Web/Core'
-      all.dependency          'Spider-Web/Async'
-      all.dependency          'Spider-Web/Promise'
+      all.dependency         'Spider-Web/Core'
+      all.dependency         'Spider-Web/Async'
+      all.dependency         'Spider-Web/Promise'
 
     end
 
