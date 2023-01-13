@@ -12,8 +12,9 @@ public extension UISpider where T: ImageView {
     
     /// Fetches a remote _or_ cached image for a given URL, then assigns it to the current image view.
     /// - parameter url: The image's URL.
-    /// - parameter placeholder: A placeholder image to assign to the current image view while the image is being fetched; _defaults to nil_.
-    /// - parameter cacheImage: Flag indicating if the fetched image should be cached; _defaults to true_.
+    /// - parameter placeholder: A placeholder image to assign to the current
+    /// image view while the image is being fetched.
+    /// - parameter cacheImage: Flag indicating if the fetched image should be cached.
     /// - returns: An `Image`, `Bool` tuple promise.
     ///
     /// The caller is responsible for assigning the image to the image view.

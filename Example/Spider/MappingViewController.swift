@@ -19,7 +19,7 @@ class MappingViewController: UIViewController {
         
         super.viewDidLoad()
         self.title = "Object Mapping"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.tableView = UITableView()
         self.tableView.delegate = self

@@ -20,15 +20,15 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         
         statusLabel = UILabel()
-        statusLabel.backgroundColor = UIColor.clear
+        statusLabel.backgroundColor = .clear
         statusLabel.textAlignment = .center
         view.addSubview(statusLabel)
         statusLabel.snp.makeConstraints { (make) in
             make.edges.equalTo(view).inset(14)
         }
         
-        spinner = UIActivityIndicatorView(style: .whiteLarge)
-        spinner.color = UIColor.black
+        spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = .black
         spinner.hidesWhenStopped = true
         view.addSubview(spinner)
         spinner.snp.makeConstraints { (make) in

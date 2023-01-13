@@ -15,7 +15,7 @@ class AdvancedViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Advanced Requests"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         

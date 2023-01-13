@@ -44,7 +44,7 @@ class MiddlewareViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Middleware"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         startLoading()
                 

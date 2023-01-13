@@ -15,7 +15,7 @@ class JSONViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "JSON"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         

@@ -16,7 +16,7 @@ class AsyncViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Async"
-        self.view.backgroundColor = .groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         Task {
             await self.loadData()

@@ -25,7 +25,7 @@ internal class EventParser {
         self.buffer = EventBuffer(newlineCharacters: self.newlineCharacters)
     }
     
-    func parse(data: Data?) -> [Event] {
+    func parse(data: Data?) -> [RemoteEvent] {
         
         return self.buffer
             .append(data: data)
@@ -33,7 +33,7 @@ internal class EventParser {
         
     }
     
-    private func event(from string: String) -> Event {
+    private func event(from string: String) -> RemoteEvent {
         
         var event = [String: String?]()
         
@@ -53,17 +53,17 @@ internal class EventParser {
             
         }
 
-        var retryTime: Int?
+        var retry: Int?
         
         if let retryString = (event["retry"] ?? nil) {
-            retryTime = Int(retryString.trimmingCharacters(in: CharacterSet.whitespaces))
+            retry = Int(retryString.trimmingCharacters(in: CharacterSet.whitespaces))
         }
         
-        return Event(
+        return RemoteEvent(
             id: event["id"] ?? nil,
             type: event["event"] ?? nil,
             data: event["data"] ?? nil,
-            retryTime: retryTime
+            retry: retry
         )
         
     }

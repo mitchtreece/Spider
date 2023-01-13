@@ -18,11 +18,12 @@ class UIKitViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "UIKit"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.imageView = UIImageView()
-        self.imageView.backgroundColor = UIColor.white
-        self.imageView.layer.cornerRadius = 4
+        self.imageView.backgroundColor = .secondarySystemGroupedBackground
+        self.imageView.layer.cornerRadius = 16
+        self.imageView.layer.cornerCurve = .continuous
         self.imageView.clipsToBounds = true
         self.imageView.isUserInteractionEnabled = true
         self.view.insertSubview(self.imageView, at: 0)

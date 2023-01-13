@@ -15,7 +15,7 @@ class MultipartViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Multipart Requests"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
                 
         let file = MultipartFile(
             data: UIImage(named: "logo")!.pngData()!,

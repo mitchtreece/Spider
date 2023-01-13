@@ -28,9 +28,9 @@ public class Spider {
     public var middlewares: [Middleware]?
     
     /// Flag indicating if debug logging is enabled.
-    public var isDebugEnabled: Bool = false {
+    public var isDebugLoggingEnabled: Bool = false {
         didSet {
-            self.reachability?.isDebugEnabled = isDebugEnabled
+            self.reachability?.isDebugEnabled = isDebugLoggingEnabled
         }
     }
     
@@ -79,7 +79,7 @@ public class Spider {
             builder: self.builder,
             middlewares: self.middlewares ?? [],
             session: self.session,
-            isDebugEnabled: self.isDebugEnabled
+            isDebugEnabled: self.isDebugLoggingEnabled
         )
         
     }

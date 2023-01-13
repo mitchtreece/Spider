@@ -12,23 +12,26 @@ import Spider
 class SSEViewController: LoadingViewController {
     
     private var button: UIButton!
-    private var source: EventSource?
+    private var stream: RemoteEventStream?
     
     deinit {
-        print("EventSource - disconnect")
-        self.source?.disconnect()
+                
+        self.stream?
+            .disconnect()
+        
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.title = "SSE"
-        self.view.backgroundColor = .groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.button = UIButton()
-        self.button.backgroundColor = .lightGray
+        self.button.backgroundColor = .systemBlue
         self.button.setTitle("Connect", for: .normal)
-        self.button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        self.button.layer.cornerRadius = 8
+        self.button.layer.cornerCurve = .continuous
         self.view.addSubview(self.button)
         self.button.snp.makeConstraints { make in
             make.bottom.equalTo(-30)
@@ -36,54 +39,66 @@ class SSEViewController: LoadingViewController {
             make.right.equalTo(-30)
             make.height.equalTo(50)
         }
+        
+        self.button.addTarget(
+            self,
+            action: #selector(didTapButton(_:)),
+            for: .touchUpInside
+        )
+
     
-        updateStatus("Closed")
+        updateStatus("Disconnected")
         
-        self.source = try? EventSource(url: "http://localhost:8080")
-        
-        if self.source == nil {
-            updateStatus("Invalid URL")
+        do {
+            self.stream = try RemoteEventStream(url: "http://localhost:8080")
+        }
+        catch {
+            updateStatus("Error: \(error.localizedDescription)")
         }
         
-        self.source?
-            .opened { [weak self] in
+        self.stream?
+            .isDebugLoggingEnabled = true
+        
+        self.stream?.receive { [weak self] streamEvent in
+            
+            switch streamEvent {
+            case .connected:
                 
-                print("EventSource: opened")
-                
-                self?.updateStatus("Opened")
+                self?.updateStatus("Connected")
                 self?.button.setTitle("Disconnect", for: .normal)
                 
-            }
-            .closed { [weak self] _ in
+            case .disconnected:
                 
-                print("EventSource: closed")
-                
-                self?.updateStatus("Closed")
+                self?.updateStatus("Disconnected")
                 self?.button.setTitle("Connect", for: .normal)
                 
-            }
-            .event("CALL_STATUS_UPDATED", { [weak self] event in // user-connected
-                
-                print("Event: \"\(event.type ?? "nil")\"")
-                self?.updateStatus("\"\(event.type ?? "nil")\"")
-                
-            })
-            .message { [weak self] _ in
-                
-                print("Message")
-                self?.updateStatus("Message")
+            case .event(let event):
+                                
+                self?.updateStatus("Event: \"\(event.type.name)\"")
                 
             }
-                
+            
+        }
+        
     }
     
     @objc private func didTapButton(_ sender: UIButton) {
         
-        guard let source = self.source else { return }
+        guard let stream = self.stream else {
+            return
+        }
         
-        switch source.state {
-        case .closed: source.connect()
-        case .open: source.disconnect()
+        switch stream.state {
+        case .connected:
+            
+            stream
+                .disconnect()
+            
+        case .disconnected:
+            
+            stream
+                .connect()
+            
         default: return
         }
         

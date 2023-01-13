@@ -33,11 +33,6 @@ pod used in many of the most popular apps in the world.
 
 [![codecov](https://codecov.io/gh/mxcl/PromiseKit/branch/master/graph/badge.svg)](https://codecov.io/gh/mxcl/PromiseKit)
 
-# PromiseKit 7 Alpha
-
-We are testing PromiseKit 7 alpha, it is Swift 5 only. It is tagged and thus
-importable in all package managers.
-
 # PromiseKit 6
 
 [Release notes and migration guide][PMK6].
@@ -64,6 +59,10 @@ tvOS, watchOS, Linux and Android; CocoaPods, Carthage and SwiftPM;
 For Carthage, SwiftPM, Accio, etc., or for instructions when using older Swifts or Xcodes, see our [Installation Guide]. We recommend
 [Carthage](https://github.com/Carthage/Carthage) or
 [Accio](https://github.com/JamitLabs/Accio).
+
+# PromiseKit and Swift 5.5+ Async/Await 
+
+As of Swift 5.5, the Swift language now offers support for [built-in concurrency with async / await](https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html).  See [Async+](https://github.com/async-plus/async-plus) for a port of PromiseKit's most useful patterns to this new paradigm.
 
 # Professionally Supported PromiseKit is Now Available
 

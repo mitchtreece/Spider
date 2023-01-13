@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
     s.name              = 'Spider-Web'
     s.module_name       = 'Spider'
-    s.version           = '2.1.0'
+    s.version           = '2.2.0'
     s.summary           = 'Creepy networking library for Swift.'
 
     s.description = <<-DESC
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     s.source            = { :git => 'https://github.com/mitchtreece/Spider.git', :tag => s.version.to_s }
     s.social_media_url  = 'https://twitter.com/MitchTreece'
 
-    s.platform          = :ios, "12.0"
+    s.platform          = :ios, "13.0"
     s.swift_version     = '5'
 
     # Subspecs
@@ -26,22 +26,18 @@ Pod::Spec.new do |s|
 
     s.subspec 'Core' do |core|
 
-        core.source_files = 'Spider/Classes/Core/**/*'
-        core.dependency     'ReachabilitySwift', '~> 5.0'
-        core.dependency     'Kingfisher',        '~> 7.0'
+        core.source_files =  'Sources/Spider/Core/**/*'
+
+        core.dependency      'Espresso/Core',     '~> 3.0.0'
+        core.dependency      'ReachabilitySwift', '~> 5.0'
+        core.dependency      'Kingfisher',        '~> 7.0'
 
     end
 
-    s.subspec 'Async' do |async|
+    s.subspec 'PromiseKit' do |promise|
 
-      async.source_files = 'Spider/Classes/Async/**/*'
-      async.dependency     'Spider-Web/Core'
+      promise.source_files = 'Sources/Spider/PromiseKit/**/*'
 
-    end
-
-    s.subspec 'Promise' do |promise|
-
-      promise.source_files = 'Spider/Classes/Promise/**/*'
       promise.dependency     'Spider-Web/Core'
       promise.dependency     'PromiseKit/CorePromise', '~> 6.0'
 
@@ -50,8 +46,7 @@ Pod::Spec.new do |s|
     s.subspec 'All' do |all|
 
       all.dependency         'Spider-Web/Core'
-      all.dependency         'Spider-Web/Async'
-      all.dependency         'Spider-Web/Promise'
+      all.dependency         'Spider-Web/PromiseKit'
 
     end
 
