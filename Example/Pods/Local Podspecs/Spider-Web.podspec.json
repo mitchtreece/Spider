@@ -36,6 +36,18 @@
       }
     },
     {
+      "name": "PromiseKit",
+      "source_files": "Sources/Spider/PromiseKit/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
+        ],
+        "PromiseKit/CorePromise": [
+          "~> 6.0"
+        ]
+      }
+    },
+    {
       "name": "UIKit",
       "source_files": "Sources/Spider/UI/UIKit/**/*",
       "dependencies": {
@@ -56,18 +68,9 @@
       "dependencies": {
         "Spider-Web/UIKit": [
 
-        ]
-      }
-    },
-    {
-      "name": "PromiseKit",
-      "source_files": "Sources/Spider/PromiseKit/**/*",
-      "dependencies": {
-        "Spider-Web/Core": [
-
         ],
-        "PromiseKit/CorePromise": [
-          "~> 6.0"
+        "Spider-Web/PromiseKit": [
+
         ]
       }
     },

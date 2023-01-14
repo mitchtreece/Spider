@@ -9,8 +9,6 @@ import Espresso
 
 // MARK: Void
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* Void */ {
     
     /// Starts the worker without serializing a response value.
@@ -40,8 +38,6 @@ public extension RequestWorker /* Void */ {
 
 // MARK: Data
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* Data */ {
     
     /// Starts the worker & serializes a `Data` value.
@@ -84,8 +80,6 @@ public extension RequestWorker /* Data */ {
 
 // MARK: String
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* String */ {
     
     /// Starts the worker & serializes a `String` value.
@@ -131,8 +125,6 @@ public extension RequestWorker /* String */ {
 
 // MARK: JSON
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* JSON */ {
     
     /// Starts the worker & serializes a `JSON` value.
@@ -211,8 +203,6 @@ public extension RequestWorker /* JSON */ {
 
 // MARK: Image
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* Image */ {
     
     /// Starts the worker & serializes a `UIImage` value.
@@ -255,8 +245,6 @@ public extension RequestWorker /* Image */ {
 
 // MARK: Decode
 
-@available(iOS 13, *)
-@available(macOS 12, *)
 public extension RequestWorker /* Image */ {
     
     /// Starts the worker & serializes a `Decodable` object value.
