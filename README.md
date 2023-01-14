@@ -1,11 +1,15 @@
 ![Spider](Assets/Banner.png)
 
-# Spider
+<div align="center">
 
-![iOS](https://img.shields.io/badge/iOS-13+-green.svg?style=for-the-badge)
-![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-[![Cocoapods](https://img.shields.io/badge/Pod-2.2.0-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
-[![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
+![Version](https://img.shields.io/badge/Version-2.2.0-F0ABAA.svg?style=for-the-badge&labelColor=E25F5F)
+![iOS](https://img.shields.io/badge/iOS-13+-F0ABAA.svg?style=for-the-badge&labelColor=E25F5F)
+![Swift](https://img.shields.io/badge/Swift-5-F0ABAA.svg?style=for-the-badge&labelColor=E25F5F)
+<!-- ![Xcode](https://img.shields.io/badge/Xcode-14-F0ABAA.svg?style=for-the-badge&labelColor=E25F5F) -->
+
+</div>
+
+# Spider
 
 Spider is an easy-to-use networking library built for speed & readability. Modern syntax & response handling makes working
 with web services so simple - it's almost spooky.
