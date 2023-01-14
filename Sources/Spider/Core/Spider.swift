@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 8/22/18.
 //
 
-import Foundation
+import Espresso
 
 /// `Spider` provides a simple & declarative way to execute web requests.
 public class Spider {

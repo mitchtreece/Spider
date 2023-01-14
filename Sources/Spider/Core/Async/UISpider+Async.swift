@@ -5,11 +5,11 @@
 //  Created by Mitch Treece on 1/26/22.
 //
 
-import Foundation
+import UIKit
+import Espresso
 
 @available(iOS 13, *)
-@available(macOS 12, *)
-public extension UISpider where T: ImageView {
+public extension UISpider where T: UIImageView {
     
     /// Fetches a remote _or_ cached image for a given URL, then assigns it to the current image view.
     /// - parameter url: The image's URL.
@@ -19,8 +19,8 @@ public extension UISpider where T: ImageView {
     ///
     /// The caller is responsible for assigning the image to the image view.
     func setImage(_ url: URLRepresentable,
-                  placeholder: Image? = nil,
-                  cacheImage: Bool = true) async -> (Image?, Bool) {
+                  placeholder: UIImage? = nil,
+                  cacheImage: Bool = true) async -> (UIImage?, Bool) {
         
         await withCheckedContinuation { c in
             setImage(url, placeholder: placeholder, cacheImage: cacheImage) { image, fromCache, error in
@@ -38,8 +38,8 @@ public extension UISpider where T: ImageView {
     ///
     /// The caller is responsible for assigning the image to the image view.
     func setImageThrowing(_ url: URLRepresentable,
-                          placeholder: Image? = nil,
-                          cacheImage: Bool = true) async throws -> (Image, Bool) {
+                          placeholder: UIImage? = nil,
+                          cacheImage: Bool = true) async throws -> (UIImage, Bool) {
         
         try await withCheckedThrowingContinuation { c in
             

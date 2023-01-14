@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Spider
+@testable import Espresso
 
 class GetTests: XCTestCase {
     
@@ -109,7 +110,7 @@ class GetTests: XCTestCase {
         
         let exp = expectation(description: "HTTP status code is OK & image is returned")
         var status: HTTPStatusCode?
-        var image: Image?
+        var image: UIImage?
         
         self.spider
             .get("https://unsplash.it/500/?random")

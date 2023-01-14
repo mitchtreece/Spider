@@ -5,6 +5,7 @@
 //  Created by Mitch Treece on 10/24/19.
 //
 
+import Espresso
 import Reachability
 
 /// Helper class that manages & notifies on network reachability events.
@@ -26,7 +27,7 @@ public final class ReachabilityMonitor {
         
         do {
             
-            if let host = host?.urlString {
+            if let host = host?.asUrlString() {
                 self.reachability = try Reachability(hostname: host)
             }
             else {

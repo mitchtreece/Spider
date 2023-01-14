@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/6/20.
 //
 
-import Foundation
+import Espresso
 
 /// A remote event stream class used to manage
 /// connection & observation of server-side-events.
@@ -84,16 +84,15 @@ public class RemoteEventStream: NSObject {
     /// The event stream's current state.
     public private(set) var state: State = .disconnected
 
-    private var urlSession: URLSession?
-    private var queue: OperationQueue
-    private var parser = EventParser()
-
     /// The last received stream event's ID.
     public private(set) var lastEventId: String?
     
     /// The last received stream event's retry interval.
     public private(set) var lastEventRetryInterval: Int?
     
+    private var urlSession: URLSession?
+    private var queue: OperationQueue
+    private var parser = EventParser()
     private var listeners = [StreamEventListener]()
 
     /// Initializes an event stream with a given url.
@@ -102,7 +101,7 @@ public class RemoteEventStream: NSObject {
     /// This throws if the stream url is invalid.
     public init(url: URLRepresentable) throws {
         
-        guard let url = url.url else { throw StreamError.invalidUrl }
+        guard let url = url.asUrl() else { throw StreamError.invalidUrl }
         
         self.url = url
         

@@ -10,7 +10,6 @@ import XCTest
 @testable import Spider
 
 @available(iOS 13, *)
-@available(macOS 12, *)
 class AsyncTests: XCTestCase {
     
     private var spider = Spider()

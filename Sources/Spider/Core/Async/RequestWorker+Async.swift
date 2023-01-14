@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 6/15/21.
 //
 
-import Foundation
+import Espresso
 
 // MARK: Void
 
@@ -215,9 +215,9 @@ public extension RequestWorker /* JSON */ {
 @available(macOS 12, *)
 public extension RequestWorker /* Image */ {
     
-    /// Starts the worker & serializes an `Image` value.
-    /// - returns: An optional serialized `Image` value.
-    func image() async -> Image? {
+    /// Starts the worker & serializes a `UIImage` value.
+    /// - returns: An optional serialized `UIImage` value.
+    func image() async -> UIImage? {
         
         await withCheckedContinuation { c in
             imageResponse {
@@ -227,9 +227,9 @@ public extension RequestWorker /* Image */ {
         
     }
     
-    /// Starts the worker & serializes an `Image` value.
-    /// - returns: A serialized `Image` value.
-    func imageThrowing() async throws -> Image {
+    /// Starts the worker & serializes a `UIImage` value.
+    /// - returns: A serialized `UIImage` value.
+    func imageThrowing() async throws -> UIImage {
         
         try await withCheckedThrowingContinuation { c in
             imageResponse {
@@ -239,9 +239,9 @@ public extension RequestWorker /* Image */ {
         
     }
     
-    /// Starts the worker & serializes a `Image` response.
-    /// - returns: A serialized `Image` response.
-    func imageResponse() async -> Response<Image> {
+    /// Starts the worker & serializes a `UIImage` response.
+    /// - returns: A serialized `UIImage` response.
+    func imageResponse() async -> Response<UIImage> {
         
         await withCheckedContinuation { c in
             imageResponse {

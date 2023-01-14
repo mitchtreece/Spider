@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/19/19.
 //
 
-import Foundation
+import Espresso
 
 /// An HTTP response.
 public struct Response<T> {

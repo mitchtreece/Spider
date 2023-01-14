@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 8/22/18.
 //
 
-import Foundation
+import Espresso
 
 /// A configurable HTTP request.
 public class Request {
@@ -200,7 +200,7 @@ public class Request {
             self.queryEncodedPath = path
             self.body = nil
             
-        default: self.body = Body(data: try? parameters.jsonData())
+        default: self.body = Body(data: parameters.asJsonData())
         }
         
     }

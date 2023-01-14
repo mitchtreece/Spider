@@ -51,7 +51,7 @@ public extension Response /* Debug */ {
     
     private func json(data: Data) {
         
-        let _object: Any? = (try? data.json()) ?? (try? data.jsonArray())
+        let _object: Any? = data.asJson() ?? data.asJsonArray()
                 
         guard let object = _object,
             let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),

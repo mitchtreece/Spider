@@ -75,7 +75,7 @@ public final class JSONErrorMiddleware: Middleware {
     
     public override func next(_ response: Response<Data>) throws -> Response<Data> {
         
-        let jsonResponse = response.map { try $0.json() }
+        let jsonResponse = response.map { try $0.asJsonThrowing() }
         
         switch jsonResponse.result {
         case .success(let json):

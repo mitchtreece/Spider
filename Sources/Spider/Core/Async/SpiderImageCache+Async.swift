@@ -5,16 +5,15 @@
 //  Created by Mitch Treece on 1/26/22.
 //
 
-import Foundation
+import UIKit
 
 @available(iOS 13, *)
-@available(macOS 12, *)
 public extension SpiderImageCache {
     
     /// Caches an image for a given key.
     /// - parameter image: The image to cache.
     /// - parameter key: The key to cache the image with.
-    func cache(_ image: Image,
+    func cache(_ image: UIImage,
                forKey key: String) async {
         
         await withCheckedContinuation { c in
@@ -40,7 +39,7 @@ public extension SpiderImageCache {
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
     /// - returns: An optional image.
-    func image(forKey key: String) async -> Image? {
+    func image(forKey key: String) async -> UIImage? {
         
         await withCheckedContinuation { c in
             image(forKey: key) { image, error in
@@ -53,7 +52,7 @@ public extension SpiderImageCache {
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
     /// - returns: The cached image.
-    func imageThrowing(forKey key: String) async throws -> Image {
+    func imageThrowing(forKey key: String) async throws -> UIImage {
         
         try await withCheckedThrowingContinuation { c in
             image(forKey: key) { image, error in

@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/20/19.
 //
 
-import Foundation
+import Espresso
 
 public extension RequestWorker /* JSON */ {
     
@@ -15,7 +15,7 @@ public extension RequestWorker /* JSON */ {
 
         dataResponse { response in
             completion(response.map {
-                try $0.json()
+                try $0.asJsonThrowing()
             })
         }
         
@@ -40,7 +40,7 @@ public extension RequestWorker /* JSON */ {
         
         dataResponse { response in
             completion(response.map {
-                try $0.jsonArray()
+                try $0.asJsonArrayThrowing()
             })
         }
         

@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 8/24/18.
 //
 
-import Foundation
+import Espresso
 
 internal class RequestBuilder {
     
@@ -20,7 +20,7 @@ internal class RequestBuilder {
         let path = request.queryEncodedPath ?? request.path
         
         if let base = self.spider?.baseUrl,
-            let baseString = base.urlString {
+            let baseString = base.asUrlString() {
             return "\(baseString)\(path)"
         }
         
@@ -30,7 +30,7 @@ internal class RequestBuilder {
     
     internal func urlRequest(for request: Request) -> URLRequest? {
         
-        guard let url = url(for: request).url else { return nil }
+        guard let url = url(for: request).asUrl() else { return nil }
         
         // Request
         

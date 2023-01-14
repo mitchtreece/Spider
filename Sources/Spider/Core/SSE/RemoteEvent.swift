@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/6/20.
 //
 
-import Foundation
+import Espresso
 
 /// Type that represents a server-side-event.
 public struct RemoteEvent {
@@ -102,28 +102,24 @@ public struct RemoteEvent {
 public extension RemoteEvent /* JSON */ {
     
     /// A `JSON` representation of the event data.
-    var jsonData: JSON? {
+    var dataAsJson: JSON? {
         
         guard let string = self.data,
               let data = string.data(using: .utf8) else { return nil }
         
-        return try? JSONSerialization.jsonObject(
-            with: data,
-            options: []
-        ) as? JSON
+        return data
+            .asJson()
         
     }
     
     /// A `[JSON]` representation of the event data.
-    var jsonArrayData: [JSON]? {
+    var dataAsJsonArray: [JSON]? {
         
         guard let string = self.data,
               let data = string.data(using: .utf8) else { return nil }
         
-        return try? JSONSerialization.jsonObject(
-            with: data,
-            options: []
-        ) as? [JSON]
+        return data
+            .asJsonArray()
         
     }
     

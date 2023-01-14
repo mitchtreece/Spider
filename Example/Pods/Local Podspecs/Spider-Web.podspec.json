@@ -27,11 +27,35 @@
       "name": "Core",
       "source_files": "Sources/Spider/Core/**/*",
       "dependencies": {
+        "Espresso/Core": [
+          "~> 3.0"
+        ],
         "ReachabilitySwift": [
           "~> 5.0"
+        ]
+      }
+    },
+    {
+      "name": "UIKit",
+      "source_files": "Sources/Spider/UI/UIKit/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
+        ],
+        "Espresso/UIKit": [
+          "~> 3.0"
         ],
         "Kingfisher": [
           "~> 7.0"
+        ]
+      }
+    },
+    {
+      "name": "UIKit-PromiseKit",
+      "source_files": "Sources/Spider/UI/UIKit-PromiseKit/**/*",
+      "dependencies": {
+        "Spider-Web/UIKit": [
+
         ]
       }
     },
@@ -51,6 +75,12 @@
       "name": "All",
       "dependencies": {
         "Spider-Web/Core": [
+
+        ],
+        "Spider-Web/UIKit": [
+
+        ],
+        "Spider-Web/UIKit-PromiseKit": [
 
         ],
         "Spider-Web/PromiseKit": [

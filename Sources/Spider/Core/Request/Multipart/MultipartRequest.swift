@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 8/24/18.
 //
 
-import Foundation
+import Espresso
 
 /// A configurable multipart HTTP request.
 public class MultipartRequest: Request {

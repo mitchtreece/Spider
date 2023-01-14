@@ -1,11 +1,12 @@
 //
-//  Spider+Promise.swift
+//  RequestWorker+Promise.swift
 //  Pods
 //
 //  Created by Mitch Treece on 12/13/16.
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
+import Espresso
 import PromiseKit
 
 // MARK: Void
@@ -185,45 +186,6 @@ public extension RequestWorker /* JSON */ {
         return Promise<Response<[JSON]>> { seal in
             
             jsonArrayResponse { response in
-                
-                switch response.result {
-                case .success: seal.fulfill(response)
-                case .failure(let error): seal.reject(error)
-                }
-                
-            }
-            
-        }
-        
-    }
-    
-}
-
-// MARK: Image
-
-public extension RequestWorker /* Image */ {
-    
-    /// Starts the worker & serializes an `Image` value.
-    /// - returns: A serialized `Image` value promise.
-    func image() -> Promise<Image> {
-        
-        return Promise<Image> { seal in
-            
-            imageResponse()
-                .done { seal.fulfill($0.value!) }
-                .catch { seal.reject($0) }
-            
-        }
-        
-    }
-    
-    /// Starts the worker & serializes an `Image` response.
-    /// - returns: A serialized `Image` response promise.
-    func imageResponse() -> Promise<Response<Image>> {
-        
-        return Promise<Response<Image>> { seal in
-            
-            imageResponse { response in
                 
                 switch response.result {
                 case .success: seal.fulfill(response)
