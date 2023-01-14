@@ -1,7 +1,7 @@
 {
   "name": "Spider-Web",
   "module_name": "Spider",
-  "version": "2.0.1",
+  "version": "2.2.0",
   "summary": "Creepy networking library for Swift.",
   "description": "Spider is an easy-to-use networking library built for\nspeed & readability. Spider's modern syntax & response handling\nmakes working with web services so simple - it's almost spooky.",
   "homepage": "https://github.com/mitchtreece/Spider",
@@ -14,21 +14,36 @@
   },
   "source": {
     "git": "https://github.com/mitchtreece/Spider.git",
-    "tag": "2.0.1"
+    "tag": "2.2.0"
   },
   "social_media_url": "https://twitter.com/MitchTreece",
   "platforms": {
-    "ios": "12.0"
+    "ios": "13.0"
   },
   "swift_versions": "5",
   "default_subspecs": "Core",
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Spider/Classes/Core/**/*",
+      "source_files": "Sources/Spider/Core/**/*",
       "dependencies": {
+        "Espresso/Core": [
+          "~> 3.0"
+        ],
         "ReachabilitySwift": [
-          "~> 5.0.0"
+          "~> 5.0"
+        ]
+      }
+    },
+    {
+      "name": "UIKit",
+      "source_files": "Sources/Spider/UI/UIKit/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
+        ],
+        "Espresso/UIKit": [
+          "~> 3.0"
         ],
         "Kingfisher": [
           "~> 7.0"
@@ -36,17 +51,17 @@
       }
     },
     {
-      "name": "Async",
-      "source_files": "Spider/Classes/Async/**/*",
+      "name": "UIKit-PromiseKit",
+      "source_files": "Sources/Spider/UI/UIKit-PromiseKit/**/*",
       "dependencies": {
-        "Spider-Web/Core": [
+        "Spider-Web/UIKit": [
 
         ]
       }
     },
     {
-      "name": "Promise",
-      "source_files": "Spider/Classes/Promise/**/*",
+      "name": "PromiseKit",
+      "source_files": "Sources/Spider/PromiseKit/**/*",
       "dependencies": {
         "Spider-Web/Core": [
 
@@ -62,10 +77,13 @@
         "Spider-Web/Core": [
 
         ],
-        "Spider-Web/Async": [
+        "Spider-Web/UIKit": [
 
         ],
-        "Spider-Web/Promise": [
+        "Spider-Web/UIKit-PromiseKit": [
+
+        ],
+        "Spider-Web/PromiseKit": [
 
         ]
       }

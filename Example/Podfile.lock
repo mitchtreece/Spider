@@ -1,20 +1,36 @@
 PODS:
-  - Kingfisher (7.1.2)
-  - PromiseKit/CorePromise (6.15.3)
+  - CombineExt (1.8.0)
+  - Espresso/Core (3.0.3):
+    - CombineExt (~> 1.0)
+  - Espresso/UI-Core (3.0.3):
+    - Espresso/Core
+  - Espresso/UI-UIKit (3.0.3):
+    - Espresso/UI-Core
+    - SnapKit (~> 5.0)
+  - Espresso/UIKit (3.0.3):
+    - Espresso/Core
+    - Espresso/UI-UIKit
+  - Kingfisher (7.5.0)
+  - PromiseKit/CorePromise (6.18.1)
   - ReachabilitySwift (5.0.0)
-  - SnapKit (5.0.1)
-  - Spider-Web/All (2.0.1):
-    - Spider-Web/Async
+  - SnapKit (5.6.0)
+  - Spider-Web/All (2.2.0):
     - Spider-Web/Core
-    - Spider-Web/Promise
-  - Spider-Web/Async (2.0.1):
-    - Spider-Web/Core
-  - Spider-Web/Core (2.0.1):
-    - Kingfisher (~> 7.0)
-    - ReachabilitySwift (~> 5.0.0)
-  - Spider-Web/Promise (2.0.1):
+    - Spider-Web/PromiseKit
+    - Spider-Web/UIKit
+    - Spider-Web/UIKit-PromiseKit
+  - Spider-Web/Core (2.2.0):
+    - Espresso/Core (~> 3.0)
+    - ReachabilitySwift (~> 5.0)
+  - Spider-Web/PromiseKit (2.2.0):
     - PromiseKit/CorePromise (~> 6.0)
     - Spider-Web/Core
+  - Spider-Web/UIKit (2.2.0):
+    - Espresso/UIKit (~> 3.0)
+    - Kingfisher (~> 7.0)
+    - Spider-Web/Core
+  - Spider-Web/UIKit-PromiseKit (2.2.0):
+    - Spider-Web/UIKit
 
 DEPENDENCIES:
   - SnapKit (~> 5.0)
@@ -22,6 +38,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CombineExt
+    - Espresso
     - Kingfisher
     - PromiseKit
     - ReachabilitySwift
@@ -32,12 +50,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
-  PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
+  CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
+  Espresso: ca94d7fcfa4cce21ea68a8c94ae2bcf968f30c41
+  Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
+  PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  Spider-Web: 5d4acd114a21b70351c271e1ab7895421bb53e3f
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Spider-Web: bdcf58df645e0fa5d0e7b7e4250cbf898fd22022
 
-PODFILE CHECKSUM: e0327f31764add24c83ef0a8178d9a464c34444b
+PODFILE CHECKSUM: 533fae555da0b087728d2a7802fda2c399b0ea41
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

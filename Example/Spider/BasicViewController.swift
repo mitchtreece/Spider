@@ -15,7 +15,7 @@ class BasicViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Basic Requests"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         

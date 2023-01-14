@@ -16,7 +16,7 @@ class PromisesViewController: LoadingViewController {
         
         super.viewDidLoad()
         self.title = "Promises"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.view.backgroundColor = .systemGroupedBackground
         
         self.startLoading()
         
