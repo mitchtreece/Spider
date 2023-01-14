@@ -1,35 +1,37 @@
-<img src="Resources/logo.png" alt="Spider" width="36" height="36">&nbsp;&nbsp;Spider: Creepy Networking Library for Swift
-===
+![Spider](Assets/Banner.png)
 
-[![Version](https://img.shields.io/cocoapods/v/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
+# Spider
+
+![iOS](https://img.shields.io/badge/iOS-13+-green.svg?style=for-the-badge)
 ![Swift](https://img.shields.io/badge/Swift-5-orange.svg?style=for-the-badge)
-![iOS](https://img.shields.io/badge/iOS-12+-green.svg?style=for-the-badge)
+[![Cocoapods](https://img.shields.io/badge/Pod-2.2.0-blue.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 [![License](https://img.shields.io/cocoapods/l/Spider-Web.svg?style=for-the-badge)](http://cocoapods.org/pods/Spider-Web)
 
 Spider is an easy-to-use networking library built for speed & readability. Modern syntax & response handling makes working
 with web services so simple - it's almost spooky.
 
 ## Installation
-### CocoaPods
-Spider is integrated with CocoaPods!
 
-1. Add the following to your `Podfile`:
+### CocoaPods
+
 ```
 use_frameworks!
-pod 'Spider-Web'
+pod 'Spider-Web', '~> 2.0'
 ```
-2. In your project directory, run `pod install`
-3. Import the `Spider` module wherever you need it
-4. Profit
 
-### Manually
-You can also manually add the source files to your project.
+#### Subspecs
 
-1. Clone this git repo
-2. Add all the Swift files in the `Spider/` subdirectory to your project
-3. Profit
+Spider is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `Core` subspec is installed.
 
-## The Basics
+- `Core`: Core classes, extensions, & dependencies
+- `PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
+- `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
+- `UIKit-PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) UIKit classes, extensions, & dependencies
+- `All`: Aggregate subspec that includes **everything**
+
+## Spider
+
+### The Basics
 
 Spider can be used in many different ways. Most times, the shared Spider instance is all you need.
 
@@ -333,7 +335,7 @@ Spider.web
     }
 ```
 
-#### Workers & Serialization
+### Workers & Serialization
 
 When asked to perform a request, Spider creates & returns a `RequestWorker` instance. Workers are what actually manage the execution of requests, and serialization of responses. For instance, the above example could be broken down as follows:
 
@@ -401,7 +403,7 @@ func decode<T: Decodable>(type: T.Type, completion: ...)
 
 Custom serialization functions can be added via `RequestWorker` extensions.
 
-#### Middleware
+### Middleware
 
 Responses can also be ran through _middleware_ to validate or transform the returned data if needed.
 
@@ -591,4 +593,4 @@ Enabling Spider's `isDebugEnabled` flag will print all debug information (includ
 
 ## Contributing
 
-Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in!
+Pull-requests are more than welcome. Bug fix? Feature? Open a PR and we'll get it merged in! 🎉
