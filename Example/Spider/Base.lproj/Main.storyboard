@@ -53,6 +53,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="LxD-aE-yY8" imageView="kAy-uL-ss8" style="IBUITableViewCellStyleDefault" id="4uP-G0-vJz">
                                         <rect key="frame" x="20" y="62" width="353" height="44"/>
@@ -74,6 +75,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="jRr-1A-rMU" imageView="z3j-0S-yy2" style="IBUITableViewCellStyleDefault" id="L47-Pr-Ibp">
                                         <rect key="frame" x="20" y="106" width="353" height="44"/>
@@ -95,6 +97,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="zP8-EN-6cm" imageView="TLJ-Gs-8kA" style="IBUITableViewCellStyleDefault" id="H98-D8-7hl">
                                         <rect key="frame" x="20" y="150" width="353" height="44"/>
@@ -116,6 +119,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="SNJ-aF-hnI" imageView="Lt1-ql-olw" style="IBUITableViewCellStyleDefault" id="0iX-DI-zxh">
                                         <rect key="frame" x="20" y="194" width="353" height="44"/>
@@ -137,6 +141,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="lze-c0-7nV" imageView="dbL-1C-CZp" style="IBUITableViewCellStyleDefault" id="iga-Xl-SFU">
                                         <rect key="frame" x="20" y="238" width="353" height="44"/>
@@ -158,6 +163,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yQG-uP-3Wp" imageView="SYF-Kp-30r" style="IBUITableViewCellStyleDefault" id="jYb-3a-KNN">
                                         <rect key="frame" x="20" y="282" width="353" height="44"/>
@@ -179,6 +185,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="21x-R9-qZK" imageView="gbo-Tn-lXE" style="IBUITableViewCellStyleDefault" id="r1X-MF-EZq">
                                         <rect key="frame" x="20" y="326" width="353" height="44"/>
@@ -200,6 +207,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="4U3-fD-ucd" imageView="1Dz-eD-MH4" style="IBUITableViewCellStyleDefault" id="fje-tw-abT">
                                         <rect key="frame" x="20" y="370" width="353" height="44"/>
@@ -221,6 +229,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="kCm-zJ-oax" imageView="jvu-9X-aSi" style="IBUITableViewCellStyleDefault" id="tcp-2W-PKY">
                                         <rect key="frame" x="20" y="414" width="353" height="44"/>
@@ -242,6 +251,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="eBT-NU-DAq" imageView="uGK-63-ZYl" style="IBUITableViewCellStyleDefault" id="Bbu-Np-0yP">
                                         <rect key="frame" x="20" y="458" width="353" height="44"/>
@@ -263,6 +273,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.59215688710000003" green="0.1686274707" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
