@@ -31,4 +31,28 @@ public extension RequestWorker /* Void */ {
         
     }
     
+    // MARK: Passthrough
+    
+    /// Adds a void-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func voidResponsePassthrough(_ block: @escaping (Response<Void>)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.compactMap { _ in () })
+        }
+        
+    }
+    
+    /// Adds a void passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func voidPassthrough(_ block: @escaping ()->()) -> Self {
+        
+        return voidResponsePassthrough { _ in
+            block()
+        }
+        
+    }
+    
 }

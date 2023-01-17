@@ -34,4 +34,28 @@ public extension RequestWorker /* Image */ {
         
     }
     
+    /// Adds an image-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func imageResponsePassthrough(_ block: @escaping (Response<UIImage>)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.compactMap{
+                UIImage(data: $0)
+            })
+        }
+        
+    }
+    
+    /// Adds an image passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func imagePassthrough(_ block: @escaping (UIImage?)->()) -> Self {
+        
+        return imageResponsePassthrough { res in
+            block(res.value)
+        }
+        
+    }
+    
 }

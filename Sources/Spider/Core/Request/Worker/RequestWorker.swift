@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/20/19.
 //
 
-import Foundation
+import Espresso
 
 /// Worker class that manages the execution and serialization of HTTP requests & responses.
 public class RequestWorker: Cancellable {
@@ -41,6 +41,8 @@ public class RequestWorker: Cancellable {
     
     public private(set) var isCancelled: Bool = false
     
+    private var passthroughs = [(Response<Data>)->()]()
+    
     private var task: URLSessionDataTask?
     
     internal init(request: Request,
@@ -56,7 +58,7 @@ public class RequestWorker: Cancellable {
         self.isDebugEnabled = isDebugEnabled
         
     }
-         
+    
     /// Starts the worker & serializes a `Data` response.
     /// - parameter completion: The worker's completion closure.
     public func dataResponse(_ completion: @escaping (Response<Data>)->()) {
@@ -159,6 +161,11 @@ public class RequestWorker: Cancellable {
 
             }
             
+            // Passthroughs
+            
+            self.passthroughs
+                .forEach { $0(response) }
+            
             // Done
             
             return completion(response)
@@ -182,6 +189,29 @@ public class RequestWorker: Cancellable {
             
         }
 
+    }
+    
+    /// Adds a data-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    public func dataResponsePassthrough(_ block: @escaping (Response<Data>)->()) -> Self {
+        
+        self.passthroughs
+            .append(block)
+        
+        return self
+        
+    }
+    
+    /// Adds a data passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    public func dataPassthrough(_ block: @escaping (Data?)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.value)
+        }
+        
     }
     
     public func cancel() {

@@ -38,4 +38,32 @@ public extension RequestWorker /* String */ {
         
     }
     
+    // MARK: Passthrough
+    
+    /// Adds a string-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func stringResponsePassthrough(encoding: String.Encoding = .utf8,
+                                   _ block: @escaping (Response<String>)->()) -> Self {
+    
+        return dataResponsePassthrough { res in
+            block(res.compactMap {
+                String(data: $0, encoding: encoding)
+            })
+        }
+        
+    }
+    
+    /// Adds a string passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func stringPassthrough(encoding: String.Encoding = .utf8,
+                           _ block: @escaping (String?)->()) -> Self {
+        
+        return stringResponsePassthrough(encoding: encoding) { res in
+            block(res.value)
+        }
+        
+    }
+    
 }

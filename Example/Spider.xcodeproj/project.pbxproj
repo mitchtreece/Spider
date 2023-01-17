@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26163995297620E3008D4F90 /* PassthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26163994297620E3008D4F90 /* PassthroughViewController.swift */; };
 		261F35F62679BC09001ACDB8 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261F35F52679BC09001ACDB8 /* AsyncViewController.swift */; };
 		2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2625C71C239EC3A00066542E /* MiddlewareViewController.swift */; };
 		26362642236E444400D8C6A7 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26362641236E444400D8C6A7 /* HeaderTests.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		068D1C7A595158C32797669F /* Pods_Spider_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spider_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26163994297620E3008D4F90 /* PassthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughViewController.swift; sourceTree = "<group>"; };
 		261F35F52679BC09001ACDB8 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
 		2625C71C239EC3A00066542E /* MiddlewareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddlewareViewController.swift; sourceTree = "<group>"; };
 		26362641236E444400D8C6A7 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				267439B61EDBFA6700C5BD6E /* JSONViewController.swift */,
 				266B4EB61EDA7C6A000A39E5 /* MappingViewController.swift */,
 				2668C81E1FB6726D00199E77 /* MultipartViewController.swift */,
+				26163994297620E3008D4F90 /* PassthroughViewController.swift */,
 				2625C71C239EC3A00066542E /* MiddlewareViewController.swift */,
 				263BF8F5252CEDDA00557C06 /* SSEViewController.swift */,
 				266B4EB91EDA7C9A000A39E5 /* UIKitViewController.swift */,
@@ -422,6 +425,7 @@
 				2668C81F1FB6726D00199E77 /* MultipartViewController.swift in Sources */,
 				266B4EB71EDA7C6A000A39E5 /* MappingViewController.swift in Sources */,
 				266B4EB51EDA7C29000A39E5 /* AuthViewController.swift in Sources */,
+				26163995297620E3008D4F90 /* PassthroughViewController.swift in Sources */,
 				266B4EC11EDA7D09000A39E5 /* Photo.swift in Sources */,
 				267439B71EDBFA6700C5BD6E /* JSONViewController.swift in Sources */,
 				2625C71D239EC3A00066542E /* MiddlewareViewController.swift in Sources */,

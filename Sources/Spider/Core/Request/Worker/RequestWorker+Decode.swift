@@ -36,4 +36,32 @@ public extension RequestWorker /* Decode */ {
         
     }
     
+    // MARK: Passthrough
+    
+    /// Adds a decode-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func decodeResponsePassthrough<T: Decodable>(_ type: T.Type,
+                                                 _ block: @escaping (Response<T>)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.map {
+                try JSONDecoder().decode(T.self, from: $0)
+            })
+        }
+        
+    }
+    
+    /// Adds a decode passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func decodeResponsePassthrough<T: Decodable>(_ type: T.Type,
+                                                _ block: @escaping (T?)->()) -> Self {
+        
+        return decodeResponsePassthrough(type) { res in
+            block(res.value)
+        }
+        
+    }
+    
 }

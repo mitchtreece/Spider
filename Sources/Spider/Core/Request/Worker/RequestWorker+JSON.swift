@@ -59,4 +59,54 @@ public extension RequestWorker /* JSON */ {
         
     }
     
+    // MARK: Passthrough
+    
+    /// Adds a json-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func jsonResponsePassthrough(_ block: @escaping (Response<JSON>)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.map {
+                try $0.asJsonThrowing()
+            })
+        }
+        
+    }
+    
+    /// Adds a json passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func jsonPassthrough(_ block: @escaping (JSON?)->()) -> Self {
+        
+        return jsonResponsePassthrough { res in
+            block(res.value)
+        }
+        
+    }
+    
+    /// Adds a json-array-response passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func jsonArrayResponsePassthrough(_ block: @escaping (Response<[JSON]>)->()) -> Self {
+        
+        return dataResponsePassthrough { res in
+            block(res.map {
+                try $0.asJsonArrayThrowing()
+            })
+        }
+        
+    }
+    
+    /// Adds a json-array passthrough to the worker.
+    /// - parameter block: The passthrough closure.
+    /// - returns: This `RequestWorker`.
+    func jsonArrayPassthrough(_ block: @escaping ([JSON]?)->()) -> Self {
+        
+        return jsonArrayResponsePassthrough { res in
+            block(res.value)
+        }
+        
+    }
+    
 }

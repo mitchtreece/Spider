@@ -1264,10 +1264,10 @@
 			isa = PBXGroup;
 			children = (
 				11484EE050F9478455F72919DD9A7DCC /* RequestWorker.swift */,
-				DC7CBE635A689E5D3D41BEA07657D438 /* RequestWorker+Decode.swift */,
-				CA8E45D12FEF4FF0880D3F06B66EF1AC /* RequestWorker+JSON.swift */,
-				4FD0023FB5324A1954AAC0CED223F5C4 /* RequestWorker+String.swift */,
 				5AE141A84E75F20B1F1800088B395AA3 /* RequestWorker+Void.swift */,
+				4FD0023FB5324A1954AAC0CED223F5C4 /* RequestWorker+String.swift */,
+				CA8E45D12FEF4FF0880D3F06B66EF1AC /* RequestWorker+JSON.swift */,
+				DC7CBE635A689E5D3D41BEA07657D438 /* RequestWorker+Decode.swift */,
 			);
 			path = Worker;
 			sourceTree = "<group>";

@@ -19,6 +19,7 @@ class RootViewController: UITableViewController {
         case auth
         case json
         case mapping
+        case passthrough
         case middleware
         case sse
         case uikit
@@ -95,6 +96,13 @@ class RootViewController: UITableViewController {
             
             self.navigationController?.pushViewController(
                 MappingViewController(),
+                animated: true
+            )
+            
+        case .passthrough:
+            
+            self.navigationController?.pushViewController(
+                PassthroughViewController(),
                 animated: true
             )
 
