@@ -367,24 +367,23 @@ worker.dataResponse { res in
 If you'd rather work directly with response _values_ instead of responses themselves, each worker function has a raw value alternative:
 
 ```swift
-let worker = Spider.web
+Spider.web
     .get("https://some/data/endpoint")
+    .data { (data, error) in
 
-worker.data { (data, error) in
+        if let error = error {
+            // Handle the error
+            return
+        }
 
-    if let error = error {
-        // Handle the error
-        return
+        guard let data = data else {
+            // Missing data
+            return
+        }
+
+        // Do something with the data
+
     }
-
-    guard let data = data else {
-        // Missing data
-        return
-    }
-
-    // Do something with the data
-
-}
 ```
 
 In addition to `Data`, `RequestWorker` also supports the following serialization functions:
@@ -407,36 +406,94 @@ func decode<T: Decodable>(type: T.Type, completion: ...)
 
 Custom serialization functions can be added via `RequestWorker` extensions.
 
-### Middleware
+### Passthroughs
+
+Sometimes you might want to inspect _or_ kick-off an action inside of your response chain. 
+For this, a *passthrough* closure can be added to a request worker:
+
+```swift
+Spider.web
+    .get("https://some/data/endpoint")
+    .voidPassthrough {
+        
+        // This is executed before delivering
+        // the response to the handler below.
+
+    }
+    .dataResponse { res in
+
+        if let error = res.error {
+            // Handle the error
+            return
+        }
+
+        guard let data = res.value else {
+            // Missing data
+            return
+        }
+
+        // Do something with the response data
+
+    }
+```
+
+Imagine you need to send an error event to your analytics provider when your API sends you back an error:
+
+```swift
+Spider.web
+    .get("https://some/data/endpoint")
+    .jsonResponsePassthrough { res in
+        
+        if let error = getError(from: res) {
+            self.analytics.track(error)
+        } 
+
+    }
+    .jsonResponse { res in
+
+        guard let json = res.value else {
+            return
+        }
+
+        // Do something with the response json
+
+    }
+```
+
+### Middlewares
 
 Responses can also be ran through _middleware_ to validate or transform the returned data if needed.
 
 ```swift
 class ExampleMiddleware: Middleware {
 
-  override func next(_ response: Response<Data>) throws -> Response<Data> {
+    override func next(_ response: Response<Data>) throws -> Response<Data> {
+    
+        let stringResponse = response
+            .compactMap { $0.stringResponse() }
 
-    let stringResponse = response.compactMap { $0.stringResponse() }
+        switch stringResponse.result {
+        case .success(let string):
 
-    switch stringResponse.result {
-    case .success(let string):
+            guard !string.isEmpty else {
 
-      guard !string.isEmpty else {
+                throw NSError(
+                    domain: "com.example.Spider-Example",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "ExampleMiddleware failed"]
+                )
 
-        throw NSError(
-          domain: "com.example.Spider-Example",
-          code: -1,
-          userInfo: [NSLocalizedDescriptionKey: "ExampleMiddleware failed"]
-        )
+            }
 
-      }
+        case .failure(let error): 
+        
+            throw error
 
-    case .failure(let error): throw error
+        }
+
+        return response
+
     }
-
-    return response
-
-  }
 
 }
 ```
