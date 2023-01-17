@@ -13,7 +13,8 @@ private class ExampleMiddleware: Middleware {
     
     override func next(_ response: Response<Data>) throws -> Response<Data> {
         
-        let stringResponse = response.compactMap { $0.string() }
+        let stringResponse = response
+            .compactMap { String(data: $0, encoding: .utf8) }
                 
         switch stringResponse.result {
         case .success(let string):
