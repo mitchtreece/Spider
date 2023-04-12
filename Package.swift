@@ -10,7 +10,7 @@ let package = Package(
     products: [
 
         .library(
-            name: "SpiderCore", 
+            name: "Spider", 
             targets: ["Core"]
         ),
 
@@ -25,8 +25,8 @@ let package = Package(
         ),
 
         .library(
-            name: "SpiderUIKit_Promise", 
-            targets: ["UIKit_Promise"]
+            name: "SpiderUIKitPromise", 
+            targets: ["UIKitPromise"]
         )
 
     ],
@@ -35,7 +35,17 @@ let package = Package(
         .target(
             name: "Core",
             path: "Sources/Core",
-            dependencies: []
+            dependencies: [
+
+                // Espresso/Core ~> 3.0
+
+                .package(
+                    name: "ReachabilitySwift",
+                    url: "https://github.com/ashleymills/Reachability.swift",
+                    .upToNextMajor(from: .init(5, 0, 0))
+                )
+
+            ]
         ),
 
         .target(
@@ -60,13 +70,19 @@ let package = Package(
             dependencies: [
 
                 .target(name: "Core")
+                
+                .package(
+                    name: "Kingfisher",
+                    url: "https://github.com/onevcat/Kingfisher",
+                    .upToNextMajor(from: .init(7, 0, 0))
+                )
 
             ]
         ),
 
         .target(
-            name: "UIKit_Promise",
-            path: "Sources/UI/UIKit-Promise",
+            name: "UIKitPromise",
+            path: "Sources/UI/UIKitPromise",
             dependencies: [
 
                 .target(name: "UIKit"),

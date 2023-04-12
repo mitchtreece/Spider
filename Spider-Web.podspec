@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
         ss.source_files =    'Sources/Spider/Core/**/*'
 
-        ss.dependency        'Espresso/Core',     '~> 3.0'
+        # ss.dependency        'Espresso/Core',     '~> 3.0'
         ss.dependency        'ReachabilitySwift', '~> 5.0'
 
     end
@@ -47,14 +47,14 @@ Pod::Spec.new do |s|
       ss.source_files =      'Sources/Spider/UI/UIKit/**/*'
 
       ss.dependency          'Spider-Web/Core'
-      ss.dependency          'Espresso/UIKit',    '~> 3.0'
+    #   ss.dependency          'Espresso/UIKit',    '~> 3.0'
       ss.dependency          'Kingfisher',        '~> 7.0'
 
     end
 
-    s.subspec 'UIKit-Promise' do |ss|
+    s.subspec 'UIKitPromise' do |ss|
 
-      ss.source_files =      'Sources/Spider/UI/UIKit-Promise/**/*'
+      ss.source_files =      'Sources/Spider/UI/UIKitPromise/**/*'
 
       ss.dependency          'Spider-Web/UIKit'
       ss.dependency          'Spider-Web/Promise'
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
 
       ss.dependency          'Spider-Web/Core'
       ss.dependency          'Spider-Web/UIKit'
-      ss.dependency          'Spider-Web/UIKit-Promise'
+      ss.dependency          'Spider-Web/UIKitPromise'
       ss.dependency          'Spider-Web/Promise'
 
     end
