@@ -589,8 +589,10 @@
 			baseConfigurationReference = EFADAEBFEEABE3FFFFAFBE09 /* Pods-Spider_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spider;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
@@ -606,8 +608,10 @@
 			baseConfigurationReference = 59688F2DD840F723A1C29AA0 /* Pods-Spider_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KKSYLRXR4A;
 				INFOPLIST_FILE = Spider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Spider;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
