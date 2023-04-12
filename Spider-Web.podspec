@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
 
         ss.source_files =    'Sources/Spider/Core/**/*'
 
-        # ss.dependency        'Espresso/Core',     '~> 3.0'
-        ss.dependency        'ReachabilitySwift', '~> 5.0'
+        ss.dependency        'Espresso/Vendor-SpiderCore', '~> 3.1'
+        ss.dependency        'ReachabilitySwift',          '~> 5.0'
 
     end
 
@@ -47,7 +47,6 @@ Pod::Spec.new do |s|
       ss.source_files =      'Sources/Spider/UI/UIKit/**/*'
 
       ss.dependency          'Spider-Web/Core'
-    #   ss.dependency          'Espresso/UIKit',    '~> 3.0'
       ss.dependency          'Kingfisher',        '~> 7.0'
 
     end
