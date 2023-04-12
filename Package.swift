@@ -37,7 +37,11 @@ let package = Package(
             path: "Sources/Core",
             dependencies: [
 
-                // Espresso/Core ~> 3.0
+                .package(
+                    name: "Espresso", // TODO: How do I specify a Vendor-SpiderCore target?
+                    url: "https://github.com/mitchtreece/Espresso",
+                    .upToNextMajor(from: .init(3, 1, 0))
+                )
 
                 .package(
                     name: "ReachabilitySwift",
