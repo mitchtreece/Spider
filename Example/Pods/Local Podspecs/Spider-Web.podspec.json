@@ -36,8 +36,8 @@
       }
     },
     {
-      "name": "PromiseKit",
-      "source_files": "Sources/Spider/PromiseKit/**/*",
+      "name": "Promise",
+      "source_files": "Sources/Spider/Promise/**/*",
       "dependencies": {
         "Spider-Web/Core": [
 
@@ -63,13 +63,13 @@
       }
     },
     {
-      "name": "UIKit-PromiseKit",
-      "source_files": "Sources/Spider/UI/UIKit-PromiseKit/**/*",
+      "name": "UIKit-Promise",
+      "source_files": "Sources/Spider/UI/UIKit-Promise/**/*",
       "dependencies": {
         "Spider-Web/UIKit": [
 
         ],
-        "Spider-Web/PromiseKit": [
+        "Spider-Web/Promise": [
 
         ]
       }
@@ -83,10 +83,10 @@
         "Spider-Web/UIKit": [
 
         ],
-        "Spider-Web/UIKit-PromiseKit": [
+        "Spider-Web/UIKit-Promise": [
 
         ],
-        "Spider-Web/PromiseKit": [
+        "Spider-Web/Promise": [
 
         ]
       }

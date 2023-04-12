@@ -33,9 +33,9 @@ Pod::Spec.new do |s|
 
     end
 
-    s.subspec 'PromiseKit' do |ss|
+    s.subspec 'Promise' do |ss|
 
-      ss.source_files =      'Sources/Spider/PromiseKit/**/*'
+      ss.source_files =      'Sources/Spider/Promise/**/*'
 
       ss.dependency          'Spider-Web/Core'
       ss.dependency          'PromiseKit/CorePromise', '~> 6.0'
@@ -52,12 +52,12 @@ Pod::Spec.new do |s|
 
     end
 
-    s.subspec 'UIKit-PromiseKit' do |ss|
+    s.subspec 'UIKit-Promise' do |ss|
 
-      ss.source_files =      'Sources/Spider/UI/UIKit-PromiseKit/**/*'
+      ss.source_files =      'Sources/Spider/UI/UIKit-Promise/**/*'
 
       ss.dependency          'Spider-Web/UIKit'
-      ss.dependency          'Spider-Web/PromiseKit'
+      ss.dependency          'Spider-Web/Promise'
 
     end
 
@@ -65,8 +65,8 @@ Pod::Spec.new do |s|
 
       ss.dependency          'Spider-Web/Core'
       ss.dependency          'Spider-Web/UIKit'
-      ss.dependency          'Spider-Web/UIKit-PromiseKit'
-      ss.dependency          'Spider-Web/PromiseKit'
+      ss.dependency          'Spider-Web/UIKit-Promise'
+      ss.dependency          'Spider-Web/Promise'
 
     end
 
