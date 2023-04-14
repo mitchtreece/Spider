@@ -14,9 +14,9 @@
         "package": "Espresso",
         "repositoryURL": "https://github.com/mitchtreece/Espresso",
         "state": {
-          "branch": "release/3.1.0",
-          "revision": "fc620813b242c8ec9e46abe44f02c8bc8d44f25c",
-          "version": null
+          "branch": null,
+          "revision": "9f318ed45166151e8d88ddd6b5b8f3455df02cef",
+          "version": "3.1.0"
         }
       },
       {

@@ -16,26 +16,36 @@ with web services so simple - it's almost spooky.
 
 ## Installation
 
-### CocoaPods
+### SPM
+
+The easiest way to get started is by installing via Xcode. Just add Spider as a Swift package & choose the modules you want.
+
+If you're adding Spider as a dependency of your own Swift package, just add a package entry to your dependencies.
 
 ```
-use_frameworks!
+.package(
+    name: "Spider",
+    url: "https://github.com/mitchtreece/Spider",
+    .upToNextMajor(from: .init(2, 2, 0))
+)
+```
+
+Spider is broken down into several modules making it quick & easy to pick and choose exactly what you need.
+
+- `Spider`: Core classes, extensions, & dependencies
+- `SpiderUI`: UIKit & SwiftUI classes, extension, & dependencies
+- `SpiderPromise`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
+- `SpiderPromiseUI`: UIKit & SwiftUI PromiseKit classes, extensions, & dependencies
+
+### CocoaPods
+
+As of Spider `2.2.0`, CocoaPods support has been dropped in favor of SPM. If you're depending on a Spider version prior to `2.2.0`, you can still integrate using CocoaPods.
+
+```
 pod 'Spider-Web', '~> 2.0'
 ```
 
-#### Subspecs
-
-Spider is broken down into several subspecs making it quick & easy to pick and choose what you need. By default, the `Core` subspec is installed.
-
-- `Core`: Core classes, extensions, & dependencies
-- `PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) classes, extensions, & dependencies
-- `UIKit`: [UIKit](https://developer.apple.com/documentation/uikit) classes, extensions, & dependencies
-- `UIKit-PromiseKit`: [PromiseKit](https://github.com/mxcl/PromiseKit) UIKit classes, extensions, & dependencies
-- `All`: Aggregate subspec that includes **everything**
-
-## Spider
-
-### The Basics
+## Usage
 
 Spider can be used in many different ways. Most times, the shared Spider instance is all you need.
 
