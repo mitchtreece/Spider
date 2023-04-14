@@ -1,6 +1,0 @@
-framework module Spider {
-  umbrella header "Spider-Web-umbrella.h"
-
-  export *
-  module * { export * }
-}

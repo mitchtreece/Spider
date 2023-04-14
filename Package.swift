@@ -30,16 +30,15 @@ let package = Package(
     ],
     dependencies: [
 
-        // Espresso
-
         .package(
             name: "Espresso",
             url: "https://github.com/mitchtreece/Espresso",
-            .upToNextMajor(from: .init(3, 1, 0))
+            .branch("release/3.1.0")
+            // .upToNextMajor(from: .init(3, 1, 0))
         ),
 
         .package(
-            name: "ReachabilitySwift",
+            name: "Reachability",
             url: "https://github.com/ashleymills/Reachability.swift",
             .upToNextMajor(from: .init(5, 0, 0))
         ),
@@ -67,10 +66,10 @@ let package = Package(
                     name: "EspressoLibSupport_Spider",
                     package: "Espresso"
                 ),
-
+                
                 .product(
-                    name: "CombineExt", 
-                    package: "CombineExt"
+                    name: "Reachability",
+                    package: "Reachability"
                 )
 
             ],
