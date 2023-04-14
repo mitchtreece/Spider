@@ -5,43 +5,41 @@ import PackageDescription
 let package = Package(
     name: "Spider",
     platforms: [.iOS(.v13)],
-    swiftLanguageVersions: [.v5],
-    dependencies: [],
     products: [
 
         .library(
-            name: "Spider", 
-            targets: ["Core"]
+            name: "Core", 
+            targets: ["Spider"]
         ),
 
         .library(
-            name: "SpiderPromise", 
-            targets: ["Promise"]
+            name: "UI", 
+            targets: ["SpiderUI"]
         ),
 
         .library(
-            name: "SpiderUIKit", 
-            targets: ["UIKit"]
+            name: "Promise", 
+            targets: ["SpiderPromise"]
         ),
 
         .library(
-            name: "SpiderUIKitPromise", 
-            targets: ["UIKitPromise"]
+            name: "PromiseUI", 
+            targets: ["SpiderPromiseUI"]
         )
 
     ],
+    dependencies: [],
     targets: [
 
         .target(
-            name: "Core",
-            path: "Sources/Core",
+            name: "Spider",
             dependencies: [
 
                 .package(
-                    name: "Espresso", // TODO: How do I specify a Vendor-SpiderCore target?
+                    name: "Espresso/LibSupport/Spider", // TODO: How do I specify a Vendor-SpiderCore target?
                     url: "https://github.com/mitchtreece/Espresso",
                     .upToNextMajor(from: .init(3, 1, 0))
-                )
+                ),
 
                 .package(
                     name: "ReachabilitySwift",
@@ -49,31 +47,15 @@ let package = Package(
                     .upToNextMajor(from: .init(5, 0, 0))
                 )
 
-            ]
+            ],
+            path: "Sources/Core"
         ),
 
         .target(
-            name: "Promise",
-            path: "Sources/Promise",
+            name: "SpiderUI",
             dependencies: [
 
-                .target(name: "Core"),
-
-                .package(
-                    name: "PromiseKit",
-                    url: "https://github.com/mxcl/PromiseKit",
-                    .upToNextMajor(from: .init(6, 0, 0))
-                )
-
-            ]
-        ),
-
-        .target(
-            name: "UIKit",
-            path: "Sources/UI/UIKit",
-            dependencies: [
-
-                .target(name: "Core")
+                .target(name: "Spider"), // Core
                 
                 .package(
                     name: "Kingfisher",
@@ -81,19 +63,37 @@ let package = Package(
                     .upToNextMajor(from: .init(7, 0, 0))
                 )
 
-            ]
+            ],
+            path: "Sources/UI"
         ),
 
         .target(
-            name: "UIKitPromise",
-            path: "Sources/UI/UIKitPromise",
+            name: "SpiderPromise",
             dependencies: [
 
-                .target(name: "UIKit"),
+                .target(name: "Spider"), // Core
+
+                .package(
+                    name: "PromiseKit",
+                    url: "https://github.com/mxcl/PromiseKit",
+                    .upToNextMajor(from: .init(6, 0, 0))
+                )
+
+            ],
+            path: "Sources/Promise"
+        ),
+
+        .target(
+            name: "SpiderPromiseUI",
+            dependencies: [
+
+                .target(name: "SpiderUI"),
                 .target(name: "Promise")
 
-            ]
+            ],
+            path: "Sources/PromiseUI"
         )
 
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

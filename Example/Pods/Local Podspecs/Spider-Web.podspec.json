@@ -33,6 +33,18 @@
       }
     },
     {
+      "name": "UI",
+      "source_files": "Sources/Spider/UI/**/*",
+      "dependencies": {
+        "Spider-Web/Core": [
+
+        ],
+        "Kingfisher": [
+          "~> 7.0"
+        ]
+      }
+    },
+    {
       "name": "Promise",
       "source_files": "Sources/Spider/Promise/**/*",
       "dependencies": {
@@ -45,22 +57,10 @@
       }
     },
     {
-      "name": "UIKit",
-      "source_files": "Sources/Spider/UI/UIKit/**/*",
+      "name": "PromiseUI",
+      "source_files": "Sources/Spider/PromiseUI/**/*",
       "dependencies": {
-        "Spider-Web/Core": [
-
-        ],
-        "Kingfisher": [
-          "~> 7.0"
-        ]
-      }
-    },
-    {
-      "name": "UIKitPromise",
-      "source_files": "Sources/Spider/UI/UIKitPromise/**/*",
-      "dependencies": {
-        "Spider-Web/UIKit": [
+        "Spider-Web/UI": [
 
         ],
         "Spider-Web/Promise": [
@@ -74,13 +74,13 @@
         "Spider-Web/Core": [
 
         ],
-        "Spider-Web/UIKit": [
-
-        ],
-        "Spider-Web/UIKitPromise": [
+        "Spider-Web/UI": [
 
         ],
         "Spider-Web/Promise": [
+
+        ],
+        "Spider-Web/PromiseUI": [
 
         ]
       }

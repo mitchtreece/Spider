@@ -1,5 +1,4 @@
 PODS:
-  - Espresso/Vendor-SpiderCore (3.0.3)
   - Kingfisher (7.6.2)
   - PromiseKit/CorePromise (6.18.1)
   - ReachabilitySwift (5.0.0)
@@ -7,22 +6,21 @@ PODS:
   - Spider-Web/All (2.2.0):
     - Spider-Web/Core
     - Spider-Web/Promise
-    - Spider-Web/UIKit
-    - Spider-Web/UIKitPromise
+    - Spider-Web/PromiseUI
+    - Spider-Web/UI
   - Spider-Web/Core (2.2.0):
     - ReachabilitySwift (~> 5.0)
   - Spider-Web/Promise (2.2.0):
     - PromiseKit/CorePromise (~> 6.0)
     - Spider-Web/Core
-  - Spider-Web/UIKit (2.2.0):
+  - Spider-Web/PromiseUI (2.2.0):
+    - Spider-Web/Promise
+    - Spider-Web/UI
+  - Spider-Web/UI (2.2.0):
     - Kingfisher (~> 7.0)
     - Spider-Web/Core
-  - Spider-Web/UIKitPromise (2.2.0):
-    - Spider-Web/Promise
-    - Spider-Web/UIKit
 
 DEPENDENCIES:
-  - Espresso/Vendor-SpiderCore (from `https://github.com/mitchtreece/Espresso`, branch `core-deps`)
   - SnapKit (~> 5.0)
   - Spider-Web/All (from `../`)
 
@@ -34,25 +32,16 @@ SPEC REPOS:
     - SnapKit
 
 EXTERNAL SOURCES:
-  Espresso:
-    :branch: core-deps
-    :git: https://github.com/mitchtreece/Espresso
   Spider-Web:
     :path: "../"
 
-CHECKOUT OPTIONS:
-  Espresso:
-    :commit: 3caa72d4eb30a5c8555f6f0d5fab14e6b3ce755b
-    :git: https://github.com/mitchtreece/Espresso
-
 SPEC CHECKSUMS:
-  Espresso: f1f2cd49fa7bef923a164c737a10d1efd117d140
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  Spider-Web: a1b47f88e9eae3006d11fdaf485cec26aca6e2e9
+  Spider-Web: 94914d1e8b8fa21ebe55fc5b670045cb5702066f
 
-PODFILE CHECKSUM: 5d14448cc03caf738e60e0d4ed10bd546b18df95
+PODFILE CHECKSUM: 8eb1bf357f9728e97e0be78ec450a4352c0f0599
 
 COCOAPODS: 1.12.0
