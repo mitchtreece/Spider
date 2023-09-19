@@ -33,7 +33,7 @@ let package = Package(
         .package(
             name: "Espresso",
             url: "https://github.com/mitchtreece/Espresso",
-            .upToNextMajor(from: .init(3, 1, 0))
+            .upToNextMajor(from: .init(3, 0, 0))
         ),
 
         .package(
