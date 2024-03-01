@@ -5,10 +5,12 @@
 //  Created by Mitch Treece on 6/16/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
+import SpiderUI
 import EspressoLibSupport_Spider
 import PromiseKit
-import SpiderUI
 
 public extension UISpider where T: UIImageView {
     
@@ -48,3 +50,5 @@ public extension UISpider where T: UIImageView {
     }
     
 }
+
+#endif

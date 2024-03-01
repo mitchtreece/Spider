@@ -5,14 +5,14 @@
 //  Created by Mitch Treece on 1/13/23.
 //
 
-import UIKit
 import Spider
+import Kingfisher
 
 public extension RequestWorker /* Image */ {
     
-    /// Starts the worker & serializes a `UIImage` value.
+    /// Starts the worker & serializes an image value.
     /// - parameter completion: The worker's completion closure.
-    func image(_ completion: @escaping (UIImage?, Error?)->()) {
+    func image(_ completion: @escaping (KFCrossPlatformImage?, Error?)->()) {
         
         imageResponse {
             completion(
@@ -23,9 +23,9 @@ public extension RequestWorker /* Image */ {
         
     }
     
-    /// Starts the worker & serializes a `UIImage` value.
-    /// - returns: An optional serialized `UIImage` value.
-    func image() async -> UIImage? {
+    /// Starts the worker & serializes an image value.
+    /// - returns: An optional serialized image value.
+    func image() async -> KFCrossPlatformImage? {
 
         await withCheckedContinuation { c in
             imageResponse {
@@ -35,9 +35,9 @@ public extension RequestWorker /* Image */ {
 
     }
     
-    /// Starts the worker & serializes a `UIImage` value.
-    /// - returns: A serialized `UIImage` value.
-    func imageThrowing() async throws -> UIImage {
+    /// Starts the worker & serializes an image value.
+    /// - returns: A serialized image value.
+    func imageThrowing() async throws -> KFCrossPlatformImage {
 
         try await withCheckedThrowingContinuation { c in
             imageResponse {
@@ -47,21 +47,21 @@ public extension RequestWorker /* Image */ {
 
     }
     
-    /// Starts the worker & serializes a `UIImage` response.
+    /// Starts the worker & serializes an image response.
     /// - parameter completion: The worker's completion closure.
-    func imageResponse(_ completion: @escaping (Response<UIImage>)->()) {
+    func imageResponse(_ completion: @escaping (Response<KFCrossPlatformImage>)->()) {
         
         dataResponse { response in
             completion(response.compactMap {
-                UIImage(data: $0)
+                KFCrossPlatformImage(data: $0)
             })
         }
         
     }
     
-    /// Starts the worker & serializes a `UIImage` response.
-    /// - returns: A serialized `UIImage` response.
-    func imageResponse() async -> Response<UIImage> {
+    /// Starts the worker & serializes an image response.
+    /// - returns: A serialized image response.
+    func imageResponse() async -> Response<KFCrossPlatformImage> {
 
         await withCheckedContinuation { c in
             imageResponse {
@@ -74,11 +74,11 @@ public extension RequestWorker /* Image */ {
     /// Adds an image-response passthrough to the worker.
     /// - parameter block: The passthrough closure.
     /// - returns: This `RequestWorker`.
-    func imageResponsePassthrough(_ block: @escaping (Response<UIImage>)->()) -> Self {
+    func imageResponsePassthrough(_ block: @escaping (Response<KFCrossPlatformImage>)->()) -> Self {
         
         return dataResponsePassthrough { res in
             block(res.compactMap{
-                UIImage(data: $0)
+                KFCrossPlatformImage(data: $0)
             })
         }
         
@@ -87,7 +87,7 @@ public extension RequestWorker /* Image */ {
     /// Adds an image passthrough to the worker.
     /// - parameter block: The passthrough closure.
     /// - returns: This `RequestWorker`.
-    func imagePassthrough(_ block: @escaping (UIImage?)->()) -> Self {
+    func imagePassthrough(_ block: @escaping (KFCrossPlatformImage?)->()) -> Self {
         
         return imageResponsePassthrough { res in
             block(res.value)

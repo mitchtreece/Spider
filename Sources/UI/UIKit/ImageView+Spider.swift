@@ -6,7 +6,9 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
+#if canImport(UIKit)
+
+import Kingfisher
 import EspressoLibSupport_Spider
 
 private enum AssociatedKeys {
@@ -19,14 +21,14 @@ private enum AssociatedKeys {
 public extension UIImageView {
     
     /// The image view's `UISpider` instance.
-    var web: UISpider<UIImageView> {
+    var web: UISpider<KFCrossPlatformImageView> {
         get {
             
-            if let web = associatedObject(forKey: AssociatedKeys.spider) as? UISpider<UIImageView> {
+            if let web = associatedObject(forKey: AssociatedKeys.spider) as? UISpider<KFCrossPlatformImageView> {
                 return web
             }
             
-            let web = UISpider<UIImageView>()
+            let web = UISpider<KFCrossPlatformImageView>()
             self.web = web
             return web
             
@@ -57,7 +59,7 @@ public extension UIImageView {
     
 }
 
-public extension UISpider where T: UIImageView {
+public extension UISpider where T: KFCrossPlatformImageView {
     
     /// Fetches a remote _or_ cached image for a given url,
     /// then assigns it to the current image view.
@@ -74,7 +76,7 @@ public extension UISpider where T: UIImageView {
                   cacheImage: Bool = true,
                   completion: SpiderImageDownloaderCompletion? = nil) {
                 
-        guard let imageView = self.view as? UIImageView else { return }
+        guard let imageView = self.view as? KFCrossPlatformImageView else { return }
         
         if let placeholder = placeholder {
             imageView.image = placeholder
@@ -108,7 +110,7 @@ public extension UISpider where T: UIImageView {
     ///
     /// The caller is responsible for assigning the image to the image view.
     func setImage(_ url: URLRepresentable,
-                  placeholder: UIImage? = nil,
+                  placeholder: KFCrossPlatformImage? = nil,
                   cacheImage: Bool = true) async -> (UIImage?, Bool) {
         
         await withCheckedContinuation { c in
@@ -129,7 +131,7 @@ public extension UISpider where T: UIImageView {
     ///
     /// The caller is responsible for assigning the image to the image view.
     func setImageThrowing(_ url: URLRepresentable,
-                          placeholder: UIImage? = nil,
+                          placeholder: KFCrossPlatformImage? = nil,
                           cacheImage: Bool = true) async throws -> (UIImage, Bool) {
         
         try await withCheckedThrowingContinuation { c in
@@ -156,7 +158,7 @@ public extension UISpider where T: UIImageView {
     /// Cancels the current image download task.
     func cancelImageDownload() {
         
-        guard let imageView = self.view as? UIImageView,
+        guard let imageView = self.view as? KFCrossPlatformImageView,
               let task = imageView.imageDownloadTask else { return }
         
         task.cancel()
@@ -164,3 +166,5 @@ public extension UISpider where T: UIImageView {
     }
     
 }
+
+#endif

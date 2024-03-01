@@ -1,10 +1,13 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "Spider",
-    platforms: [.iOS(.v13)],
+    platforms: [
+        .iOS(.v13),
+        .macOS(.v13)
+    ],
     products: [
 
         .library(
@@ -31,25 +34,21 @@ let package = Package(
     dependencies: [
 
         .package(
-            name: "Espresso",
             url: "https://github.com/mitchtreece/Espresso",
             .upToNextMajor(from: .init(3, 0, 0))
         ),
 
         .package(
-            name: "Reachability",
             url: "https://github.com/ashleymills/Reachability.swift",
             .upToNextMajor(from: .init(5, 0, 0))
         ),
 
         .package(
-            name: "Kingfisher",
             url: "https://github.com/onevcat/Kingfisher",
             .upToNextMajor(from: .init(7, 0, 0))
         ),
 
         .package(
-            name: "PromiseKit",
             url: "https://github.com/mxcl/PromiseKit",
             .upToNextMajor(from: .init(6, 0, 0))
         )
@@ -68,7 +67,7 @@ let package = Package(
                 
                 .product(
                     name: "Reachability",
-                    package: "Reachability"
+                    package: "Reachability.swift"
                 )
 
             ],
@@ -116,6 +115,5 @@ let package = Package(
             path: "Sources/PromiseUI"
         )
 
-    ],
-    swiftLanguageVersions: [.v5]
+    ]
 )

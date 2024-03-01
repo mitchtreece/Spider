@@ -6,7 +6,6 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
 
 /// Helper class that caches images to memory & disk.
@@ -44,7 +43,7 @@ public class SpiderImageCache {
     /// - Parameter image: The image to cache.
     /// - Parameter key: The key to cache the image with.
     /// - Parameter completion: An optional image cache completion handler.
-    public func cache(_ image: UIImage,
+    public func cache(_ image: KFCrossPlatformImage,
                       forKey key: String,
                       completion: (()->())?) {
 
@@ -60,9 +59,9 @@ public class SpiderImageCache {
     /// Caches an image for a given key.
     /// - parameter image: The image to cache.
     /// - parameter key: The key to cache the image with.
-    func cache(_ image: UIImage,
+    func cache(_ image: KFCrossPlatformImage,
                forKey key: String) async {
-        
+
         await withCheckedContinuation { c in
             cache(image, forKey: key) {
                 c.resume()
@@ -75,7 +74,7 @@ public class SpiderImageCache {
     /// - Parameter key: The cached image's key.
     /// - Parameter completion: The retrieval completion handler.
     public func image(forKey key: String,
-                      completion: @escaping (UIImage?, Error?)->()) {
+                      completion: @escaping (KFCrossPlatformImage?, Error?)->()) {
                 
         self.cache.retrieveImage(forKey: key) { result in
             
@@ -91,7 +90,7 @@ public class SpiderImageCache {
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
     /// - returns: An optional image.
-    func image(forKey key: String) async -> UIImage? {
+    func image(forKey key: String) async -> KFCrossPlatformImage? {
         
         await withCheckedContinuation { c in
             image(forKey: key) { image, error in
@@ -104,7 +103,7 @@ public class SpiderImageCache {
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
     /// - returns: The cached image.
-    func imageThrowing(forKey key: String) async throws -> UIImage {
+    func imageThrowing(forKey key: String) async throws -> KFCrossPlatformImage {
         
         try await withCheckedThrowingContinuation { c in
             image(forKey: key) { image, error in

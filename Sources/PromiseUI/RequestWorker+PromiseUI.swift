@@ -6,18 +6,17 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
-import PromiseKit
-import Spider
 import SpiderUI
+import Kingfisher
+import PromiseKit
 
-public extension RequestWorker /* UIImage */ {
+public extension RequestWorker /* Image */ {
     
-    /// Starts the worker & serializes a `UIImage` value.
-    /// - returns: A serialized `UIImage` value promise.
-    func image() -> Promise<UIImage> {
+    /// Starts the worker & serializes an image value.
+    /// - returns: A serialized image value promise.
+    func image() -> Promise<KFCrossPlatformImage> {
         
-        return Promise<UIImage> { seal in
+        return Promise<KFCrossPlatformImage> { seal in
             
             imageResponse()
                 .done { seal.fulfill($0.value!) }
@@ -27,11 +26,11 @@ public extension RequestWorker /* UIImage */ {
         
     }
     
-    /// Starts the worker & serializes a `UIImage` response.
-    /// - returns: A serialized `UIImage` response promise.
-    func imageResponse() -> Promise<Response<UIImage>> {
+    /// Starts the worker & serializes an image response.
+    /// - returns: A serialized image response promise.
+    func imageResponse() -> Promise<Response<KFCrossPlatformImage>> {
         
-        return Promise<Response<UIImage>> { seal in
+        return Promise<Response<KFCrossPlatformImage>> { seal in
             
             imageResponse { response in
                 

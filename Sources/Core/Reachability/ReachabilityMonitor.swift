@@ -5,8 +5,8 @@
 //  Created by Mitch Treece on 10/24/19.
 //
 
-import EspressoLibSupport_Spider
 import Reachability
+import EspressoLibSupport_Spider
 
 /// Helper class that manages & notifies on network reachability events.
 public final class ReachabilityMonitor {
