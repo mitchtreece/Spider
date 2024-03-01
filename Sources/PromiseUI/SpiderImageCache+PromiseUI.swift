@@ -5,9 +5,9 @@
 //  Created by Mitch Treece on 6/16/21.
 //
 
-import UIKit
-import PromiseKit
 import SpiderUI
+import Kingfisher
+import PromiseKit
 
 public extension SpiderImageCache {
     
@@ -15,7 +15,7 @@ public extension SpiderImageCache {
     /// - parameter image: The image to cache.
     /// - parameter key: The key to cache the image with.
     /// - returns: A `Void` promise.
-    func cache(_ image: UIImage,
+    func cache(_ image: KFCrossPlatformImage,
                forKey key: String) -> Promise<Void> {
 
         return Promise<Void> { seal in
@@ -31,9 +31,9 @@ public extension SpiderImageCache {
     /// Fetches a cached image for a given key.
     /// - parameter key: The cached image's key.
     /// - returns: An `Image` promise.
-    func image(forKey key: String) -> Promise<UIImage> {
+    func image(forKey key: String) -> Promise<KFCrossPlatformImage> {
         
-        return Promise<UIImage> { seal in
+        return Promise<KFCrossPlatformImage> { seal in
             
             self.image(forKey: key) { image, error in
              

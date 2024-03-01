@@ -6,7 +6,6 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import UIKit
 import EspressoLibSupport_Spider
 import Kingfisher
 import Spider
@@ -16,7 +15,7 @@ import Spider
 /// - Parameter fromCache: Flag indicating if the image was retrieved from the cache.
 /// - Parameter error: The error associated with the download task.
 public typealias SpiderImageDownloaderCompletion = (
-    _ image: UIImage?,
+    _ image: KFCrossPlatformImage?,
     _ fromCache: Bool,
     _ error: Error?
 )->()
@@ -62,7 +61,7 @@ public class SpiderImageDownloader {
                 switch result {
                 case .success(let value):
                     
-                    let image = value.image as UIImage
+                    let image = value.image as KFCrossPlatformImage
                     
                     if cache {
                         

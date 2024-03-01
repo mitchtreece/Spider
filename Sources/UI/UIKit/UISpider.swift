@@ -6,6 +6,8 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Proxy class between `Spider` and a `UIView`.
@@ -22,3 +24,5 @@ public class UISpider<T> {
     internal weak var view: UIView!
     
 }
+
+#endif
