@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import EspressoLibSupport_Spider
 import PromiseKit
 import Spider
+import typealias Espresso.JSON
 
 // MARK: Void
 

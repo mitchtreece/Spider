@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import EspressoLibSupport_Spider
+import typealias Espresso.JSON
 
 /// An HTTP response.
 public struct Response<T> {

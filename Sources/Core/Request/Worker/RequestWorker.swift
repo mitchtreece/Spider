@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import EspressoLibSupport_Spider
 
 /// Worker class that manages the execution and serialization of HTTP requests & responses.
 public class RequestWorker: Cancellable {

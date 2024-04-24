@@ -6,7 +6,8 @@
 //
 
 import Reachability
-import EspressoLibSupport_Spider
+import protocol Espresso.URLRepresentable
+import protocol Espresso.JSONRepresentable
 
 /// Helper class that manages & notifies on network reachability events.
 public final class ReachabilityMonitor {

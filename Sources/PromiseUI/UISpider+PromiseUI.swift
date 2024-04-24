@@ -7,10 +7,9 @@
 
 #if canImport(UIKit)
 
-import UIKit
 import SpiderUI
-import EspressoLibSupport_Spider
 import PromiseKit
+import protocol Espresso.URLRepresentable
 
 public extension UISpider where T: UIImageView {
     
