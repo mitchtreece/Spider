@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Spider",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v15),
         .macOS(.v13)
     ],
     products: [
