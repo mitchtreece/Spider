@@ -61,7 +61,7 @@ let package = Package(
             dependencies: [
 
                 .product(
-                    name: "EspressoLibSupport_Spider",
+                    name: "Espresso",
                     package: "Espresso"
                 ),
                 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2017 Mitch Treece. All rights reserved.
 //
 
-import EspressoLibSupport_Spider
 import Kingfisher
 import Spider
+import protocol Espresso.URLRepresentable
 
 /// Image download completion handler.
 /// - Parameter image: The retrieved or downloaded image.

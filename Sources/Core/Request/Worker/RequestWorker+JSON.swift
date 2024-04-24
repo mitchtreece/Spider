@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/20/19.
 //
 
-import EspressoLibSupport_Spider
+import typealias Espresso.JSON
 
 public extension RequestWorker /* JSON */ {
     

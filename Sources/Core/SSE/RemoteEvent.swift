@@ -5,7 +5,7 @@
 //  Created by Mitch Treece on 10/6/20.
 //
 
-import EspressoLibSupport_Spider
+import typealias Espresso.JSON
 
 /// Type that represents a server-side-event.
 public struct RemoteEvent {

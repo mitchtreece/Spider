@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import EspressoLibSupport_Spider
+import protocol Espresso.URLRepresentable
 
 internal class RequestBuilder {
     
