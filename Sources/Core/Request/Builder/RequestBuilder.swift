@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import protocol Espresso.URLRepresentable
 
 internal class RequestBuilder {
     

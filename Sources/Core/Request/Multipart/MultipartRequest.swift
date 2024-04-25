@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import typealias Espresso.JSON
 
 /// A configurable multipart HTTP request.
 public class MultipartRequest: Request {

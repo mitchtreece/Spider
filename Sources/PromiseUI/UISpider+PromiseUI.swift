@@ -9,7 +9,6 @@
 
 import SpiderUI
 import PromiseKit
-import protocol Espresso.URLRepresentable
 
 public extension UISpider where T: UIImageView {
     

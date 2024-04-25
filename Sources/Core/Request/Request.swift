@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import typealias Espresso.JSON
-import protocol Espresso.JSONRepresentable
 
 /// A configurable HTTP request.
 public class Request {
