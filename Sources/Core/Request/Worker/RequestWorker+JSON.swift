@@ -5,8 +5,6 @@
 //  Created by Mitch Treece on 10/20/19.
 //
 
-import typealias Espresso.JSON
-
 public extension RequestWorker /* JSON */ {
     
     /// Starts the worker & serializes a `JSON` response.

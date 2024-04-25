@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import typealias Espresso.JSON
-import protocol Espresso.URLRepresentable
 
 /// `Spider` provides a simple & declarative way to execute web requests.
 public class Spider {

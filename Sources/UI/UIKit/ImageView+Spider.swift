@@ -9,7 +9,6 @@
 #if canImport(UIKit)
 
 import Kingfisher
-import protocol Espresso.URLRepresentable
 
 private enum AssociatedKeys {
     

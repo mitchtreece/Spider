@@ -9,7 +9,6 @@
 import Foundation
 import PromiseKit
 import Spider
-import typealias Espresso.JSON
 
 // MARK: Void
 

@@ -8,7 +8,6 @@
 
 import Kingfisher
 import Spider
-import protocol Espresso.URLRepresentable
 
 /// Image download completion handler.
 /// - Parameter image: The retrieved or downloaded image.

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import protocol Espresso.URLRepresentable
 
 /// A remote event stream class used to manage
 /// connection & observation of server-side-events.
