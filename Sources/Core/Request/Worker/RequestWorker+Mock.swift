@@ -9,13 +9,11 @@ import Foundation
 
 public extension RequestWorker /* Mock */ {
     
+    /// A mock request-worker used for testing.
     static var mock: RequestWorker {
                 
         return RequestWorker(
-            request: .init(
-                method: .custom("MOCK"),
-                path: "mock"
-            ),
+            request: .mock,
             builder: .init(spider: .web),
             middlewares: [],
             session: .shared,

@@ -19,11 +19,15 @@ public class MultipartRequest: Request {
         /// A PUT HTTP method.
         case put
         
+        /// A custom HTTP method.
+        case custom(String)
+        
         internal var httpMethod: HTTPMethod {
             
             switch self {
             case .post: return .post
             case .put: return .put
+            case .custom(let method): return .custom(method)
             }
             
         }
