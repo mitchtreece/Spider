@@ -10,6 +10,9 @@ import Foundation
 /// `Spider` provides a simple & declarative way to execute web requests.
 public class Spider {
     
+    /// The shared session used by all requests.
+    public var session: URLSession = .shared
+    
     /// The shared base URL prepended to all request paths.
     ///
     /// If no base URL is provided, request paths are expected to be fully-qualified URLs.
@@ -38,7 +41,6 @@ public class Spider {
     public private(set) var reachability: ReachabilityMonitor?
     
     private var builder: RequestBuilder!
-    private var session = URLSession.shared
 
     /// The shared `Spider` instance.
     public static let web = Spider()
@@ -78,7 +80,6 @@ public class Spider {
             request: request,
             builder: self.builder,
             middlewares: self.middlewares ?? [],
-            session: self.session,
             isDebugEnabled: self.isDebugLoggingEnabled
         )
         

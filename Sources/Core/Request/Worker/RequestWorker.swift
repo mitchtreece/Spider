@@ -33,8 +33,11 @@ public class RequestWorker: Cancellable {
     private let request: Request
     private let builder: RequestBuilder
     private let middlewares: [Middleware]
-    private let session: URLSession
     private let isDebugEnabled: Bool
+    
+    private var session: URLSession {
+        return request.session ?? builder.spider.session
+    }
         
     /// The worker's state.
     public private(set) var state: State = .pending
@@ -48,13 +51,11 @@ public class RequestWorker: Cancellable {
     internal init(request: Request,
                   builder: RequestBuilder,
                   middlewares: [Middleware],
-                  session: URLSession,
                   isDebugEnabled: Bool) {
         
         self.request = request
         self.builder = builder
         self.middlewares = middlewares
-        self.session = session
         self.isDebugEnabled = isDebugEnabled
         
     }

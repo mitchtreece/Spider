@@ -16,7 +16,6 @@ public extension RequestWorker /* Mock */ {
             request: .mock,
             builder: .init(spider: .web),
             middlewares: [],
-            session: .shared,
             isDebugEnabled: false
         )
         

@@ -54,6 +54,10 @@ public class Request {
         
     }
     
+    /// An optional url session to use for this request.
+    /// Setting this will _override_ Spider's global url session.
+    public var session: URLSession?
+    
     /// The request's HTTP method; _defaults to GET_.
     public var method: HTTPMethod = .get {
         didSet {
@@ -142,6 +146,7 @@ public class Request {
     public internal(set) var state: State = .pending
         
     /// Initializes a request.
+    /// - Parameter session: Optional url session to use for this request.
     /// - Parameter method: The request's HTTP method.
     /// - Parameter path: The request's resource path to append to any shared base URL **or** a fully qualified URL path.
     ///     ```
@@ -152,11 +157,13 @@ public class Request {
     /// or encoded into query parameters.
     /// - Parameter authorization: Optional authorization to use for this request.
     /// Setting this will _override_ any shared authorization.
-    public init(method: HTTPMethod,
+    public init(session: URLSession? = nil,
+                method: HTTPMethod,
                 path: String,
                 parameters: JSON? = nil,
                 authorization: RequestAuth? = nil) {
         
+        self.session = session
         self.method = method
         self.path = path
         self.parameters = parameters
